@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<p:toolbar>
+                    <f:facet name="left">
+                        <h:outputText value="Prezado Cliente Realize seu Cadastro"/>
+                    </f:facet>
+                    
+                   
+                </p:toolbar>
+	 <h:form id="frmCadCli">
+                
+			 <p:growl id="msgGlobal" sticky="true" showDetail="true" life="3000" />
+                 <p:panel id="panel" >
+                    <h:panelGrid id="pnlCadCliDados" columns="4" >         
+
+                        <h:outputLabel value="Nome"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.nome}" required="false"
+                                     requiredMessage="Prencha o nome"></p:inputText>
+                        <h:outputLabel value="CPF"></h:outputLabel>
+                        <p:inputText maxlength="12" size="12" value="#{clienteBean.cliente.cpf}" required="false"
+                                     requiredMessage="Prencha o CPF"></p:inputText>
+                        <h:outputLabel value="RG"></h:outputLabel>
+                        <p:inputText maxlength="12" size="12" value="#{clienteBean.cliente.rg_ie}" required="false"
+                                     requiredMessage="Prencha o RG"></p:inputText>
+                        <h:outputLabel for="telefone" value="Telefone"></h:outputLabel>
+                        <p:inputText id="telefone" size="10" value="#{clienteBean.cliente.telefone}" 
+                                     required="false"  requiredMessage="Preencha telefone"/>
+                        <h:outputLabel for="celular" value="Celular"></h:outputLabel>
+                        <p:inputText id="celular" size="10" value="#{clienteBean.cliente.celular}" 
+                                     required="false" requiredMessage="Preencha telefone celular"/>
+                        <h:outputLabel value="Logradouro"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.endereco.logradouro}" required="false"
+                                     requiredMessage="Preencha o logradouro"></p:inputText>
+                        <h:outputLabel value="Número"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.endereco.numero}" required="false"
+                                     requiredMessage="Preencha o número" size="6"></p:inputText>
+                        <h:outputLabel value="Cep"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.endereco.cep}" required="true"
+                                     requiredMessage="Preencha o Cep" size="6"></p:inputText>
+                        <h:outputLabel value="Bairro"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.endereco.bairro}" required="false"
+                                     requiredMessage="Preencha o Bairro"></p:inputText>
+                        <h:outputLabel value="Cidade"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.endereco.cidade}" required="false"
+                                     requiredMessage="Preencha a cidade"></p:inputText>
+                        <h:outputLabel value="Estado"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.endereco.estado}" required="false"
+                                     requiredMessage="Preencha o Estado"></p:inputText>
+                        <h:outputLabel value="Complemento"></h:outputLabel>
+                        <p:inputText value="#{clienteBean.cliente.endereco.complemento}" required="false"
+                                     requiredMessage="Preencha o complemento"></p:inputText>
+                    </h:panelGrid>
+                    <p:toolbar>
+                    <f:facet name="left">
+                        <h:outputText value="Insira seus dados de usuario"/>
+                    </f:facet>
+                </p:toolbar>
+		<h:panelGrid columns="2">
+				
+			<h:outputLabel value="Digite seu email"></h:outputLabel>
+			<p:inputText id="email" value="#{clienteBean.cliente.email}" required="false"
+                                     requiredMessage="Preencha o email"></p:inputText>
+            <h:outputLabel value="Digite sua Senha"></h:outputLabel>
+            <p:password id="senha" value="#{clienteBean.cliente.email}" required="false"
+                                     requiredMessage="Preencha senha"></p:password>
+            <h:outputLabel value="confirme a senha"></h:outputLabel>
+            <p:password id="ConfirmaSenha" value="#{clienteBean.cliente.email}" required="false"
+                                     requiredMessage="Preencha senha"></p:password>
+                        
+		</h:panelGrid>
+                    <h:panelGrid columns="5">
+                        <p:commandButton value="Editar" actionListener="#{clienteBean.editarCliente()}"
+                                         update="msgGlobal"/>
+                        <p:commandButton value="Salvar" 
+                                         actionListener="#{clienteBean.salvarCliente}"
+                                         update="msgGlobal" />
+                        <p:commandButton value="Excluir" 
+                                         actionListener="#{clienteBean.excluirCliente}" 
+                                         update="msgGlobal" />
+                        <p:commandButton  value="Limpar" update="pnlCadCliDados" process="@this">
+                            <p:resetInput target="pnlCadCliDados" />
+                        </p:commandButton>
+
+                        <p:commandButton value="Voltar" action="/frmPesquisaCliente.xhtml?faces-redirect=true" />
+
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+
+</h:body>
+</html>
