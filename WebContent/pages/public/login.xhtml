@@ -8,11 +8,11 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-		<title>login</title>
-	</h:head>
-	<h:body>
-
+	<ui:composition template="/pages/templates/mestre.xhtml">
+		<ui:define name="conteudo">
+			<h:outputText>adicionar o conteudo do site aqui</h:outputText>
+			
+		
   	<div id="topMessage" align="left">
 		  	<p:toolbar>
 				<f:facet name="left">
@@ -45,6 +45,7 @@
 			 </h:form>
 		
         </div>
-    
-	</h:body>
+    </ui:define>	
+	</ui:composition>
+	
 </html>
