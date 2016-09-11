@@ -1,4 +1,4 @@
-package br.com.marketedelivery.basico;
+package br.com.marketedelivery.classesbasicas;
 
 import java.io.Serializable;
 

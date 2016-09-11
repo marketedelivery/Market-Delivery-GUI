@@ -6,7 +6,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import br.com.marketedelivery.basico.Usuario;
+import br.com.marketedelivery.classesbasicas.Usuario;
 
 
 

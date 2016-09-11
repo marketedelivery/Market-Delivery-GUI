@@ -5,8 +5,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import br.com.marketedelivery.basico.Usuario;
 import javax.servlet.http.HttpSession;
+
+import br.com.marketedelivery.classesbasicas.Usuario;
 
 @SessionScoped
 @ManagedBean(name="usuarioMB")
