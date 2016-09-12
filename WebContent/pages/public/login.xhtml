@@ -8,44 +8,48 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="/pages/templates/mestre.xhtml">
-		<ui:define name="conteudo">
-			<h:outputText>adicionar o conteudo do site aqui</h:outputText>
-			
-		
-  	<div id="topMessage" align="left">
-		  	<p:toolbar>
+<ui:composition template="/pages/templates/modeloGeral.xhtml">
+	<ui:define name="conteudo">
+		<h:outputText>adicionar o conteudo do site aqui</h:outputText>
+
+
+		<div id="topMessage" align="left">
+			<p:toolbar>
 				<f:facet name="left">
-					<h:outputText value="Login de usuario"/>
+					<h:outputText value="Login de usuario" />
 				</f:facet>
-			 </p:toolbar>
-	
-			<h:form align-center="center">            
-		    
-		
-		    <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-		
-		    
-		     <p:messages id="messages" />
-		        <h:panelGrid columns="2" cellpadding="5" style="text-align:left">
-		            <h:outputLabel for="email" value="Digite a Senha: "/>
-		            <p:inputText id="email" value="#{loginMB.email}" required="true" label="username"/>
-								
-		            <h:outputLabel for="senha" value="Senha:" />
-		            <p:password id="senha" value="#{loginMB.senha}" required="true" label="password"/>
-		
-		            <f:facet name="footer">
-		                <p:commandButton value="Login"  update="growl" action="#{loginMB.login}"/>
-		            </f:facet>  
-		            <f:facet name="footer" >
-		            <p:link value =" Cadastre-se " update="growl" outcome ="/pages/public/CadastroCliente"/>
-		        	</f:facet>
-		        </h:panelGrid>
-		    
-			 </h:form>
-		
-        </div>
-    </ui:define>	
-	</ui:composition>
-	
+			</p:toolbar>
+
+			<h:form align-center="center">
+
+
+				<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+
+				<p:messages id="messages" />
+				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
+					<h:outputLabel for="email" value="Digite a Senha: " />
+					<p:inputText id="email" value="#{loginMB.email}" required="true"
+						label="username" />
+
+					<h:outputLabel for="senha" value="Senha:" />
+					<p:password id="senha" value="#{loginMB.senha}" required="true"
+						label="password" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Login" update="growl"
+							action="#{loginMB.login}" />
+					</f:facet>
+					<f:facet name="footer">
+						<p:link value=" Cadastre-se " update="growl"
+							outcome="/pages/public/clienteCadastro" />
+					</f:facet>
+				</h:panelGrid>
+
+			</h:form>
+
+		</div>
+	</ui:define>
+</ui:composition>
+
 </html>
