@@ -1,4 +1,4 @@
-package com.util;
+package brcom.marketedelivery.util;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;

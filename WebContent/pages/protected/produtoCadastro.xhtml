@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/pages/templates/modeloGeral.xhtml">
+	<ui:define name="conteudo">
+
+		<h:form>
+
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Produtos" />
+				</f:facet>
+			</p:toolbar>
+
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Código:" />
+				<p:inputText readonly="true" size="10" />
+			</h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Nome:" />
+				<p:inputText maxlength="50" size="80" />
+
+				<p:outputLabel value="Descrição:" />
+				<p:inputText maxlength="50" size="80" />
+			</h:panelGrid>
+			<h:panelGrid columns="4">
+
+				<p:outputLabel value="Marca:" />
+				<p:inputText maxlength="30" size="30" />
+
+				<p:outputLabel value="Embalagem:" />
+				<p:inputText maxlength="10" size="10" />
+
+				<p:outputLabel value="Gramatura:" />
+				<p:selectOneMenu>
+					<f:selectItem itemValue="" itemLabel="Selecione um item" />
+					<f:selectItem itemValue="" itemLabel="Kg" />
+					<f:selectItem itemValue="" itemLabel="Caixa" />
+					<f:selectItem itemValue="" itemLabel="Lts" />
+					<f:selectItem itemValue="" itemLabel="Mts" />
+				</p:selectOneMenu>
+
+
+				<p:outputLabel value="Quantidade:" />
+				<p:inputText maxlength="10" size="10" />
+
+				<p:outputLabel value="Preço:" />
+				<p:inputText maxlength="30" size="30" />
+
+				<p:outputLabel value="Data de Validade:" />
+				<p:inputText maxlength="10" size="20" />
+
+
+			</h:panelGrid>
+
+
+			<h:panelGrid columns="3">
+				<p:commandButton value="Novo" />
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Voltar"
+					action="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
+			</h:panelGrid>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
