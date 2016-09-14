@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/pages/templates/modeloGeralBusca.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="form">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Market e Delivery" />
+				</f:facet>
+			</p:toolbar>
+			<h:panelGrid columns="4">
+				<p:outputLabel value="Busca" />
+				<p:inputText maxlength="100" size="130" />
+
+			</h:panelGrid>
+
+		</h:form>
+
+		<p:megaMenu orientation="#{megaMenuView.orientation}"
+			style="margin-top:20px">
+			<p:submenu label="Mercearia" icon="ui-icon-check">
+				<p:column>
+					<p:submenu label="Mercearia">
+						<p:menuitem value="Arroz" url="#" />
+						<p:menuitem value="Feijão" url="#" />
+						<p:menuitem value="Macarrão" url="#" />
+						<p:menuitem value="Farinha" url="#" />
+						<p:menuitem value="Açúcar" url="#" />
+					</p:submenu>
+				</p:column>
+
+				<p:column>
+					<strong>Image</strong>
+					<p:graphicImage name="/demo/images/nature/nature1.jpg" width="200" />
+				</p:column>
+			</p:submenu>
+
+			<p:submenu label="Bebidas" icon="ui-icon-document">
+
+				<p:column>
+					<p:submenu label="Bebidas">
+						<p:menuitem value="Refrigerante" url="#" />
+						<p:menuitem value="Suco" url="#" />
+						<p:menuitem value="Água" url="#" />
+						<p:menuitem value="Cerveja" url="#" />
+						<p:menuitem value="Vinho" url="#" />
+					</p:submenu>
+				</p:column>
+
+			</p:submenu>
+
+			<p:submenu label="Hortifruti" icon="ui-icon-pencil">
+				<p:column>
+					<p:submenu label="Entertainment.1">
+						<p:menuitem value="Folhagens" url="#" />
+						<p:menuitem value="Legumes e verduras" url="#" />
+						<p:menuitem value="Frutas" url="#" />
+
+					</p:submenu>
+				</p:column>
+
+			</p:submenu>
+
+			<p:submenu label="Limpeza" icon="ui-icon-contact">
+				<p:column>
+
+					<p:submenu label="Limpeza em Geral">
+						<p:menuitem value="Ceras e Cia" url="#" />
+						<p:menuitem value="Desinfetante" url="#" />
+						<p:menuitem value="Inseticidas e Raticidas" url="#" />
+					</p:submenu>
+				</p:column>
+
+				<p:column>
+					<p:submenu label="Limpeza de Roupa">
+						<p:menuitem value="Blá,blá,blá" url="#" />
+						<p:menuitem value="Blá,blá,blá" url="#" />
+					</p:submenu>
+				</p:column>
+			</p:submenu>
+
+			<p:menuitem value="Quit" url="http://www.primefaces.org"
+				icon="ui-icon-close" />
+		</p:megaMenu>
+
+	</ui:define>
+</ui:composition>
+</html>
