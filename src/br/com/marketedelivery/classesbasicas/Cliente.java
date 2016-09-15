@@ -1,49 +1,58 @@
 package br.com.marketedelivery.classesbasicas;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(name = "cliente")
-public class Cliente {
+@Table(name = "tb_cliente")
+public class Cliente
+{
 	@Id
 	@GeneratedValue
 	@Column(name = "codigo")
 	private int codigo;
 
-	@NotEmpty(message = "O campo nome é obrigatório")
-	@Size(min = 5, max = 100, message = "Tamanho inválido para o campo")
 	@Column(name = "nome", length = 100)
 	private String nome;
 
-	@Column(name = "rg")
-	private int rg;
+	@Column(name = "rg", length = 15, nullable = true)
+	private String rg;
 
-	@Column(name = "cpf", length = 11)
+	@Column(name = "cpf", length = 11, nullable = false)
 	private String cpf;
 
-	@Column(name = "telefone", length = 10)
+	@Column(name = "telefone", length = 10, nullable = true)
 	private String telefone;
 
-	@Column(name = "celular", length = 11)
+	@Column(name = "celular", length = 11, nullable = false)
 	private String celular;
 
-	@Column(name = "email", length = 30)
-	private String email;
+	@OneToOne
+	private Usuario usuario;
 
-	private Endereco endereco;
+	private List<Endereco> endereco;
 
-	public Cliente() {
+	public Cliente()
+	{
+		this.nome = "";
+		this.rg = "";
+		this.cpf = "";
+		this.telefone = "";
+		this.celular = "";
+		this.usuario = new Usuario();
+		this.endereco = new ArrayList<Endereco>();
 	}
 
-	public Cliente(int codigo, String nome, int rg, String cpf, String telefone, String celular, String email,
-			Endereco endereco) {
+	public Cliente(int codigo, String nome, String rg, String cpf, String telefone, String celular, Usuario usuario,
+			List<Endereco> endereco)
+	{
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -51,71 +60,87 @@ public class Cliente {
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.celular = celular;
-		this.email = email;
+		this.usuario = usuario;
 		this.endereco = endereco;
 	}
 
-	public int getCodigo() {
+	public int getCodigo()
+	{
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(int codigo)
+	{
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
+	public String getNome()
+	{
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome)
+	{
 		this.nome = nome;
 	}
 
-	public int getRg() {
+	public String getRg()
+	{
 		return rg;
 	}
 
-	public void setRg(int rg) {
+	public void setRg(String rg)
+	{
 		this.rg = rg;
 	}
 
-	public String getCpf() {
+	public String getCpf()
+	{
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(String cpf)
+	{
 		this.cpf = cpf;
 	}
 
-	public String getTelefone() {
+	public String getTelefone()
+	{
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
+	public void setTelefone(String telefone)
+	{
 		this.telefone = telefone;
 	}
 
-	public String getCelular() {
+	public String getCelular()
+	{
 		return celular;
 	}
 
-	public void setCelular(String celular) {
+	public void setCelular(String celular)
+	{
 		this.celular = celular;
 	}
 
-	public String getEmail() {
-		return email;
+	public Usuario getUsuario()
+	{
+		return usuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsuario(Usuario usuario)
+	{
+		this.usuario = usuario;
 	}
 
-	public Endereco getEndereco() {
+	public List<Endereco> getEndereco()
+	{
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
+	public void setEndereco(List<Endereco> endereco)
+	{
 		this.endereco = endereco;
 	}
 }

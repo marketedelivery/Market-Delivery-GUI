@@ -1,36 +1,53 @@
 package br.com.marketedelivery.classesbasicas;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Embeddable
-public class Endereco 
+@Entity
+@Table(name="Endereco")
+public class Endereco
 {
-	@Column(name = "cep")
-	private int cep;
+	@Id @GeneratedValue
+	@Column(name="codigo")
+	int codigo;
 	
-	@Column(name = "logradouro",length = 30)
-	private String logradouro;
-	
-	@Column(name = "numero")
-	private int numero;
-	
-	@Column(name = "complemento",length = 30)
-	private String complemento;
-	
-	@Column(name = "bairro",length = 30)
-	private String bairro;
-	
-	@Column(name = "cidade",length = 30)
-	private String cidade;
-	
-	@Column(name = "estado",length = 30)
-	private String estado;
-	
-	public Endereco(){}
+	@Column(name = "cep", length = 9, nullable = false)
+	private String cep;
 
-	public Endereco(int cep, String logradouro, int numero, String complemento, String bairro, String cidade,
-			String estado) {
+	@Column(name = "logradouro", length = 30, nullable = false)
+	private String logradouro;
+
+	@Column(name = "numero", nullable = false)
+	private int numero;
+
+	@Column(name = "complemento", length = 30, nullable = true)
+	private String complemento;
+
+	@Column(name = "bairro", length = 30, nullable = false)
+	private String bairro;
+
+	@Column(name = "cidade", length = 30, nullable = false)
+	private String cidade;
+
+	@Column(name = "estado", length = 30, nullable = false)
+	private String estado;
+
+	public Endereco()
+	{
+		this.cep = "";
+		this.logradouro = "";
+		this.complemento = "";
+		this.bairro = "";
+		this.cidade = "";
+		this.estado = "";
+	}
+
+	public Endereco(String cep, String logradouro, int numero, String complemento, String bairro, String cidade,
+			String estado)
+	{
 		super();
 		this.cep = cep;
 		this.logradouro = logradouro;
@@ -41,59 +58,73 @@ public class Endereco
 		this.estado = estado;
 	}
 
-	public int getCep() {
+	public String getCep()
+	{
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep)
+	{
 		this.cep = cep;
 	}
 
-	public String getLogradouro() {
+	public String getLogradouro()
+	{
 		return logradouro;
 	}
 
-	public void setLogradouro(String logradouro) {
+	public void setLogradouro(String logradouro)
+	{
 		this.logradouro = logradouro;
 	}
 
-	public int getNumero() {
+	public int getNumero()
+	{
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(int numero)
+	{
 		this.numero = numero;
 	}
 
-	public String getComplemento() {
+	public String getComplemento()
+	{
 		return complemento;
 	}
 
-	public void setComplemento(String complemento) {
+	public void setComplemento(String complemento)
+	{
 		this.complemento = complemento;
 	}
 
-	public String getBairro() {
+	public String getBairro()
+	{
 		return bairro;
 	}
 
-	public void setBairro(String bairro) {
+	public void setBairro(String bairro)
+	{
 		this.bairro = bairro;
 	}
 
-	public String getCidade() {
+	public String getCidade()
+	{
 		return cidade;
 	}
 
-	public void setCidade(String cidade) {
+	public void setCidade(String cidade)
+	{
 		this.cidade = cidade;
 	}
 
-	public String getEstado() {
+	public String getEstado()
+	{
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(String estado)
+	{
 		this.estado = estado;
 	}
 }
