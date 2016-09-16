@@ -17,12 +17,7 @@ public class LoginMB extends AbstractMB{
 	@ManagedProperty(value = UsuarioMB.ENVIAR_NOME)
 	private UsuarioMB usuarioMB;
 	
-	public void setUsuarioMB(UsuarioMB usuarioMB) {
-		this.usuarioMB = usuarioMB;
-	}
-	
 	private String email;
-	
 	private String senha;
 	// GET  E SET
 		public String getEmail() {
@@ -43,8 +38,10 @@ public class LoginMB extends AbstractMB{
 			  verificaLogin(email, senha);
 			   */
 			Usuario us = new Usuario();
+			
+			
 			if(us != null){
-				
+				usuarioMB.setUsuario(us);
 				displayInfoMessageToUser("Cliente logado no sistema de compras online");
 				FacesContext context = FacesContext.getCurrentInstance();
 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -56,4 +53,8 @@ public class LoginMB extends AbstractMB{
 			return null;
 		}
 		
+		
+		public void setUsuarioMB(UsuarioMB usuarioMB) {
+			this.usuarioMB = usuarioMB;
+		}
 }

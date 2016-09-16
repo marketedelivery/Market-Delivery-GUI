@@ -12,13 +12,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name = "cliente")
 public class Cliente {
+	
 	@Id
 	@GeneratedValue
 	@Column(name = "codigo")
 	private int codigo;
 
-	@NotEmpty(message = "O campo nome é obrigatório")
-	@Size(min = 5, max = 100, message = "Tamanho inválido para o campo")
+	
 	@Column(name = "nome", length = 100)
 	private String nome;
 
@@ -38,12 +38,12 @@ public class Cliente {
 	private String email;
 
 	private Endereco endereco;
-
+	private Usuario us;
 	public Cliente() {
 	}
 
 	public Cliente(int codigo, String nome, int rg, String cpf, String telefone, String celular, String email,
-			Endereco endereco) {
+			Endereco endereco, Usuario us) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -53,6 +53,7 @@ public class Cliente {
 		this.celular = celular;
 		this.email = email;
 		this.endereco = endereco;
+		this.us = us;
 	}
 
 	public int getCodigo() {

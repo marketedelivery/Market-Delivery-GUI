@@ -17,7 +17,6 @@ public class UsuarioMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	Usuario usuario;
 	
-	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -25,42 +24,26 @@ public class UsuarioMB implements Serializable{
 		this.usuario = usuario;
 	}
 
-	UsuarioMB usuarioMB;
-	private String email;
-	private String senha;
-	
-	// GET  E SET
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
-	// FIM GET E SET
 	
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 	
 	/**
-	  * Efetua logout do usuário do sistema */
+	  * Efetua logout do usuário do sistema
+	  * */
 	public String logOut() {
        getRequest().getSession().invalidate();
        return "/pages/public/login.xhtml";
    }
 	    /**
-		  * Efetua logout do usuário do sistema */
+		  * Efetua logout do usuário do sistema 
+		  * */
 		public static void efetuarLogout() {
 		    FacesContext fc = FacesContext.getCurrentInstance();
 		    HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		    session.invalidate();
 		}
 	
+		
 }

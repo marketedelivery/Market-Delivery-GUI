@@ -45,9 +45,10 @@ public class FiltroLogin extends AbstractFilter implements Filter{
         } 
          Usuario user = (Usuario) session.getAttribute("usuario");
         
-         if (user == null && !LOGIN_ACTION_URI.contains(req.getRequestURI())) {
+         if (user == null) {
  			System.out.println(req.getRequestURI());
  			doLogin(request, response, req);
+ 			 System.out.println("passou");
  			return;
  		}
          chain.doFilter(request, response);

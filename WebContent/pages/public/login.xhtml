@@ -8,6 +8,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
+	
 <ui:composition template="/pages/templates/modeloGeral.xhtml">
 	<ui:define name="conteudo">
 		<h:outputText>adicionar o conteudo do site aqui</h:outputText>
@@ -20,17 +21,17 @@
 				</f:facet>
 			</p:toolbar>
 
-			<h:form align-center="center">
-
+			<h:form align-center="center"  name="frmEnviar">
 
 				<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
-
 				<p:messages id="messages" />
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
-					<h:outputLabel for="email" value="Digite a Senha: " />
+					<h:outputLabel for="email" value="Digite o Email: " />
 					<p:inputText id="email" value="#{loginMB.email}" required="true"
-						label="username" />
+						label="username">
+						<f:validator validatorId="custom.emailValidator" />
+						</p:inputText>
 
 					<h:outputLabel for="senha" value="Senha:" />
 					<p:password id="senha" value="#{loginMB.senha}" required="true"
@@ -49,6 +50,27 @@
 			</h:form>
 
 		</div>
+		
+		<script type="text/javascript">
+		 /**
+     * Faces Validator
+     */
+    PrimeFaces.validator['custom.emailValidator'] = {
+ 
+        pattern: /\S+@\S+/,
+ 
+        validate: function(element, value) {
+            //use element.data() to access validation metadata, in this case there is none.
+            if(!this.pattern.test(value)) {
+                throw {
+                    summary: 'Validation Error',
+                    detail: value + ' is not a valid email.'
+                }
+            }
+        }
+    };			
+		
+	</script>
 	</ui:define>
 </ui:composition>
 
