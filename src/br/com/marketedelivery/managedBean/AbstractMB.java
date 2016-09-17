@@ -5,8 +5,6 @@ import org.primefaces.context.RequestContext;
 import brcom.marketedelivery.util.JSFMessageUtil;
 
 public class AbstractMB {
-	
-												
 	private static final String KEEP_DIALOG_OPENED = "KEEP_DIALOG_OPENED";
 	
 	public AbstractMB() {

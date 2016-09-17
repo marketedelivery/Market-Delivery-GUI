@@ -23,5 +23,4 @@ public class JSFMessageUtil {
 	private void addMessageToJsfContext(FacesMessage facesMessage) {
 		FacesContext.getCurrentInstance().addMessage(null, facesMessage);
 	}
-	
 }
