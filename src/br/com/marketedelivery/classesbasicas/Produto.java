@@ -1,130 +1,243 @@
 package br.com.marketedelivery.classesbasicas;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import br.com.marketedelivery.camada.classesBasicas.UnidadeMedida;
+
 
 @Entity
-@Table(name = "produto")
-public class Produto {
+@Table(name="produto")
+public class Produto
+{
 	@Id
 	@GeneratedValue
-	@Column(name = "codigo")
-	private int codigo;
+	private Integer codigo;
 
-	@Column(name = "nome", length = 100)
+	@Column(name = "nome_produto", length = 50, nullable = false)
 	private String nome;
 
-	@Column(name = "descricao", length = 100)
-	private String descrição;
+	@Column(name = "descricao_produto", length = 150, nullable = false)
+	private String descricao;
 
-	@Column(name = "marca", length = 100)
-	private String marca;
+	@ManyToOne
+	private Marca marca;
 
-	@Column(name = "embalagem", length = 100)
-	private String embalagem;
+	@ManyToOne
+	private UnidadeMedida UnidadeMedida;
 
-	@Column(name = "gramatura", length = 100)
-	private String gramatura;
+	@Column(name = "peso_produto", length = 50, nullable = false)
+	private int peso;
 
-	@Column(name = "quantidade", length = 100)
+	@Column(name = "quantidade_produto", length = 50, nullable = false)
 	private int quantidade;
 
-	@Column(name = "preco", length = 100)
-	private Double preco;
+	@Column(name = "inf_Nutri_produto", length = 50, nullable = false)
+	private String informacaoNutricional;
 
-	@Column(name = "nome", length = 100)
-	private String dataValidade;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_validade_produto", length = 50, nullable = false)
+	private Calendar dataValidade;
+	
+	@Column(name="preco")
+	private double preco;
 
-	public Produto() {
-		super();
+	@Enumerated
+	private Status status;
+
+	@ManyToOne
+	private Categoria categoria;
+
+	@ManyToOne
+	private Supermercado supermercado;
+
+	// Construtores
+	public Produto()
+	{
+		this.nome = "";
+		this.descricao = "";
+		this.descricao = "";
+		this.marca = new Marca();
+		this.UnidadeMedida = new UnidadeMedida();
+		this.informacaoNutricional = "";
+		this.dataValidade = Calendar.getInstance();
+		this.status = Status.ATIVO;
+		this.categoria = new Categoria();
+		this.supermercado = new Supermercado();
 	}
 
-	public Produto(int codigo, String nome, String descrição, String marca, String embalagem, String gramatura,
-			int quantidade, Double preco, String dataValidade) {
+	/**
+	 * @param codigo
+	 * @param nome
+	 * @param descricao
+	 * @param marca
+	 * @param unidadeMedida
+	 * @param peso
+	 * @param quantidade
+	 * @param informaÃ§Ã£oNutricional
+	 * @param dataValidade
+	 * @param status
+	 * @param categoria
+	 * @param supermercado
+	 */
+	public Produto(Integer codigo, String nome, String descricao, Marca marca, UnidadeMedida unidadeMedida, int peso,
+			int quantidade, String informacaoNutricional, Calendar dataValidade, Status status, Categoria categoria,
+			Supermercado supermercado)
+	{
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
-		this.descrição = descrição;
+		this.descricao = descricao;
 		this.marca = marca;
-		this.embalagem = embalagem;
-		this.gramatura = gramatura;
+		UnidadeMedida = unidadeMedida;
+		this.peso = peso;
 		this.quantidade = quantidade;
-		this.preco = preco;
+		this.informacaoNutricional = informacaoNutricional;
 		this.dataValidade = dataValidade;
+		this.status = status;
+		this.categoria = categoria;
+		this.supermercado = supermercado;
 	}
 
-	public int getCodigo() {
+	// Gets e Sets
+	public Integer getCodigo()
+	{
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo)
+	{
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
+	public String getNome()
+	{
 		return nome;
 	}
 
-	public void setNome(String nome) {
+	public void setNome(String nome)
+	{
 		this.nome = nome;
 	}
 
-	public String getDescrição() {
-		return descrição;
+	public String getDescricao()
+	{
+		return descricao;
 	}
 
-	public void setDescrição(String descrição) {
-		this.descrição = descrição;
+	public void setDescricao(String descricao)
+	{
+		this.descricao = descricao;
 	}
 
-	public String getMarca() {
+	public Marca getMarca()
+	{
 		return marca;
 	}
 
-	public void setMarca(String marca) {
+	public void setMarca(Marca marca)
+	{
 		this.marca = marca;
 	}
 
-	public String getEmbalagem() {
-		return embalagem;
+	public UnidadeMedida getUnidadeMedida()
+	{
+		return UnidadeMedida;
 	}
 
-	public void setEmbalagem(String embalagem) {
-		this.embalagem = embalagem;
+	public void setUnidadeMedida(UnidadeMedida unidadeMedida)
+	{
+		this.UnidadeMedida = unidadeMedida;
 	}
 
-	public String getGramatura() {
-		return gramatura;
+	public int getPeso()
+	{
+		return peso;
 	}
 
-	public void setGramatura(String gramatura) {
-		this.gramatura = gramatura;
+	public void setPeso(int peso)
+	{
+		this.peso = peso;
 	}
 
-	public int getQuantidade() {
+	public int getQuantidade()
+	{
 		return quantidade;
 	}
 
-	public void setQuantidade(int quantidade) {
+	public void setQuantidade(int quantidade)
+	{
 		this.quantidade = quantidade;
 	}
 
-	public Double getPreco() {
-		return preco;
+	public String getInformacaoNutricional()
+	{
+		return informacaoNutricional;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setInformacaoNutricional(String informacaoNutricional)
+	{
+		this.informacaoNutricional = informacaoNutricional;
 	}
 
-	public String getDataValidade() {
+	public Calendar getDataValidade()
+	{
 		return dataValidade;
 	}
 
-	public void setDataValidade(String dataValidade) {
+	public void setDataValidade(Calendar dataValidade)
+	{
 		this.dataValidade = dataValidade;
+	}
+
+	public Status getStatus()
+	{
+		return status;
+	}
+
+	public void setStatus(Status status)
+	{
+		this.status = status;
+	}
+
+	/**
+	 * @return the categoria
+	 */
+	public Categoria getCategoria()
+	{
+		return categoria;
+	}
+
+	/**
+	 * @param categoria the categoria to set
+	 */
+	public void setCategoria(Categoria categoria)
+	{
+		this.categoria = categoria;
+	}
+
+	/**
+	 * @return the supermercado
+	 */
+	public Supermercado getSupermercado()
+	{
+		return supermercado;
+	}
+
+	/**
+	 * @param supermercado the supermercado to set
+	 */
+	public void setSupermercado(Supermercado supermercado)
+	{
+		this.supermercado = supermercado;
 	}
 }
