@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.marketedelivery.classesbasicas;
+package br.com.marketedelivery.camada.classesBasicas;
 
 public enum Status
 {
