@@ -28,7 +28,9 @@
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
 					<h:outputLabel for="email" value="Digite a Senha: "/>
 					<p:inputText id="email" value="#{loginMB.email}" required="true"
-						label="username" />
+						label="username">
+						<f:validator validatorId="custom.emailValidator" />	
+					</p:inputText>
 
 					<h:outputLabel for="senha" value="Senha:" />
 					<p:password id="senha" value="#{loginMB.senha}" required="true"

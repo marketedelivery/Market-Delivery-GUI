@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import br.com.marketedelivery.classesbasicas.Usuario;
+import br.com.marketedelivery.camada.classesBasicas.Usuario;
+import br.com.marketedelivery.managedBean.UsuarioMB;
+
 
  
 public class FiltroLogin extends AbstractFilter implements Filter{
@@ -35,22 +37,15 @@ public class FiltroLogin extends AbstractFilter implements Filter{
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-        
-        if(session.isNew()) {
+        Usuario user = (Usuario)req.getSession(true).getAttribute("usuario");
+        if(session.isNew() && user == null) {
         	System.out.println("inicio");
         	doLogin(request, response, req);
-            chain.doFilter(request, response);
             System.out.println("passou");
             return;
         } 
-         Usuario user = (Usuario) session.getAttribute("usuario");
-        
-         if (user == null && !LOGIN_ACTION_URI.contains(req.getRequestURI())) {
- 			System.out.println(req.getRequestURI());
- 			doLogin(request, response, req);
- 			return;
- 		}
-         chain.doFilter(request, response);
+         
+          chain.doFilter(request, response);
     }
 		
 	

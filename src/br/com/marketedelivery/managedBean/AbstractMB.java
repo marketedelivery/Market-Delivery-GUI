@@ -2,7 +2,7 @@ package br.com.marketedelivery.managedBean;
 
 import org.primefaces.context.RequestContext;
 
-import brcom.marketedelivery.util.JSFMessageUtil;
+import br.com.marketedelivery.util.JSFMessageUtil;
 
 public class AbstractMB {
 	private static final String KEEP_DIALOG_OPENED = "KEEP_DIALOG_OPENED";

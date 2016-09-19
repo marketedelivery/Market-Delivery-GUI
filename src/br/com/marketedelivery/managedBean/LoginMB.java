@@ -6,7 +6,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import br.com.marketedelivery.classesbasicas.Usuario;
+import br.com.marketedelivery.camada.classesBasicas.Usuario;
+
 
 
 
@@ -44,13 +45,13 @@ public class LoginMB extends AbstractMB{
 			   */
 			Usuario us = new Usuario();
 			if(us != null){
-				
+				usuarioMB.setUsuario(us);
 				displayInfoMessageToUser("Cliente logado no sistema de compras online");
 				FacesContext context = FacesContext.getCurrentInstance();
 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 				request.getSession().setAttribute("usuario", us);
 				
-				return "/pages/public/CadastroCliente.xhtml";
+				return "/pages/protected/produtoPesquisa.xhtml";
 			}
 			displayErrorMessageToUser("Digite seu Email ou Senha");
 			return null;

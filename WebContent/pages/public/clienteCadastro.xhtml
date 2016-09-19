@@ -20,25 +20,59 @@
 				<p:inputText readonly="true" size="10" />
 
 				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="80">
+				<p:inputText maxlength="50" size="80" value="#{clienteMB.cliente.nome}">
 					
 				</p:inputText>
 
 				<p:outputLabel value="CPF:" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30" value="#{clienteMB.cliente.cpf}"/>
 
 				<p:outputLabel value="RG:" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30" value="#{clienteMB.cliente.rg}"/>
 
 				<p:outputLabel value="Telefone:" />
-				<p:inputText maxlength="30" size="10" />
+				<p:inputText maxlength="30" size="10" value="#{clienteMB.cliente.telefone}"/>
 
 				<p:outputLabel value="Celular:" />
-				<p:inputText maxlength="30" size="10" />
+				<p:inputText maxlength="30" size="10" value="#{clienteMB.cliente.celular}"/>
 
-				<p:outputLabel value="Email:" />
-				<p:inputText maxlength="50" size="30" />
-
+				<h:outputLabel value="Logradouro"></h:outputLabel>
+				<p:inputText value="#{clienteMB.cliente.endereco.logradouro}" required="false"
+                                     requiredMessage="Preencha o logradouro"></p:inputText>
+                        <h:outputLabel value="Número"></h:outputLabel>
+                        <p:inputText value="#{clienteMB.cliente.endereco.numero}" required="false"
+                                     requiredMessage="Preencha o número" size="6"></p:inputText>
+                        <h:outputLabel value="Cep"></h:outputLabel>
+                        <p:inputText value="#{clienteMB.cliente.endereco.cep}" required="true"
+                                     requiredMessage="Preencha o Cep" size="6"></p:inputText>
+                                     <h:outputLabel value="Bairro"></h:outputLabel>
+                        <p:inputText value="#{clienteMB.cliente.endereco.bairro}" required="false"
+                                     requiredMessage="Preencha o Bairro"></p:inputText>
+                        <h:outputLabel value="Cidade"></h:outputLabel>
+                        <p:inputText value="#{clienteMB.cliente.endereco.cidade}" required="false"
+                                     requiredMessage="Preencha a cidade"></p:inputText>
+                        <h:outputLabel value="Estado"></h:outputLabel>
+                        <p:inputText value="#{clienteMB.cliente.endereco.estado}" required="false"
+                                     requiredMessage="Preencha o Estado"></p:inputText>
+                        <h:outputLabel value="Complemento"></h:outputLabel>
+                        <p:inputText value="#{clienteMB.cliente.endereco.complemento}" required="false"
+                                     requiredMessage="Preencha o complemento"></p:inputText>
+			</h:panelGrid>
+			<p:toolbar>
+			<f:facet name="left">
+				<h:outputText value="Insira seus dados de usuario"/>
+			</f:facet>
+			</p:toolbar>
+			<h:panelGrid columns="2">
+				 <h:outputLabel value="Digite seu email"></h:outputLabel>
+				 <p:inputText id="email" value="#{clienteBean.cliente.usuario.email}" required="false" 
+				 		requiredMessage="Preencha o email"></p:inputText>
+				 <h:outputLabel value="Digite sua Senha"></h:outputLabel>
+				 <p:password id="senha" value="#{clienteBean.cliente.usuario.senha}" required="false"
+ 						requiredMessage="Digite a Senha"></p:password>
+				 <h:outputLabel value="confirme a senha"></h:outputLabel>
+				  <p:password id="ConfirmaSenha" value="#{clienteBean.cliente.usuario.senha}" required="false"
+						requiredMessage="Digite a Senha"></p:password>
 			</h:panelGrid>
 			<h:panelGrid columns="3">
 				<p:commandButton value="Novo" />
@@ -46,7 +80,7 @@
 				<p:commandButton value="Voltar"
 					action="/pages/public/clientePesquisa.xhtml?faces-redirect=true" />
 			</h:panelGrid>
-		</h:form>
+	</h:form>
 	</ui:define>
 </ui:composition>
 </html>

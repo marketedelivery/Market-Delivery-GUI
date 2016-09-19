@@ -21,7 +21,7 @@ public class AbstractFilter {
 	
 	protected void accessDenied(ServletRequest request, ServletResponse response, HttpServletRequest req) 
 			throws ServletException, IOException {
-RequestDispatcher rd = req.getRequestDispatcher("/pages/public/login.xhtml");
+RequestDispatcher rd = req.getRequestDispatcher("/MarketeDeliveryGui/pages/public/login.xhtml");
 rd.forward(request, response);
 	}
 }

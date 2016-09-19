@@ -8,7 +8,8 @@ package br.com.marketedelivery.camada.dados;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.marketedelivery.classesbasicas.Supermercado;
+import br.com.marketedelivery.camada.classesBasicas.Supermercado;
+
 
 public class SupermercadoDao extends DAOGenerico<Supermercado> implements ISupermercadoDao{
 

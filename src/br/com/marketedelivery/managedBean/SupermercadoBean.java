@@ -4,9 +4,9 @@ import javax.faces.bean.ManagedBean;
 //import javax.faces.bean.ViewScoped;
 import javax.faces.view.ViewScoped;
 
+import br.com.marketedelivery.camada.classesBasicas.Supermercado;
 import br.com.marketedelivery.camada.dados.FacesUtil;
 import br.com.marketedelivery.camada.dados.SupermercadoDao;
-import br.com.marketedelivery.classesbasicas.Supermercado;
 
 @ManagedBean
 @ViewScoped

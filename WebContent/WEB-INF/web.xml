@@ -41,4 +41,13 @@
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
+	<!-- Configuração Filter -->
+	<filter>
+		<filter-name>FiltroLogin</filter-name>
+		<filter-class>br.com.marketedelivery.filter.FiltroLogin</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>FiltroLogin</filter-name>
+		<url-pattern>/pages/protected/*</url-pattern>
+	</filter-mapping>
 </web-app>

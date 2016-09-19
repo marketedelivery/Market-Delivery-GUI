@@ -7,7 +7,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import br.com.marketedelivery.classesbasicas.Usuario;
+import br.com.marketedelivery.camada.classesBasicas.Usuario;
+
 
 @SessionScoped
 @ManagedBean(name="usuarioMB")
@@ -51,16 +52,17 @@ public class UsuarioMB implements Serializable{
 	
 	/**
 	  * Efetua logout do usuário do sistema */
-	public String logOut() {
+	public String getLogOut() {
        getRequest().getSession().invalidate();
        return "/pages/public/login.xhtml";
    }
 	    /**
 		  * Efetua logout do usuário do sistema */
-		public static void efetuarLogout() {
+		public String getEfetuarLogout(){
 		    FacesContext fc = FacesContext.getCurrentInstance();
 		    HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		    session.invalidate();
+		    return "/pages/public/login.xhtml";
 		}
 	
 }

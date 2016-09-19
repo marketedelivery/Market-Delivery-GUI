@@ -1,6 +1,6 @@
 package br.com.marketedelivery.camada.dados;
 
-import br.com.marketedelivery.classesbasicas.Supermercado;
+import br.com.marketedelivery.camada.classesBasicas.Supermercado;
 
 public interface ISupermercadoDao extends IDAOGenerico<Supermercado> {
 

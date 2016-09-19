@@ -3,7 +3,8 @@ package br.com.marketedelivery.camada.dados;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.marketedelivery.classesbasicas.Produto;
+import br.com.marketedelivery.camada.classesBasicas.Produto;
+
 
 public class ProdutoDao extends DAOGenerico<Produto> implements IProdutoDao {
 	private EntityManager manager;
