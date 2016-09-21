@@ -18,12 +18,9 @@
 			<h:panelGrid columns="4">
 				<p:outputLabel value="Código:" />
 				<p:inputText readonly="true" size="10" />
-
 				<p:outputLabel value="Nome:" />
 				<p:inputText maxlength="50" size="80" value="#{clienteMB.cliente.nome}">
-					
 				</p:inputText>
-
 				<p:outputLabel value="CPF:" />
 				<p:inputText maxlength="50" size="30" value="#{clienteMB.cliente.cpf}"/>
 
@@ -56,11 +53,11 @@
                                      requiredMessage="Preencha o Estado"></p:inputText>
                         <h:outputLabel value="Complemento"></h:outputLabel>
                         <p:inputText value="#{clienteMB.cliente.endereco.complemento}" required="false"
-                                     requiredMessage="Preencha o complemento"></p:inputText>
+							 requiredMessage="Preencha o complemento"></p:inputText>
 			</h:panelGrid>
 			<p:toolbar>
 			<f:facet name="left">
-				<h:outputText value="Insira seus dados de usuario"/>
+				<h:outputText value="Insira seus dados de Usuário"/>
 			</f:facet>
 			</p:toolbar>
 			<h:panelGrid columns="2">
@@ -69,14 +66,14 @@
 				 		requiredMessage="Preencha o email"></p:inputText>
 				 <h:outputLabel value="Digite sua Senha"></h:outputLabel>
 				 <p:password id="senha" value="#{clienteBean.cliente.usuario.senha}" required="false"
- 						requiredMessage="Digite a Senha"></p:password>
-				 <h:outputLabel value="confirme a senha"></h:outputLabel>
-				  <p:password id="ConfirmaSenha" value="#{clienteBean.cliente.usuario.senha}" required="false"
+ 						requiredMessage="Digite a senha"></p:password>
+				 <h:outputLabel value="confirme a Senha"></h:outputLabel>
+				  <p:password id="ConfirmaSenha" value="#{clienteBean.confirmaSenha}" required="false"
 						requiredMessage="Digite a Senha"></p:password>
 			</h:panelGrid>
 			<h:panelGrid columns="3">
-				<p:commandButton value="Novo" />
-				<p:commandButton value="Salvar" />
+				<p:commandButton value="Novo"/>
+				<p:commandButton value="Salvar" action="#{clienteBean.inserirCliente}"/>
 				<p:commandButton value="Voltar"
 					action="/pages/public/clientePesquisa.xhtml?faces-redirect=true" />
 			</h:panelGrid>

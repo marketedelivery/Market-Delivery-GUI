@@ -7,6 +7,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+
 import br.com.marketedelivery.camada.classesBasicas.Usuario;
 
 
@@ -49,12 +52,14 @@ public class UsuarioMB implements Serializable{
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
-	
+	public void inserirUsuario(Usuario us){
+		
+	}
 	/**
 	  * Efetua logout do usuário do sistema */
-	public String getLogOut() {
-       getRequest().getSession().invalidate();
-       return "/pages/public/login.xhtml";
+		public String getLogOut() {
+			getRequest().getSession().invalidate();
+			return "/pages/public/login.xhtml";
    }
 	    /**
 		  * Efetua logout do usuário do sistema */
@@ -64,5 +69,10 @@ public class UsuarioMB implements Serializable{
 		    session.invalidate();
 		    return "/pages/public/login.xhtml";
 		}
+		public String getFilmesEmCartaz() {
+		    Client c = Client.create();
+		    WebResource wr = c.resource("http://localhost:8080/WebServiceRest/rest/service/cadastrarUsuario");
+		    return wr.get(String.class);
+		  }
 	
 }

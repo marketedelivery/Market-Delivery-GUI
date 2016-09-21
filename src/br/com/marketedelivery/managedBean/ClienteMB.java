@@ -9,33 +9,36 @@ import javax.faces.bean.ViewScoped;
 import br.com.marketedelivery.camada.classesBasicas.Cliente;
 
 @ViewScoped
-@ManagedBean(name="clienteMB")
+@ManagedBean(name="clienteBean")
 public class ClienteMB extends AbstractMB implements Serializable{
 
-	public ClienteMB() {
-		// TODO Auto-generated constructor stub
-	}
 	private static final long serialVersionUID = 1L;
-
 	Cliente cliente;
-
 	List<Cliente> listaCliente;
-
+	ClienteMB clienteMB;
+	private String confirmaSenha;
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
+	}
+	
 	public Cliente getCliente() {
-
 		return cliente;
-
 	}
 
 	public void setCliente(Cliente cliente) {
-
 		this.cliente = cliente;
-
 	}
 	
-	public void inserirCliente(){
-		// chama o servidor para inserir o cliente
+	public void setInserirCliente(Cliente c){
+		
 		try{
+			if(cliente.getUsuario().getSenha().equals(getConfirmaSenha())){
+				displayErrorMessageToUser("as senhas não são iguais");
+			}
+			// chama o servidor para inserir o cliente
 			closeDialog();
 			displayInfoMessageToUser("Cliente Cadastrado com Sucesso");
 			listaDeCliente();
@@ -49,37 +52,25 @@ public class ClienteMB extends AbstractMB implements Serializable{
 		}
 }
 
-	public void alterarCliente(){
-	// chama o servidor para inserir o cliente
+	public void setAlterarCliente(Cliente c){
+		// chama o servidor para alterar o cliente
 
 	}
-	
 	public List<Cliente> listaDeCliente(){
-
+		
 		return null;
-
 	}
-
 	public List<Cliente> pesquisarCliente(String nomeOuCpf){
-
 		return null;
-
 	}public List<Cliente> getListaDeCliente(){
-
 		if (cliente  == null) {
-
 			listaDeCliente();
-
 		}
-
 			return listaCliente;
-
 	}
 
-	public void reiniciarCliente(){
-
+	public void getReiniciarCliente(){
 		cliente = new Cliente();
-
 	}
 	
 }

@@ -38,7 +38,7 @@ public class FiltroLogin extends AbstractFilter implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
         Usuario user = (Usuario)req.getSession(true).getAttribute("usuario");
-        if(session.isNew() && user == null) {
+        if(session.isNew() || user == null) {
         	System.out.println("inicio");
         	doLogin(request, response, req);
             System.out.println("passou");
@@ -47,9 +47,7 @@ public class FiltroLogin extends AbstractFilter implements Filter{
          
           chain.doFilter(request, response);
     }
-		
 	
-
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 		LOGIN_ACTION_URI = fConfig.getInitParameter("loginActionURI");

@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import br.com.marketedelivery.camada.classesBasicas.Usuario;
 
@@ -55,6 +56,13 @@ public class LoginMB extends AbstractMB{
 			}
 			displayErrorMessageToUser("Digite seu Email ou Senha");
 			return null;
+		}
+		
+		public String getEfetuarLogout(){
+		    FacesContext fc = FacesContext.getCurrentInstance();
+		    HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+		    session.invalidate();
+		    return "/pages/public/login.xhtml";
 		}
 		
 }
