@@ -1,4 +1,5 @@
-package br.com.marketedelivery.camada.classesBasicas;
+package br.com.marketedelivery.classesBasicas;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +39,9 @@ public class Supermercado
 
 	@OneToOne
 	private Usuario usuario;
+	
+	@OneToOne
+	private Endereco endereco;
 
 	public Supermercado()
 	{
@@ -48,6 +52,7 @@ public class Supermercado
 		this.telefone = "";
 		this.email = "";
 		this.usuario = new Usuario();
+		this.endereco = new Endereco();
 	}
 
 	/**
@@ -61,7 +66,7 @@ public class Supermercado
 	 * @param preco_Produto
 	 */
 	public Supermercado(int codigo, String nome, String cnpj, String inscricaoEstatdual, String telefone, String email,
-			int estoque, double preco_Produto, Usuario usuario)
+			int estoque, double preco_Produto, Usuario usuario,Endereco endereco)
 	{
 		super();
 		this.codigo = codigo;
@@ -73,6 +78,7 @@ public class Supermercado
 		this.estoque = estoque;
 		this.preco_Produto = preco_Produto;
 		this.usuario = usuario;
+		this.endereco = endereco;
 	}
 
 	public int getCodigo()
@@ -163,5 +169,15 @@ public class Supermercado
 	public void setUsuario(Usuario usuario)
 	{
 		this.usuario = usuario;
+	}
+	
+	public Endereco getEndereco()
+	{
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco)
+	{
+		this.endereco = endereco;
 	}
 }

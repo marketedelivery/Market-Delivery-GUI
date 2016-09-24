@@ -1,4 +1,4 @@
-package br.com.marketedelivery.camada.dados;
+package br.com.marketedelivery.DAO;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
+
+import br.com.marketedelivery.IDAO.IDAOGenerico;
 
 /**
  * PSC

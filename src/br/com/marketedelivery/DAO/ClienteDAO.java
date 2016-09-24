@@ -1,16 +1,18 @@
-package br.com.marketedelivery.camada.dados;
+package br.com.marketedelivery.DAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.marketedelivery.camada.classesBasicas.Cliente;
+import br.com.marketedelivery.IDAO.IClienteDAO;
+import br.com.marketedelivery.classesBasicas.Cliente;
 
 
-public class ClienteDao extends DAOGenerico<Cliente> implements IClienteDao
+
+public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteDAO
 {
 	private EntityManager manager;
 	
-	public ClienteDao(EntityManager em) 
+	public ClienteDAO(EntityManager em) 
 	{
 		super(em);
 		this.manager = em;
@@ -22,6 +24,22 @@ public class ClienteDao extends DAOGenerico<Cliente> implements IClienteDao
         String consulta = "SELECT c FROM Cliente c WHERE c.cpf_cnpj = :N";
         TypedQuery<Cliente> retorno = getEntityManager().createQuery(consulta, Cliente.class);
         retorno.setParameter("N", cpf_cnpj);
+        Cliente resultado;
+        try {
+            resultado = retorno.getSingleResult();
+            return resultado;
+
+        } catch (Exception e) {
+            return null;
+
+        }
+    }
+	
+	public Cliente buscarClientePorNome(String nome)
+    {
+        String consulta = "SELECT c FROM Cliente c WHERE c.nome = :N";
+        TypedQuery<Cliente> retorno = getEntityManager().createQuery(consulta, Cliente.class);
+        retorno.setParameter("N", nome);
         Cliente resultado;
         try {
             resultado = retorno.getSingleResult();

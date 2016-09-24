@@ -7,10 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import br.com.marketedelivery.camada.classesBasicas.Usuario;
-
-
-
+import br.com.marketedelivery.classesBasicas.Usuario;
 
 @RequestScoped
 @ManagedBean(name="loginMB")

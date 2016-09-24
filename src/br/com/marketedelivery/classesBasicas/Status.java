@@ -1,9 +1,9 @@
 /**
  * 
  */
-package br.com.marketedelivery.camada.classesBasicas;
+package br.com.marketedelivery.classesBasicas;
 
 public enum Status
 {
-	ATIVO, INATIVO
+	ATIVO, INATIVO,DISPONIVEL,INDISPONIVEL
 }

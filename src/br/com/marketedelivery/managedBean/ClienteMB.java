@@ -6,7 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.marketedelivery.camada.classesBasicas.Cliente;
+import br.com.marketedelivery.classesBasicas.Cliente;
 
 @ViewScoped
 @ManagedBean(name="clienteBean")

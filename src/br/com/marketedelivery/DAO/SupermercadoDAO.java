@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.marketedelivery.camada.dados;
+package br.com.marketedelivery.DAO;
+
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.marketedelivery.camada.classesBasicas.Supermercado;
+import br.com.marketedelivery.IDAO.ISupermercadoDao;
+import br.com.marketedelivery.classesBasicas.Supermercado;
 
 
-public class SupermercadoDao extends DAOGenerico<Supermercado> implements ISupermercadoDao{
+public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISupermercadoDao{
 
     private EntityManager manager;
 
-    public SupermercadoDao(EntityManager em) {
+    public SupermercadoDAO(EntityManager em) {
         super(em);
         this.manager = em;
     }

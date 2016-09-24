@@ -1,17 +1,21 @@
-package br.com.marketedelivery.camada.classesBasicas;
+package br.com.marketedelivery.classesBasicas;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.com.marketedelivery.classesBasicas.Endereco;
+
 @Entity
-@Table(name = "tb_cliente")
+@Table(name = "cliente")
 public class Cliente
 {
 	@Id
@@ -21,9 +25,6 @@ public class Cliente
 
 	@Column(name = "nome", length = 100)
 	private String nome;
-
-	@Column(name = "rg", length = 15, nullable = true)
-	private String rg;
 
 	@Column(name = "cpf", length = 11, nullable = false)
 	private String cpf;
@@ -37,12 +38,12 @@ public class Cliente
 	@OneToOne
 	private Usuario usuario;
 
+	@OneToMany(mappedBy= "cliente",cascade = CascadeType.ALL)
 	private List<Endereco> endereco;
 
 	public Cliente()
 	{
 		this.nome = "";
-		this.rg = "";
 		this.cpf = "";
 		this.telefone = "";
 		this.celular = "";
@@ -50,13 +51,12 @@ public class Cliente
 		this.endereco = new ArrayList<Endereco>();
 	}
 
-	public Cliente(int codigo, String nome, String rg, String cpf, String telefone, String celular, Usuario usuario,
+	public Cliente(int codigo, String nome, String cpf, String telefone, String celular, Usuario usuario,
 			List<Endereco> endereco)
 	{
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
-		this.rg = rg;
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.celular = celular;
@@ -82,16 +82,6 @@ public class Cliente
 	public void setNome(String nome)
 	{
 		this.nome = nome;
-	}
-
-	public String getRg()
-	{
-		return rg;
-	}
-
-	public void setRg(String rg)
-	{
-		this.rg = rg;
 	}
 
 	public String getCpf()

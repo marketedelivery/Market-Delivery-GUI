@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
-import br.com.marketedelivery.camada.classesBasicas.Usuario;
+import br.com.marketedelivery.classesBasicas.Usuario;
 
 
 @SessionScoped

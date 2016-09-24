@@ -1,4 +1,4 @@
-package br.com.marketedelivery.camada.dados;
+package br.com.marketedelivery.IDAO;
 
 import java.util.List;
 
