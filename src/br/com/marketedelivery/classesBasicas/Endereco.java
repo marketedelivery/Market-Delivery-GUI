@@ -6,8 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="Endereco")
@@ -39,7 +44,11 @@ public class Endereco
 	private String estado;
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="codigoCliente",insertable=true,updatable=true)
+	@Fetch(FetchMode.JOIN)
 	private Cliente cliente;
+	
+	
 
 	public Endereco()
 	{

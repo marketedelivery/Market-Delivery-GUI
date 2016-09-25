@@ -21,7 +21,7 @@ public class Cliente
 	@Id
 	@GeneratedValue
 	@Column(name = "codigo")
-	private int codigo;
+	private int codigoCliente;
 
 	@Column(name = "nome", length = 100)
 	private String nome;
@@ -55,7 +55,7 @@ public class Cliente
 			List<Endereco> endereco)
 	{
 		super();
-		this.codigo = codigo;
+		this.codigoCliente = codigo;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
@@ -66,12 +66,12 @@ public class Cliente
 
 	public int getCodigo()
 	{
-		return codigo;
+		return codigoCliente;
 	}
 
 	public void setCodigo(int codigo)
 	{
-		this.codigo = codigo;
+		this.codigoCliente = codigo;
 	}
 
 	public String getNome()

@@ -19,11 +19,11 @@ public class ClienteDAO extends DAOGenerico<Cliente> implements IClienteDAO
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Cliente buscarClientePorCPF(String cpf_cnpj)
+	public Cliente buscarClientePorCPF(String cpf)
     {
-        String consulta = "SELECT c FROM Cliente c WHERE c.cpf_cnpj = :N";
+        String consulta = "SELECT c FROM Cliente c WHERE c.cpf = :N";
         TypedQuery<Cliente> retorno = getEntityManager().createQuery(consulta, Cliente.class);
-        retorno.setParameter("N", cpf_cnpj);
+        retorno.setParameter("N", cpf);
         Cliente resultado;
         try {
             resultado = retorno.getSingleResult();

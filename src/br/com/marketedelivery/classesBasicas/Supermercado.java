@@ -9,32 +9,32 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_supermercado")
+@Table(name = "supermercado")
 public class Supermercado
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo;
+	private int codigoSupermercado;
 
 	@Column(name = "supmerc_nome", length = 50, nullable = false)
 	private String nome;
 
-	@Column(length = 14, nullable = false, unique = true)
+	@Column(name = "cnpj",length = 14, nullable = false, unique = true)
 	private String cnpj;
 
-	@Column(length = 50, nullable = false)
+	@Column(name = "insEstadual",length = 50, nullable = false)
 	private String inscricaoEstatdual;
 
 	@Column(name = "telefone", length = 11, nullable = false)
 	private String telefone;
 
-	@Column(name = "supmerc_email", length = 50, nullable = true)
+	@Column(name = "email", length = 50, nullable = true)
 	private String email;
 
-	@Column(name = "supmerc_estoque", length = 5, nullable = true)
+	@Column(name = "estoque", length = 5, nullable = true)
 	private int estoque;
 
-	@Column(name = "supermercado_preco_produto", length = 6, nullable = true)
+	@Column(name = "preco_produto", length = 6, nullable = true)
 	private double preco_Produto;
 
 	@OneToOne
@@ -69,7 +69,7 @@ public class Supermercado
 			int estoque, double preco_Produto, Usuario usuario,Endereco endereco)
 	{
 		super();
-		this.codigo = codigo;
+		this.codigoSupermercado = codigo;
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.inscricaoEstatdual = inscricaoEstatdual;
@@ -83,12 +83,12 @@ public class Supermercado
 
 	public int getCodigo()
 	{
-		return codigo;
+		return codigoSupermercado;
 	}
 
 	public void setCodigo(int codigo)
 	{
-		this.codigo = codigo;
+		this.codigoSupermercado = codigo;
 	}
 
 	public String getNome()
