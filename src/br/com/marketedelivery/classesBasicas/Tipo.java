@@ -1,7 +1,7 @@
 package br.com.marketedelivery.classesBasicas;
 
-public enum Status {
+public enum Tipo {
 	
-	Aprovada, Nao_Aprovado
+	semanal, quinzenal, mensal
 
 }

@@ -1,18 +1,10 @@
 package br.com.marketedelivery.classesBasicas;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="Endereco")
@@ -43,10 +35,6 @@ public class Endereco
 	@Column(name = "estado", length = 30, nullable = false)
 	private String estado;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name="codigoCliente",insertable=true,updatable=true)
-	@Fetch(FetchMode.JOIN)
-	private Cliente cliente;
 	
 	
 
@@ -58,11 +46,11 @@ public class Endereco
 		this.bairro = "";
 		this.cidade = "";
 		this.estado = "";
-		this.cliente = new Cliente();
+	
 	}
 
 	public Endereco(String cep, String logradouro, int numero, String complemento, String bairro, String cidade,
-			String estado,Cliente cliente)
+			String estado)
 	{
 		super();
 		this.cep = cep;
@@ -72,7 +60,7 @@ public class Endereco
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;
-		this.cliente = cliente;
+		
 	}
 
 	public String getCep()
@@ -143,15 +131,5 @@ public class Endereco
 	public void setEstado(String estado)
 	{
 		this.estado = estado;
-	}
-	
-	public Cliente getCliente()
-	{
-		return cliente;
-	}
-	
-	public void setCliente(Cliente cliente)
-	{
-		this.cliente=cliente;
 	}
 }

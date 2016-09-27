@@ -28,6 +28,14 @@ public class Fachada implements IFachada
 	        return instancia;
 	    }
 	 
+	 public Fachada()
+	 {
+		 conCliente = new ControladorCliente();
+		 conEndereco = new ControladorEndereco();
+		 conSupermercado = new ControladorSupermercado();
+		 conUsuario = new ControladorUsuario();
+	 }
+	 
 	 public void cadastrarCliente(Cliente cliente)
 	 {
 		 conCliente.cadastrarCliente(cliente);

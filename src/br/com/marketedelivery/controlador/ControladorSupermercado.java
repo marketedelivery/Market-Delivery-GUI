@@ -24,12 +24,6 @@ public class ControladorSupermercado
 		return supermercadoDAO.consultarTodos();
 	}
 	
-	public Supermercado pesquisarPorCNPJ(Supermercado supermercado)
-	{
-		String cnpj = supermercado.getCnpj();
-		Supermercado retorno = supermercadoDAO.buscarPorCNPJ(cnpj);
-		return retorno;
-	}
 	
 	public Supermercado pesquisarPorNome(Supermercado supermercado)
 	{

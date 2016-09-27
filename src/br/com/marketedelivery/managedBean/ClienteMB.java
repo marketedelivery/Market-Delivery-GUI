@@ -97,7 +97,6 @@ public class ClienteMB implements Serializable
 	{
 		IFachada fachada = getFachada();
 	
-		cliente.getEndereco().add(endereco);
 		c = cliente;
 		fachada.cadastrarCliente(c);
 

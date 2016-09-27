@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import br.com.marketedelivery.IDAO.IEnderecoDAO;
-import br.com.marketedelivery.classesBasicas.Cliente;
 import br.com.marketedelivery.classesBasicas.Endereco;
 
 public class EnderecoDAO extends DAOGenerico<Endereco> implements IEnderecoDAO{

@@ -2,98 +2,112 @@ package br.com.marketedelivery.classesBasicas;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "tb_usuario")
 public class Usuario
 {
-	// Atributos
 	@Id
 	@GeneratedValue
 	@Column(name = "codigo")
 	private Integer codigo;
-
-	@Column(name = "email", length = 55, nullable = false)
+	@Column(name = "nome",length=30)
+	private String nome;
+	@Column(name = "CPF",length=12)
+	private String cpf;
+	@OneToOne
+	private Endereco endereco;
+	@Column(name = "telefone_whatsapp",length=12)
+	private String telefonewhatsapp;
+    @OneToOne
+    private Perfil perfil;
+	@Column(name = "Telefone",length=12)
+	private String telefone;
+	@Column(name = "Email",length=30)
 	private String email;
-
-	@Column(name = "senha", length = 55, nullable = false)
+	@Column(name = "Senha",length=10)
 	private String senha;
-
-	@Enumerated(EnumType.STRING)
-	private Status status;
-
-	// Construtores
-	public Usuario()
-	{
-		this.email = "";
-		this.senha = "";
-		this.status = Status.ATIVO;
-	}
-
-	/**
-	 * @param codigo
-	 * @param email
-	 * @param senha
-	 */
-	public Usuario(Integer codigo, String email, String senha, Status status)
-	{
+	
+	
+	public Usuario(Integer codigo, String nome, String cpf, Endereco endereco, String telefonewhatsapp, String telefone, Perfil perfil, String email, String senha) {
 		super();
 		this.codigo = codigo;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.endereco = endereco;
+		this.telefonewhatsapp = telefonewhatsapp;
+		this.telefone = telefone;
+		this.perfil = perfil;
 		this.email = email;
 		this.senha = senha;
-		this.status = status;
 	}
-
-	// Métodos
-	@Override
-	public String toString()
-	{
-		return "Usuario [email=" + email + ", senha=" + senha + status + "]";
+	
+	public Usuario() {
+		super();
 	}
-
-	// Gets e Sets
-	public Integer getCodigo()
-	{
+	
+	public Integer getCodigo() {
 		return codigo;
 	}
-
-	public void setCodigo(Integer codigo)
-	{
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	public String getTelefoneWhatsapp() {
+		return telefonewhatsapp;
+	}
+	public void setTelefoneWhatsapp(String telefonewhatsapp) {
+		this.telefonewhatsapp = telefonewhatsapp;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public Perfil getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
 
-	public String getEmail()
-	{
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email)
-	{
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getSenha()
-	{
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha)
-	{
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	public Status getStatus()
-	{
-		return status;
-	}
-
-	public void setStatus(Status status)
-	{
-		this.status = status;
-	}
+	
+	
 }
