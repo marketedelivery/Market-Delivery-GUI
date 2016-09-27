@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Cliente;
 import br.com.marketedelivery.classesBasicas.Endereco;
@@ -80,6 +81,10 @@ public class ClienteMB implements Serializable
 	}
 	
 	public IFachada getFachada() {
+		if(fachada==null)
+		{
+			fachada=new Fachada();
+		}
 		return fachada;
 	}
 
@@ -87,8 +92,11 @@ public class ClienteMB implements Serializable
 		this.fachada = fachada;
 	}
 
-	public void setCadastrarCliente(Cliente c)
+	
+	public void cadastrarCliente(Cliente c)
 	{
+		IFachada fachada = getFachada();
+	
 		cliente.getEndereco().add(endereco);
 		c = cliente;
 		fachada.cadastrarCliente(c);
