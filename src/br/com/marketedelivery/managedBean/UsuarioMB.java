@@ -1,7 +1,6 @@
 package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -38,7 +37,7 @@ public class UsuarioMB implements Serializable {
         this.fachada = fachada;
     }
     
-    public void CadastrarUsuario(Usuario usuario)
+    public void cadastrarUsuario(Usuario usuario)
     {
     	fachada.CadastrarUsuario(usuario);
     }

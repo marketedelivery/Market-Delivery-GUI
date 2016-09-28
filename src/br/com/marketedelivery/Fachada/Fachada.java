@@ -7,14 +7,17 @@ import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pagamento;
+import br.com.marketedelivery.classesBasicas.Pedido;
 import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
+
 import br.com.marketedelivery.controlador.ControladorEndereco;
 import br.com.marketedelivery.controlador.ControladorItem;
 import br.com.marketedelivery.controlador.ControladorListadeCompra;
 import br.com.marketedelivery.controlador.ControladorPagamento;
+import br.com.marketedelivery.controlador.ControladorPedido;
 import br.com.marketedelivery.controlador.ControladorPerfil;
 import br.com.marketedelivery.controlador.ControladorProduto;
 import br.com.marketedelivery.controlador.ControladorSupermercado;
@@ -32,6 +35,7 @@ public class Fachada implements IFachada
 	private ControladorPerfil conPerfil;
 	private ControladorProduto conProduto;
 	private ControladorItem conItem;
+	private ControladorPedido conPedido;
 	
 	 public  IFachada getInstancia()
 	    {
@@ -52,6 +56,7 @@ public class Fachada implements IFachada
 		 conPerfil = new ControladorPerfil();
 		 conProduto = new ControladorProduto();
 		 conItem = new ControladorItem();
+		 conPedido = new ControladorPedido();
 	 }
 	 
 	 public void CadastrarUsuario(Usuario usuario)
@@ -236,5 +241,27 @@ public class Fachada implements IFachada
 		public List<Item> ListarTodosItem()
 		{
 			return conItem.ListarTodosItem();
+		}
+		
+		//--------------------------------------------- Pedido -------------------------------------------------------------------
+		
+		public void CadastrarPedido(Pedido pedido)
+		{
+			conPedido.CadastrarPedido(pedido);
+		}
+		
+		public void AlterarPedido(Pedido pedido)
+		{
+			conPedido.AlterarPedido(pedido);
+		}
+		
+		public List<Pedido>ListarTodosPedidos()
+		{
+			return conPedido.ListarTodosPedidos();
+		}
+		
+		public Pedido ListarPedidoPorCodigo(Pedido pedido)
+		{
+			return conPedido.ListarPedidoPorCodigo(pedido);
 		}
 }
