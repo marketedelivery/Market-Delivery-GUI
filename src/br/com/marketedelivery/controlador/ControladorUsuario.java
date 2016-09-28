@@ -10,7 +10,7 @@ public class ControladorUsuario
 {
 	private IUsuarioDAO usuarioDAO;
 	
-	public void cadastrarUsuario(Usuario usuario)
+	public void CadastrarUsuario(Usuario usuario)
 	{
 		usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO.inserir(usuario);
@@ -22,13 +22,13 @@ public class ControladorUsuario
 		usuarioDAO.alterar(usuario);
 	}
 	
-	public List<Usuario>listarCliente()
+	public List<Usuario>ListarTodosUsuarios()
 	{
 		usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		return usuarioDAO.consultarTodos();
 	}
 	
-	public Usuario listarPorCPF(Usuario usuario)
+	public Usuario ListarPorCPF(Usuario usuario)
 	{
 		String cpf = usuario.getCpf();
 		usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
@@ -36,7 +36,7 @@ public class ControladorUsuario
 		return retorno;
 	}
 	
-	public Usuario listarPorNome(Usuario usuario)
+	public Usuario ListarPorNome(Usuario usuario)
 	{
 		String nome = usuario.getNome();
 		usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();

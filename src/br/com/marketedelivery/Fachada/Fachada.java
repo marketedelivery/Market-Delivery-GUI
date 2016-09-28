@@ -3,21 +3,35 @@ package br.com.marketedelivery.Fachada;
 import java.util.List;
 
 import br.com.marketedelivery.IFachada.IFachada;
-import br.com.marketedelivery.classesBasicas.Cliente;
 import br.com.marketedelivery.classesBasicas.Endereco;
+import br.com.marketedelivery.classesBasicas.Item;
+import br.com.marketedelivery.classesBasicas.ListaDeCompras;
+import br.com.marketedelivery.classesBasicas.Pagamento;
+import br.com.marketedelivery.classesBasicas.Perfil;
+import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
-import br.com.marketedelivery.controlador.ControladorCliente;
+import br.com.marketedelivery.classesBasicas.Usuario;
 import br.com.marketedelivery.controlador.ControladorEndereco;
+import br.com.marketedelivery.controlador.ControladorItem;
+import br.com.marketedelivery.controlador.ControladorListadeCompra;
+import br.com.marketedelivery.controlador.ControladorPagamento;
+import br.com.marketedelivery.controlador.ControladorPerfil;
+import br.com.marketedelivery.controlador.ControladorProduto;
 import br.com.marketedelivery.controlador.ControladorSupermercado;
 import br.com.marketedelivery.controlador.ControladorUsuario;
 
 public class Fachada implements IFachada
 {
 	private IFachada instancia;
-	private ControladorCliente conCliente;
+	
 	private ControladorEndereco conEndereco;
 	private ControladorSupermercado conSupermercado;
 	private ControladorUsuario conUsuario;
+	private ControladorListadeCompra conLista;
+	private ControladorPagamento conPagamento;
+	private ControladorPerfil conPerfil;
+	private ControladorProduto conProduto;
+	private ControladorItem conItem;
 	
 	 public  IFachada getInstancia()
 	    {
@@ -30,36 +44,42 @@ public class Fachada implements IFachada
 	 
 	 public Fachada()
 	 {
-		 conCliente = new ControladorCliente();
 		 conEndereco = new ControladorEndereco();
 		 conSupermercado = new ControladorSupermercado();
 		 conUsuario = new ControladorUsuario();
+		 conLista = new ControladorListadeCompra();
+		 conPagamento = new ControladorPagamento();
+		 conPerfil = new ControladorPerfil();
+		 conProduto = new ControladorProduto();
+		 conItem = new ControladorItem();
 	 }
 	 
-	 public void cadastrarCliente(Cliente cliente)
+	 public void CadastrarUsuario(Usuario usuario)
 	 {
-		 conCliente.cadastrarCliente(cliente);
+		 conUsuario.CadastrarUsuario(usuario);
 	 }
 	 
-	 public void atualizarCliente(Cliente cliente)
+	 public void AtualizarCliente(Usuario usuario)
 	 {
-		 conCliente.atualizarCliente(cliente);
+		 conUsuario.atualizarUsuario(usuario);
 	 }
 	 
-	 public List<Cliente>listarTodosClientes()
+	 public List<Usuario>ListarTodosUsuarios()
 	 {
-		 return conCliente.listarCliente();
+		 return conUsuario.ListarTodosUsuarios();
 	 }
 	 
-	 public Cliente listarPorNome(Cliente cliente)
+	 public Usuario ListarPorNome(Usuario usuario)
 	 {
-		 return conCliente.listarPorCPF(cliente);
+		 return conUsuario.ListarPorCPF(usuario);
 	 }
 	 
-	 public Cliente listarPorCPF(Cliente cliente)
+	 public Usuario ListarPorCPF(Usuario usuario)
 	 {
-		 return conCliente.listarPorNome(cliente);
+		 return conUsuario.ListarPorNome(usuario);
 	 }
+	 
+	 //--------------------------------------------- Supermercado -------------------------------------------------------------------
 	 
 	 public void cadastrarSupermercado(Supermercado supermercado)
 	 {
@@ -76,16 +96,13 @@ public class Fachada implements IFachada
 		 return conSupermercado.listarTodosSupermercados();
 	 }
 	 
-	 public Supermercado listarPorCNPJ(Supermercado supermercado)
-	 {
-		 return conSupermercado.pesquisarPorCNPJ(supermercado);
-	 }
-	 
 	 public Supermercado listarPorNome(Supermercado supermercado)
 	 {
 		 return conSupermercado.pesquisarPorNome(supermercado);
 	 }
 
+	 //--------------------------------------------- Endereco -------------------------------------------------------------------
+	 
 	 public void cadastrarEndereco(Endereco endereco)
 	 {
 		 conEndereco.cadastrarEndereco(endereco);
@@ -110,4 +127,114 @@ public class Fachada implements IFachada
 	 {
 		 return conEndereco.pesquisarPorLogradouro(endereco);
 	 }
+	 
+	 //--------------------------------------------- Lista de Compra -------------------------------------------------------------------
+	 
+	 public void CadastrarLista(ListaDeCompras lista)
+	 {
+		 conLista.CadastrarLista(lista);
+	 }
+	 
+	 public void AtualizarLista(ListaDeCompras lista)
+	 {
+		 conLista.AtualizarLista(lista);
+	 }
+	 
+	 public List<ListaDeCompras>ListarTodasAsListas()
+	 {
+		 return conLista.ListarTudo();
+	 }
+	 
+	 public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista)
+	 {
+		 return conLista.buscarPorCodigo(lista);
+	 }
+	 
+	 //--------------------------------------------- Perfil -------------------------------------------------------------------
+	
+	 public void CadastrarPerfil(Perfil perfil)
+	 {
+		 conPerfil.CadastrarPerfil(perfil);
+	 }
+	 
+	 public void AtualizarPerfil(Perfil perfil)
+	 {
+		 conPerfil.AtualizarPerfil(perfil);
+	 }
+	 
+	 public List<Perfil>ListarTodosPerfil()
+	 {
+		 return conPerfil.ListarTodosPerfil();
+	 }
+	 
+	 public Perfil PesquisarPorCodigo(Perfil perfil)
+	 {
+		 return conPerfil.PesquisarPorCodigo(perfil);
+	 }
+	 
+	 public Perfil PesquisarPorNome(Perfil perfil)
+	 {
+		 return conPerfil.PesquisarPorNome(perfil);
+	 }
+	 
+	//--------------------------------------------- Produto -------------------------------------------------------------------
+	 
+		public void CadastrarProduto(Produto produto)
+		{
+			conProduto.CadastrarProduto(produto);
+		}
+		
+		public void AtualizarProduto(Produto produto)
+		{
+			conProduto.AtualizarProduto(produto);
+		}
+		
+		public List<Produto>ListarTodosProdutos()
+		{
+			return conProduto.ListarTodosProdutos();
+		}
+		
+		public Produto PesquisarProdutoPorNome(Produto produto)
+		{
+			return conProduto.PesquisarProdutoPorNome(produto);
+		}
+		
+		//--------------------------------------------- Pagamento -------------------------------------------------------------------
+		
+		public void CadastrarPagamento(Pagamento pagamento)
+		{
+			conPagamento.CadastrarPagamento(pagamento);
+		}
+		
+		public void AtualizarPAgamento(Pagamento pagamento)
+		{
+			conPagamento.AtualizarPAgamento(pagamento);
+		}
+		
+		public List<Pagamento> ListarTodos()
+		{
+			return conPagamento.ListarTodos();
+		}
+		
+		public Pagamento ListarPorCodigo(Pagamento pagamento)
+		{
+			return conPagamento.ListarPorCodigo(pagamento);
+		}
+		
+		//--------------------------------------------- Item -------------------------------------------------------------------
+		
+		public void CadastrarItem(Item item)
+		{
+			conItem.CadastrarItem(item);
+		}
+		
+		public void AtualizarItem(Item item)
+		{
+			conItem.AtualizarItem(item);
+		}
+		
+		public List<Item> ListarTodosItem()
+		{
+			return conItem.ListarTodosItem();
+		}
 }

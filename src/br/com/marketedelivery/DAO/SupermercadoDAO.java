@@ -4,12 +4,14 @@ package br.com.marketedelivery.DAO;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.com.marketedelivery.IDAO.ISupermercadoDao;
+import br.com.marketedelivery.IDAO.ISupermercadoDAO;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
 
-public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISupermercadoDao{
+public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISupermercadoDAO
+{
 
+	@SuppressWarnings("unused")
     private EntityManager manager;
 
     public SupermercadoDAO(EntityManager em) {

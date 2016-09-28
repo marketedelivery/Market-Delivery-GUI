@@ -10,6 +10,7 @@ import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 
 public class ListaDeComprasDAO extends DAOGenerico<ListaDeCompras> implements IListaDeComprasDAO
 {
+	@SuppressWarnings("unused")
 	private EntityManager manager;
     
     public ListaDeComprasDAO(EntityManager em)

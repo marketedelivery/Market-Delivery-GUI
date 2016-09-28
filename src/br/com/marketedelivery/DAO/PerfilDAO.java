@@ -16,7 +16,7 @@ public class PerfilDAO extends DAOGenerico<Perfil> implements IPerfilDAO
         super(em);
         this.manager = em;
     }
-    public Perfil buscarPorNome(String nome)
+    public Perfil BuscarPorNome(String nome)
     {
         String consulta = "SELECT p FROM PERFIL p WHERE p.nome = :N";
         TypedQuery<Perfil> retorno = getEntityManager().createQuery(consulta, Perfil.class);

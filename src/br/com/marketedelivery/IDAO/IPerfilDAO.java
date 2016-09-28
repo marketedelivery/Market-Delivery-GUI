@@ -5,6 +5,6 @@ import br.com.marketedelivery.classesBasicas.Perfil;
 public interface IPerfilDAO extends IDAOGenerico<Perfil> {
 
 
-	Perfil buscarPorNome(String nome);
+	public Perfil BuscarPorNome(String nome);
 
 }

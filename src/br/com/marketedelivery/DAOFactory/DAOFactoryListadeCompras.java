@@ -28,5 +28,4 @@ public class DAOFactoryListadeCompras
 	            factory.close();
 	        }
 	    } 
-
 }

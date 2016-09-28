@@ -1,78 +1,45 @@
 package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.faces.bean.ViewScoped;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
-
+import br.com.marketedelivery.Fachada.Fachada;
+import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Usuario;
 
-
-@SessionScoped
+@ViewScoped
 @ManagedBean(name="usuarioMB")
-public class UsuarioMB implements Serializable{
+public class UsuarioMB implements Serializable {
 
-	public static final String ENVIAR_NOME = "#{usuarioMB}";
-	private static final long serialVersionUID = 1L;
-	Usuario usuario;
-	
-	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+    private static final long serialVersionUID = 1L;
 
-	UsuarioMB usuarioMB;
-	private String email;
-	private String senha;
-	
-	// GET  E SET
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	
-	// FIM GET E SET
-	
-	private HttpServletRequest getRequest() {
-		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-	}
-	public void inserirUsuario(Usuario us){
-		
-	}
-	/**
-	  * Efetua logout do usuário do sistema */
-		public String getLogOut() {
-			getRequest().getSession().invalidate();
-			return "/pages/public/login.xhtml";
-   }
-	    /**
-		  * Efetua logout do usuário do sistema */
-		public String getEfetuarLogout(){
-		    FacesContext fc = FacesContext.getCurrentInstance();
-		    HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-		    session.invalidate();
-		    return "/pages/public/login.xhtml";
-		}
-		public String getFilmesEmCartaz() {
-		    Client c = Client.create();
-		    WebResource wr = c.resource("http://localhost:8080/WebServiceRest/rest/service/cadastrarUsuario");
-		    return wr.get(String.class);
-		  }
-	
+    private Usuario usuario;
+    private IFachada fachada = new Fachada();
+ 
+
+    public Usuario getUsuario() 
+    {
+        if (usuario == null) {
+            usuario = new Usuario();
+        }
+        return usuario;
+    }
+
+    public IFachada getFachada() 
+    {
+        return fachada;
+    }
+
+    public void setFachada(IFachada fachada) 
+    {
+        this.fachada = fachada;
+    }
+    
+    public void CadastrarUsuario(Usuario usuario)
+    {
+    	fachada.CadastrarUsuario(usuario);
+    }
 }

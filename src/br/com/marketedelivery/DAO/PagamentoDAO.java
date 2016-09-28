@@ -1,6 +1,7 @@
 package br.com.marketedelivery.DAO;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.marketedelivery.IDAO.IPagamentoDAO;
 import br.com.marketedelivery.classesBasicas.Pagamento;
@@ -18,12 +19,12 @@ public class PagamentoDAO extends DAOGenerico<Pagamento> implements IPagamentoDA
         super(em);
         this.manager = em;
     }
-    /*
-    public Pagamento buscarPorStatus(Status status)
+    
+    public Pagamento buscarPorStatus(Pagamento pagamento)
     {
-        String consulta = "SELECT s FROM Supermercado s WHERE s.nome = :N";
+        String consulta = "SELECT p FROM Pagamento s WHERE p.status = :N";
         TypedQuery<Pagamento> retorno = getEntityManager().createQuery(consulta, Pagamento.class);
-        retorno.setParameter("N", nome);
+        retorno.setParameter("N", pagamento.getStatus());
         Pagamento resultado;
         try {
             resultado = retorno.getSingleResult();
@@ -33,7 +34,7 @@ public class PagamentoDAO extends DAOGenerico<Pagamento> implements IPagamentoDA
             return null;
 
         }
-    }*/
+    }
 
 
 }

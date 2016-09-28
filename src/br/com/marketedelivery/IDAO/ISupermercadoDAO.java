@@ -2,7 +2,7 @@ package br.com.marketedelivery.IDAO;
 
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
-public interface ISupermercadoDao extends IDAOGenerico<Supermercado> 
+public interface ISupermercadoDAO extends IDAOGenerico<Supermercado> 
 {
 
 	 public Supermercado buscarPorNome(String nome);
