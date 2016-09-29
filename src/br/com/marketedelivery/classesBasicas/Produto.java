@@ -25,18 +25,15 @@ public class Produto {
 	private int qtdEstoque;
 	@Column(name = "valorUnitario",length=12)
 	private Double valorUnitario;
-	@OneToMany
-	private List<Item> itens;
 	
 	public Produto(int codigo, String nome, String marca, int qtdEstoque,
-			Double valorUnitario, List<Item> itens) {
+			Double valorUnitario) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.marca = marca;
 		this.qtdEstoque = qtdEstoque;
 		this.valorUnitario = valorUnitario;
-		this.itens = itens;
 	}
 	public Produto() {
 		super();
@@ -71,12 +68,5 @@ public class Produto {
 	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
-	public List<Item> getItens() {
-		return itens;
-	}
-	public void setItens(List<Item> itens) {
-		this.itens = itens;
-	}
-	
-		
+			
 }
