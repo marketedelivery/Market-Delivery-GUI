@@ -31,7 +31,8 @@ public class SupermercadoBean {
 
 	}
 
-	public Supermercado getSupermercadoCadastro() {
+	public Supermercado getSupermercadoCadastro() 
+	{
 		if (supermercadoCadastro == null) {
 			supermercadoCadastro = new Supermercado();
 		}

@@ -1,5 +1,6 @@
 package br.com.marketedelivery.classesBasicas;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Usuario
 	private String nome;
 	@Column(name = "CPF",length=12)
 	private String cpf;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private Endereco endereco;
 	@Column(name = "telefone_whatsapp",length=12)
 	private String telefonewhatsapp;
@@ -48,6 +49,7 @@ public class Usuario
 	
 	public Usuario() {
 		super();
+		endereco = new Endereco();
 	}
 	
 	public Integer getCodigo() {

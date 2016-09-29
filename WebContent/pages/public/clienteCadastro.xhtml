@@ -32,25 +32,25 @@
 				<p:inputText maxlength="11" size="11" value="#{usuarioMB.usuario.telefoneWhatsapp}"/>
 
 				<h:outputLabel value="Cep"/>
-                <p:inputText value="#{usuarioMB.usuario.endereco.cep}" required="true" requiredMessage="Preencha o Cep" maxlength="8" size="10"/>
+                <p:inputText value="#{usuarioMB.endereco.cep}" required="true" requiredMessage="Preencha o Cep" maxlength="8" size="10"/>
                 
 				<h:outputLabel value="Logradouro"/>
-				<p:inputText value="#{usuarioMB.usuario.endereco.logradouro}" required="false" requiredMessage="Preencha o logradouro"/>
+				<p:inputText value="#{usuarioMB.endereco.logradouro}" required="false" requiredMessage="Preencha o logradouro"/>
               
                 <h:outputLabel value="Número"/>
-                <p:inputText value="#{usuarioMB.usuario.endereco.numero}" required="false" requiredMessage="Preencha o número" maxlength="5" size="8"/>
+                <p:inputText value="#{usuarioMB.endereco.numero}" required="false" requiredMessage="Preencha o número" maxlength="5" size="8"/>
                
                 <h:outputLabel value="Complemento"/>
-                <p:inputText value="#{usuarioMB.usuario.endereco.complemento}" required="false" requiredMessage="Preencha o complemento"/>
+                <p:inputText value="#{usuarioMB.endereco.complemento}" required="false" requiredMessage="Preencha o complemento"/>
               
                 <h:outputLabel value="Bairro"/>
-                <p:inputText value="#{usuarioMB.usuario.endereco.bairro}" required="false" requiredMessage="Preencha o Bairro"/>
+                <p:inputText value="#{usuarioMB.endereco.bairro}" required="false" requiredMessage="Preencha o Bairro"/>
 
 				<h:outputLabel value="Cidade"/>
-                <p:inputText value="#{usuarioMB.usuario.endereco.cidade}" required="false" requiredMessage="Preencha a cidade"/>
+                <p:inputText value="#{usuarioMB.endereco.cidade}" required="false" requiredMessage="Preencha a cidade"/>
                         
                 <h:outputLabel value="Estado"/>
-                <p:inputText value="#{usuarioMB.usuario.endereco.estado}" required="false" requiredMessage="Preencha o Estado"></p:inputText>
+                <p:inputText value="#{usuarioMB.endereco.estado}" required="false" requiredMessage="Preencha o Estado"></p:inputText>
                 
               
                 
@@ -74,7 +74,7 @@
 			</h:panelGrid>
 			<h:panelGrid columns="3">
 				
-				<p:commandButton value="Salvar" action="#{usuarioMB.}"/>
+				<p:commandButton value="Salvar" action="#{usuarioMB.salvar}"/>
 				
 				<p:commandButton value="Voltar"
 					actionListener="/pages/public/clientePesquisa.xhtml?faces-redirect=true" />
