@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import br.com.marketedelivery.classesBasicas.Usuario;
 
 @RequestScoped
-@ManagedBean(name="loginMB")
+@ManagedBean(name="lgMB")
 public class LoginMB extends AbstractMB{
 
 //	@ManagedProperty(value = Login.ENVIAR_NOME)

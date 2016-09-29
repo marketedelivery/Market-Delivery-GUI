@@ -45,7 +45,8 @@ public class ControladorUsuario
 	}
 	
 
-    public Usuario pesquisarUsuarioPorCodigo(int codigo) {
+    public Usuario pesquisarUsuarioPorCodigo(int codigo) 
+    {
         usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
         Usuario cp = usuarioDAO.consultarPorId(codigo);
         if (cp != null) {
@@ -57,5 +58,14 @@ public class ControladorUsuario
             return null;
 
         }
+    }
+    
+    public Usuario pesquisarPorEmail(Usuario usuario)
+    {
+    	String email = usuario.getEmail();
+    	usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
+    	Usuario retorno = usuarioDAO.buscarPorEmail(email);
+    	return retorno;
+    	
     }
 }

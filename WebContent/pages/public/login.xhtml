@@ -26,19 +26,15 @@
 
 				<p:messages id="messages" />
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
-					<h:outputLabel for="email" value="Digite a Senha: "/>
-					<p:inputText id="email" value="#{loginMB.email}" required="true"
-						label="username">
+					Email
+					<p:inputText id="email" value="#{loginMB.usuario.email}" required="true" label="username">
 						<f:validator validatorId="custom.emailValidator" />	
 					</p:inputText>
 
-					<h:outputLabel for="senha" value="Senha:" />
-					<p:password id="senha" value="#{loginMB.senha}" required="true"
-						label="password" />
-
+					Senha
+					<p:password id="senha" value="#{loginMB.usuario.senha}" required="true" label="password" />
+					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}"/>
 					<f:facet name="footer">
-						<p:commandButton value="Login" update="growl"
-							action="#{loginMB.login}"/>
 					</f:facet>
 					<f:facet name="footer">
 						<p:link value=" Cadastre-se " update="growl"

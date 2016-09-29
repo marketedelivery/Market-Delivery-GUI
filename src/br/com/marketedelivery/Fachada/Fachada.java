@@ -76,19 +76,25 @@ public class Fachada implements IFachada
 	 
 	 public Usuario ListarPorNome(Usuario usuario)
 	 {
-		 return conUsuario.ListarPorCPF(usuario);
+		 return conUsuario.ListarPorNome(usuario);
 	 }
 	 
 	 public Usuario ListarPorCPF(Usuario usuario)
 	 {
-		 return conUsuario.ListarPorNome(usuario);
+		 return conUsuario.ListarPorCPF(usuario);
 	 }
 		 
 	 @Override
-		public Usuario pesquisarPorCodigo(Usuario cliente) {
-			// TODO Auto-generated method stub
+	public Usuario pesquisarPorCodigo(Usuario cliente)
+	 {
+		// TODO Auto-generated method stub
 			return null;
-		}
+	 }
+	 
+	 public Usuario pesquisarPorEmail(Usuario usuario)
+	 {
+		 return conUsuario.pesquisarPorEmail(usuario);
+	 }
 	 
 	 //--------------------------------------------- Supermercado -------------------------------------------------------------------
 	 
