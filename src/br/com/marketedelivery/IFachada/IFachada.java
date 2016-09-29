@@ -18,6 +18,7 @@ public interface IFachada
 	 public List<Usuario>ListarTodosUsuarios();
 	 public Usuario ListarPorNome(Usuario cliente);
 	 public Usuario ListarPorCPF(Usuario cliente);
+	 public Usuario pesquisarPorCodigo (Usuario cliente);
 	 
 	 //--------------------------------------------- Supermercado -------------------------------------------------------------------
 	 

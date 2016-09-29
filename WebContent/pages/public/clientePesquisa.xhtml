@@ -7,29 +7,51 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="/pages/templates/modeloGeral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{usuarioMB.carregarPesquisa}"
+				type="preRenderView" />
+
+		</f:metadata>
+	</ui:define>
+
 	<ui:define name="conteudo">
-		<h:form>
+		<h:form id="frmPesqCli">
 			<p:toolbar>
 				<f:facet name="left">
-					<h:outputText value="Clientes" />
+					<h:outputText value="Usuarios" />
 				</f:facet>
 			</p:toolbar>
-			<h:panelGrid columns="4">
-				<p:outputLabel value="Nome" />
-				<p:inputText maxlength="50" size="30" />
-				<p:commandButton value="Buscar" />
-				<p:commandButton value="Novo"
-					action="/pages/public/clienteCadastro.xhtml?faces-redirect=true" />
-			</h:panelGrid>
-			<p:dataTable var = "usuario" value="#{usuarioMB.listarTodos}">
-				<p:column headerText="Código" >
-					<h:outputText value="#{usuarioMB.usuario.codigo}"/>
+			<p:dataTable emptyMessage="Nenhum registro encontrado...."
+				value="#{usuarioMB.listaUsuarios}"
+				filteredValue="#{usuarioMB.listaUsuariosFiltrados}" var="usuario"
+				rows="6" paginator="true">
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						action="/pages/public/clienteCadastro.xhtml?faces-redirect=true" />
+				</f:facet>
+
+				<p:column headerText="Código" style="width: 5%">
+					<h:outputText value="#{usuario.codigo}" />
 				</p:column>
-				<p:column headerText="Nome" value ="#{usuario.usuario.nome}">
-					<h:outputText value="#{usuarioMB.usuario.nome}"/>
+
+				<p:column headerText="Nome" filterBy="#{usuario.nome}"
+					sortBy="#{usuario.nome}">
+					<h:outputText value="#{usuario.nome}" />
 				</p:column>
-				<p:column headerText="Opções" />
+
+				<p:column headerText="Opções" style="width: 15%">
+					<p:commandButton value="Excluir"
+						actionListener="#{usuarioMB.excluirUsuario()}"
+						update=":msgGlobal" />
+
+					<p:button value="Editar" action="/pages/public/clientePesquisa.xhtml?faces-redirect=true" >
+						<f:param name="clicod" value="#{usuario.codigo}" />
+					</p:button>
+				</p:column>
 			</p:dataTable>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

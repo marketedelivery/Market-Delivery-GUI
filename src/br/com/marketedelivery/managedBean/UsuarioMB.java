@@ -13,24 +13,22 @@ import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Usuario;
 
 @ViewScoped
-@ManagedBean(name="usuarioMB")
+@ManagedBean(name = "usuarioMB")
 public class UsuarioMB implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private Usuario usuario;
-    private Endereco endereco;
-    private IFachada fachada;
-    private List<Usuario> listar;
- 
-    
-    
-    public Endereco getEndereco()
-    {
-    	if(endereco == null)
-    	{
-    		endereco = new Endereco();
-    	}
+	private Usuario usuario;
+	private Endereco endereco;
+	private IFachada fachada;
+	private List<Usuario> listar;
+	private List<Usuario> listaUsuarios;
+	private List<Usuario> listaUsuariosFiltrados;
+
+	public Endereco getEndereco() {
+		if (endereco == null) {
+			endereco = new Endereco();
+		}
 		return endereco;
 	}
 
@@ -42,31 +40,25 @@ public class UsuarioMB implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public Usuario getUsuario() 
-    {
-		if(usuario==null)
-		{
+	public Usuario getUsuario() {
+		if (usuario == null) {
 			usuario = new Usuario();
 		}
-        return usuario;
-    }
+		return usuario;
+	}
 
-    public IFachada getFachada() 
-    {
-    	if(fachada == null)
-    	{
-    		fachada=new Fachada();
-    	}
-        return fachada;
-    }
-  
-	public void setFachada(IFachada fachada) 
-    {
-        this.fachada = fachada;
-    }
-	
-    public List<Usuario> getListar() 
-    {
+	public IFachada getFachada() {
+		if (fachada == null) {
+			fachada = new Fachada();
+		}
+		return fachada;
+	}
+
+	public void setFachada(IFachada fachada) {
+		this.fachada = fachada;
+	}
+
+	public List<Usuario> getListar() {
 		return listar;
 	}
 
@@ -74,19 +66,61 @@ public class UsuarioMB implements Serializable {
 		this.listar = listar;
 	}
 
-	public void salvar()
-    {	
-    	IFachada fachada = getFachada();
-    	Usuario usuario = getUsuario();
-    	Endereco end = getEndereco();
-       	usuario.setEndereco(end);
-    	fachada.CadastrarUsuario(usuario);
-    	FacesUtil.adicionarMsgInfo("Cadastrado com Sucesso");
-    }
-    
-    public void listarUsuario()
-    {
-    	IFachada fachada = getFachada();
-    	listar = fachada.ListarTodosUsuarios();
-    }
+	public List<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
+
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public List<Usuario> getListaUsuariosFiltrados() {
+		return listaUsuariosFiltrados;
+	}
+
+	public void setListaUsuariosFiltrados(List<Usuario> listaUsuariosFiltrados) {
+		this.listaUsuariosFiltrados = listaUsuariosFiltrados;
+	}
+
+	public void salvar() {
+		IFachada fachada = getFachada();
+		Usuario usuario = getUsuario();
+		Endereco end = getEndereco();
+		usuario.setEndereco(end);
+		fachada.CadastrarUsuario(usuario);
+		FacesUtil.adicionarMsgInfo("Cadastrado com Sucesso");
+	}
+
+	// public void listarUsuario()
+	// {
+	// IFachada fachada = getFachada();
+	// listar = fachada.ListarTodosUsuarios();
+	// }
+
+	// Responsável em carregar uma lista de dados na tela do cadastro de
+	// usuarios
+	public void carregarPesquisa() {
+		try {
+			//fachada.ListarTodosUsuarios();
+			//listaUsuarios = fachada.ListarTodosUsuarios();
+			 IFachada fachada = getFachada();
+			 listaUsuarios = fachada.ListarTodosUsuarios();
+		} catch (Exception ex) {
+			FacesUtil.adicionarMsgErro("Erro ao tentar listar os usuarios" + ex.getMessage());
+		}
+	}
+
+	public void carregarCadastro() {
+		try {
+			String valor = FacesUtil.getParam("clicod");
+			// int codigo_pessoa = 0;
+			if (valor != null) {
+				int codigo = Integer.parseInt(valor);
+				usuario = fachada.pesquisarPorCodigo(usuario);
+			}
+
+		} catch (Exception ex) {
+			FacesUtil.adicionarMsgErro("Erro ao tentar listar os usuarios" + ex.getMessage());
+		}
+	}
 }

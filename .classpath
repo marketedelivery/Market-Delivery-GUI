@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-server-2.22.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-core-1.8.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-analyzers-common-5.3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cdi-api-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

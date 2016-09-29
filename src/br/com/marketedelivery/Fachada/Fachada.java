@@ -83,6 +83,12 @@ public class Fachada implements IFachada
 	 {
 		 return conUsuario.ListarPorNome(usuario);
 	 }
+		 
+	 @Override
+		public Usuario pesquisarPorCodigo(Usuario cliente) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	 
 	 //--------------------------------------------- Supermercado -------------------------------------------------------------------
 	 
@@ -264,4 +270,6 @@ public class Fachada implements IFachada
 		{
 			return conPedido.ListarPedidoPorCodigo(pedido);
 		}
+
+		
 }

@@ -62,6 +62,11 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 
         }
     }
+	@Override
+	public Usuario pesquisarPorCodigo(int codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	    
 }
 
