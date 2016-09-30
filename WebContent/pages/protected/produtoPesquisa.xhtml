@@ -23,11 +23,18 @@
 				<p:commandButton value="Novo"
 					action="/pages/protected/produtoCadastro.xhtml?faces-redirect=true" />
 			</h:panelGrid>
-
-			<p:dataTable emptyMessage="Nenhum registro encontrado...">
-				<p:column headerText="Código" />
-				<p:column headerText="Nome" />
-				<p:column headerText="Opções" />
+				
+			<p:dataTable  var="produto" value="#{produtoMB.lista}" >
+				
+				<p:column headerText="Nome" style="width:16px;text-align:center" >
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+				<p:column headerText="Marca" style="width:16px;text-align:center">
+					<h:outputText value="#{produto.marca}" />
+				</p:column>
+				<p:column headerText="valor Unitario" style="width:16px;text-align:center" >
+					<h:outputText value="#{produto.valorUnitario}" />
+				</p:column>
 			</p:dataTable>
 
 		</h:form>

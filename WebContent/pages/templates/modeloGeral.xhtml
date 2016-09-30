@@ -30,7 +30,7 @@
 				<p:panelMenu>
 					<p:submenu label="Home">
 						<p:menuitem value="Principal" outcome="/pages/public/principal.xhtml" />
-						<p:menuitem value="Sair" />
+						<p:menuitem value="Sair" action="#{loginMB.sairDoSistema}" />
 											
 					</p:submenu>
 					<p:submenu label="Cadastros">
@@ -54,8 +54,15 @@
 		<p:layoutUnit position="center" resizable="false" closable="false"
 			collapsible="false">
 			<ui:insert name="conteudo" />
+			
+			
 		</p:layoutUnit>
-
+			<p:layoutUnit position="east" size="300" header="Minhas Listas">
+			<ui:insert name="conteudoLadoDireito"/>
+        <h:outputText value="Right unit content." />
+    </p:layoutUnit>
+ 
+    
 	</p:layout>
 </h:body>
 </html>

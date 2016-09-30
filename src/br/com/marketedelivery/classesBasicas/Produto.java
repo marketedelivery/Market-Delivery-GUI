@@ -26,6 +26,15 @@ public class Produto {
 	@Column(name = "valorUnitario",length=12)
 	private Double valorUnitario;
 	
+	public Produto(String nome, String marca, Double valorUnitario) {
+		super();
+		
+		this.nome = nome;
+		this.marca = marca;
+		
+		this.valorUnitario = valorUnitario;
+	}
+	
 	public Produto(int codigo, String nome, String marca, int qtdEstoque,
 			Double valorUnitario) {
 		super();

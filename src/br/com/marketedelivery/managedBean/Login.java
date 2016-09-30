@@ -18,7 +18,7 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 
 @SessionScoped
 @ManagedBean(name = "loginMB")
-public class Login implements Serializable
+public class Login extends AbstractMB implements Serializable
 {
 	Usuario usuarioMB;
 
@@ -86,30 +86,43 @@ public class Login implements Serializable
 	/**
 	 * Efetua logout do usuário do sistema
 	 */
-	public String getEfetuarLogout() {
+	public String efetuarLogout() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
-		return "/pages/public/login.xhtml";
+		return "/pages/public/principal.xhtml";
 	}
 
 	public String efetuarLogin() {
 		Usuario user = new Usuario();
 		user = getFachada().pesquisarPorEmail(usuario);
-
-		if (usuario.getEmail().equals(user.getEmail()) && usuario.getSenha().equals(user.getSenha()))
+		String email = user.getEmail();
+		String senha = user.getSenha();
+		if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
 		{
-			return "/pages/public/clientePesquisa.xhtml";
+			displayInfoMessageToUser("Cliente logado no sistema de compras online");
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+			request.getSession().setAttribute("usuario", user);
+			return "/pages/protected/produtoPesquisa.xhtml";
+			//return "/pages/public/clientePesquisa.xhtml";
 		} else {
 			// Cria uma mensagem.
-			FacesMessage msg = new FacesMessage("Usuário ou senha inválido!");
+			//FacesMessage msg = new FacesMessage("Usuário ou senha inválido!");
+			//return "/pages/public/clientePesquisa.xhtml";
 			// Obtém a instancia atual do FacesContext e adiciona a mensagem de
 			// erro nele.
-			FacesContext.getCurrentInstance().addMessage("erro", msg);
+			displayErrorMessageToUser("Digite seu Email ou Senha");
 			return null;
 		}
+		
 	}
-
+	public String sairDoSistema(){
+		FacesContext fc = FacesContext.getCurrentInstance();
+		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+		session.invalidate();
+		return "/pages/public/login.xhtml";
+	}
 	public String getFilmesEmCartaz() {
 		Client c = Client.create();
 		WebResource wr = c.resource("http://localhost:8080/WebServiceRest/rest/service/cadastrarUsuario");
