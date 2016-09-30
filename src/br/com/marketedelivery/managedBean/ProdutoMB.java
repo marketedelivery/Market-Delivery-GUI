@@ -6,6 +6,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 
+import br.com.marketedelivery.DAO.FacesUtil;
+import br.com.marketedelivery.DAO.ProdutoDAO;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Produto;
@@ -16,9 +18,9 @@ public class ProdutoMB {
 	private Produto produto;
 	ProdutoMB produtoMB;
 	IFachada fachada;
+	Produto produtoCadastro;
 	public ProdutoMB() {
 		produto = new Produto();
-		
 		
 		// TODO Auto-generated constructor stub
 	}
@@ -47,7 +49,24 @@ public class ProdutoMB {
 		list.add(new Produto("nestler", "biscoito bonito", 2.50));
 		list.add(new Produto("nestler", "biscoito wafer", 2.50));
 		
-		return list;
+		return list;	
+	}
 	
-}
+	public void salvar() {
+		// FacesUtil.adicionarMsgInfo(supermercadoCadastro.toString());
+		try {
+			ProdutoDAO produtoDao = new ProdutoDAO(null);
+			
+			produtoDao.inserir(produtoCadastro);
+
+			produtoCadastro = new Produto();
+
+			FacesUtil.adicionarMsgInfo("Produto salvo com sucesso");
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao adicionar o registro:" + ex.getMessage());
+		}
+
+	}
+	
 }
