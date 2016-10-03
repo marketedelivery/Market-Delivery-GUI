@@ -85,10 +85,10 @@ public class Fachada implements IFachada
 	 }
 		 
 	 @Override
-	public Usuario pesquisarPorCodigo(Usuario cliente)
+	public Usuario pesquisarPorCodigo(Usuario usuario)
 	 {
 		// TODO Auto-generated method stub
-			return null;
+			return conUsuario.pesquisarUsuarioPorCodigo(usuario);
 	 }
 	 
 	 public Usuario pesquisarPorEmail(Usuario usuario)

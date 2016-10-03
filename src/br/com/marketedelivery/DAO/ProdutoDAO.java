@@ -2,19 +2,24 @@ package br.com.marketedelivery.DAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.inject.Inject;
 
 import br.com.marketedelivery.IDAO.IProdutoDAO;
 import br.com.marketedelivery.classesBasicas.Produto;
 
 public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
 	
-	@SuppressWarnings("unused")
-	private EntityManager manager;
+	@Inject 
+	private EntityManager bd01Manager;
+	@Inject @bd02
+	private EntityManager bd02Manager;
     
-    public ProdutoDAO(EntityManager em)
+	
+    public ProdutoDAO( EntityManager em)
     {
         super(em);
-        this.manager = em;
+        this.bd01Manager = em;
+        this.bd02Manager = em;
     }
     public Produto buscarPorNome(String nome)
     {

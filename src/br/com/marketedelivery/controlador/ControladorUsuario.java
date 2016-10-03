@@ -45,19 +45,12 @@ public class ControladorUsuario
 	}
 	
 
-    public Usuario pesquisarUsuarioPorCodigo(int codigo) 
+    public Usuario pesquisarUsuarioPorCodigo(Usuario usuario) 
     {
         usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
-        Usuario cp = usuarioDAO.consultarPorId(codigo);
-        if (cp != null) {
-            return cp;
-        } else {
-            String message = "Desculpe,mas esse usuario não existe no nosso sitema";
-            String title = "Atenção";
-            //    JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE);
-            return null;
-
-        }
+        Usuario cp = usuarioDAO.consultarPorId(usuario.getCodigo());
+        return cp;
+       
     }
     
     public Usuario pesquisarPorEmail(Usuario usuario)

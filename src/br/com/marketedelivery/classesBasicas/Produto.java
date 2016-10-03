@@ -1,12 +1,10 @@
 package br.com.marketedelivery.classesBasicas;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +12,7 @@ import javax.persistence.Table;
 public class Produto {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "codigo")
 	private int codigo;
 	@Column(name = "nome",length=12)

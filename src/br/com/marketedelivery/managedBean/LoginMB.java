@@ -1,13 +1,8 @@
 package br.com.marketedelivery.managedBean;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import br.com.marketedelivery.classesBasicas.Usuario;
 
 @RequestScoped
 @ManagedBean(name="lgMB")
