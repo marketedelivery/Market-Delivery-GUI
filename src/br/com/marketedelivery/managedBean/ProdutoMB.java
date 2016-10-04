@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import br.com.marketedelivery.DAO.FacesUtil;
+import br.com.marketedelivery.DAO.ProdutoDAO;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Produto;
@@ -25,6 +27,7 @@ public class ProdutoMB implements Serializable {
 	private Produto produto;
 	ProdutoMB produtoMB;
 	IFachada fachada;
+
 	private Supermercado supermercadoSelecionado;
 	private List<Supermercado> listaSupermercado;
 
@@ -37,6 +40,13 @@ public class ProdutoMB implements Serializable {
 	public void init() {
 		listaSupermercado = getFachada().listarSupermercado();
 		// listaSupermercado = getSupermercadoMB.getListarTodosSupermercados();
+	}
+	Produto produtoCadastro;
+	public ProdutoMB() {
+		produto = new Produto();
+		
+		// TODO Auto-generated constructor stub
+//>>>>>>> branch 'master' of https://github.com/marketedelivery/Market-Delivery-GUI.git
 	}
 
 	public Produto getProduto() {
@@ -88,6 +98,7 @@ public class ProdutoMB implements Serializable {
 		return nomeProduto;
 	}
 	
+
 	
 
 	public IFachada getFachada() 
@@ -129,4 +140,22 @@ public class ProdutoMB implements Serializable {
 		}
 		return supermercadoMB;
 	}
+
+	public void salvar() {
+		// FacesUtil.adicionarMsgInfo(supermercadoCadastro.toString());
+		try {
+			ProdutoDAO produtoDao = new ProdutoDAO(null);
+			
+			produtoDao.inserir(produtoCadastro);
+
+			produtoCadastro = new Produto();
+
+			FacesUtil.adicionarMsgInfo("Produto salvo com sucesso");
+		} catch (RuntimeException ex) {
+			ex.printStackTrace();
+			FacesUtil.adicionarMsgErro("Erro ao adicionar o registro:" + ex.getMessage());
+		}
+
+	}
+	
 }

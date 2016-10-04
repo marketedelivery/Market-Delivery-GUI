@@ -16,9 +16,9 @@ public interface IFachada
 	 public void CadastrarUsuario(Usuario usuario);
 	 public void AtualizarCliente(Usuario usuario);
 	 public List<Usuario>ListarTodosUsuarios();
-	 public Usuario ListarPorNome(Usuario cliente);
-	 public Usuario ListarPorCPF(Usuario cliente);
-	 public Usuario pesquisarPorCodigo (Usuario cliente);
+	 public Usuario ListarPorNome(Usuario usuario);
+	 public Usuario ListarPorCPF(Usuario usuario);
+	 public Usuario pesquisarPorCodigo (Usuario usuario);
 	 public Usuario pesquisarPorEmail(Usuario usuario);
 	 
 	 //--------------------------------------------- Supermercado -------------------------------------------------------------------

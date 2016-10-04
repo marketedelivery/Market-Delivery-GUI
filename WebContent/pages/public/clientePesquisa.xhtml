@@ -46,8 +46,8 @@
 						actionListener="#{usuarioMB.excluirUsuario()}"
 						update=":msgGlobal" />
 
-					<p:button value="Editar" action="/pages/public/clientePesquisa.xhtml?faces-redirect=true" >
-						<f:param name="clicod" value="#{usuario.codigo}" />
+					<p:button value="Editar" action="/pages/public/clienteCadastro.xhtml?faces-redirect=true" >
+						<f:param name="clicod" id="clicod" value="#{usuario.codigo}"/>
 					</p:button>
 				</p:column>
 			</p:dataTable>

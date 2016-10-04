@@ -9,12 +9,12 @@ import br.com.marketedelivery.IDAO.IProdutoDAO;
 public class DAOFactoryProduto 
 {
 	 
-    private static final EntityManagerFactory factory;
+    private static EntityManagerFactory factory;
     
     public static IProdutoDAO produtoDAO;
   
     static {
-        factory = Persistence.createEntityManagerFactory("teste");
+        factory = Persistence.createEntityManagerFactory("bancoapk");
     }
     
     public static IProdutoDAO getProdutoDAO()

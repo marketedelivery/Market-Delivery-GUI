@@ -2,7 +2,6 @@ package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -51,22 +50,6 @@ public class Login extends AbstractMB implements Serializable
 		this.fachada = fachada;
 	}
 
-	// GET E SET
-	// public String getEmail() {
-	// return email;
-	// }
-	// public void setEmail(String email) {
-	// this.email = email;
-	// }
-	// public String getSenha() {
-	// return senha;
-	// }
-	// public void setSenha(String senha) {
-	// this.senha = senha;
-	// }
-
-	// FIM GET E SET
-
 	private HttpServletRequest getRequest() {
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
@@ -104,7 +87,7 @@ public class Login extends AbstractMB implements Serializable
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 			request.getSession().setAttribute("usuario", user);
-			return "/pages/protected/produtoPesquisa.xhtml";
+			return "/pages/protected/produtoPesquisar.xhtml";
 			//return "/pages/public/clientePesquisa.xhtml";
 		} else {
 			// Cria uma mensagem.

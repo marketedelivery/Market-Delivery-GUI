@@ -10,8 +10,16 @@ import javax.persistence.Persistence;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
-public class Teste {
+import br.com.marketedelivery.DAO.EntityManagerProducer;
 
+
+public class Teste 
+{
+	public static EntityManagerFactory emf;
+	public static EntityManagerFactory emf2;
+	public static EntityManagerProducer emp = new EntityManagerProducer();
+	
+	
 	public Teste() {
 	}
 	
@@ -62,7 +70,7 @@ public class Teste {
 		em.persist(s);
 		em.getTransaction().commit();
 		em.close();
-		emf.close();
-	}
 
 }
+}
+

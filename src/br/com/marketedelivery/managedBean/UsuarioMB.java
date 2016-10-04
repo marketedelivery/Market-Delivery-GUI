@@ -3,8 +3,12 @@ package br.com.marketedelivery.managedBean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.marketedelivery.DAO.FacesUtil;
 import br.com.marketedelivery.Fachada.Fachada;
@@ -12,6 +16,7 @@ import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Usuario;
 
+@RequestScoped
 @ViewScoped
 @ManagedBean(name = "usuarioMB")
 public class UsuarioMB implements Serializable {
@@ -82,13 +87,20 @@ public class UsuarioMB implements Serializable {
 		this.listaUsuariosFiltrados = listaUsuariosFiltrados;
 	}
 
-	public void salvar() {
-		IFachada fachada = getFachada();
-		Usuario usuario = getUsuario();
-		Endereco end = getEndereco();
-		usuario.setEndereco(end);
-		fachada.CadastrarUsuario(usuario);
-		FacesUtil.adicionarMsgInfo("Cadastrado com Sucesso");
+	public void salvar() 
+	{
+		try 
+		{
+			usuario.setEndereco(endereco);
+			fachada = getFachada();
+			fachada.CadastrarUsuario(usuario);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
+		} catch (Exception e) 
+		{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao cadastrar, tente novamente mais tarde"));
+			System.out.println(e.getMessage());
+		}
+		
 	}
 
 	// public void listarUsuario()
@@ -110,12 +122,13 @@ public class UsuarioMB implements Serializable {
 		}
 	}
 
+	@PostConstruct
 	public void carregarCadastro() {
 		try {
 			String valor = FacesUtil.getParam("clicod");
 			// int codigo_pessoa = 0;
 			if (valor != null) {
-				int codigo = Integer.parseInt(valor);
+				//int codigo = Integer.parseInt(valor);
 				usuario = fachada.pesquisarPorCodigo(usuario);
 			}
 
