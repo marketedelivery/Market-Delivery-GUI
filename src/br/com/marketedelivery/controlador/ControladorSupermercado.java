@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.marketedelivery.DAOFactory.DAOFactorySupermercado;
 import br.com.marketedelivery.IDAO.ISupermercadoDAO;
+import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
 public class ControladorSupermercado 
@@ -23,6 +24,7 @@ public class ControladorSupermercado
 	
 	public List<Supermercado>listarTodosSupermercados()
 	{
+		supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		return supermercadoDAO.consultarTodos();
 	}
 	
@@ -32,5 +34,11 @@ public class ControladorSupermercado
 		String nome = supermercado.getNome();
 		Supermercado retorno = supermercadoDAO.buscarPorNome(nome);
 		return retorno;
+	}
+	
+	
+	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado) {
+		supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
+		return null;
 	}
 }

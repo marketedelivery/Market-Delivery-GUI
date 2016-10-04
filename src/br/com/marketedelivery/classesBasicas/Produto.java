@@ -13,6 +13,11 @@ import javax.persistence.Table;
 @Table(name="tb_produto")
 public class Produto {
 	
+	@Override
+	public String toString() {
+		return "Produto [nome=" + nome + ", marca=" + marca + ", qtdEstoque=" + qtdEstoque + ", valorUnitario="
+				+ valorUnitario + "]";
+	}
 	@Id
 	@GeneratedValue
 	@Column(name = "codigo")
@@ -34,9 +39,16 @@ public class Produto {
 		
 		this.valorUnitario = valorUnitario;
 	}
-	
-	public Produto(int codigo, String nome, String marca, int qtdEstoque,
-			Double valorUnitario) {
+	public Produto(String nome, String marca, Double valorUnitario,int qtdEstoque) {
+		super();
+		
+		this.nome = nome;
+		this.marca = marca;
+		this.qtdEstoque = qtdEstoque;
+		this.valorUnitario = valorUnitario;
+	}
+	public Produto(int codigo, String nome, String marca, Double valorUnitario,
+			int qtdEstoque) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -47,6 +59,7 @@ public class Produto {
 	public Produto() {
 		super();
 	}
+	
 	public int getCodigo() {
 		return codigo;
 	}

@@ -1,10 +1,13 @@
 package br.com.marketedelivery.DAO;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import br.com.marketedelivery.IDAO.ISupermercadoDAO;
+import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
 
@@ -45,6 +48,12 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
             return null;
         }
     }
+
+	
+	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado) {
+		String sql = "SELECT p.nome FROM Produto p JOIN Supermercado s";
+		return null;
+	}
 
 	
 }

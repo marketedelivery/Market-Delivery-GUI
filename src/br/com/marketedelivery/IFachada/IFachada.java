@@ -27,7 +27,7 @@ public interface IFachada
 	 public void atualizarSupermercado(Supermercado supermercado);
 	 public List<Supermercado>listarSupermercado();
 	 public Supermercado listarPorNome(Supermercado supermercado);
-	 
+	 public List<Produto> listaProtudoDoSupermercado(String nomeProduto,String supermercado);
 	 //--------------------------------------------- Endereco -------------------------------------------------------------------
 	 
 	 public void cadastrarEndereco(Endereco endereco);

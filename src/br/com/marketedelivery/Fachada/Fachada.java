@@ -117,6 +117,13 @@ public class Fachada implements IFachada
 	 {
 		 return conSupermercado.pesquisarPorNome(supermercado);
 	 }
+	 
+	 @Override
+		public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+	 
 
 	 //--------------------------------------------- Endereco -------------------------------------------------------------------
 	 
@@ -276,6 +283,8 @@ public class Fachada implements IFachada
 		{
 			return conPedido.ListarPedidoPorCodigo(pedido);
 		}
+
+		
 
 		
 }

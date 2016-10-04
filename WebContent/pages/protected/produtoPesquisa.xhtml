@@ -15,18 +15,25 @@
 					<h:outputText value="Produtos" />
 				</f:facet>
 			</p:toolbar>
-
+		
 			<h:panelGrid columns="4">
-				<p:outputLabel value="Nome" />
-				<p:inputText maxlength="50" size="30" />
-				<p:commandButton value="Buscar" />
-				<p:commandButton value="Novo"
-					action="/pages/protected/produtoCadastro.xhtml?faces-redirect=true" />
-			</h:panelGrid>
-				
-			<p:dataTable  var="produto" value="#{produtoMB.lista}" >
-				
-				<p:column headerText="Nome" style="width:16px;text-align:center" >
+				<p:outputLabel for="car" value="Selelcione um Supermercado: " />
+        	<p:selectOneMenu id="car" converter="supermercadoConverter" value="#{produtoMB.supermercadoSelecionado}"  filter="true">
+        		 <f:selectItem itemLabel="Selecione um supermercado" itemValue="#{null}" />
+           			 <f:selectItems id="cars" value="#{produtoMB.listaSupermercado}"/>
+       		</p:selectOneMenu>
+								
+				<p:commandButton update="tabela" value="Buscar"  ajax="false"/>
+						
+				</h:panelGrid>
+							
+			<p:dataTable id="tabela" var="produto" value="#{produtoMB.lista}"  widgetVar="tabela" >
+				<f:facet name="header">
+				<p:outputLabel value="Pesquisar Produto "  ajax="false"/>
+				<p:inputText id="globalFilter" maxlength="50" size="30" onkeyup="PF('tabela').filter()"  style="width:150px" placeholder="digite o produto"/>
+					
+				</f:facet>
+				<p:column headerText="Nome" filterBy="#{produto.nome}" style="width:16px;text-align:center" >
 					<h:outputText value="#{produto.nome}" />
 				</p:column>
 				<p:column headerText="Marca" style="width:16px;text-align:center">
@@ -36,7 +43,7 @@
 					<h:outputText value="#{produto.valorUnitario}" />
 				</p:column>
 			</p:dataTable>
-
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
