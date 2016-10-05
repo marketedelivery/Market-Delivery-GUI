@@ -12,7 +12,6 @@ import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
-
 import br.com.marketedelivery.controlador.ControladorEndereco;
 import br.com.marketedelivery.controlador.ControladorItem;
 import br.com.marketedelivery.controlador.ControladorListadeCompra;
