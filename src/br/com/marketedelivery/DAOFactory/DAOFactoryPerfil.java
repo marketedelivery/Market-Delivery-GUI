@@ -14,7 +14,7 @@ public class DAOFactoryPerfil
     public static IPerfilDAO perfilDAO;
   
     static {
-        factory = Persistence.createEntityManagerFactory("bancoapk");
+        factory = Persistence.createEntityManagerFactory("bd_market");
     }
     
     public static IPerfilDAO getPerfilDAO()

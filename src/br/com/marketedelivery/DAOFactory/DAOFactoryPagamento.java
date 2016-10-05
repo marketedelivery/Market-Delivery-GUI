@@ -14,7 +14,7 @@ public class DAOFactoryPagamento
     public static IPagamentoDAO pagamentoDAO;
   
     static {
-        factory = Persistence.createEntityManagerFactory("bancoapk");
+        factory = Persistence.createEntityManagerFactory("bd_market");
     }
     
     public static IPagamentoDAO getPagamentoDAO()

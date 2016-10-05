@@ -90,9 +90,13 @@ public class ProdutoMB implements Serializable {
 	
 	public List<Supermercado> getListarProdutos() 
 	{
+		if(supermercado.getCodigo()!=0){
+			
 		supermercadoSelecionado.setCodigo(supermercado.getCodigo());
 		listaSupermercado= getFachada().listarProdutoPorSupermercado(supermercadoSelecionado);
 		return listaSupermercado;
+	   }
+		return null;
 	}
 
 	public List<Supermercado> getListaSupermercado()

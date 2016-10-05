@@ -16,7 +16,7 @@ public abstract class DAOFactoryUsuario
     public static IUsuarioDAO usuarioDAO;
   
     static {
-        factory = Persistence.createEntityManagerFactory("bancoapk");
+        factory = Persistence.createEntityManagerFactory("bd_market");
     }
     
     public static IUsuarioDAO getUsuarioDAO()

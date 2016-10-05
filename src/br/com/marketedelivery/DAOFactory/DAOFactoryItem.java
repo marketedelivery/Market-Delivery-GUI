@@ -13,7 +13,7 @@ public class DAOFactoryItem
 	    public static IItemDAO itemDAO;
 	  
 	    static {
-	        factory = Persistence.createEntityManagerFactory("bancoapk");
+	        factory = Persistence.createEntityManagerFactory("bd_market");
 	    }
 	    
 	    public static IItemDAO getItemDAO()

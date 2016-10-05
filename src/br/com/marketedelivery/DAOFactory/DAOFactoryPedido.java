@@ -17,7 +17,7 @@ public class DAOFactoryPedido
     public static IPedidoDAO pedidoDAO;
   
     static {
-        factory = Persistence.createEntityManagerFactory("bancoapk");
+        factory = Persistence.createEntityManagerFactory("bd_market");
     }
     
     public static IPedidoDAO getPedidoDAO()

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +14,8 @@ public class Produto {
 	
 	@Override
 	public String toString() {
-		return "Produto [nome=" + nome + ", marca=" + marca + ", qtdEstoque=" + qtdEstoque + ", valorUnitario="
-				+ valorUnitario + "]";
+		return "Produto [nome=" + nome + ",marca=" + marca + ", qtdEstoque=" + qtdEstoque + ", valorUnitario=" + valorUnitario + ", supermercado="
+				+ supermercado + "]";
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
@@ -28,6 +29,8 @@ public class Produto {
 	private int qtdEstoque;
 	@Column(name = "valorUnitario",length=12)
 	private Double valorUnitario;
+	@ManyToOne
+	private Supermercado supermercado;
 	
 	public Produto(String nome, String marca, Double valorUnitario) {
 		super();
@@ -37,13 +40,14 @@ public class Produto {
 		
 		this.valorUnitario = valorUnitario;
 	}
-	public Produto(String nome, String marca, Double valorUnitario,int qtdEstoque) {
+	public Produto(String nome, String marca, Double valorUnitario,int qtdEstoque, Supermercado supermercado) {
 		super();
 		
 		this.nome = nome;
 		this.marca = marca;
 		this.qtdEstoque = qtdEstoque;
 		this.valorUnitario = valorUnitario;
+		this.supermercado = supermercado;
 	}
 	public Produto(int codigo, String nome, String marca, Double valorUnitario,
 			int qtdEstoque) {
@@ -88,5 +92,12 @@ public class Produto {
 	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
+	public Supermercado getSupermercado() {
+		return supermercado;
+	}
+	public void setSupermercado(Supermercado supermercado) {
+		this.supermercado = supermercado;
+	}
+	
 			
 }
