@@ -52,6 +52,4 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
 
         }
     }
-
-
 }

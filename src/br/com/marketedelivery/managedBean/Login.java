@@ -87,9 +87,9 @@ public class Login extends AbstractMB implements Serializable
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 			request.getSession().setAttribute("usuario", user);
-			return "/pages/protected/produtoPesquisar.xhtml";
-			//return "/pages/public/clientePesquisa.xhtml";
-		} else {
+			return "/pages/protected/produtoPesquisa.xhtml";
+		} else 
+		{
 			// Cria uma mensagem.
 			//FacesMessage msg = new FacesMessage("Usuário ou senha inválido!");
 			//return "/pages/public/clientePesquisa.xhtml";

@@ -13,7 +13,7 @@ public class DAOFactorySupermercado
 	    public static ISupermercadoDAO supermercadoDAO;
 	  
 	    static {
-	        factory = Persistence.createEntityManagerFactory("teste");
+	        factory = Persistence.createEntityManagerFactory("bancoapk");
 	    }
 	    
 	    public static ISupermercadoDAO getSupermercadoDAO()

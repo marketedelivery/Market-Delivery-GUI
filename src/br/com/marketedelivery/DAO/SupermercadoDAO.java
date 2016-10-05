@@ -1,6 +1,7 @@
 package br.com.marketedelivery.DAO;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -55,5 +56,18 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		return null;
 	}
 
-	
+	public List<Supermercado> listarProdutoPorSupermercado(Supermercado supermercado)
+	{
+		String comandoSelect = "SELECT p.nome,p.marca,p.valorUnitario,s.nome FROM tb_supermercado_tb_produto p ";
+			   comandoSelect+= "INNER JOIN tb_produto on produtos_codigo = tb_produto.codigo "; 
+			   comandoSelect+= "INNER JOIN tb_supermercado ON tb_supermercado.codigo = Supermercado_codigo";
+			   comandoSelect+= "WHERE tb_supermercado_tb_produto.Supermercado_codigo = :N";
+        TypedQuery<Supermercado> retorno = getEntityManager().createQuery(comandoSelect, Supermercado.class);
+        retorno.setParameter("N", supermercado.getCodigo());
+        try {
+           return retorno.getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+	}
 }

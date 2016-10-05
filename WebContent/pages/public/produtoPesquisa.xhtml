@@ -17,23 +17,18 @@
 			</p:toolbar>
 		
 			<h:panelGrid columns="4">
-		<!--		<p:outputLabel for="car" value="Selelcione um Supermercado: " />
-         	<p:selectOneMenu id="car" converter="supermercadoConverter" value="#{produtoMB.supermercadoSelecionado}"  filter="true">
-        		 <f:selectItem itemLabel="Selecione um supermercado" itemValue="#{null}" />
-           	     <f:selectItems id="cars" value="#{produtoMB.listaSupermercado}"/>
-           	     <f:param  id="codsuper" name="codsuper" value="#{produtoMB.supermercadoSelecionado.codigo}"/>
-       		</p:selectOneMenu> -->
-       		
-       		<p:selectOneMenu value="#{produtoMB.supermercado.codigo}">
+				<p:outputLabel  value="Selelcione um Supermercado: " />
+				
+         	<p:selectOneMenu value="#{produtoMB.supermercado.codigo}">
         		 <f:selectItem noSelectionOption="true" itemLabel="Selecione um supermercado" itemValue="-1" />
            	     <f:selectItems value="#{produtoMB.listaSupermercado}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto.codigo}"/>
-       		</p:selectOneMenu>
-								
-				<p:button update="tabela" value="Buscar"  ajax="false" action="#{produtoMB.listarProdutos}"/>
-					
+       		</p:selectOneMenu> 
+       		
+				<p:button update="tabbela" value="Buscar"  ajax="false" action="#{produtoMB.listarProdutos}" />
+						
 				</h:panelGrid>
 							
-			<p:dataTable id="tabela" var="produto" value="#{produtoMB.listarProdutos}"  widgetVar="tabela" >
+			<p:dataTable id="tabela" var="produto" value="#{produtoMB.listaSupermercado}"  widgetVar="tabela" >
 			
 				<f:facet name="header">
 				<p:outputLabel value="Pesquisar Produto "  ajax="false"/>

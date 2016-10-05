@@ -15,7 +15,7 @@ public class DAOFactoryEndereco
     public static IEnderecoDAO enderecoDAO;
   
     static {
-        factory = Persistence.createEntityManagerFactory("teste");
+        factory = Persistence.createEntityManagerFactory("bancoapk");
     }
     
     public static IEnderecoDAO getEnderecoDAO()

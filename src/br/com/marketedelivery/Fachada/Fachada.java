@@ -283,6 +283,11 @@ public class Fachada implements IFachada
 		{
 			return conPedido.ListarPedidoPorCodigo(pedido);
 		}
+		
+		public List<Supermercado> listarProdutoPorSupermercado(Supermercado supermercado)
+		{
+			return conSupermercado.listarProdutoPorSupermercado(supermercado);
+		}
 
 		
 

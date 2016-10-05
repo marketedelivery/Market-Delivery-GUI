@@ -4,9 +4,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     
-	<persistence-unit name="bancoapk" transaction-type="JTA">
+	<persistence-unit name="bancoapk" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/appDS</jta-data-source>
+      <!--   <jta-data-source>java:/appDS</jta-data-source>  -->
         
 		<properties>
 			
@@ -25,9 +25,9 @@
 		</properties>
 	</persistence-unit>
 	
-	<persistence-unit name="bancoloja" transaction-type="JTA">
+	<persistence-unit name="bancoloja" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/appDS</jta-data-source>
+        <!--  <jta-data-source>java:/appDS</jta-data-source> -->
 		
 		<properties>
 			

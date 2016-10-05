@@ -13,7 +13,7 @@ public class DAOFactoryListadeCompras
 	    public static IListaDeComprasDAO listaDAO;
 	  
 	    static {
-	        factory = Persistence.createEntityManagerFactory("teste");
+	        factory = Persistence.createEntityManagerFactory("bancoapk");
 	    }
 	    
 	    public static IListaDeComprasDAO getListaDAO()

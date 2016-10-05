@@ -14,7 +14,7 @@ public class DAOFactoryPerfil
     public static IPerfilDAO perfilDAO;
   
     static {
-        factory = Persistence.createEntityManagerFactory("teste");
+        factory = Persistence.createEntityManagerFactory("bancoapk");
     }
     
     public static IPerfilDAO getPerfilDAO()
