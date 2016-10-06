@@ -7,23 +7,24 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="/pages/templates/modeloGeral.xhtml">
-	<ui:define name="conteudo">
-		<h:form>
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{produtoMB.carregarPesquisa}"
+				type="preRenderView" />
 
+		</f:metadata>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form id="frmPesqProd">
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Produtos" />
 				</f:facet>
 			</p:toolbar>
-		
+
 			<h:panelGrid columns="4">
-		<!--		<p:outputLabel for="car" value="Selelcione um Supermercado: " />
-         	<p:selectOneMenu id="car" converter="supermercadoConverter" value="#{produtoMB.supermercadoSelecionado}"  filter="true">
-        		 <f:selectItem itemLabel="Selecione um supermercado" itemValue="#{null}" />
-           	     <f:selectItems id="cars" value="#{produtoMB.listaSupermercado}"/>
-           	     <f:param  id="codsuper" name="codsuper" value="#{produtoMB.supermercadoSelecionado.codigo}"/>
-       		</p:selectOneMenu> -->
-       		
+		
        		<p:selectOneMenu value="#{produtoMB.supermercado.codigo}">
         		 <f:selectItem noSelectionOption="true" itemLabel="Selecione um supermercado" itemValue="-1" />
            	     <f:selectItems value="#{produtoMB.listaSupermercado}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto.codigo}"/>
@@ -32,25 +33,39 @@
 				<p:button update="tabela" value="Buscar"  ajax="false" action="#{produtoMB.listarProdutos}"/>
 					
 				</h:panelGrid>
-							
-			<p:dataTable id="tabela" var="produto" value="#{produtoMB.listarProdutos}"  widgetVar="tabela" >
-			
-				<f:facet name="header">
-				<p:outputLabel value="Pesquisar Produto "  ajax="false"/>
-				<p:inputText id="globalFilter" maxlength="50" size="30" onkeyup="PF('tabela').filter()"  style="width:150px" placeholder="digite o produto"/>
-					
+
+			<p:dataTable emptyMessage="Nenhum registro encontrado...."
+				value="#{produtoMB.listaProdutos}"
+				filteredValue="#{produtoMB.listaProdutosFiltrados}" var="produto"
+				rows="6" paginator="true">
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						action="/pages/protected/produtoCadastro.xhtml?faces-redirect=true" />
 				</f:facet>
-				<p:column headerText="Nome"  style="width:16px;text-align:center" >
+
+				<p:column headerText="Código" style="width: 5%">
+					<h:outputText value="#{produto.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome" filterBy="#{produto.nome}"
+					sortBy="#{produto.nome}">
 					<h:outputText value="#{produto.nome}" />
 				</p:column>
-				<p:column headerText="Marca" style="width:16px;text-align:center">
-					<h:outputText />
+				<p:column headerText="Marca" filterBy="#{produto.marca}"
+					sortBy="#{produto.marca}">
+					<h:outputText value="#{produto.marca}" />
 				</p:column>
-				<p:column headerText="valor Unitario" style="width:16px;text-align:center" >
-				
+				<p:column headerText="Qtde em Estoque">
+					<h:outputText value="#{produto.qtdEstoque}" />
 				</p:column>
+				<p:column headerText="Valor Unitario">
+					<h:outputText value="#{produto.valorUnitario}" />
+				</p:column>
+
 			</p:dataTable>
-			
+
+
 		</h:form>
 	</ui:define>
 </ui:composition>

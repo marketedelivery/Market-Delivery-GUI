@@ -63,7 +63,7 @@ public class Login extends AbstractMB implements Serializable
 	 */
 	public String getLogOut() {
 		getRequest().getSession().invalidate();
-		return "/pages/public/login.xhtml";
+		return "/pages/public/login.xhtml?faces-redirect=true";
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class Login extends AbstractMB implements Serializable
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
-		return "/pages/public/principal.xhtml";
+		return "/pages/public/principal.xhtml?faces-redirect=true";
 	}
 
 	public String efetuarLogin() {
@@ -87,7 +87,7 @@ public class Login extends AbstractMB implements Serializable
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 			request.getSession().setAttribute("usuario", user);
-			return "/pages/protected/produtoPesquisa.xhtml";
+			return "/pages/protected/produtoPesquisa.xhtml?faces-redirect=true";
 		} else 
 		{
 			// Cria uma mensagem.
@@ -104,7 +104,7 @@ public class Login extends AbstractMB implements Serializable
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
-		return "/pages/public/login.xhtml";
+		return "/pages/public/login.xhtml?faces-redirect=true";
 	}
 	public String getFilmesEmCartaz() {
 		Client c = Client.create();

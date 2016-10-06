@@ -5,174 +5,187 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.marketedelivery.DAO.FacesUtil;
 import br.com.marketedelivery.DAO.ProdutoDAO;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
+import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
+import br.com.marketedelivery.classesBasicas.Produto;
+import br.com.marketedelivery.classesBasicas.Produto;
 
 @ViewScoped
 @ManagedBean(name = "produtoMB")
 public class ProdutoMB implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private Produto produto;
-	ProdutoMB produtoMB;
-	IFachada fachada;
-
 	private Supermercado supermercado = new Supermercado();
 	private Supermercado supermercadoSelecionado;
+	private Produto produto;
+	// private Endereco endereco;
+	private IFachada fachada;
+	private List<Produto> listar;
+	private List<Produto> listaProdutos;
+	private List<Produto> listaProdutosFiltrados;
 	private List<Supermercado> listaSupermercado;
-	private List<Supermercado> ListarProdutos;
-	private String nomeProduto;
+
 	@ManagedProperty("#{themeService}")
 	private SupermercadoMB supermercadoMB;
 
 	@PostConstruct
-	public void init()
-	{
+	public void init() {
 		listaSupermercado = getFachada().listarSupermercado();
-	
+
 	}
+
 	Produto produtoCadastro;
-	
-	public Supermercado getSupermercado() 
-	{
+
+	public Supermercado getSupermercado() {
 		return supermercado;
 	}
 
-	public void setSupermercado(Supermercado supermercado)
-	{
+	public void setSupermercado(Supermercado supermercado) {
 		this.supermercado = supermercado;
 	}
 
-	public ProdutoMB()
-	{
-		produto = new Produto();
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
-	public Produto getProduto() 
-	{
+	public Produto getProduto() {
 		if (produto == null) {
 			produto = new Produto();
 		}
 		return produto;
 	}
-	
-	public String getNomeProduto() 
-	{
-		return nomeProduto;
-	}
-	
-	public IFachada getFachada() 
-	{
-		if(fachada == null )
-		{
+
+	public IFachada getFachada() {
+		if (fachada == null) {
 			fachada = new Fachada();
 		}
 		return fachada;
 	}
 
-	public void setFachada(IFachada fachada) 
-	{
+	public void setFachada(IFachada fachada) {
 		this.fachada = fachada;
 	}
 
-	public void setNomeProduto(String nomeProduto) 
-	{
-		this.nomeProduto = nomeProduto;
+	public List<Produto> getListar() {
+		return listar;
 	}
-	
-	public List<Supermercado> getListarProdutos() 
-	{
-		if(supermercado.getCodigo()!=0){
-			
-		supermercadoSelecionado.setCodigo(supermercado.getCodigo());
-		listaSupermercado= getFachada().listarProdutoPorSupermercado(supermercadoSelecionado);
-		return listaSupermercado;
-	   }
+
+	public void setListar(List<Produto> listar) {
+		this.listar = listar;
+	}
+
+	public List<Produto> getListaProdutos() {
+		return listaProdutos;
+	}
+
+	public void setListaProdutos(List<Produto> listaProdutos) {
+		this.listaProdutos = listaProdutos;
+	}
+
+	public List<Produto> getListaProdutosFiltrados() {
+		return listaProdutosFiltrados;
+	}
+
+	public void setListaProdutosFiltrados(List<Produto> listaProdutosFiltrados) {
+		this.listaProdutosFiltrados = listaProdutosFiltrados;
+	}
+
+	public List<Supermercado> getListarProdutos() {
+		if (supermercado.getCodigo() != 0) {
+
+			supermercadoSelecionado.setCodigo(supermercado.getCodigo());
+			listaSupermercado = getFachada().listarProdutoPorSupermercado(supermercadoSelecionado);
+			return listaSupermercado;
+		}
 		return null;
 	}
 
-	public List<Supermercado> getListaSupermercado()
-	{
-		
+	public List<Supermercado> getListaSupermercado() {
+
 		return listaSupermercado;
 	}
 
-	public Supermercado getSupermercadoSelecionado() 
-	{
-		if(supermercadoSelecionado == null)
-		{
+	public Supermercado getSupermercadoSelecionado() {
+		if (supermercadoSelecionado == null) {
 			return supermercadoSelecionado = new Supermercado();
 		}
 		return supermercadoSelecionado;
 	}
 
-	public void setSupermercadoSelecionado(Supermercado supermercadoSelecionado)
-	{
+	public void setSupermercadoSelecionado(Supermercado supermercadoSelecionado) {
 		this.supermercadoSelecionado = supermercadoSelecionado;
 	}
 
-	public void setSupermercadoMB(SupermercadoMB supermercadoMB) 
-	{
+	public void setSupermercadoMB(SupermercadoMB supermercadoMB) {
 		this.supermercadoMB = supermercadoMB;
 	}
 
-	public SupermercadoMB getSupermercadoMB() 
-	{
+	public SupermercadoMB getSupermercadoMB() {
 		if (supermercadoMB == null) {
 			supermercadoMB = new SupermercadoMB();
 		}
 		return supermercadoMB;
 	}
-	
-	public List<Produto> getListaDeProduto() {
-		fachada = new Fachada();
-		// getProduto().setNome("macarrao");
-		// produtoMB =new ProdutoMB();
-		List<Produto> list = new ArrayList<Produto>();
-		list.add(new Produto("biscoito wafer", "nestler", 2.50));
-		list.add(new Produto("biscoito recheado", "nestler", 2.50));
-		list.add(new Produto("biscoito amanteigado", "nestler", 2.50));
-		list.add(new Produto("biscoito doce", "nestler", 2.50));
-		list.add(new Produto("biscoito bonito", "nestler", 2.50));
-		list.add(new Produto("biscoito wafer", "nestler", 2.50));
 
-		// return fachada.PesquisarProdutoPorNome(produto);
-		// return produtoMB.getLista();
-		return list;
-	}
+	// public void salvar()
+	// {
+	// try
+	// {
+	// produto.setEndereco(endereco);
+	// fachada = getFachada();
+	// fachada.CadastrarProduto(produto);
+	// FacesContext.getCurrentInstance().addMessage(null, new
+	// FacesMessage("Cadastro realizado com Sucesso"));
+	// } catch (Exception e)
+	// {
+	// FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro
+	// ao cadastrar, tente novamente mais tarde"));
+	// System.out.println(e.getMessage());
+	// }
+	//
+	// }
 
-	public void salvar() 
-	{
-		// FacesUtil.adicionarMsgInfo(supermercadoCadastro.toString());
+	// public void listarProduto()
+	// {
+	// IFachada fachada = getFachada();
+	// listar = fachada.ListarTodosProdutos();
+	// }
+
+	// Responsável em carregar uma lista de dados na tela do cadastro de
+	// produtos
+	public void carregarPesquisa() {
 		try {
-			ProdutoDAO produtoDao = new ProdutoDAO(null);
-			
-			produtoDao.inserir(produtoCadastro);
-
-			produtoCadastro = new Produto();
-
-			FacesUtil.adicionarMsgInfo("Produto salvo com sucesso");
-		} catch (RuntimeException ex) {
-			ex.printStackTrace();
-			FacesUtil.adicionarMsgErro("Erro ao adicionar o registro:" + ex.getMessage());
+			// fachada.ListarTodosProdutos();
+			// listaProdutos = fachada.ListarTodosProdutos();
+			IFachada fachada = getFachada();
+			listaProdutos = fachada.ListarTodosProdutos();
+		} catch (Exception ex) {
+			FacesUtil.adicionarMsgErro("Erro ao tentar listar os produtos" + ex.getMessage());
 		}
 	}
 
-	public void setListarProdutos(List<Supermercado> listarProdutos) {
-		ListarProdutos = listarProdutos;
-	}	
-	
-	public void listar()
-	{
-		getListarProdutos();
-		
+	@PostConstruct
+	public void carregarCadastro() {
+		try {
+			String valor = FacesUtil.getParam("prodcod");
+			// int codigo_pessoa = 0;
+			if (valor != null) {
+				// int codigo = Integer.parseInt(valor);
+				produto = fachada.pesquisarPorCodigo(produto);
+			}
+
+		} catch (Exception ex) {
+			FacesUtil.adicionarMsgErro("Erro ao tentar listar os produtos" + ex.getMessage());
+		}
 	}
 }

@@ -57,7 +57,8 @@ public interface IFachada
 		public void CadastrarProduto(Produto produto);
 		public void AtualizarProduto(Produto produto);
 		public List<Produto>ListarTodosProdutos();
-		public Produto PesquisarProdutoPorNome(Produto produto);
+		public Produto pesquisarProdutoPorNome(Produto produto);
+		public Produto pesquisarPorCodigo (Produto produto);
 		
 		//--------------------------------------------- Pagamento -------------------------------------------------------------------
 		

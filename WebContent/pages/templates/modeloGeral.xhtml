@@ -29,22 +29,22 @@
 			<h:form>
 				<p:panelMenu>
 					<p:submenu label="Home">
-						<p:menuitem value="Principal" outcome="/pages/public/principal.xhtml" />
+						<p:menuitem value="Principal" outcome="/pages/public/principal.xhtml?faces-redirect=true" />
 						<p:menuitem value="Sair" action="#{loginMB.sairDoSistema}" />
 											
 					</p:submenu>
 					<p:submenu label="Cadastros">
 						<p:menuitem value="Clientes"
-							outcome="/pages/public/clientePesquisa.xhtml" />
+							outcome="/pages/protected/clientePesquisa.xhtml?faces-redirect=true" />
 						<p:menuitem value="Produtos"
-							outcome="/pages/protected/produtoPesquisa.xhtml" />
+							outcome="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
 						<p:menuitem value="Supermercados"
-							outcome="/pages/protected/supermercadoPesquisa.xhtml" />
+							outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true" />
 
 					</p:submenu>
 					<p:submenu label="Compras">
 						<p:menuitem value="Compras e buscas"
-							outcome="/pages/public/buscaseCompras.xhtml" />
+							outcome="/pages/public/buscaseCompras.xhtml?faces-redirect=true" />
 					</p:submenu>
 				</p:panelMenu>
 

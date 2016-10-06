@@ -29,7 +29,7 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo"
-						action="/pages/public/clienteCadastro.xhtml?faces-redirect=true" />
+						action="/pages/protected/clienteCadastro.xhtml?faces-redirect=true" />
 				</f:facet>
 
 				<p:column headerText="Código" style="width: 5%">
@@ -40,17 +40,19 @@
 					sortBy="#{usuario.nome}">
 					<h:outputText value="#{usuario.nome}" />
 				</p:column>
-<!--  
-				<p:column headerText="Opções" style="width: 15%">
-					<p:commandButton value="Excluir"
-						actionListener="#{usuarioMB.excluirUsuario()}"
-						update=":msgGlobal" />
-
-					<p:button value="Editar" action="/pages/public/clienteCadastro.xhtml?faces-redirect=true" >
-						<f:param name="clicod" id="clicod" value="#{usuario.codigo}"/>
-					</p:button>
+				<p:column headerText="CPF" filterBy="#{usuario.cpf}"
+					sortBy="#{usuario.cpf}">
+					<h:outputText value="#{usuario.cpf}" />
 				</p:column>
-				-->
+				<p:column headerText="Email" filterBy="#{usuario.email}"
+					sortBy="#{usuario.email}">
+					<h:outputText value="#{usuario.email}" />
+				</p:column>
+				<p:column headerText="Telefone" filterBy="#{usuario.telefone}"
+					sortBy="#{usuario.telefone}">
+					<h:outputText value="#{usuario.telefone}" />
+				</p:column>
+
 			</p:dataTable>
 
 		</h:form>

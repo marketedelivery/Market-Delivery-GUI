@@ -288,6 +288,18 @@ public class Fachada implements IFachada
 			return conSupermercado.listarProdutoPorSupermercado(supermercado);
 		}
 
+		@Override
+		public Produto pesquisarProdutoPorNome(Produto produto) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Produto pesquisarPorCodigo(Produto produto) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 		
 
 		
