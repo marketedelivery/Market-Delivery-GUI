@@ -18,32 +18,33 @@
 			
 				Nome Completo<br />
 			<p:inputText maxlength="30" size="32"
-				value="#{usuarioMB.usuario.nome}" />
+				value="#{usuarioMB.usuario.nome}" required="true"
+				requiredMessage="Preencha o campo Nome" />
 			<br />
 				 
 				CPF<br />
-			<p:inputText maxlength="11" size="12"
-				value="#{usuarioMB.usuario.cpf}" required="true"
+			<p:inputMask maxlength="11" size="12"
+				value="#{usuarioMB.usuario.cpf}" mask="999.999.999-99" required="true"
 				requiredMessage="Preencha o CPF" />
 			<br />
 				 
 				Telefone<br />
-			<p:inputText maxlength="10" size="10"
-				value="#{usuarioMB.usuario.telefone}" />
+			<p:inputMask maxlength="11" size="12"
+				value="#{usuarioMB.usuario.telefone}" mask="(99) 99999-9999"/>
 			<br />
 				 
 				Celular/WhatsAPP<br />
-			<p:inputText maxlength="11" size="11"
-				value="#{usuarioMB.usuario.telefoneWhatsapp}" />
+			<p:inputMask maxlength="11" size="12"
+				value="#{usuarioMB.usuario.telefoneWhatsapp}" mask="(99) 99999-9999" />
 			<br />
 				 
  				Cep<br />
-			<p:inputText value="#{usuarioMB.endereco.cep}" required="true"
-				requiredMessage="Preencha o Cep" maxlength="8" size="10" />
+			<p:inputMask value="#{usuarioMB.endereco.cep}" required="true"
+				requiredMessage="Preencha o Cep" maxlength="8" size="10" mask="99999-999" />
 			<br />
                  
                 Logradouro<br />
-			<p:inputText value="#{usuarioMB.endereco.logradouro}"
+			<p:inputText value="#{usuarioMB.endereco.logradouro}" size="50"
 				required="false" requiredMessage="Preencha o logradouro" />
 			<br />
 				 
@@ -63,12 +64,12 @@
 			<br />
                  
 				Cidade<br />
-			<p:inputText value="#{usuarioMB.endereco.cidade}" required="false"
+			<p:inputText value="#{usuarioMB.endereco.cidade}" required="true"
 				requiredMessage="Preencha a cidade" />
 			<br />
                  
                 Estado<br />
-			<p:inputText value="#{usuarioMB.endereco.estado}" required="false"
+			<p:inputText value="#{usuarioMB.endereco.estado}" required="true"
 				requiredMessage="Preencha o Estado"></p:inputText>
 			<br />
 
@@ -81,17 +82,17 @@
 			<br />
 				 Digite seu E-mail<br />
 			<p:inputText id="email" value="#{usuarioMB.usuario.email}"
-				required="false" requiredMessage="Preencha o email" />
+				required="true" requiredMessage="Preencha o campo email" />
 			<br />
 			<br />
 				 Digite sua Senha<br />
 			<p:password id="senha" value="#{usuarioMB.usuario.senha}"
-				required="false" requiredMessage="Digite a senha" />
+				required="true" requiredMessage="Preencha o campo senha" />
 			<br />
 			<br />
 				 Confirmar Senha<br />
-			<p:password id="ConfirmaSenha" required="false"
-				requiredMessage="Digite a Senha" />
+			<p:password id="ConfirmaSenha" required="true"
+				requiredMessage="Preencha o campo Confirmar senha" />
 			<br />
 			<br />
 			<h:panelGrid columns="3">

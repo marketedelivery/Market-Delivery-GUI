@@ -95,6 +95,8 @@ public class UsuarioMB implements Serializable {
 			fachada = getFachada();
 			fachada.CadastrarUsuario(usuario);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
+			usuario = new Usuario();
+			endereco = new Endereco();
 		} catch (Exception e) 
 		{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao cadastrar, tente novamente mais tarde"));

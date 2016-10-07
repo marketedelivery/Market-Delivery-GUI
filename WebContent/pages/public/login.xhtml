@@ -27,18 +27,20 @@
 				<p:messages id="messages" />
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
 					Email
-					<p:inputText id="email" value="#{loginMB.usuario.email}" required="true" label="username">
-						<f:validator validatorId="custom.emailValidator" />	
+					<p:inputText id="email" value="#{loginMB.usuario.email}"
+						required="true" label="username">
+						<f:validator validatorId="custom.emailValidator" />
 					</p:inputText>
 
 					Senha
-					<p:password id="senha" value="#{loginMB.usuario.senha}" required="true" label="password" />
-					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}"/>
+					<p:password id="senha" value="#{loginMB.usuario.senha}"
+						required="true" label="password" />
+					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}" />
 					<f:facet name="footer">
 					</f:facet>
 					<f:facet name="footer">
 						<p:link value=" Cadastre-se " update="growl"
-							outcome="/pages/protected/clienteCadastro?faces-redirect=true" />
+							outcome="/pages/public/clienteCadastro" />
 					</f:facet>
 				</h:panelGrid>
 
