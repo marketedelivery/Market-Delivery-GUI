@@ -122,7 +122,17 @@ public class Fachada implements IFachada
 			// TODO Auto-generated method stub
 			return null;
 		}
-	 
+	 @Override
+		public Produto pesquisarPorCodigo(Produto produto) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List<Supermercado> listarTodosSupermercados() {
+			// TODO Auto-generated method stub
+			return conSupermercado.listarTodosSupermercados();
+		}
 
 	 //--------------------------------------------- Endereco -------------------------------------------------------------------
 	 
@@ -294,13 +304,5 @@ public class Fachada implements IFachada
 			return null;
 		}
 
-		@Override
-		public Produto pesquisarPorCodigo(Produto produto) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		
-
-		
+				
 }

@@ -1,25 +1,18 @@
 package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import br.com.marketedelivery.DAO.FacesUtil;
-import br.com.marketedelivery.DAO.ProdutoDAO;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
-import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
-import br.com.marketedelivery.classesBasicas.Produto;
-import br.com.marketedelivery.classesBasicas.Produto;
 
 @ViewScoped
 @ManagedBean(name = "produtoMB")
@@ -40,7 +33,7 @@ public class ProdutoMB implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		listaSupermercado = getFachada().listarSupermercado();
+		listaSupermercado = getFachada().listarTodosSupermercados();
 
 	}
 

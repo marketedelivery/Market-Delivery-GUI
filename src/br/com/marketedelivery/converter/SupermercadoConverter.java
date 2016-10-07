@@ -35,7 +35,7 @@ public class SupermercadoConverter implements Converter{
 			 //int aux = Integer.parseInt(valor);
 //			  service = (SupermercadoMB) fc.getExternalContext().getApplicationMap().get("supermercadoMB");
 //            service.getListarTodosSupermercados().indexOf(Integer.parseInt(valor));
-			 List<Supermercado>retorno = fachada.listarSupermercado();
+			 List<Supermercado>retorno = fachada.listarTodosSupermercados();
               return retorno.indexOf(Integer.parseInt(valor));
              // return service;
          } catch(NumberFormatException e) {

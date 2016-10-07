@@ -7,6 +7,13 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <ui:composition template="/pages/templates/modeloGeral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:event listener="#{supermercadoMB.carregarPesquisa}"
+				type="preRenderView" />
+
+		</f:metadata>
+	</ui:define>
 	<ui:define name="conteudo">
 		<h:form>
 
@@ -16,19 +23,27 @@
 				</f:facet>
 			</p:toolbar>
 
-			<h:panelGrid columns="4">
-				<p:outputLabel value="Nome" />
-				<p:inputText maxlength="50" size="30" />
-				<p:commandButton value="Buscar" />
-				<p:commandButton value="Novo"
-					action="/pages/protected/supermercadoCadastro.xhtml?faces-redirect=true" />
-			</h:panelGrid>
+			<p:dataTable emptyMessage="Nenhum registro encontrado...."
+				value="#{supermercadoMB.listarTodosSupermercados}"
+				filteredValue="#{supermercadoMB.listaSupermercadosFiltrados}"
+				var="supermercado" rows="6" paginator="true">
 
-			<p:dataTable emptyMessage="Nenhum registro encontrado...">
-				<p:column headerText="Código" />
-				<p:column headerText="Nome" />
-				<p:column headerText="Opções" />
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						action="/pages/protected/supermercadoCadastro.xhtml?faces-redirect=true" />
+				</f:facet>
+
+				<p:column headerText="Código" style="width: 5%">
+					<h:outputText value="#{supermercado.codigo}" />
+				</p:column>
+
+				<p:column headerText="Nome" filterBy="#{supermercado.nome}"
+					sortBy="#{supermercado.nome}">
+					<h:outputText value="#{supermercado.nome}" />
+				</p:column>
+
 			</p:dataTable>
+
 
 		</h:form>
 	</ui:define>
