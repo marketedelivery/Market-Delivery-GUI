@@ -87,21 +87,30 @@ public class Fachada implements IFachada {
 	// --------------------------------------------- Supermercado
 	// -------------------------------------------------------------------
 
-	public void cadastrarSupermercado(Supermercado supermercado) {
-		conSupermercado.cadastrarSupermercado(supermercado);
-	}
-
-	public void atualizarSupermercado(Supermercado supermercado) {
-		conSupermercado.atualizarSupermercado(supermercado);
-	}
-
-	public List<Supermercado> listarSupermercado() {
-		return conSupermercado.listarTodosSupermercados();
-	}
-
-	public Supermercado listarPorNome(Supermercado supermercado) {
-		return conSupermercado.pesquisarPorNome(supermercado);
-	}
+	 public void cadastrarSupermercado(Supermercado supermercado)
+	 {
+		 conSupermercado.cadastrarSupermercado(supermercado);
+	 }
+	 
+	 public void atualizarSupermercado(Supermercado supermercado)
+	 {
+		 conSupermercado.atualizarSupermercado(supermercado);
+	 }
+	 
+	 public List<Supermercado>listarSupermercado()
+	 {
+		 return conSupermercado.listarTodosSupermercados();
+	 }
+	 
+	 public Supermercado listarPorNome(Supermercado supermercado)
+	 {
+		 return conSupermercado.pesquisarPorNome(supermercado);
+	 }
+	 
+	 public Supermercado consultarPorID(Supermercado supermercado)
+	 {
+		 return conSupermercado.consultarPorID(supermercado);
+	 }
 
 	@Override
 	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado) {
@@ -202,20 +211,29 @@ public class Fachada implements IFachada {
 	// --------------------------------------------- Produto
 	// -------------------------------------------------------------------
 
-	public void CadastrarProduto(Produto produto) {
+	public void CadastrarProduto(Produto produto)
+	{
 		conProduto.CadastrarProduto(produto);
 	}
-
-	public void AtualizarProduto(Produto produto) {
+	
+	public void AtualizarProduto(Produto produto)
+	{
 		conProduto.AtualizarProduto(produto);
 	}
-
-	public List<Produto> ListarTodosProdutos() {
+	
+	public List<Produto>ListarTodosProdutos()
+	{
 		return conProduto.ListarTodosProdutos();
 	}
-
-	public Produto PesquisarProdutoPorNome(Produto produto) {
+	
+	public Produto PesquisarProdutoPorNome(Produto produto)
+	{
 		return conProduto.PesquisarProdutoPorNome(produto);
+	}
+	
+	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado)
+	{
+		return conProduto.buscarProdutoPorSupermercado(supermercado);
 	}
 
 	// --------------------------------------------- Pagamento
@@ -269,10 +287,6 @@ public class Fachada implements IFachada {
 
 	public Pedido ListarPedidoPorCodigo(Pedido pedido) {
 		return conPedido.ListarPedidoPorCodigo(pedido);
-	}
-
-	public List<Supermercado> listarProdutoPorSupermercado(Supermercado supermercado) {
-		return conSupermercado.listarProdutoPorSupermercado(supermercado);
 	}
 
 }

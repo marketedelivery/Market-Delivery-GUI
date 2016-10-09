@@ -76,5 +76,23 @@ public class Supermercado implements Serializable {
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
-
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Supermercado other = (Supermercado) obj;
+		if (codigo != other.codigo)
+			return false;
+		return true;
+	}
+	
+	
+	
+	
 }

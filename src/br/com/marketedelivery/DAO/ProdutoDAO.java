@@ -1,11 +1,14 @@
 package br.com.marketedelivery.DAO;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import br.com.marketedelivery.IDAO.IProdutoDAO;
 import br.com.marketedelivery.classesBasicas.Produto;
+import br.com.marketedelivery.classesBasicas.Supermercado;
 
 public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
 	
@@ -48,6 +51,25 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
             return resultado;
 
         } catch (Exception e) {
+            return null;
+
+        }
+    }
+    
+    public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado)
+    {
+    	int codigo = supermercado.getCodigo();
+    	String consulta = "SELECT p FROM Produto p WHERE p.supermercado.codigo = :N";
+        TypedQuery<Produto> retorno = getEntityManager().createQuery(consulta, Produto.class);
+        retorno.setParameter("N",codigo);
+       
+        try 
+        {
+        	List<Produto> resultado = retorno.getResultList();
+            return resultado;
+
+        } catch (Exception e) 
+        {
             return null;
 
         }

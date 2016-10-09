@@ -7,7 +7,7 @@
 
 	<!-- Arquivo Principal da Aplicação -->
 	<welcome-file-list>
-		<welcome-file>pages/public/principal.xhtml</welcome-file>
+		<welcome-file>pages/public/tlLogin.xhtml</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>default.html</welcome-file>

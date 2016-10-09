@@ -49,9 +49,10 @@ public class ControladorSupermercado
 		return null;
 	}
 	
-	public List<Supermercado> listarProdutoPorSupermercado(Supermercado supermercado)
+
+	public Supermercado consultarPorID(Supermercado supermercado)
 	{
 		supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
-		return supermercadoDAO.listarProdutoPorSupermercado(supermercado);
+		return supermercadoDAO.consultarPorId(supermercado.getCodigo());
 	}
 }
