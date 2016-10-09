@@ -93,8 +93,18 @@ public class UsuarioMB implements Serializable {
 		{
 			usuario.setEndereco(endereco);
 			fachada = getFachada();
-			fachada.CadastrarUsuario(usuario);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
+			Usuario user = fachada.ListarPorCPF(usuario);
+			if(user == null)
+			{
+				fachada.CadastrarUsuario(usuario);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
+			}
+			else
+			{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf jÃ¡ possui cadastro!"));
+				return;
+			}
+			
 			usuario = new Usuario();
 			endereco = new Endereco();
 		} catch (Exception e) 
@@ -111,7 +121,7 @@ public class UsuarioMB implements Serializable {
 	// listar = fachada.ListarTodosUsuarios();
 	// }
 
-	// Responsável em carregar uma lista de dados na tela do cadastro de
+	// Responsï¿½vel em carregar uma lista de dados na tela do cadastro de
 	// usuarios
 	public void carregarPesquisa() {
 		try {
