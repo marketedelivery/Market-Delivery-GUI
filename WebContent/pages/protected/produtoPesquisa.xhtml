@@ -24,20 +24,28 @@
 			</p:toolbar>
 
 			<h:panelGrid columns="4">
-		
+				<!-- 
        		<p:selectOneMenu value="#{produtoMB.supermercado.codigo}">
         		 <f:selectItem noSelectionOption="true" itemLabel="Selecione um supermercado" itemValue="-1" />
            	     <f:selectItems value="#{produtoMB.listaSupermercado}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto.codigo}"/>
        		</p:selectOneMenu>
-								
-				<p:button update="tabela" value="Buscar"  ajax="false" action="#{produtoMB.listarProdutos}"/>
-					
-				</h:panelGrid>
+       			<p:button update="tabela" value="Buscar"  ajax="false" action="#{produtoMB.listarProdutos}"/>
+					-->
+
+				<h:outputLabel for="menu" value="Supermercado:" />
+				<p:selectCheckboxMenu id="menu"
+					value="#{produtoMB.listaSupermercado}" label="Selecione" filter="true"
+					filterMatchMode="startsWith" panelStyle="width:250px">
+					<f:selectItems value="#{supermercadoMB.listarTodosSupermercados}" />
+				</p:selectCheckboxMenu>
+				<p:commandLink value="Submit" update="teste" />
+
+			</h:panelGrid>
 
 			<p:dataTable emptyMessage="Nenhum registro encontrado...."
 				value="#{produtoMB.listaProdutos}"
 				filteredValue="#{produtoMB.listaProdutosFiltrados}" var="produto"
-				rows="6" paginator="true">
+				rows="6" paginator="true" id="teste">
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo"
@@ -52,19 +60,21 @@
 					sortBy="#{produto.nome}">
 					<h:outputText value="#{produto.nome}" />
 				</p:column>
+				 <!-- 
 				<p:column headerText="Marca" filterBy="#{produto.marca}"
 					sortBy="#{produto.marca}">
 					<h:outputText value="#{produto.marca}" />
-				</p:column>
-				<p:column headerText="Qtde em Estoque">
-					<h:outputText value="#{produto.qtdEstoque}" />
+				</p:column> 
+				-->
+				<p:column headerText="Supermercado">
+					<h:outputText value="#{produto.supermercado}" />
 				</p:column>
 				<p:column headerText="Valor Unitario">
 					<h:outputText value="#{produto.valorUnitario}" />
 				</p:column>
 
 			</p:dataTable>
-
+ 
 
 		</h:form>
 	</ui:define>

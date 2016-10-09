@@ -21,6 +21,21 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
         super(em);
         this.manager = em;
     }
+    
+    @Override
+	public Supermercado pesquisarPorCodigo(int codigo) {
+    	 String consulta = "SELECT c FROM Supermercado c WHERE c.codigo = :N";
+         TypedQuery<Supermercado> retorno = getEntityManager().createQuery(consulta, Supermercado.class);
+         retorno.setParameter("N", codigo);
+         Supermercado resultado;
+         try {
+             resultado = retorno.getSingleResult();
+             return resultado;
+
+         } catch (Exception e) {
+             return null;
+         }
+	}
 
     public Supermercado buscarPorCNPJ(String cnpj) {
         String consulta = "SELECT c FROM Supermercado c WHERE c.cnpj = :N";
@@ -36,6 +51,20 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
         }
     }
 
+    public Supermercado pesquisarPorCodigo(String codigo) {
+        String consulta = "SELECT cod FROM Supermercado cod WHERE cod.codigo = :N";
+        TypedQuery<Supermercado> retorno = getEntityManager().createQuery(consulta, Supermercado.class);
+        retorno.setParameter("N", codigo);
+        Supermercado resultado;
+        try {
+            resultado = retorno.getSingleResult();
+            return resultado;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
     public Supermercado buscarPorNome(String nome) {
         String comandoSelect = "SELECT c FROM Supermercado c WHERE c.nome = :N ";
         TypedQuery<Supermercado> retorno = getEntityManager().createQuery(comandoSelect, Supermercado.class);
@@ -69,4 +98,6 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
             return null;
         }
 	}
+
+	
 }

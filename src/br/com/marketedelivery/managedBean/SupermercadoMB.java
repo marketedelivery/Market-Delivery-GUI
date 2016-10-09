@@ -22,12 +22,11 @@ public class SupermercadoMB implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	IFachada fachada;
-	Supermercado s;
+	Supermercado supermercado;
 	private Supermercado supermercadoSelecionado;
 	private String nomeProduto;
 	private List<Supermercado> listaSupermercados;
 	private List<Supermercado> listaSupermercadosFiltrados;
-
 	private List<Supermercado> converterListaSuper;
 
 	@PostConstruct
@@ -54,10 +53,10 @@ public class SupermercadoMB implements Serializable {
 	}
 
 	public Supermercado getSupermecado() {
-		if (s == null) {
-			s = new Supermercado();
+		if (supermercado == null) {
+			supermercado = new Supermercado();
 		}
-		return s;
+		return supermercado;
 	}
 
 	public List<Supermercado> getListarTodosSupermercados() {
@@ -93,6 +92,21 @@ public class SupermercadoMB implements Serializable {
 			listaSupermercados = fachada.listarTodosSupermercados();
 		} catch (Exception ex) {
 			FacesUtil.adicionarMsgErro("Erro ao tentar listar os supermercados" + ex.getMessage());
+		}
+	}
+
+	@PostConstruct
+	public void carregarCadastro() {
+		try {
+			String valor = FacesUtil.getParam("supCod");
+			// int codigo_pessoa = 0;
+			if (valor != null) {
+				//int codigo = Integer.parseInt(valor);
+				supermercado = fachada.pesquisarPorCodigo(supermercado);
+			}
+
+		} catch (Exception ex) {
+			FacesUtil.adicionarMsgErro("Erro ao tentar listar os usuarios" + ex.getMessage());
 		}
 	}
 

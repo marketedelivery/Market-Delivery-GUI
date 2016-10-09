@@ -36,6 +36,13 @@ public class ControladorSupermercado
 		return retorno;
 	}
 	
+	public Supermercado pesquisarPorCodigo(Supermercado supermercado)
+	{
+		 supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
+		 Supermercado sup = supermercadoDAO.consultarPorId(supermercado.getCodigo());
+	        return sup;
+	}
+	
 	
 	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado) {
 		supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();

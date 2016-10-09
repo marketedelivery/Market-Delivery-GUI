@@ -19,15 +19,15 @@ public class Usuario
 	private Integer codigo;
 	@Column(name = "nome",length=30)
 	private String nome;
-	@Column(name = "CPF",length=12)
+	@Column(name = "CPF",length=14)
 	private String cpf;
 	@OneToOne(cascade=CascadeType.PERSIST)
 	private Endereco endereco;
-	@Column(name = "telefone_whatsapp",length=12)
+	@Column(name = "telefone_whatsapp",length=14)
 	private String telefonewhatsapp;
     @OneToOne
     private Perfil perfil;
-	@Column(name = "Telefone",length=12)
+	@Column(name = "Telefone",length=14)
 	private String telefone;
 	@Column(name = "Email",length=30)
 	private String email;

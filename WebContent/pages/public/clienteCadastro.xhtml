@@ -15,95 +15,101 @@
 					<h:outputText value="Clientes" />
 				</f:facet>
 			</p:toolbar>
-			
+			<p:panel id="panel">
+				<h:panelGrid id="pnlCadCliDados">
 				Nome Completo<br />
-			<p:inputText maxlength="30" size="32"
-				value="#{usuarioMB.usuario.nome}" required="true"
-				requiredMessage="Preencha o campo Nome" />
-			<br />
+					<p:inputText maxlength="30" size="32"
+						value="#{usuarioMB.usuario.nome}" required="true"
+						requiredMessage="Preencha o campo Nome" />
+					
 				 
 				CPF<br />
-			<p:inputMask maxlength="11" size="12"
-				value="#{usuarioMB.usuario.cpf}" mask="999.999.999-99" required="true"
-				requiredMessage="Preencha o CPF" />
-			<br />
+					<p:inputMask maxlength="11" size="14"
+						value="#{usuarioMB.usuario.cpf}" mask="999.999.999-99"
+						required="true" requiredMessage="Preencha o CPF" />
+					
 				 
 				Telefone<br />
-			<p:inputMask maxlength="11" size="12"
-				value="#{usuarioMB.usuario.telefone}" mask="(99) 99999-9999"/>
-			<br />
+					<p:inputMask maxlength="11" size="14"
+						value="#{usuarioMB.usuario.telefone}" mask="(99)99999-9999" />
+					
 				 
 				Celular/WhatsAPP<br />
-			<p:inputMask maxlength="11" size="12"
-				value="#{usuarioMB.usuario.telefoneWhatsapp}" mask="(99) 99999-9999" />
-			<br />
+					<p:inputMask maxlength="11" size="14"
+						value="#{usuarioMB.usuario.telefoneWhatsapp}"
+						mask="(99)99999-9999" />
+					
 				 
  				Cep<br />
-			<p:inputMask value="#{usuarioMB.endereco.cep}" required="true"
-				requiredMessage="Preencha o Cep" maxlength="8" size="10" mask="99999-999" />
-			<br />
+					<p:inputMask value="#{usuarioMB.endereco.cep}" required="true"
+						requiredMessage="Preencha o Cep" maxlength="8" size="10"
+						mask="99999-999" />
+				
                  
                 Logradouro<br />
-			<p:inputText value="#{usuarioMB.endereco.logradouro}" size="50"
-				required="false" requiredMessage="Preencha o logradouro" />
-			<br />
+					<p:inputText value="#{usuarioMB.endereco.logradouro}" size="50"
+						required="false" requiredMessage="Preencha o logradouro" />
+					
 				 
                 Número<br />
-			<p:inputText value="#{usuarioMB.endereco.numero}" required="false"
-				requiredMessage="Preencha o número" maxlength="5" size="8" />
-			<br />
+					<p:inputMask value="#{usuarioMB.endereco.numero}" required="false"
+						requiredMessage="Preencha o número" maxlength="5" size="8"
+						mask="99999999" />
+					
                  
                 Complemento<br />
-			<p:inputText value="#{usuarioMB.endereco.complemento}"
-				required="false" requiredMessage="Preencha o complemento" />
-			<br />
+					<p:inputText value="#{usuarioMB.endereco.complemento}"
+						required="false" requiredMessage="Preencha o complemento" />
+					
                  
                 Bairro<br />
-			<h:inputText id="bairro" value="#{usuarioMB.endereco.bairro}"
-				required="true" label="bairro" requiredMessage="Preencha o Bairro" />
-			<br />
+					<p:inputText id="bairro" value="#{usuarioMB.endereco.bairro}"
+						required="true" label="bairro" requiredMessage="Preencha o Bairro" />
+					
                  
 				Cidade<br />
-			<p:inputText value="#{usuarioMB.endereco.cidade}" required="true"
-				requiredMessage="Preencha a cidade" />
-			<br />
+					<p:inputText value="#{usuarioMB.endereco.cidade}" required="true"
+						requiredMessage="Preencha a cidade" />
+					
                  
                 Estado<br />
-			<p:inputText value="#{usuarioMB.endereco.estado}" required="true"
-				requiredMessage="Preencha o Estado"></p:inputText>
-			<br />
+					<p:inputText value="#{usuarioMB.endereco.estado}" required="true"
+						requiredMessage="Preencha o Estado"></p:inputText>
 
 
-			<p:toolbar>
-				<f:facet name="left">
-					<h:outputText value="Insira seus dados de Usuário" />
-				</f:facet>
-			</p:toolbar>
-			<br />
+
+					<p:toolbar>
+						<f:facet name="left">
+							<h:outputText value="Insira seus dados de Usuário" />
+						</f:facet>
+					</p:toolbar>
+					
+				</h:panelGrid>
+				<h:panelGrid>
 				 Digite seu E-mail<br />
-			<p:inputText id="email" value="#{usuarioMB.usuario.email}"
-				required="true" requiredMessage="Preencha o campo email" />
-			<br />
-			<br />
-				 Digite sua Senha<br />
-			<p:password id="senha" value="#{usuarioMB.usuario.senha}"
-				required="true" requiredMessage="Preencha o campo senha" />
-			<br />
-			<br />
+					<p:inputText id="email" value="#{usuarioMB.usuario.email}"
+						required="true" requiredMessage="Preencha o campo email" />
+					
+Digite sua Senha<br />
+					<p:password id="senha" value="#{usuarioMB.usuario.senha}"
+						required="true" requiredMessage="Preencha o campo senha" />
+					
+			
 				 Confirmar Senha<br />
-			<p:password id="ConfirmaSenha" required="true"
-				requiredMessage="Preencha o campo Confirmar senha" />
-			<br />
-			<br />
-			<h:panelGrid columns="3">
+					<p:password id="ConfirmaSenha" required="true"
+						requiredMessage="Preencha o campo Confirmar senha" />
+					<br />
+					
+				</h:panelGrid>
+				<h:panelGrid columns="3">
+					<p:commandButton value="Salvar" action="#{usuarioMB.salvar}"
+						ajax="false" icon="ui-icon-check" validateClient="true" />
+					<p:commandButton process="@this" value="Voltar"
+						update="pnlCadCliDados"
+						action="/pages/public/login.xhtml?faces-redirect=true" />
 
-				
-				<p:commandButton value="Salvar" action="#{usuarioMB.salvar}"
-					ajax="false" icon="ui-icon-check" validateClient="true" />
-
-				<p:commandButton value="Voltar"
-					actionListener="/pages/public/principal.xhtml?faces-redirect=true" />
-			</h:panelGrid>
+				</h:panelGrid>
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>
