@@ -2,6 +2,7 @@ package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
+import br.com.marketedelivery.DAO.FacesUtil;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Usuario;
@@ -24,6 +26,7 @@ public class LoginMB extends AbstractMB implements Serializable
 	private static final long serialVersionUID = 1L;
 	Usuario usuario;
 	IFachada fachada;
+	String  menssagem;
 
 	public Usuario getUsuario() 
 	{
@@ -45,6 +48,16 @@ public class LoginMB extends AbstractMB implements Serializable
 			return fachada;
 		}
 	}
+	
+	public String getMenssagem()
+	{
+		return menssagem;
+	}
+	
+	public void setMenssagem(String menssagem)
+	{
+		this.menssagem = menssagem;
+	}
 
 	public void setFachada(IFachada fachada) {
 		this.fachada = fachada;
@@ -59,7 +72,7 @@ public class LoginMB extends AbstractMB implements Serializable
 	}
 
 	/**
-	 * Efetua logout do usuário do sistema
+	 * Efetua logout do usuï¿½rio do sistema
 	 */
 	public String getLogOut() {
 		getRequest().getSession().invalidate();
@@ -67,7 +80,7 @@ public class LoginMB extends AbstractMB implements Serializable
 	}
 
 	/**
-	 * Efetua logout do usuário do sistema
+	 * Efetua logout do usuï¿½rio do sistema
 	 */
 	public String efetuarLogout() {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -76,28 +89,42 @@ public class LoginMB extends AbstractMB implements Serializable
 		return "/pages/public/principal.xhtml?faces-redirect=true";
 	}
 
-	public String efetuarLogin() {
+	public String efetuarLogin() 
+	{
 		Usuario user = new Usuario();
 		user = getFachada().pesquisarPorEmail(usuario);
+		try 
+		{
 		String email = user.getEmail();
 		String senha = user.getSenha();
-		if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
+		
+		
+			if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
+			{
+				displayInfoMessageToUser("Cliente logado no sistema de compras online");
+				FacesContext context = FacesContext.getCurrentInstance();
+				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+				request.getSession().setAttribute("usuario", user);
+				return "/pages/protected/produtoPesquisa.xhtml?faces-redirect=true";
+			} else 
+			if(usuario.getEmail().equals(email) && usuario.getSenha() != senha)
+			{
+				menssagem = "Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente";
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente"));
+				return null;
+			}else if(usuario.getEmail() != email || usuario.getEmail() == "")
+			{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email nÃ£o cadastrado"));
+				return null;
+			}
+		} 
+		catch (Exception e) 
 		{
-			displayInfoMessageToUser("Cliente logado no sistema de compras online");
-			FacesContext context = FacesContext.getCurrentInstance();
-			HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-			request.getSession().setAttribute("usuario", user);
-			return "/pages/protected/produtoPesquisa.xhtml?faces-redirect=true";
-		} else 
-		{
-			// Cria uma mensagem.
-			//FacesMessage msg = new FacesMessage("Usuário ou senha inválido!");
-			//return "/pages/public/clientePesquisa.xhtml";
-			// Obtém a instancia atual do FacesContext e adiciona a mensagem de
-			// erro nele.
-			displayErrorMessageToUser("Digite seu Email ou Senha");
-			return null;
+			
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+				return null;
 		}
+		return null;
 		
 	}
 	public String sairDoSistema(){
