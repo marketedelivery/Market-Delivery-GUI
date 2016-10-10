@@ -33,7 +33,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public Usuario buscarUsuarioPorCPF(String cpf)
     {
-        String consulta = "SELECT c FROM Usario c WHERE c.cpf = :N";
+        String consulta = "SELECT c FROM Usuario c WHERE c.cpf = :N";
         TypedQuery<Usuario> retorno = getEntityManager().createQuery(consulta, Usuario.class);
         retorno.setParameter("N", cpf);
         Usuario resultado;
@@ -49,7 +49,7 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	
 	public Usuario buscarUsuarioPorNome(String nome)
     {
-        String consulta = "SELECT c FROM Cliente c WHERE c.nome = :N";
+        String consulta = "SELECT c FROM Usuario c WHERE c.nome = :N";
         TypedQuery<Usuario> retorno = getEntityManager().createQuery(consulta, Usuario.class);
         retorno.setParameter("N", nome);
         Usuario resultado;
