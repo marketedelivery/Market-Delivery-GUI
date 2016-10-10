@@ -39,7 +39,8 @@
 						required="true" label="password" />
 						<br/>
 						<br/>
-					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}" />
+					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}"
+					 process="@this" update="msgGlobal"/>
 					<p:commandButton value="Esqueceu a senha?"  />
 					
 					

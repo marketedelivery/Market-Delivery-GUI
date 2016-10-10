@@ -112,16 +112,12 @@ public class LoginMB extends AbstractMB implements Serializable
 				menssagem = "Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente";
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente"));
 				return null;
-			}else if(usuario.getEmail() != email || usuario.getEmail() == "")
-			{
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email não cadastrado"));
-				return null;
 			}
 		} 
 		catch (Exception e) 
 		{
 			
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email não cadastrado"));
 				return null;
 		}
 		return null;
