@@ -9,6 +9,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Market e Delivery</title>
 	<h:outputStylesheet library="css" name="estilos.css" />
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRdcsx3EG4n5nexRm9NRCf9hAmUYLEm98"/>
 </h:head>
 <h:body>
 	<p:growl id="msgGlobal" sticky="true" />
@@ -45,6 +46,10 @@
 					<p:submenu label="Compras">
 						<p:menuitem value="Compras e buscas"
 							outcome="/pages/public/buscaseCompras.xhtml?faces-redirect=true" />
+					</p:submenu>
+					<p:submenu label="Localizar Supermercados">
+						<p:menuitem value="Supermercados"
+							outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true" />
 					</p:submenu>
 				</p:panelMenu>
 

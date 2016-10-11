@@ -33,8 +33,23 @@ public class Supermercado implements Serializable {
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable
 	private List<Produto> produtos;
-	
+	@Column(name = "latitude")
+	private String latitude;
+	@Column(name = "Logitude")
+	private String Logitude;
 		
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLogitude() {
+		return Logitude;
+	}
+	public void setLogitude(String logitude) {
+		Logitude = logitude;
+	}
 	@Override
 	public String toString() {
 		return "Supermercado " + nome + "";

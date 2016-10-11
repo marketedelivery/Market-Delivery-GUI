@@ -8,6 +8,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
+import org.primefaces.model.map.Polyline;
+
 import br.com.marketedelivery.DAO.FacesUtil;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
@@ -28,7 +34,7 @@ public class SupermercadoMB implements Serializable {
 	private List<Supermercado> listaSupermercados;
 	private List<Supermercado> listaSupermercadosFiltrados;
 	private List<Supermercado> converterListaSuper;
-
+	MapModel mapModel;
 	@PostConstruct
 	public void init() {
 
@@ -108,6 +114,29 @@ public class SupermercadoMB implements Serializable {
 		} catch (Exception ex) {
 			FacesUtil.adicionarMsgErro("Erro ao tentar listar os usuarios" + ex.getMessage());
 		}
+	}
+	
+	/**
+	 * Metodo que faz a localização por supermecado
+	 * @return mapModel
+	 */
+	public MapModel getLocalizacaoSurpermercado(){
+		 mapModel = new DefaultMapModel();
+		 Polyline polyline = new Polyline();
+		 
+		 if(getSupermercadoSelecionado() != null){
+		 Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
+		 Double logitude = Double.parseDouble(getSupermercadoSelecionado().getLogitude());
+			LatLng coord1 = new LatLng(latitude, logitude);
+			polyline.getPaths().add(coord1);
+			polyline.setStrokeColor("green");
+			polyline.setStrokeWeight(5);
+			polyline.setStrokeOpacity(0.7);
+			
+			mapModel.addOverlay(new Marker(coord1, "Supermercado " + getSupermercadoSelecionado().getNome()));	
+		return mapModel;
+		 }
+		 return null;
 	}
 
 }
