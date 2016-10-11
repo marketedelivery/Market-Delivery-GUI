@@ -6,7 +6,7 @@ import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pagamento;
-import br.com.marketedelivery.classesBasicas.Perfil;
+//import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
@@ -71,7 +71,7 @@ public interface IFachada
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 
-	public void CadastrarPerfil(Perfil perfil);
+	/*public void CadastrarPerfil(Perfil perfil);
 
 	public void AtualizarPerfil(Perfil perfil);
 
@@ -80,7 +80,7 @@ public interface IFachada
 	public Perfil PesquisarPorCodigo(Perfil perfil);
 
 	public Perfil PesquisarPorNome(Perfil perfil);
-
+*/
 	// --------------------------------------------- Produto
 	// -------------------------------------------------------------------
 

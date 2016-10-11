@@ -1,6 +1,6 @@
 package br.com.marketedelivery.DAO;
 
-import javax.persistence.EntityManager;
+/*import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import br.com.marketedelivery.IDAO.IPerfilDAO;
@@ -32,3 +32,4 @@ public class PerfilDAO extends DAOGenerico<Perfil> implements IPerfilDAO
         }
     }
 }
+*/

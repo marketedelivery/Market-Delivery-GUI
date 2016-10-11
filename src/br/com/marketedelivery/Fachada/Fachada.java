@@ -8,7 +8,7 @@ import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pagamento;
 import br.com.marketedelivery.classesBasicas.Pedido;
-import br.com.marketedelivery.classesBasicas.Perfil;
+//import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
@@ -17,7 +17,7 @@ import br.com.marketedelivery.controlador.ControladorItem;
 import br.com.marketedelivery.controlador.ControladorListadeCompra;
 import br.com.marketedelivery.controlador.ControladorPagamento;
 import br.com.marketedelivery.controlador.ControladorPedido;
-import br.com.marketedelivery.controlador.ControladorPerfil;
+//import br.com.marketedelivery.controlador.ControladorPerfil;
 import br.com.marketedelivery.controlador.ControladorProduto;
 import br.com.marketedelivery.controlador.ControladorSupermercado;
 import br.com.marketedelivery.controlador.ControladorUsuario;
@@ -30,7 +30,7 @@ public class Fachada implements IFachada {
 	private ControladorUsuario conUsuario;
 	private ControladorListadeCompra conLista;
 	private ControladorPagamento conPagamento;
-	private ControladorPerfil conPerfil;
+	//private ControladorPerfil conPerfil;
 	private ControladorProduto conProduto;
 	private ControladorItem conItem;
 	private ControladorPedido conPedido;
@@ -48,7 +48,7 @@ public class Fachada implements IFachada {
 		conUsuario = new ControladorUsuario();
 		conLista = new ControladorListadeCompra();
 		conPagamento = new ControladorPagamento();
-		conPerfil = new ControladorPerfil();
+		//conPerfil = new ControladorPerfil();
 		conProduto = new ControladorProduto();
 		conItem = new ControladorItem();
 		conPedido = new ControladorPedido();
@@ -188,7 +188,7 @@ public class Fachada implements IFachada {
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 
-	public void CadastrarPerfil(Perfil perfil) {
+	/*public void CadastrarPerfil(Perfil perfil) {
 		conPerfil.CadastrarPerfil(perfil);
 	}
 
@@ -206,7 +206,7 @@ public class Fachada implements IFachada {
 
 	public Perfil PesquisarPorNome(Perfil perfil) {
 		return conPerfil.PesquisarPorNome(perfil);
-	}
+	}*/
 
 	// --------------------------------------------- Produto
 	// -------------------------------------------------------------------

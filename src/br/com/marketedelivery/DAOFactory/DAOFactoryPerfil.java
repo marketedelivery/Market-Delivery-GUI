@@ -1,6 +1,6 @@
 package br.com.marketedelivery.DAOFactory;
 
-import javax.persistence.EntityManagerFactory;
+/*import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.marketedelivery.DAO.PerfilDAO;
@@ -30,3 +30,4 @@ public class DAOFactoryPerfil
         }
     } 
 }
+*/

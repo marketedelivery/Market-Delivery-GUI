@@ -2,6 +2,8 @@ package br.com.marketedelivery.classesBasicas;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,8 +35,8 @@ public class Endereco
 	@Column(name = "cidade", length = 30, nullable = false)
 	private String cidade;
 
-	@Column(name = "estado", length = 30, nullable = false)
-	private String estado;
+	@Enumerated(EnumType.STRING)
+	private Estado estado;
 	
 	
 	
@@ -46,12 +48,12 @@ public class Endereco
 		this.complemento = "";
 		this.bairro = "";
 		this.cidade = "";
-		this.estado = "";
+		
 	
 	}
 
 	public Endereco(String cep, String logradouro, int numero, String complemento, String bairro, String cidade,
-			String estado)
+			Estado estado)
 	{
 		super();
 		this.cep = cep;
@@ -124,12 +126,12 @@ public class Endereco
 		this.cidade = cidade;
 	}
 
-	public String getEstado()
+	public Estado getEstado()
 	{
 		return estado;
 	}
 
-	public void setEstado(String estado)
+	public void setEstado(Estado estado)
 	{
 		this.estado = estado;
 	}
