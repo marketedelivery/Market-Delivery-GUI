@@ -43,8 +43,7 @@
 			</h:panelGrid>
 
 			<p:dataTable emptyMessage="Nenhum registro encontrado...." value = "#{produtoMB.todosProdutos}"
-				filteredValue="#{produtoMB.produtosFiltrados}" var="produto" rows="6" paginator="true"
-				>
+				filteredValue="#{produtoMB.produtosFiltrados}" var="produto" rows="6" paginator="true">
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo"

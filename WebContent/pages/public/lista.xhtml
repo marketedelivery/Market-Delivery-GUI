@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+<script type="text/javascript">
+    function handleDrop(event, ui) {
+        var droppedCar = ui.draggable;
+ 
+        droppedCar.fadeOut('fast');
+    }
+</script>
+<ui:composition template="/pages/templates/modeloGeral.xhtml">
+		<ui:define name="conteudo">
+			<h:form id="listaForm">
+				<p:fieldset id = "listaForm" legend="Supermercado">
+				
+					<h:panelGrid columns="4">
+						<p:selectOneMenu value="#{produtoMB.produto.supermercado}" converter="supermercadoConverter">
+        		 		<f:selectItem noSelectionOption="true" itemLabel="Selecione um supermercado" itemValue="-1"  />
+           	     		<f:selectItems value="#{produtoMB.listarTodosSupermercado}" var="supermercado" itemValue="#{supermercado}" itemLabel="#{supermercdo.nome}" />
+       					</p:selectOneMenu>	
+						<p:commandButton  update="tabela" value="Buscar"  ajax="false" actionListener="#{produtoMB.listar}" />
+					</h:panelGrid>
+					
+					<p:dataTable id ="listaProdutoSupermercado" emptyMessage="Nenhum registro encontrado...." value = "#{produtoMB.todosProdutos}"
+						filteredValue="#{produtoMB.produtosFiltrados}" var="produto" rows="6" paginator="true">
+
+						<p:column style="width:20px">
+                			<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
+                			<p:draggable for="dragIcon" revert="true" helper="clone"/>
+            			</p:column>
+						
+						<p:column headerText="Código">
+							<h:outputText value="#{produto.codigo}" />
+						</p:column>
+
+						<p:column headerText="Nome" filterBy="#{produto.nome}" sortBy="#{produto.nome}">
+							<h:outputText value="#{produto.nome}" />	
+						</p:column>
+				
+						<p:column headerText="Marca" filterBy="#{produto.marca}" sortBy="#{produto.marca}">
+							<h:outputText value="#{produto.marca}" />
+						</p:column> 
+			
+						<p:column headerText="Valor Unitario">
+							<h:outputText value="#{produto.valorUnitario}" />
+						</p:column>
+
+					</p:dataTable>
+				</p:fieldset>
+				
+				<br />
+				
+				<p:fieldset id = "pdtEscolhidos" legend="Minha Lista de Compras">
+					<p:outputPanel id="area">
+						<h:outputText value ="Arraste o produto desejado e coloque aqui" rendered="#{empty itemMB.listaProduto}"/>
+						<p:dataTable id ="produtosSelecionados" var = "produto" value="#{itemMB.listaProduto}" rendered="#{not empty itemMB.listaProduto}" >
+							
+							<p:column headerText="Código">
+								<h:outputText value="#{produto.codigo}" />
+							</p:column>
+
+							<p:column headerText="Nome" filterBy="#{produto.nome}" sortBy="#{produto.nome}">
+								<h:outputText value="#{produto.nome}" />	
+							</p:column>
+				
+							<p:column headerText="Marca" filterBy="#{produto.marca}" sortBy="#{produto.marca}">
+								<h:outputText value="#{produto.marca}" />
+							</p:column> 
+			
+							<p:column headerText="Valor Unitario">
+								<h:outputText value="#{produto.valorUnitario}" />
+							</p:column>
+							
+						</p:dataTable>
+					</p:outputPanel>
+				</p:fieldset>
+				
+				<p:droppable for="pdtEscolhidos" tolerance="touch" activeStyleClass="ui-state-highlight" datasource="listaProdutoSupermercado" onDrop="handleDrop">
+					<p:ajax listener="#{itemMB.produtoDrop}" update="area listaProdutoSupermercado" />
+				</p:droppable>
+				
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
