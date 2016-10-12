@@ -57,7 +57,7 @@ public class ItemMB
 	public void produtoDrop(DragDropEvent ddEvent)
 	{
 		Produto pdt = ((Produto)ddEvent.getData());
-		getListaProduto().add(pdt);
+		listaProduto.add(pdt);
 	}
     
 }
