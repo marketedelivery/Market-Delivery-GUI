@@ -83,7 +83,9 @@ public class Fachada implements IFachada {
 	public Usuario pesquisarPorEmail(Usuario usuario) {
 		return conUsuario.pesquisarPorEmail(usuario);
 	}
-
+	public boolean alteraSenha(Usuario u){
+		return conUsuario.alteraSenha(u);
+	}
 	// --------------------------------------------- Supermercado
 	// -------------------------------------------------------------------
 

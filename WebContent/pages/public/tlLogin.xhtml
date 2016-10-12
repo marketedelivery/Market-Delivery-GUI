@@ -27,25 +27,25 @@
 		<p:layoutUnit position="west" size="280" resizable="false"
 			closable="false" collapsible="false">
 			<h:form>
-
 				<p:growl id="msg" showDetail="true" />
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
-					Email
+				   Email
 					<p:inputText id="email" value="#{loginMB.usuario.email}"
 						required="true" label="username">
 						<f:validator validatorId="custom.emailValidator" />
 					</p:inputText>
-
-					Senha
+				   Senha
 					<p:password id="senha" value="#{loginMB.usuario.senha}"
 						required="true" label="password" />
 					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}" />
-					<p:commandButton value="Esqueceu a senha?" />
+					
+					<p:commandButton value="Esqueceu a senha?" type="button" 
+										onclick="PF('recuperaSenha').show();"/>
 					<f:facet name="footer">
 					</f:facet>
 				</h:panelGrid>
-
 			</h:form>
+			
 			<f:facet name="footer">
 			</f:facet>
 			<f:facet name="footer">
@@ -53,7 +53,7 @@
 					outcome="/pages/public/clienteCadastro.xhtml?faces-redirect=true" />
 			</f:facet>
 		</p:layoutUnit>
-
+		
 		<p:layoutUnit position="center" resizable="false" closable="false"
 			collapsible="false">
 			<h:graphicImage
@@ -63,5 +63,24 @@
 			<ui:insert name="conteudo" />
 		</p:layoutUnit>
 	</p:layout>
+	
+	<p:dialog header="Recupera Senha" widgetVar="recuperaSenha" showEffect="explode" hideEffect="bounce" height="100">
+		<h:form id="formDialog">
+		<p:growl id="msg2" sticky="true" />
+		<h:panelGrid captionClass="2" cellpadding="5">
+					<h:outputText value="Digite seu CPF: " />
+					<p:inputMask maxlength="11" size="14"
+						value="#{alterarSenhaMB.usuario.cpf}" mask="999.999.999-99"
+						required="true" requiredMessage="Preencha o CPF" />
+				<h:outputText value="Digite seu email de Usuario: " />
+				<p:inputText id="email" value="#{alterarSenhaMB.usuario.email}" 
+							 required="true" label="email do Usuario " style="width: 250px">
+				<f:validator validatorId="custom.emailValidator"> </f:validator>
+				</p:inputText>
+				<p:commandButton update="msg2" value=" enviar" action="#{alterarSenhaMB.enviarSenhaUsuario}">
+				</p:commandButton>
+    	</h:panelGrid>
+    	</h:form>
+    </p:dialog>
 </h:body>
 </html>
