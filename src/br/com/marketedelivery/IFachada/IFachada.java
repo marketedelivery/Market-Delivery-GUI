@@ -27,7 +27,7 @@ public interface IFachada
 	public Usuario pesquisarPorCodigo(Usuario usuario);
 
 	public Usuario pesquisarPorEmail(Usuario usuario);
-
+	public boolean alteraSenha(Usuario u);
 	// --------------------------------------------- Supermercado
 	// -------------------------------------------------------------------
 

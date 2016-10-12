@@ -1,6 +1,7 @@
 package br.com.marketedelivery.controlador;
 
 import java.util.List;
+import java.util.Random;
 
 import br.com.marketedelivery.DAOFactory.DAOFactoryUsuario;
 import br.com.marketedelivery.IDAO.IUsuarioDAO;
@@ -60,5 +61,41 @@ public class ControladorUsuario
     	Usuario retorno = usuarioDAO.buscarPorEmail(email);
     	return retorno;
     	
+    }
+    
+    /**
+     * metodo que recupera a senha do usuário
+     * @return String
+     */
+    public String geraSenha(){
+    	Random gerador = new Random();
+	    String ii = null;
+	    StringBuilder  bilder = new StringBuilder();
+		//imprime sequência de 10 números inteiros aleatórios
+	    for (int i = 0; i < 9; i++) {
+	    	//System.out.println(gerador.nextInt(9));
+	    	 bilder.append(Integer.toString(gerador.nextInt(10)));
+	    	 
+	 	}
+	       	return bilder.toString();
+    }
+    /**
+     *  metodo que altera a senha do usuario
+     * @param u
+     * @return boolean
+     */
+    public boolean alteraSenha(Usuario u){
+    	//Usuario usuario = new Usuario();
+    	
+    	//usuario = pesquisarPorEmail(u);
+    	if( u != null){
+    		String senhaGerada = geraSenha();
+    		u.setSenha(senhaGerada);
+    		
+    		usuarioDAO =  DAOFactoryUsuario.getUsuarioDAO();
+    		usuarioDAO.alterar(u);
+    		return true;
+    	}
+    	return false;
     }
 }
