@@ -1,7 +1,9 @@
 package br.com.marketedelivery.managedBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -19,6 +21,12 @@ public class ItemMB
 	private Item item;
 	private List<Produto> listaProduto;
     private IFachada fachada;
+    
+    @PostConstruct
+    public void init()
+    {
+    	listaProduto = new ArrayList<Produto>();
+    }
     
     public void setProduto(Produto produto)
     {
@@ -54,7 +62,7 @@ public class ItemMB
 		return fachada;
 	}
     
-	public void produtoDrop(DragDropEvent ddEvent)
+	public void produtoOnDrop(DragDropEvent ddEvent)
 	{
 		Produto pdt = ((Produto)ddEvent.getData());
 		listaProduto.add(pdt);
