@@ -9,8 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
+//import com.sun.jersey.api.client.Client;
+//import com.sun.jersey.api.client.WebResource;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
@@ -144,12 +144,12 @@ public class LoginMB extends AbstractMB implements Serializable
 		return "/pages/public/login.xhtml?faces-redirect=true";
 	}
 
-	public String getFilmesEmCartaz()
-	{
-		Client c = Client.create();
-		WebResource wr = c.resource("http://localhost:8080/WebServiceRest/rest/service/cadastrarUsuario");
-		return wr.get(String.class);
-	}
+//	public String getFilmesEmCartaz()
+//	{
+//		Client c = Client.create();
+//		WebResource wr = c.resource("http://localhost:8080/WebServiceRest/rest/service/cadastrarUsuario");
+//		return wr.get(String.class);
+//	}
 
 	/**
 	 * @return the usuarioLogado

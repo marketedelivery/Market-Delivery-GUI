@@ -20,8 +20,7 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 @RequestScoped
 @ViewScoped
 @ManagedBean(name = "usuarioMB")
-public class UsuarioMB implements Serializable
-{
+public class UsuarioMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Usuario usuario;
@@ -36,105 +35,83 @@ public class UsuarioMB implements Serializable
 
 	private List<Usuario> listaUsuariosFiltrados;
 
-	public Endereco getEndereco()
-	{
-		if (endereco == null)
-		{
+	public Endereco getEndereco() {
+		if (endereco == null) {
 			endereco = new Endereco();
 		}
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco)
-	{
+	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
 
-	public void setUsuario(Usuario usuario)
-	{
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 
-	public Usuario getUsuario()
-	{
-		if (usuario == null)
-		{
+	public Usuario getUsuario() {
+		if (usuario == null) {
 			usuario = new Usuario();
 		}
 		return usuario;
 	}
 
-	public IFachada getFachada()
-	{
-		if (fachada == null)
-		{
+	public IFachada getFachada() {
+		if (fachada == null) {
 			fachada = new Fachada();
 		}
 		return fachada;
 	}
 
-	public void setFachada(IFachada fachada)
-	{
+	public void setFachada(IFachada fachada) {
 		this.fachada = fachada;
 	}
 
-	public List<Usuario> getListar()
-	{
+	public List<Usuario> getListar() {
 		return listar;
 	}
 
-	public void setListar(List<Usuario> listar)
-	{
+	public void setListar(List<Usuario> listar) {
 		this.listar = listar;
 	}
 
-	public List<Usuario> getListaUsuarios()
-	{
+	public List<Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
 
-	public void setListaUsuarios(List<Usuario> listaUsuarios)
-	{
+	public void setListaUsuarios(List<Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
 	}
 
-	public List<Usuario> getListaUsuariosFiltrados()
-	{
+	public List<Usuario> getListaUsuariosFiltrados() {
 		return listaUsuariosFiltrados;
 	}
 
-	public void setListaUsuariosFiltrados(List<Usuario> listaUsuariosFiltrados)
-	{
+	public void setListaUsuariosFiltrados(List<Usuario> listaUsuariosFiltrados) {
 		this.listaUsuariosFiltrados = listaUsuariosFiltrados;
 	}
 
-	public Estado[] getUFs()
-	{
+	public Estado[] getUFs() {
 		return Estado.values();
 	}
 
-	public void salvar()
-	{
+	public void salvar() {
 		usuario.setEndereco(endereco);
 		fachada = getFachada();
 		Usuario user = fachada.ListarPorCPF(usuario);
-		try
-		{
-			if (user == null)
-			{
+		try {
+			if (user == null) {
 				System.out.println(usuario.getCpf().length());
 				fachada.CadastrarUsuario(usuario);
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
-			} else
-			{
+			} else {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
 				return;
 			}
 			usuario = new Usuario();
 			endereco = new Endereco();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Erro ao cadastrar, tente novamente mais tarde"));
 			System.out.println(e.getMessage());
@@ -148,52 +125,62 @@ public class UsuarioMB implements Serializable
 
 	// Responsï¿½vel em carregar uma lista de dados na tela do cadastro de
 	// usuarios
-	public void carregarPesquisa()
-	{
-		try
-		{
+	public void carregarPesquisa() {
+		try {
 			// fachada.ListarTodosUsuarios();
 			// listaUsuarios = fachada.ListarTodosUsuarios();
 			IFachada fachada = getFachada();
 			listaUsuarios = fachada.ListarTodosUsuarios();
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			FacesUtil.adicionarMsgErro("Erro ao tentar listar os usuarios" + ex.getMessage());
 		}
 	}
 
 	@PostConstruct
-	public void carregarCadastro()
-	{
-		try
-		{
+	public void carregarCadastro() {
+		try {
 			String valor = FacesUtil.getParam("clicod");
 			// int codigo_pessoa = 0;
-			if (valor != null)
-			{
+			if (valor != null) {
 				// int codigo = Integer.parseInt(valor);
 				usuario = fachada.pesquisarPorCodigo(usuario);
 			}
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			FacesUtil.adicionarMsgErro("Erro ao tentar listar os usuarios" + ex.getMessage());
 		}
 	}
 
-	public void alterar(Usuario usuario)
-	{
-		try
+	public void alterar(Usuario usuario) {
 		{
+		
+			usuario.setEndereco(endereco);
 			fachada = getFachada();
-			fachada.AtualizarCliente(usuario);
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("Seus dados foram atualizados com sucesso"));
-		}
-		catch (Exception e)
-		{
-			FacesUtil.adicionarMsgErro("Erro ao tentar atualizar o usuario" + e.getMessage());
+		//	Usuario user = fachada.ListarPorCPF(usuario);
+			try {
+
+				System.out.println(usuario.getCpf().length());
+				fachada.AtualizarCliente(usuario);
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Alteração realizada com Sucesso"));
+
+			} catch (Exception e) {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Erro ao Atualizar, tente novamente mais tarde"));
+				System.out.println(e.getMessage());
+			}
 		}
 	}
+	// {
+	// try
+	// {
+	// fachada = getFachada();
+	// fachada.AtualizarCliente(usuario);
+	// FacesContext.getCurrentInstance().addMessage(null,
+	// new FacesMessage("Seus dados foram atualizados com sucesso"));
+	// }
+	// catch (Exception e)
+	// {
+	// FacesUtil.adicionarMsgErro("Erro ao tentar atualizar o usuario" +
+	// e.getMessage());
+	// }
+	// }
 }

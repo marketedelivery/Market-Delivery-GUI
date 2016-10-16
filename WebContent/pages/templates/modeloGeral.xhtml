@@ -37,11 +37,15 @@
 							<p:menuitem target="#{loginMB.entidade}"
 								value="Atualizar Meus Dados" update=":update"
 								oncomplete="PF('usuarioDialog').show()" />
+
+							<p:menuitem value="Minhas Listas" outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true"/>
+
 						</p:submenu>
+
 						<p:menuitem value="Sair" action="#{loginMB.sairDoSistema}" />
 
 					</p:submenu>
-					<p:submenu label="Cadastros" rendered="">
+					<p:submenu label="Cadastros" rendered="true">
 						<p:menuitem value="Clientes"
 							outcome="/pages/protected/clientePesquisa.xhtml?faces-redirect=true" />
 						<p:menuitem value="Produtos"
@@ -52,7 +56,7 @@
 					</p:submenu>
 					<p:submenu label="Compras">
 						<p:menuitem value="Compras e buscas"
-							outcome="/pages/public/buscaseCompras.xhtml?faces-redirect=true" />
+							 />
 					</p:submenu>
 					<p:submenu label="Localizar Supermercados">
 						<p:menuitem value="Supermercados"
