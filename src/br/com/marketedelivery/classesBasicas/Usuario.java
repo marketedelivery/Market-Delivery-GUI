@@ -5,39 +5,54 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario
 {
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "codigo")
 	private Integer codigo;
-	@Column(name = "nome",length=30)
+
+	@Column(name = "nome", length = 30)
 	private String nome;
-	@Column(name = "CPF",length=14)
+
+	@Column(name = "CPF", length = 14)
 	private String cpf;
-	@OneToOne(cascade=CascadeType.PERSIST)
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Fetch(FetchMode.JOIN)
 	private Endereco endereco;
-	@Column(name = "telefone_whatsapp",length=14)
+
+	@Column(name = "telefone_whatsapp", length = 16)
 	private String telefonewhatsapp;
-    @Enumerated(EnumType.STRING)
-    private Perfil perfil;
-	@Column(name = "Telefone",length=14)
+
+	@Enumerated(EnumType.STRING)
+	@Fetch(FetchMode.JOIN)
+	private Perfil perfil;
+
+	@Column(name = "Telefone", length = 16)
 	private String telefone;
-	@Column(name = "Email",length=30)
+
+	@Column(name = "Email", length = 30)
 	private String email;
-	@Column(name = "Senha",length=10)
+
+	@Column(name = "Senha", length = 10)
 	private String senha;
-	
-	
-	public Usuario(Integer codigo, String nome, String cpf, Endereco endereco, String telefonewhatsapp, String telefone, Perfil perfil, String email, String senha) {
+
+	public Usuario(Integer codigo, String nome, String cpf, Endereco endereco, String telefonewhatsapp, String telefone,
+			Perfil perfil, String email, String senha)
+	{
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -49,70 +64,116 @@ public class Usuario
 		this.email = email;
 		this.senha = senha;
 	}
-	
-	public Usuario() {
+
+	public Usuario()
+	{
 		super();
 		endereco = new Endereco();
 	}
-	
-	public Integer getCodigo() {
+
+	public Integer getCodigo()
+	{
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+
+	public void setCodigo(Integer codigo)
+	{
 		this.codigo = codigo;
 	}
-	public String getNome() {
+
+	public String getNome()
+	{
 		return nome;
 	}
-	public void setNome(String nome) {
+
+	public void setNome(String nome)
+	{
 		this.nome = nome;
 	}
-	public String getCpf() {
+
+	public String getCpf()
+	{
 		return cpf;
 	}
-	public void setCpf(String cpf) {
+
+	public void setCpf(String cpf)
+	{
 		this.cpf = cpf;
 	}
-	public Endereco getEndereco() {
+
+	public Endereco getEndereco()
+	{
 		return endereco;
 	}
-	public void setEndereco(Endereco endereco) {
+
+	public void setEndereco(Endereco endereco)
+	{
 		this.endereco = endereco;
 	}
-	public String getTelefoneWhatsapp() {
+
+	public String getTelefoneWhatsapp()
+	{
 		return telefonewhatsapp;
 	}
-	public void setTelefoneWhatsapp(String telefonewhatsapp) {
+
+	public void setTelefoneWhatsapp(String telefonewhatsapp)
+	{
 		this.telefonewhatsapp = telefonewhatsapp;
 	}
-	public String getTelefone() {
+
+	public String getTelefone()
+	{
 		return telefone;
 	}
-	public void setTelefone(String telefone) {
+
+	public void setTelefone(String telefone)
+	{
 		this.telefone = telefone;
 	}
-	public Perfil getPerfil() {
+
+	public Perfil getPerfil()
+	{
 		return perfil;
 	}
-	public void setPerfil(Perfil perfil) {
+
+	public void setPerfil(Perfil perfil)
+	{
 		this.perfil = perfil;
 	}
 
-	public String getEmail() {
+	public String getEmail()
+	{
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email)
+	{
 		this.email = email;
 	}
 
-	public String getSenha() {
+	public String getSenha()
+	{
 		return senha;
 	}
 
-	public void setSenha(String senha) {
+	public void setSenha(String senha)
+	{
 		this.senha = senha;
 	}
-	
-	
+
+	/**
+	 * @return the telefonewhatsapp
+	 */
+	public String getTelefonewhatsapp()
+	{
+		return telefonewhatsapp;
+	}
+
+	/**
+	 * @param telefonewhatsapp the telefonewhatsapp to set
+	 */
+	public void setTelefonewhatsapp(String telefonewhatsapp)
+	{
+		this.telefonewhatsapp = telefonewhatsapp;
+	}
 }
