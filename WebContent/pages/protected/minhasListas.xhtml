@@ -15,7 +15,7 @@
 				</f:facet>
 			</p:toolbar>
 			<br></br>
-		
+
 			<h:panelGrid columns="6" id="pgUsuario" columnClasses="label,value">
 
 				<p:outputLabel value="Codigo: " />
@@ -23,13 +23,39 @@
 					size="5" />
 
 				<p:outputLabel value="Nome* " />
-				<p:inputText id="Nome" readonly="true" size="45" 
+				<p:inputText id="Nome" readonly="true" size="45"
 					value="#{loginMB.usuarioLogado.nome}" />
 
 				<p:outputLabel value="CPF* " />
 				<p:inputMask size="14" readonly="true" mask="999.999.999-99"
 					value="#{loginMB.usuarioLogado.cpf}" />
 			</h:panelGrid>
+			<h3 style="margin-top: 0"></h3>
+			<p:separator />
+
+			<p:dataTable emptyMessage="Nenhum registro encontrado...."
+				value="#{produtoMB.todosProdutos}"
+				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
+				rows="6" paginator="true">
+
+				<f:facet name="footer">
+					<p:commandButton value="Novo"
+						action="/pages/protected/produtoCadastro.xhtml?faces-redirect=true" />
+				</f:facet>
+
+				<p:column headerText="Nome" filterBy="#{produto.nome}"
+					sortBy="#{produto.nome}">
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+
+				<p:column headerText="Tipo" filterBy="#{produto.marca}"
+					sortBy="#{produto.marca}">
+					<h:outputText value="#{produto.marca}" />
+				</p:column>
+				
+
+			</p:dataTable>
+
 		</h:form>
 
 
