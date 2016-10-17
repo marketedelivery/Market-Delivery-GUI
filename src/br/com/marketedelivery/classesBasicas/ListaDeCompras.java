@@ -33,9 +33,6 @@ public class ListaDeCompras {
 	@ManyToOne
 	private Item item;
 	
-	
-	
-	
 	public ListaDeCompras(int codigo, Date dataCriacao, Tipo tipo, int qtd, Usuario usuario, Item item) {
 		super();
 		this.codigo = codigo;
@@ -45,9 +42,12 @@ public class ListaDeCompras {
 		this.usuario = usuario;
 		this.item = item;
 	}
-	public ListaDeCompras() {
+	
+	public ListaDeCompras() 
+	{
 		super();
 	}
+	
 	public int getCodigo() {
 		return codigo;
 	}
