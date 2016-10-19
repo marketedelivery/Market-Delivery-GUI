@@ -8,7 +8,8 @@ import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pagamento;
 import br.com.marketedelivery.classesBasicas.Pedido;
-//import br.com.marketedelivery.classesBasicas.Perfil;
+import br.com.marketedelivery.classesBasicas.Perfil;
+// import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
@@ -17,222 +18,265 @@ import br.com.marketedelivery.controlador.ControladorItem;
 import br.com.marketedelivery.controlador.ControladorListadeCompra;
 import br.com.marketedelivery.controlador.ControladorPagamento;
 import br.com.marketedelivery.controlador.ControladorPedido;
-//import br.com.marketedelivery.controlador.ControladorPerfil;
+// import br.com.marketedelivery.controlador.ControladorPerfil;
 import br.com.marketedelivery.controlador.ControladorProduto;
 import br.com.marketedelivery.controlador.ControladorSupermercado;
 import br.com.marketedelivery.controlador.ControladorUsuario;
 
-public class Fachada implements IFachada {
+public class Fachada implements IFachada
+{
 	private IFachada instancia;
 
 	private ControladorEndereco conEndereco;
+
 	private ControladorSupermercado conSupermercado;
+
 	private ControladorUsuario conUsuario;
+
 	private ControladorListadeCompra conLista;
+
 	private ControladorPagamento conPagamento;
-	//private ControladorPerfil conPerfil;
+
+	// private ControladorPerfil conPerfil;
 	private ControladorProduto conProduto;
+
 	private ControladorItem conItem;
+
 	private ControladorPedido conPedido;
 
-	public IFachada getInstancia() {
-		if (instancia == null) {
+	public IFachada getInstancia()
+	{
+		if (instancia == null)
+		{
 			instancia = new Fachada();
 		}
 		return instancia;
 	}
 
-	public Fachada() {
+	public Fachada()
+	{
 		conEndereco = new ControladorEndereco();
 		conSupermercado = new ControladorSupermercado();
 		conUsuario = new ControladorUsuario();
 		conLista = new ControladorListadeCompra();
 		conPagamento = new ControladorPagamento();
-		//conPerfil = new ControladorPerfil();
+		// conPerfil = new ControladorPerfil();
 		conProduto = new ControladorProduto();
 		conItem = new ControladorItem();
 		conPedido = new ControladorPedido();
 	}
 
-	public void CadastrarUsuario(Usuario usuario) {
+	public void cadastrarUsuario(Usuario usuario)
+	{
 		conUsuario.CadastrarUsuario(usuario);
 	}
 
-	public void AtualizarCliente(Usuario usuario) {
+	public void AtualizarCliente(Usuario usuario)
+	{
 		conUsuario.atualizarUsuario(usuario);
 	}
 
-	public List<Usuario> ListarTodosUsuarios() {
+	public List<Usuario> ListarTodosUsuarios()
+	{
 		return conUsuario.ListarTodosUsuarios();
 	}
 
-	public Usuario ListarPorNome(Usuario usuario) {
+	public Usuario ListarPorNome(Usuario usuario)
+	{
 		return conUsuario.ListarPorNome(usuario);
 	}
 
-	public Usuario ListarPorCPF(Usuario usuario) {
+	public Usuario ListarPorCPF(Usuario usuario)
+	{
 		return conUsuario.ListarPorCPF(usuario);
 	}
 
 	@Override
-	public Usuario pesquisarPorCodigo(Usuario usuario) {
+	public Usuario pesquisarPorCodigo(Usuario usuario)
+	{
 		// TODO Auto-generated method stub
 		return conUsuario.pesquisarUsuarioPorCodigo(usuario);
 	}
 
-	public Usuario pesquisarPorEmail(Usuario usuario) {
+	public Usuario pesquisarPorEmail(Usuario usuario)
+	{
 		return conUsuario.pesquisarPorEmail(usuario);
 	}
-	public boolean alteraSenha(Usuario u){
+
+	public Usuario efetuarLogin(Usuario usuario)
+	{
+		// conUsuario.efetuarLogin;
+		return null;
+	}
+
+	public boolean alteraSenha(Usuario u)
+	{
 		return conUsuario.alteraSenha(u);
 	}
 	// --------------------------------------------- Supermercado
 	// -------------------------------------------------------------------
 
-	 public void cadastrarSupermercado(Supermercado supermercado)
-	 {
-		 conSupermercado.cadastrarSupermercado(supermercado);
-	 }
-	 
-	 public void atualizarSupermercado(Supermercado supermercado)
-	 {
-		 conSupermercado.atualizarSupermercado(supermercado);
-	 }
-	 
-	 public List<Supermercado>listarSupermercado()
-	 {
-		 return conSupermercado.listarTodosSupermercados();
-	 }
-	 
-	 public Supermercado listarPorNome(Supermercado supermercado)
-	 {
-		 return conSupermercado.pesquisarPorNome(supermercado);
-	 }
-	 
-	 public Supermercado consultarPorID(Supermercado supermercado)
-	 {
-		 return conSupermercado.consultarPorID(supermercado);
-	 }
+	public void cadastrarSupermercado(Supermercado supermercado)
+	{
+		conSupermercado.cadastrarSupermercado(supermercado);
+	}
+
+	public void atualizarSupermercado(Supermercado supermercado)
+	{
+		conSupermercado.atualizarSupermercado(supermercado);
+	}
+
+	public List<Supermercado> listarSupermercado()
+	{
+		return conSupermercado.listarTodosSupermercados();
+	}
+
+	public Supermercado listarPorNome(Supermercado supermercado)
+	{
+		return conSupermercado.pesquisarPorNome(supermercado);
+	}
+
+	public Supermercado consultarPorID(Supermercado supermercado)
+	{
+		return conSupermercado.consultarPorID(supermercado);
+	}
 
 	@Override
-	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado) {
+	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado)
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Produto pesquisarPorCodigo(Produto produto) {
+	public Produto pesquisarPorCodigo(Produto produto)
+	{
 		// TODO Auto-generated method stub
 		return null;
-
 	}
 
 	@Override
-	public List<Supermercado> listarTodosSupermercados() {
+	public List<Supermercado> listarTodosSupermercados()
+	{
 		// TODO Auto-generated method stub
 		return conSupermercado.listarTodosSupermercados();
 	}
 
 	@Override
-	public Produto pesquisarProdutoPorNome(Produto produto) {
+	public Produto pesquisarProdutoPorNome(Produto produto)
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Supermercado pesquisarPorCodigo(Supermercado supermercado) {
+	public Supermercado pesquisarPorCodigo(Supermercado supermercado)
+	{
 		// TODO Auto-generated method stub
 		return conSupermercado.pesquisarPorCodigo(supermercado);
 	}
 
 	// --------------------------------------------- Endereco
 	// -------------------------------------------------------------------
-
-	public void cadastrarEndereco(Endereco endereco) {
+	public void cadastrarEndereco(Endereco endereco)
+	{
 		conEndereco.cadastrarEndereco(endereco);
 	}
 
-	public void atualizarEndereco(Endereco endereco) {
+	public void atualizarEndereco(Endereco endereco)
+	{
 		conEndereco.atualizarEndereco(endereco);
 	}
 
-	public List<Endereco> listarEndereco() {
+	public List<Endereco> listarEndereco()
+	{
 		return conEndereco.listarTodosEndereco();
 	}
 
-	public Endereco listarPorCep(Endereco endereco) {
+	public Endereco listarPorCep(Endereco endereco)
+	{
 		return conEndereco.pesquisarPorCep(endereco);
 	}
 
-	public Endereco listarPorLogradouro(Endereco endereco) {
+	public Endereco listarPorLogradouro(Endereco endereco)
+	{
 		return conEndereco.pesquisarPorLogradouro(endereco);
 	}
 
 	// --------------------------------------------- Lista de Compra
 	// -------------------------------------------------------------------
-
-	public void CadastrarLista(ListaDeCompras lista) {
+	public void CadastrarLista(ListaDeCompras lista)
+	{
 		conLista.CadastrarLista(lista);
 	}
 
-	public void AtualizarLista(ListaDeCompras lista) {
+	public void AtualizarLista(ListaDeCompras lista)
+	{
 		conLista.AtualizarLista(lista);
 	}
 
-	public List<ListaDeCompras> ListarTodasAsListas() {
+	public List<ListaDeCompras> ListarTodasAsListas()
+	{
 		return conLista.ListarTudo();
 	}
 
-	public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista) {
+	public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista)
+	{
 		return conLista.buscarPorCodigo(lista);
 	}
-
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 
-	/*public void CadastrarPerfil(Perfil perfil) {
-		conPerfil.CadastrarPerfil(perfil);
+	public void CadastrarPerfil(Perfil perfil)
+	{
+		// conPerfil.CadastrarPerfil(perfil);
 	}
 
-	public void AtualizarPerfil(Perfil perfil) {
-		conPerfil.AtualizarPerfil(perfil);
+	public void AtualizarPerfil(Perfil perfil)
+	{
+		// conPerfil.AtualizarPerfil(perfil);
 	}
 
-	public List<Perfil> ListarTodosPerfil() {
-		return conPerfil.ListarTodosPerfil();
+	public List<Perfil> ListarTodosPerfis()
+	{
+		return null;
+		// return conPerfil.ListarTodosPerfil();
 	}
 
-	public Perfil PesquisarPorCodigo(Perfil perfil) {
-		return conPerfil.PesquisarPorCodigo(perfil);
+	public Perfil PesquisarPorCodigo(Perfil perfil)
+	{
+		return null;
+		// return conPerfil.PesquisarPorCodigo(perfil);
 	}
 
-	public Perfil PesquisarPorNome(Perfil perfil) {
-		return conPerfil.PesquisarPorNome(perfil);
-	}*/
+	public Perfil PesquisarPorNome(Perfil perfil)
+	{
+		return null;
+		// return conPerfil.PesquisarPorNome(perfil);
+	}
 
 	// --------------------------------------------- Produto
 	// -------------------------------------------------------------------
-
 	public void CadastrarProduto(Produto produto)
 	{
 		conProduto.CadastrarProduto(produto);
 	}
-	
+
 	public void AtualizarProduto(Produto produto)
 	{
 		conProduto.AtualizarProduto(produto);
 	}
-	
-	public List<Produto>ListarTodosProdutos()
+
+	public List<Produto> ListarTodosProdutos()
 	{
 		return conProduto.ListarTodosProdutos();
 	}
-	
+
 	public Produto PesquisarProdutoPorNome(Produto produto)
 	{
 		return conProduto.PesquisarProdutoPorNome(produto);
 	}
-	
+
 	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado)
 	{
 		return conProduto.buscarProdutoPorSupermercado(supermercado);
@@ -240,55 +284,62 @@ public class Fachada implements IFachada {
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
-
-	public void CadastrarPagamento(Pagamento pagamento) {
+	public void CadastrarPagamento(Pagamento pagamento)
+	{
 		conPagamento.CadastrarPagamento(pagamento);
 	}
 
-	public void AtualizarPAgamento(Pagamento pagamento) {
+	public void AtualizarPagamento(Pagamento pagamento)
+	{
 		conPagamento.AtualizarPAgamento(pagamento);
 	}
 
-	public List<Pagamento> ListarTodos() {
+	public List<Pagamento> ListarTodos()
+	{
 		return conPagamento.ListarTodos();
 	}
 
-	public Pagamento ListarPorCodigo(Pagamento pagamento) {
+	public Pagamento ListarPorCodigo(Pagamento pagamento)
+	{
 		return conPagamento.ListarPorCodigo(pagamento);
 	}
 
 	// --------------------------------------------- Item
 	// -------------------------------------------------------------------
-
-	public void CadastrarItem(Item item) {
+	public void CadastrarItem(Item item)
+	{
 		conItem.CadastrarItem(item);
 	}
 
-	public void AtualizarItem(Item item) {
+	public void AtualizarItem(Item item)
+	{
 		conItem.AtualizarItem(item);
 	}
 
-	public List<Item> ListarTodosItem() {
+	public List<Item> ListarTodosItens()
+	{
 		return conItem.ListarTodosItem();
 	}
 
 	// --------------------------------------------- Pedido
 	// -------------------------------------------------------------------
-
-	public void CadastrarPedido(Pedido pedido) {
+	public void CadastrarPedido(Pedido pedido)
+	{
 		conPedido.CadastrarPedido(pedido);
 	}
 
-	public void AlterarPedido(Pedido pedido) {
+	public void AlterarPedido(Pedido pedido)
+	{
 		conPedido.AlterarPedido(pedido);
 	}
 
-	public List<Pedido> ListarTodosPedidos() {
+	public List<Pedido> ListarTodosPedidos()
+	{
 		return conPedido.ListarTodosPedidos();
 	}
 
-	public Pedido ListarPedidoPorCodigo(Pedido pedido) {
+	public Pedido ListarPedidoPorCodigo(Pedido pedido)
+	{
 		return conPedido.ListarPedidoPorCodigo(pedido);
 	}
-
 }

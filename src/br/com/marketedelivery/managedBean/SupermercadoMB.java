@@ -22,121 +22,147 @@ import br.com.marketedelivery.classesBasicas.Supermercado;
 
 @ManagedBean(name = "supermercadoMB", eager = true)
 @ApplicationScoped
-public class SupermercadoMB implements Serializable {
+public class SupermercadoMB implements Serializable
+{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	IFachada fachada;
+
 	Supermercado supermercado;
+
 	private Supermercado supermercadoSelecionado;
+
 	private String nomeProduto;
+
 	private List<Supermercado> listaSupermercados;
+
 	private List<Supermercado> listaSupermercadosFiltrados;
+
 	private List<Supermercado> converterListaSuper;
+
 	MapModel mapModel;
+
 	@PostConstruct
-	public void init() {
+	public void init()
+	{}
 
-	}
-
-	public IFachada getFachada() {
-		if (fachada == null) {
+	public IFachada getFachada()
+	{
+		if (fachada == null)
+		{
 			return fachada = new Fachada();
 		}
 		return fachada;
 	}
 
-	public void setFachada(IFachada fachada) {
+	public void setFachada(IFachada fachada)
+	{
 		this.fachada = fachada;
 	}
 
 	public List<Produto> listaProtudoDoSupermercado;
 
-	public SupermercadoMB() {
+	public SupermercadoMB()
+	{
 		// TODO Auto-generated constructor stub
-
 	}
 
-	public Supermercado getSupermecado() {
-		if (supermercado == null) {
+	public Supermercado getSupermecado()
+	{
+		if (supermercado == null)
+		{
 			supermercado = new Supermercado();
 		}
 		return supermercado;
 	}
 
-	public List<Supermercado> getListarTodosSupermercados() {
+	public List<Supermercado> getListarTodosSupermercados()
+	{
 		converterListaSuper = new ArrayList<Supermercado>();
 		converterListaSuper = getFachada().listarTodosSupermercados();
 		return converterListaSuper;
-
 	}
 
-	public Supermercado getSupermercadoSelecionado() {
+	public Supermercado getSupermercadoSelecionado()
+	{
 		return supermercadoSelecionado;
 	}
 
-	public void setSupermercadoSelecionado(Supermercado supermercadoSelecionado) {
+	public void setSupermercadoSelecionado(Supermercado supermercadoSelecionado)
+	{
 		this.supermercadoSelecionado = supermercadoSelecionado;
 	}
 
-	public List<Supermercado> getListaSupermercadosFiltrados() {
+	public List<Supermercado> getListaSupermercadosFiltrados()
+	{
 		return listaSupermercadosFiltrados;
 	}
 
-	public void setListaSupermercadosFiltrados(List<Supermercado> listaSupermercadosFiltrados) {
+	public void setListaSupermercadosFiltrados(List<Supermercado> listaSupermercadosFiltrados)
+	{
 		this.listaSupermercadosFiltrados = listaSupermercadosFiltrados;
 	}
 
 	// Responsável em carregar uma lista de dados na tela do cadastro de
 	// supermercados
-	public void carregarPesquisa() {
-		try {
+	public void carregarPesquisa()
+	{
+		try
+		{
 			// fachada.ListarTodosSupermercados();
 			// listaSupermercados = fachada.ListarTodosSupermercados();
 			IFachada fachada = getFachada();
 			listaSupermercados = fachada.listarTodosSupermercados();
-		} catch (Exception ex) {
+		}
+		catch (Exception ex)
+		{
 			FacesUtil.adicionarMsgErro("Erro ao tentar listar os supermercados" + ex.getMessage());
 		}
 	}
 
 	@PostConstruct
-	public void carregarCadastro() {
-		try {
+	public void carregarCadastro()
+	{
+		try
+		{
 			String valor = FacesUtil.getParam("supCod");
 			// int codigo_pessoa = 0;
-			if (valor != null) {
-				//int codigo = Integer.parseInt(valor);
+			if (valor != null)
+			{
+				// int codigo = Integer.parseInt(valor);
 				supermercado = fachada.pesquisarPorCodigo(supermercado);
 			}
-
-		} catch (Exception ex) {
+		}
+		catch (Exception ex)
+		{
 			FacesUtil.adicionarMsgErro("Erro ao tentar listar os usuarios" + ex.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Metodo que faz a localização por supermecado
+	 * 
 	 * @return mapModel
 	 */
-	public MapModel getLocalizacaoSurpermercado(){
-		 mapModel = new DefaultMapModel();
-		 Polyline polyline = new Polyline();
-		 
-		 if(getSupermercadoSelecionado() != null){
-		 Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
-		 Double logitude = Double.parseDouble(getSupermercadoSelecionado().getLogitude());
+	public MapModel getLocalizacaoSurpermercado()
+	{
+		mapModel = new DefaultMapModel();
+		Polyline polyline = new Polyline();
+		if (getSupermercadoSelecionado() != null)
+		{
+			Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
+			Double logitude = Double.parseDouble(getSupermercadoSelecionado().getLogitude());
 			LatLng coord1 = new LatLng(latitude, logitude);
 			polyline.getPaths().add(coord1);
 			polyline.setStrokeColor("green");
 			polyline.setStrokeWeight(5);
 			polyline.setStrokeOpacity(0.7);
-			
-			mapModel.addOverlay(new Marker(coord1, "Supermercado " + getSupermercadoSelecionado().getNome()));	
-		return mapModel;
-		 }
-		 return null;
+			mapModel.addOverlay(new Marker(coord1, "Supermercado " + getSupermercadoSelecionado().getNome()));
+			return mapModel;
+		}
+		return null;
 	}
-
 }

@@ -103,7 +103,7 @@ public class UsuarioMB implements Serializable {
 		try {
 			if (user == null) {
 				System.out.println(usuario.getCpf().length());
-				fachada.CadastrarUsuario(usuario);
+				fachada.cadastrarUsuario(usuario);
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
@@ -150,7 +150,7 @@ public class UsuarioMB implements Serializable {
 		}
 	}
 
-	public void alterar(Usuario usuario) {
+	public void alterar() {
 		{
 		
 			usuario.setEndereco(endereco);

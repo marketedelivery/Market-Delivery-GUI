@@ -1,7 +1,6 @@
 package br.com.marketedelivery.managedBean;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.mail.EmailException;
@@ -13,61 +12,76 @@ import br.com.marketedelivery.util.EmailUtil;
 
 @ViewScoped
 @ManagedBean(name = "alterarSenhaMB")
-public class AlterarSenhaMB extends AbstractMB{
-	
+public class AlterarSenhaMB extends AbstractMB
+{
 	Usuario usuario;
+
 	IFachada fachada;
+
 	EmailUtil emailUtil;
-	public AlterarSenhaMB() {
+
+	public AlterarSenhaMB()
+	{
 		// TODO Auto-generated constructor stub
 		fachada = new Fachada();
-		emailUtil =  new EmailUtil();
+		emailUtil = new EmailUtil();
 	}
-	public Usuario getUsuario() 
+
+	public Usuario getUsuario()
 	{
-		
-		if (usuario == null) {
+		if (usuario == null)
+		{
 			return usuario = new Usuario();
-		} else {
+		} else
+		{
 			return usuario;
 		}
 	}
-	
 
-	public boolean getRecuperarSenha() throws EmailException{
+	public boolean getRecuperarSenha() throws EmailException
+	{
 		Usuario us = new Usuario();
-		try{
-			
+		try
+		{
 			us = fachada.ListarPorCPF(usuario);
-			
-		if(us == null){
-			displayInfoMessageToUser("CPF Invalido!");
-			return false;
-		}
-		String emailRetornado = us.getEmail();
-		if(!emailRetornado.equals(usuario.getEmail())){
-			return false;
-		}else{
-				if(fachada.alteraSenha(us)){
+			if (us == null)
+			{
+				displayInfoMessageToUser("CPF Invalido!");
+				return false;
+			}
+			String emailRetornado = us.getEmail();
+			if (!emailRetornado.equals(usuario.getEmail()))
+			{
+				return false;
+			} else
+			{
+				if (fachada.alteraSenha(us))
+				{
 					emailUtil.enviarEmail(us);
 					return true;
-			    }
-			 }
-		}catch(EmailException e){
+				}
+			}
+		}
+		catch (EmailException e)
+		{
 			displayInfoMessageToUser("email ivalido!" + e.getMessage());
 		}
-			return false;
+		return false;
 	}
-	public void setUsuario(Usuario usuario) {
+
+	public void setUsuario(Usuario usuario)
+	{
 		this.usuario = usuario;
 	}
-		
-	public void enviarSenhaUsuario() throws EmailException{
-		if(getRecuperarSenha() == true){
+
+	public void enviarSenhaUsuario() throws EmailException
+	{
+		if (getRecuperarSenha() == true)
+		{
 			displayInfoMessageToUser("Nova senha enviada para o seu email cadastrado!");
-		}else{
+		} else
+		{
 			displayInfoMessageToUser("email ivalido!");
 		}
 	}
-	
 }

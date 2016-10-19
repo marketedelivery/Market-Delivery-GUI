@@ -6,15 +6,15 @@ import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pagamento;
-//import br.com.marketedelivery.classesBasicas.Perfil;
+// import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
+import br.com.marketedelivery.services.IServices;
 
-public interface IFachada 
+public interface IFachada extends IServices
 {
-
-	public void CadastrarUsuario(Usuario usuario);
+	public void cadastrarUsuario(Usuario usuario);
 
 	public void AtualizarCliente(Usuario usuario);
 
@@ -27,6 +27,9 @@ public interface IFachada
 	public Usuario pesquisarPorCodigo(Usuario usuario);
 
 	public Usuario pesquisarPorEmail(Usuario usuario);
+
+	public Usuario efetuarLogin(Usuario usuario);
+
 	public boolean alteraSenha(Usuario u);
 	// --------------------------------------------- Supermercado
 	// -------------------------------------------------------------------
@@ -59,7 +62,6 @@ public interface IFachada
 
 	// --------------------------------------------- Lista de Compra
 	// -------------------------------------------------------------------
-
 	public void CadastrarLista(ListaDeCompras lista);
 
 	public void AtualizarLista(ListaDeCompras lista);
@@ -67,23 +69,17 @@ public interface IFachada
 	public List<ListaDeCompras> ListarTodasAsListas();
 
 	public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista);
-
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 
-	/*public void CadastrarPerfil(Perfil perfil);
-
-	public void AtualizarPerfil(Perfil perfil);
-
-	public List<Perfil> ListarTodosPerfil();
-
-	public Perfil PesquisarPorCodigo(Perfil perfil);
-
-	public Perfil PesquisarPorNome(Perfil perfil);
-*/
+	/*
+	 * public void CadastrarPerfil(Perfil perfil); public void
+	 * AtualizarPerfil(Perfil perfil); public List<Perfil> ListarTodosPerfil();
+	 * public Perfil PesquisarPorCodigo(Perfil perfil); public Perfil
+	 * PesquisarPorNome(Perfil perfil);
+	 */
 	// --------------------------------------------- Produto
 	// -------------------------------------------------------------------
-
 	public void CadastrarProduto(Produto produto);
 
 	public void AtualizarProduto(Produto produto);
@@ -98,10 +94,9 @@ public interface IFachada
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
-
 	public void CadastrarPagamento(Pagamento pagamento);
 
-	public void AtualizarPAgamento(Pagamento pagamento);
+	public void AtualizarPagamento(Pagamento pagamento);
 
 	public List<Pagamento> ListarTodos();
 
@@ -109,10 +104,9 @@ public interface IFachada
 
 	// --------------------------------------------- Item
 	// -------------------------------------------------------------------
-
 	public void CadastrarItem(Item item);
 
 	public void AtualizarItem(Item item);
 
-	public List<Item> ListarTodosItem();
+	public List<Item> ListarTodosItens();
 }
