@@ -17,7 +17,7 @@
 						droppedProduto.fadeOut('fast');
 					}
 				</script>
-
+				<p:growl id="msgGlobal" sticky="true" />
 				<h:form id="pessoaForm">
 					<p:fieldset id="pdtSupermercado" legend="Produto dos Supermercados">
 						<h:panelGrid columns="4">
@@ -33,9 +33,11 @@
 								actionListener="#{itemMB.listar}" />
 						</h:panelGrid>
 
-						<p:dataTable id="listaProdutoSupermercado" emptyMessage="Nenhum registro encontrado...."
-							value="#{itemMB.todosProdutos}" filteredValue="#{itemMB.produtosFiltrados}" 
-							var="produto" rows="6" paginator="true">
+						<p:dataTable id="listaProdutoSupermercado"
+							emptyMessage="Nenhum registro encontrado...."
+							value="#{itemMB.todosProdutos}"
+							filteredValue="#{itemMB.produtosFiltrados}" var="produto"
+							rows="6" paginator="true">
 
 							<p:column style="width:20px">
 								<h:outputText id="dragIcon" styleClass="ui-icon ui-icon-arrow-4" />
@@ -62,12 +64,13 @@
 						</p:dataTable>
 					</p:fieldset>
 
-					<p:fieldset id="pdtSelecionado" legend="Produtos Selecionados">
+					<p:fieldset id="pdtSelecionado" legend="Produtos Selecionados" >
 						<p:outputPanel id="dropArea">
 							<h:outputText value="Arraste o produto desejado e coloque aqui"
 								rendered="#{empty itemMB.listaProduto}" />
-								
-							<p:dataTable id="produtosSelecionados" var="item" value="#{itemMB.listaItens}"
+
+							<p:dataTable id="produtosSelecionados" var="item"
+								value="#{itemMB.listaItens}"
 								rendered="#{not empty itemMB.listaItens}">
 
 								<p:column headerText="Código">
@@ -83,22 +86,27 @@
 									sortBy="#{item.produto.marca}">
 									<h:outputText value="#{item.produto.marca}" />
 								</p:column>
-								
+
 								<p:column headerText="Quantidade">
-									<p:spinner id="minMax" value="#{item.qtdProduto}" min="0" max="100" >
-										<f:ajax update="produtosSelecionados" process="@this" />
+									<p:spinner id="minMax" value="#{item.qtdProduto}" min="0"
+										max="100" >
+										
 									</p:spinner>
 								</p:column>
 
 								<p:column headerText="Valor Unitario">
 									<h:outputText value="#{item.produto.valorUnitario}" />
 								</p:column>
-								
+
 								<p:column headerText="Valor Total">
-									<h:outputText id="valorTotal" value="#{item.produto.valorUnitario*item.qtdProduto}" />
+									<h:outputText id="valorTotal"
+										value="#{item.produto.valorUnitario*item.qtdProduto}" />
+								
 								</p:column>
+								
 								<f:facet name="footer">
-									<p:commandButton value="Cadastrar Lista" action="#{itemMB.casdastrarLista}"/>
+									<p:commandButton value="Cadastrar Lista"
+										action="#{itemMB.cadastrarLista}" />
 								</f:facet>
 							</p:dataTable>
 						</p:outputPanel>
@@ -108,7 +116,7 @@
 						activeStyleClass="ui-state-highlight"
 						datasource="listaProdutoSupermercado" onDrop="handleDrop">
 						<p:ajax listener="#{itemMB.produtoOnDrop}"
-							update="dropArea listaProdutoSupermercado" />
+							update="dropArea listaProdutoSupermercado" render="produtosSelecionados"/>
 					</p:droppable>
 
 				</h:form>
