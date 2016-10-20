@@ -21,13 +21,15 @@ public class ItemMB
 {
 	private Produto produto;
 	private Item item;
+	
 	private List<Produto> listaProduto;
 	private List<Produto> todosProdutos;
 	private List<Produto> produtosFiltrados;
+	private List<Item>listaItens;
+	
     private IFachada fachada;
     private List<Supermercado>listaTodoSupermercado;
-    private double valorTotal;
-    private int qtd;
+    
 
     
     @PostConstruct
@@ -36,7 +38,23 @@ public class ItemMB
     	listaProduto = new ArrayList<Produto>();
     }
     
-    public void setProduto(Produto produto)
+    
+    public List<Item> getListaItens() 
+    {
+    	if(listaItens == null)
+    	{
+    		listaItens = new ArrayList<Item>();
+    	}
+		return listaItens;
+	}
+
+	public void setListaItens(List<Item> listaItens) {
+		this.listaItens = listaItens;
+	}
+
+
+
+	public void setProduto(Produto produto)
     {
     	this.produto = produto;
     }
@@ -50,15 +68,6 @@ public class ItemMB
 		{
 			return produto;
 		}
-	}
-	
-	public int getQtd() {
-		return qtd;
-	}
-
-	public void setQtd(int qtd) 
-	{
-		this.qtd = qtd;
 	}
 	
 	public Item getItem() 
@@ -101,7 +110,9 @@ public class ItemMB
 	public void produtoOnDrop(DragDropEvent ddEvent)
 	{
 		Produto pdt = ((Produto)ddEvent.getData());
-		listaProduto.add(pdt);
+		Item it = new Item();
+		it.setProduto(pdt);
+		listaItens.add(it);
 	}
 
 	public List<Supermercado> getListaTodoSupermercado() 
@@ -114,21 +125,13 @@ public class ItemMB
 		todosProdutos = getFachada().buscarProdutoPorSupermercado(getProduto().getSupermercado());
 	}
 	
-	public void casdastrarLista()
+	public void adicionarProduto(Produto produto)
 	{
-		List<Produto>listaCadastrar = new ArrayList<Produto>();
-		Produto pdt = new Produto();
-		Item it = getItem();
-		double qtd = getItem().getQtdProduto();
-		double valor =  getItem().getPrecoTotal();
-		
-		System.out.println(qtd);
-		System.out.println(valor);
-		for(int i = -1;i > listaProduto.size();i++)
-		{
-			pdt = listaCadastrar.get(i);
-			
-			
-		}
+		Item it = new Item();
+		it.setProduto(produto);
+		it.setQtdProduto(1);
+		it.setPrecoTotal(produto.getValorUnitario()*it.getQtdProduto());
+		System.out.println(it);
+		listaItens.add(it);
 	}
 }

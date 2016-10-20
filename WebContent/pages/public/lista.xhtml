@@ -67,35 +67,35 @@
 							<h:outputText value="Arraste o produto desejado e coloque aqui"
 								rendered="#{empty itemMB.listaProduto}" />
 								
-							<p:dataTable id="produtosSelecionados" var="produto" value="#{itemMB.listaProduto}"
-								rendered="#{not empty itemMB.listaProduto}">
+							<p:dataTable id="produtosSelecionados" var="item" value="#{itemMB.listaItens}"
+								rendered="#{not empty itemMB.listaItens}">
 
 								<p:column headerText="Código">
-									<h:outputText value="#{produto.codigo}" />
+									<h:outputText value="#{item.produto.codigo}" />
 								</p:column>
 
-								<p:column headerText="Nome" filterBy="#{produto.nome}"
-									sortBy="#{produto.nome}">
-									<h:outputText value="#{produto.nome}" />
+								<p:column headerText="Nome" filterBy="#{item.produto.nome}"
+									sortBy="#{item.produto.nome}">
+									<h:outputText value="#{item.produto.nome}" />
 								</p:column>
 
-								<p:column headerText="Marca" filterBy="#{produto.marca}"
-									sortBy="#{produto.marca}">
-									<h:outputText value="#{produto.marca}" />
+								<p:column headerText="Marca" filterBy="#{item.produto.marca}"
+									sortBy="#{item.produto.marca}">
+									<h:outputText value="#{item.produto.marca}" />
 								</p:column>
 								
 								<p:column headerText="Quantidade">
-									<p:spinner id="minMax" value="#{itemMB.qtd}" min="0" max="100" >
-										<f:ajax update="valorTotal" process="@this" />
+									<p:spinner id="minMax" value="#{item.qtdProduto}" min="0" max="100" >
+										<f:ajax update="produtosSelecionados" process="@this" />
 									</p:spinner>
 								</p:column>
 
 								<p:column headerText="Valor Unitario">
-									<h:outputText value="#{produto.valorUnitario}" />
+									<h:outputText value="#{item.produto.valorUnitario}" />
 								</p:column>
 								
 								<p:column headerText="Valor Total">
-									<h:outputText id="valorTotal" value="#{produto.valorUnitario*itemMB.qtd}" />
+									<h:outputText id="valorTotal" value="#{item.produto.valorUnitario*item.qtdProduto}" />
 								</p:column>
 								<f:facet name="footer">
 									<p:commandButton value="Cadastrar Lista" action="#{itemMB.casdastrarLista}"/>
