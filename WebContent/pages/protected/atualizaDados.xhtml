@@ -5,87 +5,18 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Market e Delivery</title>
-	<h:outputStylesheet library="css" name="estilos.css" />
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRdcsx3EG4n5nexRm9NRCf9hAmUYLEm98" />
-</h:head>
-<h:body>
-	<p:growl id="msgGlobal" sticky="true" />
-	<p:layout fullPage="true">
 
-		<p:layoutUnit header="Sistema para Gerenciamento de Compras"
-			position="north" resizable="false" closable="false"
-			collapsible="false">
-		</p:layoutUnit>
+<ui:composition template="/pages/templates/modeloGeral.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
 
-		<p:layoutUnit position="south"
-			header="Desenvolvido por Market e Delivery " resizable="false"
-			closable="false" collapsible="false">
-		</p:layoutUnit>
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Clientes" />
+				</f:facet>
+			</p:toolbar>
+			<p:panel id="panel">
 
-		<p:layoutUnit position="west" size="250" resizable="false"
-			closable="false" collapsible="false">
-			<h:form>
-				<p:panelMenu>
-					<p:submenu label="Home">
-						<p:menuitem value="Principal"
-							outcome="/pages/public/principal.xhtml?faces-redirect=true" />
-						<p:submenu label="Minha Conta">
-							<p:menuitem target="#{loginMB.entidade}"
-								value="Atualizar Meus Dados" update=":update"
-								oncomplete="PF('usuarioDialog').show()" />
-
-							<p:menuitem value="Minhas Listas"
-								outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
-							<p:menuitem value="Atualiza Dados do Cliente"
-								outcome="/pages/protected/atualizaDados.xhtml?faces-redirect=true" />
-						</p:submenu>
-
-						<p:menuitem value="Sair" action="#{loginMB.sairDoSistema}" />
-
-					</p:submenu>
-					<p:submenu label="Cadastros" rendered="true">
-						<p:menuitem value="Clientes"
-							outcome="/pages/protected/clientePesquisa.xhtml?faces-redirect=true" />
-						<p:menuitem value="Produtos"
-							outcome="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
-						<p:menuitem value="Supermercados"
-							outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true" />
-
-					</p:submenu>
-					<p:submenu label="Compras">
-						<p:menuitem value="Compras e buscas" />
-					</p:submenu>
-					<p:submenu label="Localizar Supermercados">
-						<p:menuitem value="Supermercados"
-							outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true" />
-					</p:submenu>
-				</p:panelMenu>
-
-			</h:form>
-		</p:layoutUnit>
-
-		<p:layoutUnit position="center" resizable="false" closable="false"
-			collapsible="false">
-			<ui:insert name="conteudo" />
-		</p:layoutUnit>
-
-		<!--
-			<p:layoutUnit position="east" size="300" header="Minhas Listas">
-			<ui:insert name="conteudoLadoDireito"/>
-        <h:outputText value="Right unit content." />
-    </p:layoutUnit>
-    -->
-	</p:layout>
-
-	<h:form id="update">
-		<p:dialog header="Alterar Meus Dados Cadastrais"
-			widgetVar="usuarioDialog" modal="true" showEffect="fade"
-			hideEffect="fade" resizable="false" height="500px">
-			<p:outputPanel id="usuarioDetail" style="width:0 auto">
 
 				<p:panelGrid columns="2" border="2" columnClasses="label,value">
 					<p:outputLabel value="Codigo* " />
@@ -204,9 +135,6 @@
 						placeholder="Digite sua Senha" />
 				</p:panelGrid>
 
-				<br></br>
-				<br></br>
-
 				<p:panelGrid columns="2">
 					<f:facet name="footer">
 						<p:commandButton value="Salvar"
@@ -217,8 +145,8 @@
 							oncomplete="PF('usuarioDialog').hide()" icon="ui-icon-close" />
 					</f:facet>
 				</p:panelGrid>
-			</p:outputPanel>
-		</p:dialog>
-	</h:form>
-</h:body>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

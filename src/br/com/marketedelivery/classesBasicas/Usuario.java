@@ -41,7 +41,7 @@ public class Usuario
 	@Fetch(FetchMode.JOIN)
 	private Perfil perfil;
 
-	@Column(name = "Telefone", length = 16)
+	@Column(name = "Telefone", length = 15)
 	private String telefone;
 
 	@Column(name = "Email", length = 30)

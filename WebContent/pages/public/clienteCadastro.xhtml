@@ -23,12 +23,12 @@
 						requiredMessage="Preencha o campo Nome" />
 				
 				Perfil<br />
-					
+
 					<p:selectOneMenu id="perfil" value="#{usuarioMB.usuario.perfil}"
 						style="width:125px">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-						<f:selectItem itemLabel="Usuario" itemValue="Usuario" />	
+						<f:selectItem itemLabel="Usuario" itemValue="Usuario" />
 					</p:selectOneMenu>
 				 
 				CPF<br />
@@ -39,13 +39,15 @@
 				 
 				Telefone<br />
 					<p:inputMask maxlength="11" size="14"
-						value="#{usuarioMB.usuario.telefone}" mask="(99)99999-9999" />
+						value="#{usuarioMB.usuario.telefone}" mask="(99)9999-9999"
+						required="true" requiredMessage="Preencha o campo Telefone" />
 					
 				 
 				Celular/WhatsAPP<br />
 					<p:inputMask maxlength="11" size="14"
 						value="#{usuarioMB.usuario.telefoneWhatsapp}"
-						mask="(99)99999-9999" />
+						mask="(99)99999-9999" required="true"
+						requiredMessage="Preencha o campo Celular" />
 					
 				 
  				Cep<br />
@@ -60,8 +62,8 @@
 					
 				 
                 Número<br />
-					<p:inputMask value="#{usuarioMB.endereco.numero}" required="false"
-						requiredMessage="Preencha o número" maxlength="5" size="8"
+					<p:inputMask value="#{usuarioMB.endereco.numero}" required="true"
+						requiredMessage="Preencha o campo número" maxlength="5" size="8"
 						mask="?99999" />
 					
                  
@@ -81,7 +83,7 @@
 					
                  
                 Estado<br />
-					
+
 					<p:selectOneMenu id="estado" value="#{usuarioMB.endereco.estado}"
 						style="width:125px">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
@@ -94,25 +96,25 @@
 						<f:selectItem itemLabel="DF" itemValue="DF" />
 						<f:selectItem itemLabel="ES" itemValue="ES" />
 						<f:selectItem itemLabel="GO" itemValue="GO" />
-					    <f:selectItem itemLabel="MA" itemValue="MA" />
-					    <f:selectItem itemLabel="MT" itemValue="MT" />
-					    <f:selectItem itemLabel="MS" itemValue="MS" />
-					    <f:selectItem itemLabel="MG" itemValue="MG" />
-					    <f:selectItem itemLabel="PA" itemValue="PA" />
-					    <f:selectItem itemLabel="PB" itemValue="PB" />
-					    <f:selectItem itemLabel="PR" itemValue="PR" />
-					    <f:selectItem itemLabel="PE" itemValue="PE" />
-					    <f:selectItem itemLabel="PI" itemValue="PI" />
-					    <f:selectItem itemLabel="RJ" itemValue="RJ" />
-					    <f:selectItem itemLabel="RN" itemValue="RN" />
-					    <f:selectItem itemLabel="RS" itemValue="RS" />
-					    <f:selectItem itemLabel="RO" itemValue="RO" />
-					    <f:selectItem itemLabel="RR" itemValue="RR" />
-					    <f:selectItem itemLabel="SC" itemValue="SC" />
-					    <f:selectItem itemLabel="SP" itemValue="SP" />
-					    <f:selectItem itemLabel="SE" itemValue="SE" />
-					    <f:selectItem itemLabel="TO" itemValue="TO" />
-										
+						<f:selectItem itemLabel="MA" itemValue="MA" />
+						<f:selectItem itemLabel="MT" itemValue="MT" />
+						<f:selectItem itemLabel="MS" itemValue="MS" />
+						<f:selectItem itemLabel="MG" itemValue="MG" />
+						<f:selectItem itemLabel="PA" itemValue="PA" />
+						<f:selectItem itemLabel="PB" itemValue="PB" />
+						<f:selectItem itemLabel="PR" itemValue="PR" />
+						<f:selectItem itemLabel="PE" itemValue="PE" />
+						<f:selectItem itemLabel="PI" itemValue="PI" />
+						<f:selectItem itemLabel="RJ" itemValue="RJ" />
+						<f:selectItem itemLabel="RN" itemValue="RN" />
+						<f:selectItem itemLabel="RS" itemValue="RS" />
+						<f:selectItem itemLabel="RO" itemValue="RO" />
+						<f:selectItem itemLabel="RR" itemValue="RR" />
+						<f:selectItem itemLabel="SC" itemValue="SC" />
+						<f:selectItem itemLabel="SP" itemValue="SP" />
+						<f:selectItem itemLabel="SE" itemValue="SE" />
+						<f:selectItem itemLabel="TO" itemValue="TO" />
+
 					</p:selectOneMenu>
 
 
@@ -121,7 +123,7 @@
 							<h:outputText value="Insira seus dados de Usuário" />
 						</f:facet>
 					</p:toolbar>
-					
+
 				</h:panelGrid>
 				<h:panelGrid>
 				 Digite seu E-mail<br />
@@ -137,14 +139,16 @@
 					<p:password id="ConfirmaSenha" required="true"
 						requiredMessage="Preencha o campo Confirmar senha" />
 					<br />
-					
+
 				</h:panelGrid>
 				<h:panelGrid columns="3">
-					<p:commandButton value="Salvar" action="#{usuarioMB.salvar}"
-						ajax="false" icon="ui-icon-check" validateClient="true" />
+					<p:commandButton id="id1" value="Salvar"
+						action="#{usuarioMB.salvar}" icon="ui-icon-check"
+						validateClient="true" ajax="false"/>
+
 					<p:commandButton process="@this" value="Voltar"
 						update="pnlCadCliDados"
-						action="/pages/public/login.xhtml?faces-redirect=true" />
+						action="/pages/public/tlLogin.xhtml?faces-redirect=true" />
 
 				</h:panelGrid>
 			</p:panel>

@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
 import br.com.marketedelivery.DAO.FacesUtil;
@@ -104,7 +107,11 @@ public class UsuarioMB implements Serializable {
 			if (user == null) {
 				System.out.println(usuario.getCpf().length());
 				fachada.cadastrarUsuario(usuario);
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
+				 FacesContext.getCurrentInstance().addMessage(null, new
+				 FacesMessage("Cadastro realizado com Sucesso"));
+			//	FacesContext.getCurrentInstance().getExternalContext().redirect(/* url que vc quer*/);
+				FacesContext.getCurrentInstance().getExternalContext()
+						.redirect("/pages/protected/atualizaDados.xhtml?faces-redirect=true");
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
 				return;
@@ -117,14 +124,8 @@ public class UsuarioMB implements Serializable {
 			System.out.println(e.getMessage());
 		}
 	}
-	// public void listarUsuario()
-	// {
-	// IFachada fachada = getFachada();
-	// listar = fachada.ListarTodosUsuarios();
-	// }
 
-	// Responsï¿½vel em carregar uma lista de dados na tela do cadastro de
-	// usuarios
+	
 	public void carregarPesquisa() {
 		try {
 			// fachada.ListarTodosUsuarios();
@@ -152,10 +153,10 @@ public class UsuarioMB implements Serializable {
 
 	public void alterar() {
 		{
-		
+
 			usuario.setEndereco(endereco);
 			fachada = getFachada();
-		//	Usuario user = fachada.ListarPorCPF(usuario);
+			// Usuario user = fachada.ListarPorCPF(usuario);
 			try {
 
 				System.out.println(usuario.getCpf().length());

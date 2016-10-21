@@ -89,7 +89,7 @@ public class LoginMB extends AbstractMB implements Serializable
 	public String getLogOut()
 	{
 		getRequest().getSession().invalidate();
-		return "/pages/public/login.xhtml?faces-redirect=true";
+		return "/pages/public/tlLogin.xhtml?faces-redirect=true";
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class LoginMB extends AbstractMB implements Serializable
 				FacesContext context = FacesContext.getCurrentInstance();
 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 				request.getSession().setAttribute("usuario", user);
-				return "/pages/protected/produtoPesquisa.xhtml?faces-redirect=true";
+				return "/pages/protected/minhasListas.xhtml?faces-redirect=true";
 			} else if (usuario.getEmail().equals(email) && usuario.getSenha() != senha)
 			{
 				menssagem = "Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente";
@@ -141,7 +141,7 @@ public class LoginMB extends AbstractMB implements Serializable
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
-		return "/pages/public/login.xhtml?faces-redirect=true";
+		return "/pages/public/tlLogin.xhtml?faces-redirect=true";
 	}
 
 //	public String getFilmesEmCartaz()
