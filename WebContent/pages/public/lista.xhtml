@@ -45,7 +45,7 @@
 						<p:dataTable id="listaProdutoSupermercado"
 							emptyMessage="Nenhum registro encontrado...."
 							value="#{itemMB.todosProdutos}"
-							filteredValue="#{itemMB.produtosFiltrados}" var="it"
+							filteredValue="#{itemMB.produtosFiltrados}" var="produto"
 							rows="6" paginator="true">
 
 							<p:column style="width:20px">
@@ -54,26 +54,26 @@
 							</p:column>
 
 							<p:column headerText="Código">
-								<h:outputText value="#{it.produto.codigo}" />
+								<h:outputText value="#{produto.codigo}" />
 							</p:column>
 
-							<p:column headerText="Nome" filterBy="#{it.produto.nome}"
-								sortBy="#{it.produto.nome}">
-								<h:outputText value="#{it.produto.nome}" />
+							<p:column headerText="Nome" filterBy="#{produto.nome}"
+								sortBy="#{produto.nome}">
+								<h:outputText value="#{produto.nome}" />
 							</p:column>
 
-							<p:column headerText="Marca" filterBy="#{it.produto.marca}"
-								sortBy="#{it.produto.marca}">
-								<h:outputText value="#{it.produto.marca}" />
+							<p:column headerText="Marca" filterBy="#{produto.marca}"
+								sortBy="#{produto.marca}">
+								<h:outputText value="#{produto.marca}" />
 							</p:column>
 
 							<p:column headerText="Valor Unitario">
-								<h:outputText value="#{it.produto.valorUnitario}" />
+								<h:outputText value="#{produto.valorUnitario}" />
 							</p:column>
 							
 							<p:column headerText="Ação">
 									<p:commandButton var = "item" value=" Adicionar" 
-									actionListener="#{itemMB.adicionar(it)}"
+									actionListener="#{itemMB.adicionar(produto)}"
 									update=":form:listaForm:pdtSelecionado"/>
 								</p:column>
 						</p:dataTable>
