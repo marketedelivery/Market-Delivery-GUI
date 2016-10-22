@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<ui:composition template="/pages/templates/modeloGeralBusca.xhtml">
+<ui:composition template="/pages/templates/modeloGeral.xhtml">
 	<ui:define name="conteudo">
 		<h:form id="form">
 			<p:toolbar>
@@ -18,17 +18,10 @@
 
 			<h:panelGrid columns="6" id="pgUsuario" columnClasses="label,value">
 
-				<p:outputLabel value="Codigo: " />
-				<p:inputText value="#{loginMB.usuarioLogado.codigo}" readonly="true"
-					size="5" />
-
-				<p:outputLabel value="Nome* " />
-				<p:inputText id="Nome" readonly="true" size="45"
+				<p:outputLabel value="Olá... " />
+				<h:inputText id="Nome" readonly="true" size="45" disabled="true"
 					value="#{loginMB.usuarioLogado.nome}" />
 
-				<p:outputLabel value="CPF* " />
-				<p:inputMask size="14" readonly="true" mask="999.999.999-99"
-					value="#{loginMB.usuarioLogado.cpf}" />
 			</h:panelGrid>
 			<h3 style="margin-top: 0"></h3>
 			<p:separator />
@@ -40,7 +33,7 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo"
-						action="/pages/protected/produtoCadastro.xhtml?faces-redirect=true" />
+						action="/pages/public/lista.xhtml?faces-redirect=true" />
 				</f:facet>
 
 				<p:column headerText="Nome" filterBy="#{produto.nome}"

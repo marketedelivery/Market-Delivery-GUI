@@ -1,53 +1,95 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Market e Delivery</title>
+	<h:outputStylesheet library="css" name="estilos.css" />
+</h:head>
+<h:body>
+	<p:growl id="msgGlobal" sticky="true" />
+	<p:layout fullPage="true">
 
-<ui:composition template="/pages/templates/modeloGeral.xhtml">
-	<ui:define name="conteudo">
-		<h:outputText>adicionar o conteudo do site aqui</h:outputText>
+		<p:layoutUnit header="Sistema para Gerenciamento de Compras"
+			position="north" resizable="false" closable="false"
+			collapsible="false">
+		</p:layoutUnit>
 
+		<p:layoutUnit position="south"
+			header="Desenvolvido por Market e Delivery " resizable="false"
+			closable="false" collapsible="false">
+		</p:layoutUnit>
 
-		<div id="topMessage" align="left">
-			<p:toolbar>
-				<f:facet name="left">
-					<h:outputText value="Login de usuario" />
-				</f:facet>
-			</p:toolbar>
-
-			<h:form align-center="center">
-				<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-
-
-				<p:messages id="messages" />
+		<p:layoutUnit position="west" size="280" resizable="false"
+			closable="false" collapsible="false">
+			<h:form>
+				<p:growl id="msg" showDetail="true" />
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
-					Email
+				   Email
 					<p:inputText id="email" value="#{loginMB.usuario.email}"
-						required="true" label="username">
+						required="true" label="username"
+						requiredMessage="Preencha o campo Email" />
+					<!-- 
 						<f:validator validatorId="custom.emailValidator" />
-					</p:inputText>
-
-					Senha
+						 -->
+					
+				   Senha
 					<p:password id="senha" value="#{loginMB.usuario.senha}"
-						required="true" label="password" />
-					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}" />
+						required="true" requiredMessage="Preencha o campo Senha"
+						label="password" />
+						
+					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}"
+						ajax="false" validateClient="true" />
+
+					<p:commandButton value="Esqueceu a senha?" type="button"
+						onclick="PF('recuperaSenha').show();" />
 					<f:facet name="footer">
-					</f:facet>
-					<f:facet name="footer">
-						<p:link value=" Cadastre-se " update="growl"
-							outcome="/pages/public/clienteCadastro" />
 					</f:facet>
 				</h:panelGrid>
-
 			</h:form>
 
-		</div>
-	</ui:define>
-</ui:composition>
+			<f:facet name="footer">
+			</f:facet>
+			<f:facet name="footer">
+				<p:link value=" Cadastre-se " update="growl"
+					outcome="/pages/public/clienteCadastro.xhtml?faces-redirect=true" />
+			</f:facet>
+		</p:layoutUnit>
 
+		<p:layoutUnit position="center" resizable="false" closable="false"
+			collapsible="false">
+			<h:graphicImage
+				value="http://institucional.netsabe.com.br/uploads/1454591466222-32352-ca48b2e3cfaebe0a"
+				width="1015px" height="515px">
+			</h:graphicImage>
+			<ui:insert name="conteudo" />
+		</p:layoutUnit>
+	</p:layout>
+
+	<p:dialog header="Recupera Senha" widgetVar="recuperaSenha"
+		showEffect="explode" hideEffect="bounce" height="100">
+		<h:form id="formDialog">
+			<p:growl id="msg2" sticky="true" />
+			<h:panelGrid captionClass="2" cellpadding="5">
+				<h:outputText value="Digite seu CPF: " />
+				<p:inputMask maxlength="11" size="14"
+					value="#{alterarSenhaMB.usuario.cpf}" mask="999.999.999-99"
+					required="true" requiredMessage="Preencha o CPF" />
+				<h:outputText value="Digite seu email de Usuario: " />
+				<p:inputText id="email" value="#{alterarSenhaMB.usuario.email}"
+					required="true" label="email do Usuario " style="width: 250px">
+					<f:validator validatorId="custom.emailValidator">
+					</f:validator>
+				</p:inputText>
+				<p:commandButton update="msg2" value=" enviar"
+					action="#{alterarSenhaMB.enviarSenhaUsuario}">
+				</p:commandButton>
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
 </html>
