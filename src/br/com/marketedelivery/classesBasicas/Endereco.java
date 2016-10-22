@@ -1,5 +1,7 @@
 package br.com.marketedelivery.classesBasicas;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,8 +13,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Endereco")
-public class Endereco
+public class Endereco implements Serializable
 {
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name="codigo")
 	int codigo;

@@ -35,8 +35,8 @@ public class Supermercado implements Serializable {
 	private List<Produto> produtos;
 	@Column(name = "latitude")
 	private String latitude;
-	@Column(name = "Logitude")
-	private String Logitude;
+	@Column(name = "longitude")
+	private String longitude;
 		
 	public String getLatitude() {
 		return latitude;
@@ -44,11 +44,12 @@ public class Supermercado implements Serializable {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public String getLogitude() {
-		return Logitude;
+	public String getLongitude() {
+		return longitude;
 	}
-	public void setLogitude(String logitude) {
-		Logitude = logitude;
+	
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 	@Override
 	public String toString() {

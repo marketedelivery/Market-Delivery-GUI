@@ -102,12 +102,42 @@ public class ItemMB {
 		todosProdutos = getFachada().buscarProdutoPorSupermercado(getProduto().getSupermercado());
 	}
 
-	public void adicionarProduto(Produto produto) {
+	public void adicionarProduto(Produto produto)
+	{
 		Item it = new Item();
 		it.setProduto(produto);
 		it.setQtdProduto(1);
 		it.setPrecoTotal(produto.getValorUnitario() * it.getQtdProduto());
 		System.out.println(it);
 		listaItens.add(it);
+	}
+	
+	public void adicionar(Produto produto)
+	{
+		Item it = new Item();
+		it.setProduto(produto);
+		it.setQtdProduto(1);
+		it.setPrecoTotal(it.getQtdProduto()*it.getProduto().getValorUnitario());
+		listaItens.add(it);
+		System.out.println(listaItens.size());
+		System.out.println(it);
+		
+	}
+	
+	public void remover(Item item)
+	{
+		int posicao = -1;
+		for(int i=0;i<listaItens.size() && posicao <0 ;i++)
+		{
+			Item it = listaItens.get(i);
+			if(item.getProduto().equals(it.getProduto()))
+			{
+				listaItens.remove(i);
+				System.out.println(listaItens.size());
+			}else
+			{
+				return;
+			}
+		}
 	}
 }

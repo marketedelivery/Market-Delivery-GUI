@@ -1,5 +1,7 @@
 package br.com.marketedelivery.classesBasicas;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_produto")
-public class Produto {
+public class Produto implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public String toString() {
 		return "Produto [nome=" + nome + ",marca=" + marca + ", qtdEstoque=" + qtdEstoque + ", valorUnitario=" + valorUnitario + ", supermercado="

@@ -106,7 +106,7 @@ public class SupermercadoMB implements Serializable
 		this.listaSupermercadosFiltrados = listaSupermercadosFiltrados;
 	}
 
-	// Responsável em carregar uma lista de dados na tela do cadastro de
+	// Responsï¿½vel em carregar uma lista de dados na tela do cadastro de
 	// supermercados
 	public void carregarPesquisa()
 	{
@@ -143,7 +143,7 @@ public class SupermercadoMB implements Serializable
 	}
 
 	/**
-	 * Metodo que faz a localização por supermecado
+	 * Metodo que faz a localizaï¿½ï¿½o por supermecado
 	 * 
 	 * @return mapModel
 	 */
@@ -154,8 +154,8 @@ public class SupermercadoMB implements Serializable
 		if (getSupermercadoSelecionado() != null)
 		{
 			Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
-			Double logitude = Double.parseDouble(getSupermercadoSelecionado().getLogitude());
-			LatLng coord1 = new LatLng(latitude, logitude);
+			Double longitude = Double.parseDouble(getSupermercadoSelecionado().getLongitude());
+			LatLng coord1 = new LatLng(latitude, longitude);
 			polyline.getPaths().add(coord1);
 			polyline.setStrokeColor("green");
 			polyline.setStrokeWeight(5);
