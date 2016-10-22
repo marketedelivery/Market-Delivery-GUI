@@ -89,7 +89,7 @@ public class LoginMB extends AbstractMB implements Serializable
 	public String getLogOut()
 	{
 		getRequest().getSession().invalidate();
-		return "/pages/public/tlLogin.xhtml?faces-redirect=true";
+		return "/pages/public/login.xhtml?faces-redirect=true";
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class LoginMB extends AbstractMB implements Serializable
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
-		return "/pages/public/tlLogin.xhtml?faces-redirect=true";
+		return "/pages/public/login.xhtml?faces-redirect=true";
 	}
 
 //	public String getFilmesEmCartaz()

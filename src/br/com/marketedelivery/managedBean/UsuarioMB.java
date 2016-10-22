@@ -111,7 +111,7 @@ public class UsuarioMB implements Serializable {
 				 FacesMessage("Cadastro realizado com Sucesso"));
 			//	FacesContext.getCurrentInstance().getExternalContext().redirect(/* url que vc quer*/);
 				FacesContext.getCurrentInstance().getExternalContext()
-						.redirect("/pages/protected/atualizaDados.xhtml?faces-redirect=true");
+						.redirect("/pages/public/login.xhtml?faces-redirect=true");
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
 				return;
