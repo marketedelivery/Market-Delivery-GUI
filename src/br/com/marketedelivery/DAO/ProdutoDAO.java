@@ -21,7 +21,7 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
     public ProdutoDAO( EntityManager em)
     {
         super(em);
-        this.bd01Manager = em;
+        this.setBd01Manager(em);
         this.bd02Manager = em;
     }
     public Produto buscarPorNome(String nome)
@@ -74,4 +74,10 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
 
         }
     }
+	public EntityManager getBd01Manager() {
+		return bd01Manager;
+	}
+	public void setBd01Manager(EntityManager bd01Manager) {
+		this.bd01Manager = bd01Manager;
+	}
 }

@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.ViewHandler;
+import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIViewRoot;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import br.com.marketedelivery.DAO.FacesUtil;
@@ -103,15 +102,30 @@ public class UsuarioMB implements Serializable {
 		usuario.setEndereco(endereco);
 		fachada = getFachada();
 		Usuario user = fachada.ListarPorCPF(usuario);
+
 		try {
 			if (user == null) {
 				System.out.println(usuario.getCpf().length());
 				fachada.cadastrarUsuario(usuario);
-				 FacesContext.getCurrentInstance().addMessage(null, new
-				 FacesMessage("Cadastro realizado com Sucesso"));
-			//	FacesContext.getCurrentInstance().getExternalContext().redirect(/* url que vc quer*/);
-				FacesContext.getCurrentInstance().getExternalContext()
-						.redirect("/pages/public/login.xhtml?faces-redirect=true");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
+
+				// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
+				// url que vc quer*/);
+
+				FacesContext fc = FacesContext.getCurrentInstance();
+
+				ExternalContext ec = fc.getExternalContext();
+
+				/* Manter a mensagem após o redirect */
+				ec.getFlash().setKeepMessages(true);
+				NavigationHandler nh = fc.getApplication().getNavigationHandler();
+				nh.handleNavigation(fc, null, "/pages/public/login.xhtml?faces-redirect=true");
+				/* Manter a mensagem após o ec.redirect */
+				// ec.getFlash().setKeepMessages(true);
+				//
+				// ec.redirect(ec.getRequestContextPath()+"/pages/protected/minhasListas.xhtml?faces-redirect=true");
+				// FacesContext.getCurrentInstance().getExternalContext()
+				// .redirect("/pages/public/login.xhtml?faces-redirect=true");
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
 				return;
@@ -125,7 +139,6 @@ public class UsuarioMB implements Serializable {
 		}
 	}
 
-	
 	public void carregarPesquisa() {
 		try {
 			// fachada.ListarTodosUsuarios();
@@ -170,18 +183,5 @@ public class UsuarioMB implements Serializable {
 			}
 		}
 	}
-	// {
-	// try
-	// {
-	// fachada = getFachada();
-	// fachada.AtualizarCliente(usuario);
-	// FacesContext.getCurrentInstance().addMessage(null,
-	// new FacesMessage("Seus dados foram atualizados com sucesso"));
-	// }
-	// catch (Exception e)
-	// {
-	// FacesUtil.adicionarMsgErro("Erro ao tentar atualizar o usuario" +
-	// e.getMessage());
-	// }
-	// }
+
 }
