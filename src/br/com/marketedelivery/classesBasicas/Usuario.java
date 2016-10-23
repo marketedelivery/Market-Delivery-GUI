@@ -1,5 +1,7 @@
 package br.com.marketedelivery.classesBasicas;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +19,11 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "tb_usuario")
-public class Usuario
+public class Usuario implements Serializable
 {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "codigo")

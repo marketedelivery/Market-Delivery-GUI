@@ -17,10 +17,19 @@
 						droppedProduto.fadeOut('fast');
 					}
 				</script>
+				<h:panelGrid columns="2">
+				</h:panelGrid>
 				<p:growl id="msgGlobal" sticky="true" />
-				<h:form id="pessoaForm">
+				<h:form id="listaForm">
 					<p:fieldset id="pdtSupermercado" legend="Produto dos Supermercados">
-						<h:panelGrid columns="4">
+						<h:panelGrid columns="2">
+							<p:outputLabel value ="Nome da lista"/>
+							<p:inputText values="#{itemMB.item.lista.nome}"  size="20" maxlength="20"
+							placeholder="Nome da lista"
+							required="true" requiredMessage="Olá usuário, atribua um nome para sua lista" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2">
 							<p:selectOneMenu value="#{itemMB.produto.supermercado}"
 								converter="supermercadoConverter">
 								<f:selectItem noSelectionOption="true"
@@ -61,6 +70,12 @@
 							<p:column headerText="Valor Unitario">
 								<h:outputText value="#{produto.valorUnitario}" />
 							</p:column>
+							
+							<p:column headerText="Ação">
+									<p:commandButton var = "item" value=" Adicionar" 
+									actionListener="#{itemMB.adicionar(produto)}"
+									update=":form:listaForm:pdtSelecionado"/>
+								</p:column>
 						</p:dataTable>
 					</p:fieldset>
 
@@ -90,7 +105,7 @@
 								<p:column headerText="Quantidade">
 									<p:spinner id="minMax" value="#{item.qtdProduto}" min="0"
 										max="100" >
-										
+										<p:ajax update="valorTotal" process="@this"/>
 									</p:spinner>
 								</p:column>
 
@@ -104,6 +119,11 @@
 								
 								</p:column>
 								
+								<p:column headerText="Ação">
+									<p:commandButton var = "item" value="remover" 
+									actionListener="#{itemMB.remover(item)}"
+									update=":form:listaForm:pdtSelecionado"/>
+								</p:column>
 								<f:facet name="footer">
 									<p:commandButton value="Cadastrar Lista"
 										action="#{itemMB.cadastrarLista}" />

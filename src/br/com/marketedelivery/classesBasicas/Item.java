@@ -1,17 +1,24 @@
 package br.com.marketedelivery.classesBasicas;
 
 
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_item")
-public class Item {
+public class Item implements Serializable 
+{
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
@@ -23,42 +30,60 @@ public class Item {
 	private Double precoTotal;
 	@Column(name = "qtdProduto",length=12)
 	private int qtdProduto;
+	@ManyToOne(cascade=CascadeType.ALL)
+	private ListaDeCompras lista;
 	
-		
-	public Item(int codigo, Double precoTotal, int qtdProduto,Produto produto) {
+	public Item() 
+	{
+		super();
+	}
+
+	public Item(int codigo,Produto produto, Double precoTotal, int qtdProduto, ListaDeCompras lista) {
 		super();
 		this.codigo = codigo;
 		this.produto = produto;
 		this.precoTotal = precoTotal;
 		this.qtdProduto = qtdProduto;
+		this.lista = lista;
 	}
-	
-	public Item() {
-		super();
-	}
-	
+
 	public int getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+
 	public Produto getProduto() {
 		return produto;
 	}
+
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+
 	public Double getPrecoTotal() {
 		return precoTotal;
 	}
+
 	public void setPrecoTotal(Double precoTotal) {
 		this.precoTotal = precoTotal;
 	}
+
 	public int getQtdProduto() {
 		return qtdProduto;
 	}
+
 	public void setQtdProduto(int qtdProduto) {
 		this.qtdProduto = qtdProduto;
-	} 
+	}
+
+	public ListaDeCompras getLista() {
+		return lista;
+	}
+
+	public void setLista(ListaDeCompras lista) {
+		this.lista = lista;
+	}
 }
