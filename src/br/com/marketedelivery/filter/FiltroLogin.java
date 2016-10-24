@@ -51,4 +51,14 @@ public class FiltroLogin extends AbstractFilter implements Filter{
 		
 	}
 
+	public String getLOGIN_ACTION_URI() {
+		return LOGIN_ACTION_URI;
+	}
+
+	public void setLOGIN_ACTION_URI(String lOGIN_ACTION_URI) {
+		LOGIN_ACTION_URI = lOGIN_ACTION_URI;
+	}
+	
+	
+
 }

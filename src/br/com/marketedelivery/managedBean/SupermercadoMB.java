@@ -165,4 +165,31 @@ public class SupermercadoMB implements Serializable
 		}
 		return null;
 	}
+
+	public Supermercado getSupermercado() {
+		return supermercado;
+	}
+
+	public void setSupermercado(Supermercado supermercado) {
+		this.supermercado = supermercado;
+	}
+
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
+	}
+
+	public List<Supermercado> getListaSupermercados() {
+		return listaSupermercados;
+	}
+
+	public void setListaSupermercados(List<Supermercado> listaSupermercados) {
+		this.listaSupermercados = listaSupermercados;
+	}
+
+	
+
 }
