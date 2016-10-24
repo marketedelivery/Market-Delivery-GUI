@@ -105,7 +105,7 @@ public class UsuarioMB implements Serializable {
 		Usuario user = fachada.ListarPorCPF(usuario);
 		try {
 			if (user == null) {
-				System.out.println(usuario.getCpf().length());
+			//	System.out.println(usuario.getCpf().length());
 				fachada.cadastrarUsuario(usuario);
 				 FacesContext.getCurrentInstance().addMessage(null, new
 				 FacesMessage("Cadastro realizado com Sucesso"));

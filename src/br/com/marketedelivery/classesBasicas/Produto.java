@@ -16,11 +16,6 @@ public class Produto implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-	@Override
-	public String toString() {
-		return "Produto [nome=" + nome + ",marca=" + marca + ", qtdEstoque=" + qtdEstoque + ", valorUnitario=" + valorUnitario + ", supermercado="
-				+ supermercado + "]";
-	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	@Column(name = "codigo")
@@ -36,32 +31,18 @@ public class Produto implements Serializable{
 	@ManyToOne
 	private Supermercado supermercado;
 	
-	public Produto(String nome, String marca, Double valorUnitario) {
-		super();
-		
-		this.nome = nome;
-		this.marca = marca;
-		
-		this.valorUnitario = valorUnitario;
-	}
-	public Produto(String nome, String marca, Double valorUnitario,int qtdEstoque, Supermercado supermercado) {
-		super();
-		
-		this.nome = nome;
-		this.marca = marca;
-		this.qtdEstoque = qtdEstoque;
-		this.valorUnitario = valorUnitario;
-		this.supermercado = supermercado;
-	}
-	public Produto(int codigo, String nome, String marca, Double valorUnitario,
-			int qtdEstoque) {
+	
+	public Produto(int codigo, String nome, String marca, int qtdEstoque, Double valorUnitario,
+			Supermercado supermercado) {
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.marca = marca;
 		this.qtdEstoque = qtdEstoque;
 		this.valorUnitario = valorUnitario;
+		this.supermercado = supermercado;
 	}
+
 	public Produto() {
 		super();
 	}
@@ -103,5 +84,45 @@ public class Produto implements Serializable{
 		this.supermercado = supermercado;
 	}
 	
-			
+	@Override
+	public String toString() {
+		return "Produto [codigo=" + codigo + ", nome=" + nome + ", marca=" + marca + ", qtdEstoque=" + qtdEstoque
+				+ ", valorUnitario=" + valorUnitario + ", supermercado=" + supermercado + "]";
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (codigo != other.codigo)
+			return false;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (qtdEstoque != other.qtdEstoque)
+			return false;
+		if (supermercado == null) {
+			if (other.supermercado != null)
+				return false;
+		} else if (!supermercado.equals(other.supermercado))
+			return false;
+		if (valorUnitario == null) {
+			if (other.valorUnitario != null)
+				return false;
+		} else if (!valorUnitario.equals(other.valorUnitario))
+			return false;
+		return true;
+	}		
 }

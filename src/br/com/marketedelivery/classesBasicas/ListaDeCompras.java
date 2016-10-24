@@ -37,8 +37,10 @@ public class ListaDeCompras implements Serializable
 	private Usuario usuario;
 	
 	
-	public ListaDeCompras() {
+	public ListaDeCompras() 
+	{
 		super();
+		
 	}
 
 
@@ -112,6 +114,13 @@ public class ListaDeCompras implements Serializable
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "ListaDeCompras [codigo=" + codigo + ", nome=" + nome + ", dataCriacao=" + dataCriacao + ", tipo=" + tipo
+				+ ", qtd=" + qtd + ", usuario=" + usuario + "]";
+	}
+
 	
 }

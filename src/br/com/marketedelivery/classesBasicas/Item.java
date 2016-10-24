@@ -36,6 +36,7 @@ public class Item implements Serializable
 	public Item() 
 	{
 		super();
+		lista = new ListaDeCompras();
 	}
 
 	public Item(int codigo,Produto produto, Double precoTotal, int qtdProduto, ListaDeCompras lista) {

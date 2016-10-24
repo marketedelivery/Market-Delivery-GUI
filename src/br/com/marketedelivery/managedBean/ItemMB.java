@@ -1,25 +1,31 @@
 package br.com.marketedelivery.managedBean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.event.DragDropEvent;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Item;
+import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
+
 @ManagedBean
 @ViewScoped
-public class ItemMB {
+public class ItemMB 
+{
 	private Produto produto;
 	private Item item;
+	private ListaDeCompras listaCompras;
 
 	private List<Produto> listaProduto;
 	private List<Produto> todosProdutos;
@@ -34,7 +40,25 @@ public class ItemMB {
 		listaProduto = new ArrayList<Produto>();
 	}
 
-	public List<Item> getListaItens() {
+	public ListaDeCompras getListaCompras() 
+	{
+		if(listaCompras == null)
+		{
+			return listaCompras = new ListaDeCompras(); 
+		}
+		else
+		{
+			return listaCompras;
+		}
+	}
+
+	public void setListaCompras(ListaDeCompras listaCompras) {
+		this.listaCompras = listaCompras;
+	}
+
+
+	public List<Item> getListaItens() 
+	{
 		if (listaItens == null) {
 			listaItens = new ArrayList<Item>();
 		}
@@ -57,13 +81,15 @@ public class ItemMB {
 		}
 	}
 
-	public Item getItem() {
-		if (item == null) {
-			item = new Item();
-		} else {
+	public Item getItem() 
+	{
+		if (item == null) 
+		{
+			return item = new Item();
+		} else 
+		{
 			return item;
 		}
-		return item;
 	}
 
 	public List<Produto> getListaProduto() {
@@ -86,12 +112,12 @@ public class ItemMB {
 		return produtosFiltrados;
 	}
 
-	public void produtoOnDrop(DragDropEvent ddEvent) {
-		Produto pdt = ((Produto) ddEvent.getData());
-		Item it = new Item();
-		it.setProduto(pdt);
-		listaItens.add(it);
-	}
+//	public void produtoOnDrop(DragDropEvent ddEvent) {
+//		Produto pdt = ((Produto) ddEvent.getData());
+//		Item it = new Item();
+//		it.setProduto(pdt);
+//		listaItens.add(it);
+//	}
 
 	public List<Supermercado> getListaTodoSupermercado() {
 		listaTodoSupermercado = getFachada().listarTodosSupermercados();
@@ -114,11 +140,31 @@ public class ItemMB {
 	
 	public void adicionar(Produto produto)
 	{
+		int podutoPosicao = -1;
+		for (int i = 0;i <listaItens.size() && podutoPosicao <0;i++)
+		{
+			Item itTemp = listaItens.get(i);
+			if(itTemp.getProduto().equals(produto))
+			{
+				podutoPosicao = i;
+			}
+		}
 		Item it = new Item();
 		it.setProduto(produto);
-		it.setQtdProduto(1);
-		it.setPrecoTotal(it.getQtdProduto()*it.getProduto().getValorUnitario());
-		listaItens.add(it);
+		
+		if(podutoPosicao < 0)
+		{
+			it.setQtdProduto(1);
+			it.setPrecoTotal(it.getQtdProduto()*it.getProduto().getValorUnitario());
+			listaItens.add(it);
+		}else 
+		{
+			Item temp = listaItens.get(podutoPosicao);
+			it.setQtdProduto(temp.getQtdProduto()+1);
+			it.setPrecoTotal(produto.getValorUnitario() * it.getQtdProduto() );
+			listaItens.set(podutoPosicao, it); // substitui o valor q ja esta na lista
+		}
+		
 		System.out.println(listaItens.size());
 		System.out.println(it);
 		
@@ -139,5 +185,22 @@ public class ItemMB {
 				return;
 			}
 		}
+	}
+	
+	public void criarLista(Item item)
+	{
+		LoginMB lg = new LoginMB();
+		System.out.println(lg.getUsuarioLogado());
+		ListaDeCompras lista = new ListaDeCompras();
+		lista.setDataCriacao(new Date());
+		lista.setNome(item.getLista().getNome());
+		lista.setQtd(listaItens.size());
+		lista.setTipo(item.getLista().getTipo());
+		//lista.setUsuario(usuario);
+		System.out.println(lista);
+	}
+	public void cadastrar(Item item) 
+	{
+		criarLista(item);
 	}
 }
