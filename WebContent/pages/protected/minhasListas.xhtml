@@ -18,17 +18,16 @@
 
 			<h:panelGrid columns="6" id="pgUsuario" columnClasses="label,value">
 
-				<p:outputLabel value="Olá... " />
-				<h:inputText id="Nome" readonly="true" size="45" disabled="true"
-					value="#{loginMB.usuarioLogado.nome}" />
+				<p:outputLabel value="Olá,Seja Bem Vindo " />
+				<p:outputLabel value="#{loginMB.usuarioLogado.nome}" />
 
 			</h:panelGrid>
 			<h3 style="margin-top: 0"></h3>
 			<p:separator />
 
 			<p:dataTable emptyMessage="Nenhum registro encontrado...."
-				value="#{produtoMB.todosProdutos}"
-				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
+				value="#{listaMB.listarTodos}"
+				filteredValue="#{listaMB.listaFiltrados}" var="lista"
 				rows="6" paginator="true">
 
 				<f:facet name="footer">
@@ -36,14 +35,17 @@
 						action="/pages/public/lista.xhtml?faces-redirect=true" />
 				</f:facet>
 
-				<p:column headerText="Nome" filterBy="#{produto.nome}"
-					sortBy="#{produto.nome}">
-					<h:outputText value="#{produto.nome}" />
+				<p:column headerText="Nome" filterBy="#{lista.nome}"
+					sortBy="#{lista.nome}">
+					<h:outputText value="#{lista.nome}" />
+				</p:column>
+				
+				<p:column headerText="Tipo">
+					<h:outputText value="#{lista.tipo}" />
 				</p:column>
 
-				<p:column headerText="Tipo" filterBy="#{produto.marca}"
-					sortBy="#{produto.marca}">
-					<h:outputText value="#{produto.marca}" />
+				<p:column headerText="Lista Criada">
+					<h:outputText value="#{lista.dataCriacao}" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
