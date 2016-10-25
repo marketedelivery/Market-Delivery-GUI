@@ -181,4 +181,13 @@ public class Usuario implements Serializable
 	{
 		this.telefonewhatsapp = telefonewhatsapp;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco
+				+ ", telefonewhatsapp=" + telefonewhatsapp + ", perfil=" + perfil + ", telefone=" + telefone
+				+ ", email=" + email + ", senha=" + senha + "]";
+	}
+	
+	
 }

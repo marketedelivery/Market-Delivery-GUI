@@ -1,7 +1,5 @@
 package br.com.marketedelivery.managedBean;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,9 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-
-import org.hibernate.mapping.Map;
+import javax.servlet.http.HttpSession;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
@@ -27,6 +23,8 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 @ViewScoped
 public class ItemMB 
 {
+	
+	
 	private Produto produto;
 	private Item item;
 	private ListaDeCompras listaCompras;
@@ -207,30 +205,28 @@ public class ItemMB
 	
 	public void criarLista()
 	{
-		FacesContext fc = FacesContext.getCurrentInstance();
-		java.util.Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-		String codigo =  params.get("usuario"); 
-		System.out.println(codigo);
-		
-		LoginMB lg = new LoginMB();
-		System.out.println(getUsuario());
-		
+		Usuario temp = new Usuario();
+		temp.setCodigo(LoginMB.codigoUsuario);
+		Usuario user = getFachada().pesquisarPorCodigo(temp);
 		ListaDeCompras lista = getListaCompras();
+		
 		lista.setDataCriacao(new Date());
-		
 		lista.setNome(getListaCompras().getNome());
-		System.out.println(lista.getNome());
-		
 		lista.setQtd(listaItens.size());
-		System.out.println(lista.getQtd());
-		
 		lista.setTipo(getListaCompras().getTipo());
-		System.out.println(lista.getTipo());
-		//lista.setUsuario(usuario);
+		lista.setUsuario(user);
 		
-	}
-	public void cadastrar(Item item) 
-	{
-		criarLista();
+		for(int i = 0; i < listaItens.size();i++)
+		{
+			Item it = listaItens.get(i);
+			Item itTemp = new  Item();
+			itTemp.setLista(lista);
+			itTemp.setProduto(it.getProduto());
+			it.setQtdProduto(listaItens.size());
+			itTemp.setPrecoTotal(1000.00);
+			getFachada().CadastrarItem(itTemp);
+		}
+		
+		getFachada().CadastrarItem(item);
 	}
 }

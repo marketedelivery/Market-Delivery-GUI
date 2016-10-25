@@ -21,7 +21,7 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 public class LoginMB extends AbstractMB implements Serializable
 {
 	Usuario usuarioMB;
-
+	public static int codigoUsuario;
 	private static final long serialVersionUID = 1L;
 
 	Usuario usuario;
@@ -105,15 +105,14 @@ public class LoginMB extends AbstractMB implements Serializable
 
 	public String efetuarLogin()
 	{
-		ItemMB it = new ItemMB();
 		Usuario user = new Usuario();
 		user = getFachada().pesquisarPorEmail(usuario);
-		it.setUsuario(user);
 		try
 		{
 			
 			String email = user.getEmail();
 			String senha = user.getSenha();
+			codigoUsuario = user.getCodigo();
 			if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
 			{
 				this.usuarioLogado = user;
@@ -122,7 +121,7 @@ public class LoginMB extends AbstractMB implements Serializable
 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 				request.getSession().setAttribute("usuario", user);
 				return "/pages/protected/minhasListas.xhtml?faces-redirect=true";
-				
+			
 				
 			} else if (usuario.getEmail().equals(email) && usuario.getSenha() != senha)
 			{
@@ -164,11 +163,6 @@ public class LoginMB extends AbstractMB implements Serializable
 		return usuarioLogado;
 	}
 	
-	public void retornoUsuarioLodaro(Usuario usuario)
-	{
-		ItemMB it = new ItemMB();
-		it.setUsuario(usuario);
-	}
 
 	/**
 	 * @param usuarioLogado the usuarioLogado to set
