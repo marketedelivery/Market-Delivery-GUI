@@ -164,24 +164,22 @@ public class UsuarioMB implements Serializable {
 		}
 	}
 
-	public void alterar() {
+	public void alterar(Usuario usuario) {
 		{
-
-			usuario.setEndereco(endereco);
 			fachada = getFachada();
-			// Usuario user = fachada.ListarPorCPF(usuario);
+			Usuario u = fachada.ListarPorCPF(usuario);
 			try {
-
-				System.out.println(usuario.getCpf().length());
-				fachada.AtualizarCliente(usuario);
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Alteração realizada com Sucesso"));
-
+				if(u != null)
+				{
+					u = usuario;
+					fachada.AtualizarCliente(usuario);
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Alteração realizada com Sucesso"));
+				}
 			} catch (Exception e) {
 				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage("Erro ao Atualizar, tente novamente mais tarde"));
+						new FacesMessage("Erro ao Atualizar"));
 				System.out.println(e.getMessage());
 			}
 		}
 	}
-
 }

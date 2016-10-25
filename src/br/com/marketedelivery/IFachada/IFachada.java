@@ -10,9 +10,8 @@ import br.com.marketedelivery.classesBasicas.Pagamento;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
-import br.com.marketedelivery.services.IServices;
 
-public interface IFachada extends IServices
+public interface IFachada
 {
 	public void cadastrarUsuario(Usuario usuario);
 

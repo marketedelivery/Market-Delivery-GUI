@@ -34,7 +34,7 @@
 						<p:menuitem value="Principal"
 							outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
 						<p:submenu label="Minha Conta">
-							<p:menuitem target="#{loginMB.entidade}"
+							<p:menuitem target="#{usuarioMB.usuario}"
 								value="Atualizar Meus Dados" update=":update"
 								oncomplete="PF('usuarioDialog').show()" />
 
@@ -211,7 +211,7 @@
 					<f:facet name="footer">
 						<p:commandButton value="Salvar"
 							oncomplete="PF('usuarioDialog').hide()" icon="ui-icon-pencil"
-							actionListener="#{usuarioMB.alterar}" /> &nbsp;&nbsp;
+							actionListener="#{usuarioMB.alterar(usuario)}" /> &nbsp;&nbsp;
 
 						<p:commandButton value="Cancelar" immediate="true"
 							oncomplete="PF('usuarioDialog').hide()" icon="ui-icon-close" />
