@@ -9,7 +9,10 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.mapping.Map;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
@@ -17,6 +20,7 @@ import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
+import br.com.marketedelivery.classesBasicas.Usuario;
 
 
 @ManagedBean
@@ -26,6 +30,7 @@ public class ItemMB
 	private Produto produto;
 	private Item item;
 	private ListaDeCompras listaCompras;
+	private Usuario usuario;
 
 	private List<Produto> listaProduto;
 	private List<Produto> todosProdutos;
@@ -39,6 +44,19 @@ public class ItemMB
 	public void init() {
 		listaProduto = new ArrayList<Produto>();
 	}
+	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
 
 	public ListaDeCompras getListaCompras() 
 	{
@@ -187,20 +205,32 @@ public class ItemMB
 		}
 	}
 	
-	public void criarLista(Item item)
+	public void criarLista()
 	{
+		FacesContext fc = FacesContext.getCurrentInstance();
+		java.util.Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+		String codigo =  params.get("usuario"); 
+		System.out.println(codigo);
+		
 		LoginMB lg = new LoginMB();
-		System.out.println(lg.getUsuarioLogado());
-		ListaDeCompras lista = new ListaDeCompras();
+		System.out.println(getUsuario());
+		
+		ListaDeCompras lista = getListaCompras();
 		lista.setDataCriacao(new Date());
-		lista.setNome(item.getLista().getNome());
+		
+		lista.setNome(getListaCompras().getNome());
+		System.out.println(lista.getNome());
+		
 		lista.setQtd(listaItens.size());
-		lista.setTipo(item.getLista().getTipo());
+		System.out.println(lista.getQtd());
+		
+		lista.setTipo(getListaCompras().getTipo());
+		System.out.println(lista.getTipo());
 		//lista.setUsuario(usuario);
-		System.out.println(lista);
+		
 	}
 	public void cadastrar(Item item) 
 	{
-		criarLista(item);
+		criarLista();
 	}
 }

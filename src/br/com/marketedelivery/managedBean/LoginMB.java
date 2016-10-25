@@ -105,10 +105,13 @@ public class LoginMB extends AbstractMB implements Serializable
 
 	public String efetuarLogin()
 	{
+		ItemMB it = new ItemMB();
 		Usuario user = new Usuario();
 		user = getFachada().pesquisarPorEmail(usuario);
+		it.setUsuario(user);
 		try
 		{
+			
 			String email = user.getEmail();
 			String senha = user.getSenha();
 			if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha))
@@ -119,6 +122,8 @@ public class LoginMB extends AbstractMB implements Serializable
 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 				request.getSession().setAttribute("usuario", user);
 				return "/pages/protected/minhasListas.xhtml?faces-redirect=true";
+				
+				
 			} else if (usuario.getEmail().equals(email) && usuario.getSenha() != senha)
 			{
 				menssagem = "Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente";
@@ -129,7 +134,7 @@ public class LoginMB extends AbstractMB implements Serializable
 		}
 		catch (Exception e)
 		{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email não cadastrado"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email nï¿½o cadastrado"));
 			e.printStackTrace();
 			return null;
 		}
@@ -157,6 +162,12 @@ public class LoginMB extends AbstractMB implements Serializable
 	public Usuario getUsuarioLogado()
 	{
 		return usuarioLogado;
+	}
+	
+	public void retornoUsuarioLodaro(Usuario usuario)
+	{
+		ItemMB it = new ItemMB();
+		it.setUsuario(usuario);
 	}
 
 	/**

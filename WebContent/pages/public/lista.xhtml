@@ -21,18 +21,18 @@
 				</h:panelGrid>
 				<p:growl id="msgGlobal" sticky="true" />
 				<h:form id="listaForm">
+					<f:param name="usuario" value="#{loginMB.usuarioLogado.codigo}"/>
 					<p:fieldset id="pdtSupermercado" legend="Produto dos Supermercados">
 						<h:panelGrid columns="3">
 							<p:outputLabel value ="Nome da lista"/>
-							<p:inputText values="#{itemMB.item.lista.nome}"  size="20" maxlength="20"
-							placeholder="Nome da lista"
+							<h:inputText values="#{itemMB.listaCompras.nome}" 
 							required="true" requiredMessage="Olá usuário, atribua um nome para sua lista" />
 							
-							<p:selectOneMenu id="tipo" value="#{itemMB.item.lista.tipo}">
+							<p:selectOneMenu id="tipo" value="#{itemMB.listaCompras.tipo}">
 								<f:selectItem noSelectionOption= "true" itemLabel="Tipo da Lista" itemValue="-1"/>
 								<f:selectItem itemLabel= "mensal"  itemValue="mensal" />
-								<f:selectItem itemLabel= "semanal"  itemValue="#{semanal}" />
-								<f:selectItem itemLabel= "quinzenal" itemValue="#{quinzenal}" />
+								<f:selectItem itemLabel= "semanal"  itemValue="semanal" />
+								<f:selectItem itemLabel= "quinzenal" itemValue="quinzenal" />
 							</p:selectOneMenu>
 						</h:panelGrid>
 		
