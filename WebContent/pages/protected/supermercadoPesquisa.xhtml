@@ -28,15 +28,6 @@
 				filteredValue="#{supermercadoMB.listaSupermercadosFiltrados}"
 				var="supermercado" rows="6" paginator="true">
 
-				<f:facet name="footer">
-					<p:commandButton value="Novo"
-						action="/pages/protected/supermercadoCadastro.xhtml?faces-redirect=true" />
-				</f:facet>
-
-				<p:column headerText="Código" style="width: 5%">
-					<h:outputText value="#{supermercado.codigo}" />
-				</p:column>
-
 				<p:column headerText="Nome" filterBy="#{supermercado.nome}"
 					sortBy="#{supermercado.nome}">
 					<h:outputText value="#{supermercado.nome}" />
