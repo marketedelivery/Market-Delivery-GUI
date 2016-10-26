@@ -2,6 +2,8 @@ package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -18,6 +20,7 @@ import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Estado;
 import br.com.marketedelivery.classesBasicas.Usuario;
+import br.com.marketedelivery.util.ValidarEmail;
 
 @RequestScoped
 @ViewScoped
@@ -28,7 +31,7 @@ public class UsuarioMB implements Serializable {
 	private Usuario usuario;
 
 	private Endereco endereco;
-
+	
 	private IFachada fachada;
 
 	private List<Usuario> listar;
@@ -102,13 +105,18 @@ public class UsuarioMB implements Serializable {
 		usuario.setEndereco(endereco);
 		fachada = getFachada();
 		Usuario user = fachada.ListarPorCPF(usuario);
-
+		ValidarEmail validar = new ValidarEmail();
 		try {
 			if (user == null) {
-			//	System.out.println(usuario.getCpf().length());
-				fachada.cadastrarUsuario(usuario);
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
+			//	System.out.println(usuario.getCpf().length())
+				
+				if(validar.emailValido(usuario.getEmail()) != false )
+				{
+					fachada.cadastrarUsuario(usuario);
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
 
+				}
+				
 				// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
 				// url que vc quer*/);
 
