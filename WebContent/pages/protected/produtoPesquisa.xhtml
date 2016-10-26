@@ -31,15 +31,6 @@
        		</p:selectOneMenu>
 								
 				<p:commandButton  update="tabela" value="Buscar"  ajax="false" actionListener="#{produtoMB.listar}" />
-
-
-				<h:outputLabel for="menu" value="Supermercado:" />
-				<p:selectCheckboxMenu id="menu"
-					value="#{produtoMB.todosSupermercados}" label="Selecione" filter="true"
-					filterMatchMode="startsWith" panelStyle="width:250px">
-					<f:selectItems value="#{supermercadoMB.listarTodosSupermercados}" />
-				</p:selectCheckboxMenu>
-				<p:commandLink value="Submit" />
 			</h:panelGrid>
 
 			<p:dataTable emptyMessage="Nenhum registro encontrado...." value = "#{produtoMB.todosProdutos}"
