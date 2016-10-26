@@ -9,8 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-//import com.sun.jersey.api.client.Client;
-//import com.sun.jersey.api.client.WebResource;
+// import com.sun.jersey.api.client.Client;
+// import com.sun.jersey.api.client.WebResource;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
@@ -21,7 +21,9 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 public class LoginMB extends AbstractMB implements Serializable
 {
 	Usuario usuarioMB;
+
 	public static int codigoUsuario;
+
 	private static final long serialVersionUID = 1L;
 
 	Usuario usuario;
@@ -80,9 +82,6 @@ public class LoginMB extends AbstractMB implements Serializable
 		return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 	}
 
-	public void inserirUsuario(Usuario us)
-	{}
-
 	/**
 	 * Efetua logout do usu�rio do sistema
 	 */
@@ -109,7 +108,6 @@ public class LoginMB extends AbstractMB implements Serializable
 		user = getFachada().pesquisarPorEmail(usuario);
 		try
 		{
-			
 			String email = user.getEmail();
 			String senha = user.getSenha();
 			codigoUsuario = user.getCodigo();
@@ -121,8 +119,6 @@ public class LoginMB extends AbstractMB implements Serializable
 				HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
 				request.getSession().setAttribute("usuario", user);
 				return "/pages/protected/minhasListas.xhtml?faces-redirect=true";
-			
-				
 			} else if (usuario.getEmail().equals(email) && usuario.getSenha() != senha)
 			{
 				menssagem = "Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente";
@@ -148,13 +144,6 @@ public class LoginMB extends AbstractMB implements Serializable
 		return "/pages/public/login.xhtml?faces-redirect=true";
 	}
 
-//	public String getFilmesEmCartaz()
-//	{
-//		Client c = Client.create();
-//		WebResource wr = c.resource("http://localhost:8080/WebServiceRest/rest/service/cadastrarUsuario");
-//		return wr.get(String.class);
-//	}
-
 	/**
 	 * @return the usuarioLogado
 	 */
@@ -162,10 +151,10 @@ public class LoginMB extends AbstractMB implements Serializable
 	{
 		return usuarioLogado;
 	}
-	
 
 	/**
-	 * @param usuarioLogado the usuarioLogado to set
+	 * @param usuarioLogado
+	 *            the usuarioLogado to set
 	 */
 	public void setUsuarioLogado(Usuario usuarioLogado)
 	{

@@ -11,29 +11,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tb_produto")
-public class Produto implements Serializable{
-	
+@Table(name = "tb_produto")
+public class Produto implements Serializable
+{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "codigo")
 	private int codigo;
-	@Column(name = "nome",length=12)
+
+	@Column(name = "nome", length = 100)
 	private String nome;
-	@Column(name = "marca",length=12)
+
+	@Column(name = "marca", length = 50)
 	private String marca;
-	@Column(name = "qtdEstoque",length=12)
+
+	@Column(name = "qtdEstoque", length = 12)
 	private int qtdEstoque;
-	@Column(name = "valorUnitario",length=12)
+
+	@Column(name = "valorUnitario", length = 12)
 	private Double valorUnitario;
+
 	@ManyToOne
 	private Supermercado supermercado;
-	
-	
+
 	public Produto(int codigo, String nome, String marca, int qtdEstoque, Double valorUnitario,
-			Supermercado supermercado) {
+			Supermercado supermercado)
+	{
 		super();
 		this.codigo = codigo;
 		this.nome = nome;
@@ -43,86 +48,103 @@ public class Produto implements Serializable{
 		this.supermercado = supermercado;
 	}
 
-	public Produto() {
+	public Produto()
+	{
 		super();
 	}
-	
-	public int getCodigo() {
+
+	public int getCodigo()
+	{
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+
+	public void setCodigo(int codigo)
+	{
 		this.codigo = codigo;
 	}
-	public String getNome() {
+
+	public String getNome()
+	{
 		return nome;
 	}
-	public void setNome(String nome) {
+
+	public void setNome(String nome)
+	{
 		this.nome = nome;
 	}
-	public String getMarca() {
+
+	public String getMarca()
+	{
 		return marca;
 	}
-	public void setMarca(String marca) {
+
+	public void setMarca(String marca)
+	{
 		this.marca = marca;
 	}
-	public int getQtdEstoque() {
+
+	public int getQtdEstoque()
+	{
 		return qtdEstoque;
 	}
-	public void setQtdEstoque(int qtdEstoque) {
+
+	public void setQtdEstoque(int qtdEstoque)
+	{
 		this.qtdEstoque = qtdEstoque;
 	}
-	public Double getValorUnitario() {
+
+	public Double getValorUnitario()
+	{
 		return valorUnitario;
 	}
-	public void setValorUnitario(Double valorUnitario) {
+
+	public void setValorUnitario(Double valorUnitario)
+	{
 		this.valorUnitario = valorUnitario;
 	}
-	public Supermercado getSupermercado() {
+
+	public Supermercado getSupermercado()
+	{
 		return supermercado;
 	}
-	public void setSupermercado(Supermercado supermercado) {
+
+	public void setSupermercado(Supermercado supermercado)
+	{
 		this.supermercado = supermercado;
 	}
-	
+
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "Produto [codigo=" + codigo + ", nome=" + nome + ", marca=" + marca + ", qtdEstoque=" + qtdEstoque
 				+ ", valorUnitario=" + valorUnitario + ", supermercado=" + supermercado + "]";
 	}
-	
+
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
 		Produto other = (Produto) obj;
-		if (codigo != other.codigo)
-			return false;
-		if (marca == null) {
-			if (other.marca != null)
-				return false;
-		} else if (!marca.equals(other.marca))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (qtdEstoque != other.qtdEstoque)
-			return false;
-		if (supermercado == null) {
-			if (other.supermercado != null)
-				return false;
-		} else if (!supermercado.equals(other.supermercado))
-			return false;
-		if (valorUnitario == null) {
-			if (other.valorUnitario != null)
-				return false;
-		} else if (!valorUnitario.equals(other.valorUnitario))
-			return false;
+		if (codigo != other.codigo) return false;
+		if (marca == null)
+		{
+			if (other.marca != null) return false;
+		} else if (!marca.equals(other.marca)) return false;
+		if (nome == null)
+		{
+			if (other.nome != null) return false;
+		} else if (!nome.equals(other.nome)) return false;
+		if (qtdEstoque != other.qtdEstoque) return false;
+		if (supermercado == null)
+		{
+			if (other.supermercado != null) return false;
+		} else if (!supermercado.equals(other.supermercado)) return false;
+		if (valorUnitario == null)
+		{
+			if (other.valorUnitario != null) return false;
+		} else if (!valorUnitario.equals(other.valorUnitario)) return false;
 		return true;
-	}		
+	}
 }

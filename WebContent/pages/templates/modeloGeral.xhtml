@@ -72,13 +72,6 @@
 			collapsible="false">
 			<ui:insert name="conteudo" />
 		</p:layoutUnit>
-
-		<!--
-			<p:layoutUnit position="east" size="300" header="Minhas Listas">
-			<ui:insert name="conteudoLadoDireito"/>
-        <h:outputText value="Right unit content." />
-    </p:layoutUnit>
-    -->
 	</p:layout>
 
 	<h:form id="update">
@@ -86,14 +79,6 @@
 			widgetVar="usuarioDialog" modal="true" showEffect="fade"
 			hideEffect="fade" resizable="false" height="500px">
 			<p:outputPanel id="usuarioDetail" style="width:0 auto">
-
-				<p:panelGrid columns="2" border="2" columnClasses="label,value">
-					<p:outputLabel value="Codigo* " />
-					<p:inputText readonly="true" disabled="true"
-						value="#{loginMB.usuarioLogado.codigo}" />
-				</p:panelGrid>
-
-				<br></br>
 
 				<p:panelGrid columns="2" border="2" cellspacing="4" id="pgUsuario"
 					columnClasses="label,value">
@@ -108,7 +93,7 @@
 					<p:outputLabel value="CPF* " />
 					<p:inputMask size="14" maxlength="14" required="true"
 						requiredMessage="O campo CPF não foi preenchido"
-						mask="999.999.999-99"
+						mask="999.999.999-99" readonly="true" disabled="true"
 						converterMessage="Preencha apenas com números"
 						value="#{loginMB.usuarioLogado.cpf}"
 						placeholder="Preencha seu CPF" />
@@ -118,7 +103,7 @@
 
 				<p:panelGrid columns="2" border="4" cellspacing="4">
 					<p:outputLabel value="Telefone* " />
-					<p:inputMask maxlength="16" required="true" mask="(99) 9 9999-9999"
+					<p:inputMask maxlength="16" required="true" mask="(99) 9999-9999"
 						requiredMessage="O campo numero de telefone não foi preenchido"
 						converterMessage="Preencha apenas com números"
 						value="#{loginMB.usuarioLogado.telefone}" placeholder="Telefone" />
@@ -211,7 +196,8 @@
 					<f:facet name="footer">
 						<p:commandButton value="Salvar"
 							oncomplete="PF('usuarioDialog').hide()" icon="ui-icon-pencil"
-							actionListener="#{usuarioMB.alterar(usuario)}" /> &nbsp;&nbsp;
+							actionListener="#{usuarioMB.alterar(usuario)}"
+							validateClient="true" /> &nbsp;&nbsp;
 
 						<p:commandButton value="Cancelar" immediate="true"
 							oncomplete="PF('usuarioDialog').hide()" icon="ui-icon-close" />
@@ -220,5 +206,6 @@
 			</p:outputPanel>
 		</p:dialog>
 	</h:form>
+	<p:growl autoUpdate="true" />
 </h:body>
 </html>
