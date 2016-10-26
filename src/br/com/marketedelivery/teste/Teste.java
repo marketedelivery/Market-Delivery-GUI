@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import br.com.marketedelivery.util.ValidarCpf;
 import br.com.marketedelivery.util.ValidarEmail;
 
 public class Teste 
@@ -20,9 +21,13 @@ public class Teste
 //        et.commit();
 //		em.close();
 //		emf.close();
+//		String cpf= "12345678974";
+//		ValidarCpf validar = new ValidarCpf();
+//		System.out.println(cpf);
+//		System.out.println(validar.validarCpf(cpf));
 		
-		String email = "melquizedek.jc@gmail.com";
-		ValidarEmail tE = new ValidarEmail();
-		System.out.println(tE.emailValido(email));
+		String email = "melquizedek@.com.br";
+		System.out.println(ValidarEmail.emailValido(email));
+		System.out.println(ValidarEmail.isEmailValid(email));
         }	
 }

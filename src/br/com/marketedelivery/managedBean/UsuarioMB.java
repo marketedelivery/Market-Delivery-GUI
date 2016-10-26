@@ -2,8 +2,6 @@ package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -20,6 +18,7 @@ import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Estado;
 import br.com.marketedelivery.classesBasicas.Usuario;
+import br.com.marketedelivery.util.ValidarCpf;
 import br.com.marketedelivery.util.ValidarEmail;
 
 @RequestScoped
@@ -29,17 +28,12 @@ public class UsuarioMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Usuario usuario;
-
 	private Endereco endereco;
-	
 	private IFachada fachada;
-
 	private List<Usuario> listar;
-
 	private List<Usuario> listaUsuarios;
-
 	private List<Usuario> listaUsuariosFiltrados;
-
+	ValidarCpf validarCPF = new ValidarCpf();
 	public Endereco getEndereco() {
 		if (endereco == null) {
 			endereco = new Endereco();
@@ -105,39 +99,46 @@ public class UsuarioMB implements Serializable {
 		usuario.setEndereco(endereco);
 		fachada = getFachada();
 		Usuario user = fachada.ListarPorCPF(usuario);
-		ValidarEmail validar = new ValidarEmail();
+		
 		try {
-			if (user == null) {
-			//	System.out.println(usuario.getCpf().length())
-				
-				if(validar.emailValido(usuario.getEmail()) != false )
-				{
+			if(validarCPF.validarCpf(usuario.getCpf())!= true && ValidarEmail.emailValido(usuario.getEmail()) != true && user == null)
+			{	
 					fachada.cadastrarUsuario(usuario);
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
-
-				}
 				
-				// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
-				// url que vc quer*/);
+					// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
+					// url que vc quer*/);
 
-				FacesContext fc = FacesContext.getCurrentInstance();
+					FacesContext fc = FacesContext.getCurrentInstance();
+					ExternalContext ec = fc.getExternalContext();
 
-				ExternalContext ec = fc.getExternalContext();
-
-				/* Manter a mensagem após o redirect */
-				ec.getFlash().setKeepMessages(true);
-				NavigationHandler nh = fc.getApplication().getNavigationHandler();
-				nh.handleNavigation(fc, null, "/pages/public/login.xhtml?faces-redirect=true");
-				/* Manter a mensagem após o ec.redirect */
-				// ec.getFlash().setKeepMessages(true);
-				//
-				// ec.redirect(ec.getRequestContextPath()+"/pages/protected/minhasListas.xhtml?faces-redirect=true");
-				// FacesContext.getCurrentInstance().getExternalContext()
-				// .redirect("/pages/public/login.xhtml?faces-redirect=true");
-			} else {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
-				return;
-			}
+					/* Manter a mensagem após o redirect */
+					ec.getFlash().setKeepMessages(true);
+					NavigationHandler nh = fc.getApplication().getNavigationHandler();
+					nh.handleNavigation(fc, null, "/pages/public/login.xhtml?faces-redirect=true");
+					/* Manter a mensagem após o ec.redirect */
+					// ec.getFlash().setKeepMessages(true);
+					//
+					// ec.redirect(ec.getRequestContextPath()+"/pages/protected/minhasListas.xhtml?faces-redirect=true");
+					// FacesContext.getCurrentInstance().getExternalContext()
+					// .redirect("/pages/public/login.xhtml?faces-redirect=true");
+				
+			}else
+				if(user != null)
+				{
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
+					return;
+				}
+			 else 
+			 	if (validarCPF.validarCpf(usuario.getCpf())== false)
+			 	{
+			 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf Invalido!"));
+					return;
+			 	}
+			 	else if(ValidarEmail.emailValido(usuario.getEmail())== false)
+			 	{
+			 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse e-mail Invalido!"));
+					return;
+			 	}
 			usuario = new Usuario();
 			endereco = new Endereco();
 		} catch (Exception e) {
