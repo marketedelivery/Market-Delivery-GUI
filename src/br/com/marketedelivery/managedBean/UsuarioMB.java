@@ -18,6 +18,8 @@ import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Estado;
 import br.com.marketedelivery.classesBasicas.Usuario;
+import br.com.marketedelivery.util.ValidarCpf;
+import br.com.marketedelivery.util.ValidarEmail;
 
 @RequestScoped
 @ViewScoped
@@ -37,6 +39,8 @@ public class UsuarioMB implements Serializable
 	private List<Usuario> listaUsuarios;
 
 	private List<Usuario> listaUsuariosFiltrados;
+
+	ValidarCpf validarCPF = new ValidarCpf();
 
 	public Endereco getEndereco()
 	{
@@ -122,11 +126,10 @@ public class UsuarioMB implements Serializable
 		Usuario user = fachada.ListarPorCPF(usuario);
 		try
 		{
-			if (user == null)
+			if (validarCPF.validarCpf(usuario.getCpf()) != true && ValidarEmail.emailValido(usuario.getEmail()) != true
+					&& user == null)
 			{
-				// System.out.println(usuario.getCpf().length());
 				fachada.cadastrarUsuario(usuario);
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cadastro realizado com Sucesso"));
 				// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
 				// url que vc quer*/);
 				FacesContext fc = FacesContext.getCurrentInstance();
@@ -141,9 +144,17 @@ public class UsuarioMB implements Serializable
 				// ec.redirect(ec.getRequestContextPath()+"/pages/protected/minhasListas.xhtml?faces-redirect=true");
 				// FacesContext.getCurrentInstance().getExternalContext()
 				// .redirect("/pages/public/login.xhtml?faces-redirect=true");
-			} else
+			} else if (user != null)
 			{
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf já possui cadastro!"));
+				return;
+			} else if (validarCPF.validarCpf(usuario.getCpf()) == false)
+			{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf Invalido!"));
+				return;
+			} else if (ValidarEmail.emailValido(usuario.getEmail()) == false)
+			{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse e-mail Invalido!"));
 				return;
 			}
 			usuario = new Usuario();

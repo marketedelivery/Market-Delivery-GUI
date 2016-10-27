@@ -17,15 +17,6 @@
 			</p:toolbar>
 			<p:panel id="panel">
 
-
-				<p:panelGrid columns="2" border="2" columnClasses="label,value">
-					<p:outputLabel value="Codigo* " />
-					<p:inputText readonly="true" disabled="true"
-						value="#{loginMB.usuarioLogado.codigo}" />
-				</p:panelGrid>
-
-				<br></br>
-
 				<p:panelGrid columns="2" border="2" cellspacing="4" id="pgUsuario"
 					columnClasses="label,value">
 
@@ -37,10 +28,12 @@
 						placeholder="Digite aqui seu nome" />
 
 					<p:outputLabel value="CPF* " />
+					
 					<p:inputMask size="14" maxlength="14" required="true"
 						requiredMessage="O campo CPF não foi preenchido"
 						mask="999.999.999-99"
 						converterMessage="Preencha apenas com números"
+						disabled="true"
 						value="#{loginMB.usuarioLogado.cpf}"
 						placeholder="Preencha seu CPF" />
 				</p:panelGrid>

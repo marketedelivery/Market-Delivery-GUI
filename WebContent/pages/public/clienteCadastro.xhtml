@@ -36,7 +36,7 @@
 				CPF<br />
 					<p:inputMask maxlength="11" size="14"
 						value="#{usuarioMB.usuario.cpf}" mask="999.999.999-99"
-						required="true" requiredMessage="Preencha o CPF" />
+						required="true" requiredMessage="Preencha o campo CPF" />
 					
 				 
 				Telefone<br />
@@ -54,13 +54,13 @@
 				 
  				Cep<br />
 					<p:inputMask value="#{usuarioMB.endereco.cep}" required="true"
-						requiredMessage="Preencha o Cep" maxlength="8" size="10"
+						requiredMessage="Preencha o campo Cep" maxlength="8" size="10"
 						mask="99999-999" />
 				
                  
                 Logradouro<br />
 					<p:inputText value="#{usuarioMB.endereco.logradouro}" size="50"
-						required="false" requiredMessage="Preencha o logradouro" />
+						required="false" requiredMessage="Preencha o campo logradouro" />
 					
 				 
                 Número<br />
@@ -71,17 +71,17 @@
                  
                 Complemento<br />
 					<p:inputText value="#{usuarioMB.endereco.complemento}"
-						required="false" requiredMessage="Preencha o complemento" />
+						required="false" requiredMessage="Preencha o campo complemento" />
 					
                  
                 Bairro<br />
 					<p:inputText id="bairro" value="#{usuarioMB.endereco.bairro}"
-						required="true" label="bairro" requiredMessage="Preencha o Bairro" />
+						required="true" label="bairro" requiredMessage="Preencha o campo Bairro" />
 					
                  
 				Cidade<br />
 					<p:inputText value="#{usuarioMB.endereco.cidade}" required="true"
-						requiredMessage="Preencha a cidade" />
+						requiredMessage="Preencha o campo cidade" />
 					
                  
                 Estado<br />
@@ -130,6 +130,7 @@
 				<h:panelGrid>
 				 Digite seu E-mail<br />
 					<p:inputText id="email" value="#{usuarioMB.usuario.email}"
+					
 						required="true" requiredMessage="Preencha o campo email" />
 					
 				Digite sua Senha<br />
