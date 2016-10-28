@@ -31,7 +31,7 @@ public class ListaDeCompras implements Serializable
 	private Date dataCriacao;
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo;
-	@Column(name = "qtd_itens",length=12)
+	@Column(name = "qtdItens",length=12)
 	private int qtd;
 	@ManyToOne
 	private Usuario usuario;

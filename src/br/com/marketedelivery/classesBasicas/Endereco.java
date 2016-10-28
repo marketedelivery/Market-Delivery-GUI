@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Endereco")
+@Table(name="tb_endereco")
 public class Endereco implements Serializable
 {
 	

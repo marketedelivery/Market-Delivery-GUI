@@ -39,8 +39,8 @@ public class Usuario implements Serializable
 	@Fetch(FetchMode.JOIN)
 	private Endereco endereco;
 
-	@Column(name = "telefone_whatsapp", length = 16)
-	private String telefonewhatsapp;
+	@Column(name = "telefoneWhatsapp", length = 16)
+	private String telefoneWhatsapp;
 
 	@Enumerated(EnumType.STRING)
 	@Fetch(FetchMode.JOIN)
@@ -55,7 +55,7 @@ public class Usuario implements Serializable
 	@Column(name = "Senha", length = 10)
 	private String senha;
 
-	public Usuario(Integer codigo, String nome, String cpf, Endereco endereco, String telefonewhatsapp, String telefone,
+	public Usuario(Integer codigo, String nome, String cpf, Endereco endereco, String telefoneWhatsapp, String telefone,
 			Perfil perfil, String email, String senha)
 	{
 		super();
@@ -63,7 +63,7 @@ public class Usuario implements Serializable
 		this.nome = nome;
 		this.cpf = cpf;
 		this.endereco = endereco;
-		this.telefonewhatsapp = telefonewhatsapp;
+		this.telefoneWhatsapp = telefoneWhatsapp;
 		this.telefone = telefone;
 		this.perfil = perfil;
 		this.email = email;
@@ -118,12 +118,12 @@ public class Usuario implements Serializable
 
 	public String getTelefoneWhatsapp()
 	{
-		return telefonewhatsapp;
+		return telefoneWhatsapp;
 	}
 
-	public void setTelefoneWhatsapp(String telefonewhatsapp)
+	public void setTelefoneWhatsapp(String telefoneWhatsapp)
 	{
-		this.telefonewhatsapp = telefonewhatsapp;
+		this.telefoneWhatsapp = telefoneWhatsapp;
 	}
 
 	public String getTelefone()
@@ -166,26 +166,11 @@ public class Usuario implements Serializable
 		this.senha = senha;
 	}
 
-	/**
-	 * @return the telefonewhatsapp
-	 */
-	public String getTelefonewhatsapp()
-	{
-		return telefonewhatsapp;
-	}
-
-	/**
-	 * @param telefonewhatsapp the telefonewhatsapp to set
-	 */
-	public void setTelefonewhatsapp(String telefonewhatsapp)
-	{
-		this.telefonewhatsapp = telefonewhatsapp;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Usuario [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco
-				+ ", telefonewhatsapp=" + telefonewhatsapp + ", perfil=" + perfil + ", telefone=" + telefone
+				+ ", telefoneWhatsapp=" + telefoneWhatsapp + ", perfil=" + perfil + ", telefone=" + telefone
 				+ ", email=" + email + ", senha=" + senha + "]";
 	}
 	

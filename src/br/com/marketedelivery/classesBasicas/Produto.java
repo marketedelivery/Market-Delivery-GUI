@@ -35,9 +35,12 @@ public class Produto implements Serializable
 
 	@ManyToOne
 	private Supermercado supermercado;
+	
+	@Column(name = "tipo", length = 12)
+	private String tipo;
 
 	public Produto(int codigo, String nome, String marca, int qtdEstoque, Double valorUnitario,
-			Supermercado supermercado)
+			Supermercado supermercado, String tipo)
 	{
 		super();
 		this.codigo = codigo;
@@ -46,6 +49,7 @@ public class Produto implements Serializable
 		this.qtdEstoque = qtdEstoque;
 		this.valorUnitario = valorUnitario;
 		this.supermercado = supermercado;
+		this.tipo = tipo;
 	}
 
 	public Produto()
@@ -112,39 +116,74 @@ public class Produto implements Serializable
 	{
 		this.supermercado = supermercado;
 	}
+	
+	
+	public String getTipo() {
+		return tipo;
+	}
 
-	@Override
-	public String toString()
-	{
-		return "Produto [codigo=" + codigo + ", nome=" + nome + ", marca=" + marca + ", qtdEstoque=" + qtdEstoque
-				+ ", valorUnitario=" + valorUnitario + ", supermercado=" + supermercado + "]";
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	@Override
-	public boolean equals(Object obj)
-	{
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
+	public String toString() {
+		return "Produto [codigo=" + codigo + ", nome=" + nome + ", marca=" + marca + ", qtdEstoque=" + qtdEstoque
+				+ ", valorUnitario=" + valorUnitario + ", supermercado=" + supermercado + ", tipo=" + tipo + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + codigo;
+		result = prime * result + ((marca == null) ? 0 : marca.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + qtdEstoque;
+		result = prime * result + ((supermercado == null) ? 0 : supermercado.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+		result = prime * result + ((valorUnitario == null) ? 0 : valorUnitario.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
 		Produto other = (Produto) obj;
-		if (codigo != other.codigo) return false;
-		if (marca == null)
-		{
-			if (other.marca != null) return false;
-		} else if (!marca.equals(other.marca)) return false;
-		if (nome == null)
-		{
-			if (other.nome != null) return false;
-		} else if (!nome.equals(other.nome)) return false;
-		if (qtdEstoque != other.qtdEstoque) return false;
-		if (supermercado == null)
-		{
-			if (other.supermercado != null) return false;
-		} else if (!supermercado.equals(other.supermercado)) return false;
-		if (valorUnitario == null)
-		{
-			if (other.valorUnitario != null) return false;
-		} else if (!valorUnitario.equals(other.valorUnitario)) return false;
+		if (codigo != other.codigo)
+			return false;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (qtdEstoque != other.qtdEstoque)
+			return false;
+		if (supermercado == null) {
+			if (other.supermercado != null)
+				return false;
+		} else if (!supermercado.equals(other.supermercado))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		if (valorUnitario == null) {
+			if (other.valorUnitario != null)
+				return false;
+		} else if (!valorUnitario.equals(other.valorUnitario))
+			return false;
 		return true;
 	}
 }
