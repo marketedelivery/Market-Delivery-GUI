@@ -22,7 +22,6 @@ public class AlterarSenhaMB extends AbstractMB
 
 	public AlterarSenhaMB()
 	{
-		// TODO Auto-generated constructor stub
 		fachada = new Fachada();
 		emailUtil = new EmailUtil();
 	}

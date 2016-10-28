@@ -42,5 +42,12 @@ public class ControladorProduto
 		return produtoDAO.buscarProdutoPorSupermercado(supermercado);
 	}
 	
+	public Produto pesquisarProdutoPorTipo(Produto produto)
+	{
+		String tipo = produto.getNome();
+		produtoDAO = DAOFactoryProduto.getProdutoDAO();
+		return produtoDAO.buscarPorNome(tipo);
+	}
+	
 	
 }

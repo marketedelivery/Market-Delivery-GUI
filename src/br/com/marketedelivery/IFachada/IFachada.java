@@ -91,6 +91,8 @@ public interface IFachada
 
 	public Produto pesquisarPorCodigo(Produto produto);
 
+	public Produto pesquisarProdutoPorTipo(Produto produto);
+
 	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado);
 
 	// --------------------------------------------- Pagamento

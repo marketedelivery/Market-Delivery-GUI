@@ -273,6 +273,11 @@ public class Fachada implements IFachada
 	{
 		return conProduto.buscarProdutoPorSupermercado(supermercado);
 	}
+	
+	public Produto pesquisarProdutoPorTipo(Produto produto)
+	{
+		return conProduto.pesquisarProdutoPorTipo(produto);
+	}
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
