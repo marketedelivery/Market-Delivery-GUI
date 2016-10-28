@@ -45,7 +45,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax-inject.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-email-1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.mail.jar"/>
-	<classpathentry kind="lib" path="C:/Users/JoseClebson/Downloads/java-2.5.2/pagseguro-api-2.5.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pagseguro-api-2.5.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
