@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.marketedelivery.DAOFactory.DAOFactoryListadeCompras;
 import br.com.marketedelivery.IDAO.IListaDeComprasDAO;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
+import br.com.marketedelivery.classesBasicas.Usuario;
 
 public class ControladorListadeCompra 
 {
@@ -33,6 +34,13 @@ public class ControladorListadeCompra
 		int codigo = lista.getCodigo();
 		listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		ListaDeCompras retorno =listaDAO.consultarPorId(codigo);
+		return retorno;
+	}
+	
+	public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario) 
+	{
+		listaDAO = DAOFactoryListadeCompras.getListaDAO();
+		List<ListaDeCompras> retorno = listaDAO.buscaListaPorUsuario(usuario);
 		return retorno;
 	}
 	

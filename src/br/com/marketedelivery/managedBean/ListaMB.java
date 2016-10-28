@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
+import br.com.marketedelivery.classesBasicas.Usuario;
 
 @ViewScoped
 @ManagedBean
@@ -56,7 +57,10 @@ public class ListaMB
 
 	public List<ListaDeCompras> listarTodasLista()
 	{
-		listarTodos = getFachada().ListarTodasAsListas();
+		Usuario temp = new Usuario();
+		temp.setCodigo(LoginMB.codigoUsuario);
+		Usuario user = getFachada().pesquisarPorCodigo(temp);
+		listarTodos = getFachada().buscaListaPorUsuario(user);
 		return listarTodos;
 		
 	}

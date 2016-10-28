@@ -68,6 +68,8 @@ public interface IFachada
 	public List<ListaDeCompras> ListarTodasAsListas();
 
 	public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista);
+	
+	public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario) ;
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 

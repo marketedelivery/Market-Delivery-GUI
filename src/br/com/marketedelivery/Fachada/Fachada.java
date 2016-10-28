@@ -224,6 +224,11 @@ public class Fachada implements IFachada
 	{
 		return conLista.buscarPorCodigo(lista);
 	}
+	
+	public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario) 
+	{
+		return conLista.buscaListaPorUsuario(usuario);
+	}
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 
