@@ -11,19 +11,19 @@ public class ControladorListadeCompra
 {
 	IListaDeComprasDAO listaDAO;
 
-	public void CadastrarLista(ListaDeCompras lista)
+	public void cadastrarLista(ListaDeCompras lista)
 	{
 		listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO.inserir(lista);
 	}
 	
-	public void AtualizarLista(ListaDeCompras lista)
+	public void atualizarLista(ListaDeCompras lista)
 	{
 		listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO.alterar(lista);
 	}
 	
-	public List<ListaDeCompras>ListarTudo()
+	public List<ListaDeCompras>listarTodasListas()
 	{
 		listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		return listaDAO.consultarTodos();

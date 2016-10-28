@@ -68,7 +68,7 @@ public class Fachada implements IFachada
 
 	public void cadastrarUsuario(Usuario usuario)
 	{
-		conUsuario.CadastrarUsuario(usuario);
+		conUsuario.cadastrarUsuario(usuario);
 	}
 
 	public void AtualizarCliente(Usuario usuario)
@@ -78,17 +78,17 @@ public class Fachada implements IFachada
 
 	public List<Usuario> ListarTodosUsuarios()
 	{
-		return conUsuario.ListarTodosUsuarios();
+		return conUsuario.listarTodosUsuarios();
 	}
 
 	public Usuario ListarPorNome(Usuario usuario)
 	{
-		return conUsuario.ListarPorNome(usuario);
+		return conUsuario.listarPorNome(usuario);
 	}
 
 	public Usuario ListarPorCPF(Usuario usuario)
 	{
-		return conUsuario.ListarPorCPF(usuario);
+		return conUsuario.listarPorCPF(usuario);
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class Fachada implements IFachada
 
 	public List<Endereco> listarEndereco()
 	{
-		return conEndereco.listarTodosEndereco();
+		return conEndereco.listarTodosEnderecos();
 	}
 
 	public Endereco listarPorCep(Endereco endereco)
@@ -207,17 +207,17 @@ public class Fachada implements IFachada
 	// -------------------------------------------------------------------
 	public void CadastrarLista(ListaDeCompras lista)
 	{
-		conLista.CadastrarLista(lista);
+		conLista.cadastrarLista(lista);
 	}
 
 	public void AtualizarLista(ListaDeCompras lista)
 	{
-		conLista.AtualizarLista(lista);
+		conLista.atualizarLista(lista);
 	}
 
 	public List<ListaDeCompras> ListarTodasAsListas()
 	{
-		return conLista.ListarTudo();
+		return conLista.listarTodasListas();
 	}
 
 	public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista)
@@ -264,22 +264,22 @@ public class Fachada implements IFachada
 	// -------------------------------------------------------------------
 	public void CadastrarProduto(Produto produto)
 	{
-		conProduto.CadastrarProduto(produto);
+		conProduto.cadastrarProduto(produto);
 	}
 
 	public void AtualizarProduto(Produto produto)
 	{
-		conProduto.AtualizarProduto(produto);
+		conProduto.atualizarProduto(produto);
 	}
 
 	public List<Produto> ListarTodosProdutos()
 	{
-		return conProduto.ListarTodosProdutos();
+		return conProduto.listarTodosProdutos();
 	}
 
 	public Produto PesquisarProdutoPorNome(Produto produto)
 	{
-		return conProduto.PesquisarProdutoPorNome(produto);
+		return conProduto.pesquisarProdutoPorNome(produto);
 	}
 
 	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado)
@@ -291,60 +291,60 @@ public class Fachada implements IFachada
 	// -------------------------------------------------------------------
 	public void CadastrarPagamento(Pagamento pagamento)
 	{
-		conPagamento.CadastrarPagamento(pagamento);
+		conPagamento.cadastrarPagamento(pagamento);
 	}
 
 	public void AtualizarPagamento(Pagamento pagamento)
 	{
-		conPagamento.AtualizarPAgamento(pagamento);
+		conPagamento.atualizarPAgamento(pagamento);
 	}
 
 	public List<Pagamento> ListarTodos()
 	{
-		return conPagamento.ListarTodos();
+		return conPagamento.listarTodosPagamentos();
 	}
 
 	public Pagamento ListarPorCodigo(Pagamento pagamento)
 	{
-		return conPagamento.ListarPorCodigo(pagamento);
+		return conPagamento.listarPorCodigo(pagamento);
 	}
 
 	// --------------------------------------------- Item
 	// -------------------------------------------------------------------
 	public void CadastrarItem(Item item)
 	{
-		conItem.CadastrarItem(item);
+		conItem.cadastrarItem(item);
 	}
 
 	public void AtualizarItem(Item item)
 	{
-		conItem.AtualizarItem(item);
+		conItem.atualizarItem(item);
 	}
 
 	public List<Item> ListarTodosItens()
 	{
-		return conItem.ListarTodosItem();
+		return conItem.listarTodosItens();
 	}
 
 	// --------------------------------------------- Pedido
 	// -------------------------------------------------------------------
 	public void CadastrarPedido(Pedido pedido)
 	{
-		conPedido.CadastrarPedido(pedido);
+		conPedido.cadastrarPedido(pedido);
 	}
 
 	public void AlterarPedido(Pedido pedido)
 	{
-		conPedido.AlterarPedido(pedido);
+		conPedido.atualizarPedido(pedido);
 	}
 
 	public List<Pedido> ListarTodosPedidos()
 	{
-		return conPedido.ListarTodosPedidos();
+		return conPedido.listarTodosPedidos();
 	}
 
 	public Pedido ListarPedidoPorCodigo(Pedido pedido)
 	{
-		return conPedido.ListarPedidoPorCodigo(pedido);
+		return conPedido.listarPedidoPorCodigo(pedido);
 	}
 }

@@ -22,7 +22,7 @@ public class ControladorEndereco
 		enderecoDAO.alterar(endereco);
 	}
 	
-	public List<Endereco> listarTodosEndereco()
+	public List<Endereco> listarTodosEnderecos()
 	{
 		enderecoDAO = DAOFactoryEndereco.getEnderecoDAO();
 		return enderecoDAO.consultarTodos();

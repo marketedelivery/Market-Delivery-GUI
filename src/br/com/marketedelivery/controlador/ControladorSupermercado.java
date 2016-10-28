@@ -44,7 +44,7 @@ public class ControladorSupermercado
 	}
 	
 	
-	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado) {
+	public List<Produto> listarProdutosDoSupermercado(String nomeProduto, String supermercado) {
 		supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		return null;
 	}

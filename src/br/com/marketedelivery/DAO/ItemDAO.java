@@ -10,7 +10,6 @@ public class ItemDAO extends DAOGenerico<Item>implements IItemDAO
 
 	public ItemDAO(EntityManager em) {
 		super(em);
-		// TODO Auto-generated constructor stub
 	}
 
 }

@@ -11,25 +11,25 @@ public class ControladorProduto
 {
 	private IProdutoDAO produtoDAO;
 	
-	public void CadastrarProduto(Produto produto)
+	public void cadastrarProduto(Produto produto)
 	{
 		produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO.inserir(produto);
 	}
 	
-	public void AtualizarProduto(Produto produto)
+	public void atualizarProduto(Produto produto)
 	{
 		produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO.alterar(produto);
 	}
 	
-	public List<Produto>ListarTodosProdutos()
+	public List<Produto>listarTodosProdutos()
 	{
 		produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		return produtoDAO.consultarTodos();
 	}
 	
-	public Produto PesquisarProdutoPorNome(Produto produto)
+	public Produto pesquisarProdutoPorNome(Produto produto)
 	{
 		String nome = produto.getNome();
 		produtoDAO = DAOFactoryProduto.getProdutoDAO();

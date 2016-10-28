@@ -10,19 +10,19 @@ public class ControladorItem
 {
 	private IItemDAO itemDAO;
 	
-	public void CadastrarItem(Item item)
+	public void cadastrarItem(Item item)
 	{
 		itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO.inserir(item);
 	}
 	
-	public void AtualizarItem(Item item)
+	public void atualizarItem(Item item)
 	{
 		itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO.alterar(item);
 	}
 	
-	public List<Item> ListarTodosItem()
+	public List<Item> listarTodosItens()
 	{
 		itemDAO = DAOFactoryItem.getItemDAO();
 		return itemDAO.consultarTodos();

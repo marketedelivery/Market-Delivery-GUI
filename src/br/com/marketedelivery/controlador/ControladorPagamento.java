@@ -10,25 +10,25 @@ public class ControladorPagamento
 {
 	private IPagamentoDAO pagamentoDAO;
 	
-	public void CadastrarPagamento(Pagamento pagamento)
+	public void cadastrarPagamento(Pagamento pagamento)
 	{
 		pagamentoDAO = DAOFactoryPagamento.getPagamentoDAO();
 		pagamentoDAO.inserir(pagamento);
 	}
 	
-	public void AtualizarPAgamento(Pagamento pagamento)
+	public void atualizarPAgamento(Pagamento pagamento)
 	{
 		pagamentoDAO = DAOFactoryPagamento.getPagamentoDAO();
 		pagamentoDAO.alterar(pagamento);
 	}
 	
-	public List<Pagamento> ListarTodos()
+	public List<Pagamento> listarTodosPagamentos()
 	{
 		pagamentoDAO = DAOFactoryPagamento.getPagamentoDAO();
 		return pagamentoDAO.consultarTodos();
 	}
 	
-	public Pagamento ListarPorCodigo(Pagamento pagamento)
+	public Pagamento listarPorCodigo(Pagamento pagamento)
 	{
 		int codigo = pagamento.getCodigo();
 		pagamentoDAO = DAOFactoryPagamento.getPagamentoDAO();
@@ -36,7 +36,7 @@ public class ControladorPagamento
 		return retorno;
 	}
 	
-	public Pagamento BuscarPorStatus(Pagamento pagamento)
+	public Pagamento buscarPorStatus(Pagamento pagamento)
 	{
 //		pagamentoDAO = DAOFactoryPagamento.getPagamentoDAO();
 //		Pagamento retorno =  pagamentoDAO.buscarPorStatus(pagamento.getStatus());
