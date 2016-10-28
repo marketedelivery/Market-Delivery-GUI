@@ -7,9 +7,9 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
+/*import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
+*/
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Item;

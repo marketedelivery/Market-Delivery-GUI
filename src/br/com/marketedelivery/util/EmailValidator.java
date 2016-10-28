@@ -22,6 +22,7 @@ public class EmailValidator implements Validator, ClientValidator {
 	private static final String EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 										+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	
+	@SuppressWarnings("static-access")
 	public EmailValidator() {
 		pattern = pattern.compile(EMAIL);
 		mensagemUtil = new JSFMessageUtil();
@@ -29,13 +30,11 @@ public class EmailValidator implements Validator, ClientValidator {
 
 	@Override
 	public Map<String, Object> getMetadata() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getValidatorId() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
