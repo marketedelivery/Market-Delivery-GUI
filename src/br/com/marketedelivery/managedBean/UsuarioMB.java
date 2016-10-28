@@ -123,7 +123,7 @@ public class UsuarioMB implements Serializable
 	{
 		usuario.setEndereco(endereco);
 		fachada = getFachada();
-		Usuario user = fachada.ListarPorCPF(usuario);
+		Usuario user = fachada.listarPorCPF(usuario);
 		try
 		{
 			if (validarCPF.validarCpf(usuario.getCpf()) != true && ValidarEmail.emailValido(usuario.getEmail()) != true
@@ -175,7 +175,7 @@ public class UsuarioMB implements Serializable
 			// fachada.ListarTodosUsuarios();
 			// listaUsuarios = fachada.ListarTodosUsuarios();
 			IFachada fachada = getFachada();
-			listaUsuarios = fachada.ListarTodosUsuarios();
+			listaUsuarios = fachada.listarTodosUsuarios();
 		}
 		catch (Exception ex)
 		{
@@ -206,13 +206,13 @@ public class UsuarioMB implements Serializable
 	{
 		{
 			fachada = getFachada();
-			Usuario u = fachada.ListarPorCPF(usuario);
+			Usuario u = fachada.listarPorCPF(usuario);
 			try
 			{
 				if (u != null)
 				{
 					u = usuario;
-					fachada.AtualizarCliente(u);
+					fachada.atualizarUsuario(u);
 					FacesContext.getCurrentInstance().addMessage(null,
 							new FacesMessage("Cadastro Alterado com Sucesso"));
 				}

@@ -16,7 +16,7 @@ public class ControladorPagamento
 		pagamentoDAO.inserir(pagamento);
 	}
 	
-	public void atualizarPAgamento(Pagamento pagamento)
+	public void atualizarPagamento(Pagamento pagamento)
 	{
 		pagamentoDAO = DAOFactoryPagamento.getPagamentoDAO();
 		pagamentoDAO.alterar(pagamento);

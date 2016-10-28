@@ -60,7 +60,7 @@ public class ListaMB
 		Usuario temp = new Usuario();
 		temp.setCodigo(LoginMB.codigoUsuario);
 		Usuario user = getFachada().pesquisarPorCodigo(temp);
-		listarTodos = getFachada().buscaListaPorUsuario(user);
+		listarTodos = getFachada().buscarListaPorUsuario(user);
 		return listarTodos;
 		
 	}

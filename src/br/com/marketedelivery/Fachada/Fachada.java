@@ -71,22 +71,22 @@ public class Fachada implements IFachada
 		conUsuario.cadastrarUsuario(usuario);
 	}
 
-	public void AtualizarCliente(Usuario usuario)
+	public void atualizarUsuario(Usuario usuario)
 	{
 		conUsuario.atualizarUsuario(usuario);
 	}
 
-	public List<Usuario> ListarTodosUsuarios()
+	public List<Usuario> listarTodosUsuarios()
 	{
 		return conUsuario.listarTodosUsuarios();
 	}
 
-	public Usuario ListarPorNome(Usuario usuario)
+	public Usuario listarPorNome(Usuario usuario)
 	{
 		return conUsuario.listarPorNome(usuario);
 	}
 
-	public Usuario ListarPorCPF(Usuario usuario)
+	public Usuario listarPorCPF(Usuario usuario)
 	{
 		return conUsuario.listarPorCPF(usuario);
 	}
@@ -94,7 +94,6 @@ public class Fachada implements IFachada
 	@Override
 	public Usuario pesquisarPorCodigo(Usuario usuario)
 	{
-		// TODO Auto-generated method stub
 		return conUsuario.pesquisarUsuarioPorCodigo(usuario);
 	}
 
@@ -141,38 +140,26 @@ public class Fachada implements IFachada
 		return conSupermercado.consultarPorID(supermercado);
 	}
 
-	@Override
-	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado)
+	public List<Produto> listarProdutosDoSupermercado(String nomeProduto, String supermercado)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Produto pesquisarPorCodigo(Produto produto)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Supermercado> listarTodosSupermercados()
 	{
-		// TODO Auto-generated method stub
 		return conSupermercado.listarTodosSupermercados();
-	}
-
-	@Override
-	public Produto pesquisarProdutoPorNome(Produto produto)
-	{
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
 	public Supermercado pesquisarPorCodigo(Supermercado supermercado)
 	{
-		// TODO Auto-generated method stub
 		return conSupermercado.pesquisarPorCodigo(supermercado);
 	}
 
@@ -205,56 +192,56 @@ public class Fachada implements IFachada
 
 	// --------------------------------------------- Lista de Compra
 	// -------------------------------------------------------------------
-	public void CadastrarLista(ListaDeCompras lista)
+	public void cadastrarLista(ListaDeCompras lista)
 	{
 		conLista.cadastrarLista(lista);
 	}
 
-	public void AtualizarLista(ListaDeCompras lista)
+	public void atualizarLista(ListaDeCompras lista)
 	{
 		conLista.atualizarLista(lista);
 	}
 
-	public List<ListaDeCompras> ListarTodasAsListas()
+	public List<ListaDeCompras> listarTodasListas()
 	{
 		return conLista.listarTodasListas();
 	}
 
-	public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista)
+	public ListaDeCompras buscarPorCodigo(ListaDeCompras lista)
 	{
 		return conLista.buscarPorCodigo(lista);
 	}
 	
-	public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario) 
+	public List<ListaDeCompras> buscarListaPorUsuario(Usuario usuario) 
 	{
 		return conLista.buscaListaPorUsuario(usuario);
 	}
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 
-	public void CadastrarPerfil(Perfil perfil)
+	public void cadastrarPerfil(Perfil perfil)
 	{
 		// conPerfil.CadastrarPerfil(perfil);
 	}
 
-	public void AtualizarPerfil(Perfil perfil)
+	public void atualizarPerfil(Perfil perfil)
 	{
 		// conPerfil.AtualizarPerfil(perfil);
 	}
 
-	public List<Perfil> ListarTodosPerfis()
+	public List<Perfil> listarTodosPerfis()
 	{
 		return null;
 		// return conPerfil.ListarTodosPerfil();
 	}
 
-	public Perfil PesquisarPorCodigo(Perfil perfil)
+	public Perfil pesquisarPorCodigo(Perfil perfil)
 	{
 		return null;
 		// return conPerfil.PesquisarPorCodigo(perfil);
 	}
 
-	public Perfil PesquisarPorNome(Perfil perfil)
+	public Perfil pesquisarPorNome(Perfil perfil)
 	{
 		return null;
 		// return conPerfil.PesquisarPorNome(perfil);
@@ -262,22 +249,22 @@ public class Fachada implements IFachada
 
 	// --------------------------------------------- Produto
 	// -------------------------------------------------------------------
-	public void CadastrarProduto(Produto produto)
+	public void cadastrarProduto(Produto produto)
 	{
 		conProduto.cadastrarProduto(produto);
 	}
 
-	public void AtualizarProduto(Produto produto)
+	public void atualizarProduto(Produto produto)
 	{
 		conProduto.atualizarProduto(produto);
 	}
 
-	public List<Produto> ListarTodosProdutos()
+	public List<Produto> listarTodosProdutos()
 	{
 		return conProduto.listarTodosProdutos();
 	}
 
-	public Produto PesquisarProdutoPorNome(Produto produto)
+	public Produto pesquisarProdutoPorNome(Produto produto)
 	{
 		return conProduto.pesquisarProdutoPorNome(produto);
 	}
@@ -289,62 +276,64 @@ public class Fachada implements IFachada
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
-	public void CadastrarPagamento(Pagamento pagamento)
+	public void cadastrarPagamento(Pagamento pagamento)
 	{
 		conPagamento.cadastrarPagamento(pagamento);
 	}
 
-	public void AtualizarPagamento(Pagamento pagamento)
+	public void atualizarPagamento(Pagamento pagamento)
 	{
-		conPagamento.atualizarPAgamento(pagamento);
+		conPagamento.atualizarPagamento(pagamento);
 	}
 
-	public List<Pagamento> ListarTodos()
+	public List<Pagamento> listarTodosPagamentos()
 	{
 		return conPagamento.listarTodosPagamentos();
 	}
 
-	public Pagamento ListarPorCodigo(Pagamento pagamento)
+	public Pagamento listarPorCodigo(Pagamento pagamento)
 	{
 		return conPagamento.listarPorCodigo(pagamento);
 	}
 
 	// --------------------------------------------- Item
 	// -------------------------------------------------------------------
-	public void CadastrarItem(Item item)
+	public void cadastrarItem(Item item)
 	{
 		conItem.cadastrarItem(item);
 	}
 
-	public void AtualizarItem(Item item)
+	public void atualizarItem(Item item)
 	{
 		conItem.atualizarItem(item);
 	}
 
-	public List<Item> ListarTodosItens()
+	public List<Item> listarTodosItens()
 	{
 		return conItem.listarTodosItens();
 	}
 
 	// --------------------------------------------- Pedido
 	// -------------------------------------------------------------------
-	public void CadastrarPedido(Pedido pedido)
+	public void cadastrarPedido(Pedido pedido)
 	{
 		conPedido.cadastrarPedido(pedido);
 	}
 
-	public void AlterarPedido(Pedido pedido)
+	public void alterarPedido(Pedido pedido)
 	{
 		conPedido.atualizarPedido(pedido);
 	}
 
-	public List<Pedido> ListarTodosPedidos()
+	public List<Pedido> listarTodosPedidos()
 	{
 		return conPedido.listarTodosPedidos();
 	}
 
-	public Pedido ListarPedidoPorCodigo(Pedido pedido)
+	public Pedido listarPedidoPorCodigo(Pedido pedido)
 	{
 		return conPedido.listarPedidoPorCodigo(pedido);
 	}
+
+		
 }

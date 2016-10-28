@@ -43,7 +43,7 @@ public class AlterarSenhaMB extends AbstractMB
 		Usuario us = new Usuario();
 		try
 		{
-			us = fachada.ListarPorCPF(usuario);
+			us = fachada.listarPorCPF(usuario);
 			if (us == null)
 			{
 				displayInfoMessageToUser("CPF Invalido!");

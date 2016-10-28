@@ -15,13 +15,13 @@ public interface IFachada
 {
 	public void cadastrarUsuario(Usuario usuario);
 
-	public void AtualizarCliente(Usuario usuario);
+	public void atualizarUsuario(Usuario usuario);
 
-	public List<Usuario> ListarTodosUsuarios();
+	public List<Usuario> listarTodosUsuarios();
 
-	public Usuario ListarPorNome(Usuario usuario);
+	public Usuario listarPorNome(Usuario usuario);
 
-	public Usuario ListarPorCPF(Usuario usuario);
+	public Usuario listarPorCPF(Usuario usuario);
 
 	public Usuario pesquisarPorCodigo(Usuario usuario);
 
@@ -43,7 +43,7 @@ public interface IFachada
 
 	public Supermercado listarPorNome(Supermercado supermercado);
 
-	public List<Produto> listaProtudoDoSupermercado(String nomeProduto, String supermercado);
+	public List<Produto> listarProdutosDoSupermercado(String nomeProduto, String supermercado);
 
 	public Supermercado consultarPorID(Supermercado supermercado);
 	// --------------------------------------------- Endereco
@@ -61,15 +61,15 @@ public interface IFachada
 
 	// --------------------------------------------- Lista de Compra
 	// -------------------------------------------------------------------
-	public void CadastrarLista(ListaDeCompras lista);
+	public void cadastrarLista(ListaDeCompras lista);
 
-	public void AtualizarLista(ListaDeCompras lista);
+	public void atualizarLista(ListaDeCompras lista);
 
-	public List<ListaDeCompras> ListarTodasAsListas();
+	public List<ListaDeCompras> listarTodasListas();
 
-	public ListaDeCompras BuscarPorCodigo(ListaDeCompras lista);
+	public ListaDeCompras buscarPorCodigo(ListaDeCompras lista);
 	
-	public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario) ;
+	public List<ListaDeCompras> buscarListaPorUsuario(Usuario usuario) ;
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 
@@ -81,11 +81,11 @@ public interface IFachada
 	 */
 	// --------------------------------------------- Produto
 	// -------------------------------------------------------------------
-	public void CadastrarProduto(Produto produto);
+	public void cadastrarProduto(Produto produto);
 
-	public void AtualizarProduto(Produto produto);
+	public void atualizarProduto(Produto produto);
 
-	public List<Produto> ListarTodosProdutos();
+	public List<Produto> listarTodosProdutos();
 
 	public Produto pesquisarProdutoPorNome(Produto produto);
 
@@ -95,19 +95,19 @@ public interface IFachada
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
-	public void CadastrarPagamento(Pagamento pagamento);
+	public void cadastrarPagamento(Pagamento pagamento);
 
-	public void AtualizarPagamento(Pagamento pagamento);
+	public void atualizarPagamento(Pagamento pagamento);
 
-	public List<Pagamento> ListarTodos();
-
-	public Pagamento ListarPorCodigo(Pagamento pagamento);
+	public List<Pagamento> listarTodosPagamentos();
+	
+	public Pagamento listarPorCodigo(Pagamento pagamento);
 
 	// --------------------------------------------- Item
 	// -------------------------------------------------------------------
-	public void CadastrarItem(Item item);
+	public void cadastrarItem(Item item);
 
-	public void AtualizarItem(Item item);
+	public void atualizarItem(Item item);
 
-	public List<Item> ListarTodosItens();
+	public List<Item> listarTodosItens();
 }

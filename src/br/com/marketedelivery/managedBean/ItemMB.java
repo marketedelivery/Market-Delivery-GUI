@@ -215,7 +215,7 @@ public class ItemMB
 		lista.setQtd(listaItens.size());
 		lista.setTipo(getListaCompras().getTipo());
 		lista.setUsuario(user);
-		getFachada().CadastrarLista(lista);
+		getFachada().cadastrarLista(lista);
 		
 		for(int i = 0; i < listaItens.size();i++)
 		{
@@ -225,7 +225,7 @@ public class ItemMB
 			itTemp.setProduto(it.getProduto());
 			it.setQtdProduto(listaItens.size());
 			itTemp.setPrecoTotal(1000.00);
-			getFachada().CadastrarItem(itTemp);
+			getFachada().cadastrarItem(itTemp);
 		}
 	}
 }
