@@ -67,7 +67,6 @@ public class SupermercadoMB implements Serializable
 
 	public SupermercadoMB()
 	{
-		// TODO Auto-generated constructor stub
 	}
 
 	public Supermercado getSupermecado()
