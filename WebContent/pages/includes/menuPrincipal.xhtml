@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<h:form>
+		<p:menubar>
+			<p:submenu label="Home">
+				<p:menuitem value="Principal"
+					outcome="/pages/public/principal.xhtml?faces-redirect=true" />
+				<p:menuitem value="Minha Conta" />
+				<p:menuitem value="Minha Lista" />
+				<p:menuitem value="Sair" />
+			</p:submenu>
+
+			<p:submenu label="Cadastro">
+				<p:menuitem value="Cliente"
+					outcome="/pages/public/clienteCadastro.xhtml?faces-redirect=true" />
+				<p:menuitem value="Lista"
+					outcome="/pages/public/lista.xhtml?faces-redirect=true" />
+				<p:menuitem value="Produto" />
+				<p:menuitem value="Supermercado" />
+			</p:submenu>
+			<p:submenu label="Localizar Supermercados">
+				<p:menuitem value="Supermercados" />
+			</p:submenu>
+
+			<p:submenu label="Pesquisar">
+				<p:menuitem value="Produto"
+					outcome="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
+				<p:menuitem value="Supermercado"
+					outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true" />
+				<p:menuitem value="Listas"
+					outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
+				<p:menuitem value="Clientes"
+					outcome="/pages/protected/clientePesquisa.xhtml?faces-redirect=true" />
+			</p:submenu>
+
+			<p:submenu label="Sair" />
+
+		</p:menubar>
+	</h:form>
+</ui:composition>

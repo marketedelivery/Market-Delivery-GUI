@@ -20,7 +20,7 @@
 				</f:facet>
 			</p:toolbar>
 			<p:panel id="panel">
-				<h:panelGrid id="pnlCadCliDados" columns="2">
+				<h:panelGrid id="pnlCadCliDados">
 				Nome Completo<br />
 					<p:inputText maxlength="30" size="32"
 						value="#{usuarioMB.usuario.nome}" required="true"
@@ -54,9 +54,8 @@
 						value="#{usuarioMB.usuario.telefoneWhatsapp}"
 						mask="(99)99999-9999" required="true"
 						requiredMessage="Preencha o campo Celular" />
-				</h:panelGrid>
-				<p:separator />
-				<h:panelGrid id="pnlCadCliDados2" columns="4"> 
+					
+				 
  				Cep<br />
 					<p:inputMask value="#{usuarioMB.endereco.cep}" required="true"
 						requiredMessage="Preencha o campo Cep" maxlength="8" size="10"
@@ -122,30 +121,31 @@
 						<f:selectItem itemLabel="SP" itemValue="SP" />
 						<f:selectItem itemLabel="SE" itemValue="SE" />
 						<f:selectItem itemLabel="TO" itemValue="TO" />
+
 					</p:selectOneMenu>
-				</h:panelGrid>
-				<p:separator />
-				<h:panelGrid>
+
+
 					<p:toolbar>
 						<f:facet name="left">
 							<h:outputText value="Insira seus dados de Usuário" />
 						</f:facet>
 					</p:toolbar>
+
+				</h:panelGrid>
+				<h:panelGrid>
 				 Digite seu E-mail<br />
 					<p:inputText id="email" value="#{usuarioMB.usuario.email}"
 						required="true" requiredMessage="Preencha o campo email" />
-
-					<h:outputText value="Digite sua Senha: " />
+					
+				Digite sua Senha<br />
 					<p:password id="senha" value="#{usuarioMB.usuario.senha}"
-						feedback="true" promptLabel="Digite sua Senha" weakLabel="Fraca"
-						goodLabel="Regular" strongLabel="Forte" required="true"
-						requiredMessage="Preencha o campo senha" />
-
-					<h:outputText value="Confirmar Senha: " />
-					<p:password id="ConfirmaSenha" feedback="true"
-						promptLabel="Redigite sua Senha" weakLabel="Fraca"
-						goodLabel="Regular" strongLabel="Forte" required="true"
+						required="true" requiredMessage="Preencha o campo senha" />
+					
+			
+				 Confirmar Senha<br />
+					<p:password id="ConfirmaSenha" required="true"
 						requiredMessage="Preencha o campo Confirmar senha" />
+					<br />
 
 				</h:panelGrid>
 				<h:panelGrid columns="3">
@@ -155,12 +155,10 @@
 
 					<p:commandButton process="@this" value="Voltar"
 						update="pnlCadCliDados"
-						action="/pages/public/principal.xhtml?faces-redirect=true" />
+						action="/pages/public/tlLogin.xhtml?faces-redirect=true" />
 
 				</h:panelGrid>
 			</p:panel>
 		</h:form>
 	</ui:define>
-
 </ui:composition>
-

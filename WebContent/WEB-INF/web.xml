@@ -37,7 +37,7 @@
 	<!-- Tema do Primefaces -->
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>excite-bike </param-value>
+		<param-value>black-tie</param-value>
 	</context-param>
 	<listener>
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
@@ -51,4 +51,14 @@
 		<filter-name>FiltroLogin</filter-name>
 		<url-pattern>/pages/protected/*</url-pattern>
 	</filter-mapping>
+	<listener>
+	<listener-class>
+		com.sun.faces.config.ConfigureListener
+	</listener-class>
+</listener>
+<listener>
+	<listener-class>
+		com.sun.faces.application.WebappLifecycleListener
+	</listener-class>
+</listener>
 </web-app>
