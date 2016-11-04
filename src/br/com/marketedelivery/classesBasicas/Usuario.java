@@ -35,10 +35,6 @@ public class Usuario implements Serializable
 	@Column(name = "CPF", length = 14)
 	private String cpf;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@Fetch(FetchMode.JOIN)
-	private Endereco endereco;
-
 	@Column(name = "telefoneWhatsapp", length = 16)
 	private String telefoneWhatsapp;
 
@@ -54,6 +50,10 @@ public class Usuario implements Serializable
 
 	@Column(name = "Senha", length = 10)
 	private String senha;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Fetch(FetchMode.JOIN)
+	private Endereco endereco;
 
 	public Usuario(Integer codigo, String nome, String cpf, Endereco endereco, String telefoneWhatsapp, String telefone,
 			Perfil perfil, String email, String senha)

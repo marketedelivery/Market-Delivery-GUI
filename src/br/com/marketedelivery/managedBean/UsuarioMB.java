@@ -39,8 +39,6 @@ public class UsuarioMB implements Serializable {
 
 	private List<Usuario> listaUsuariosFiltrados;
 
-	ValidarCpf validarCPF = new ValidarCpf();
-
 	public Endereco getEndereco() {
 		if (endereco == null) {
 			endereco = new Endereco();
@@ -106,39 +104,56 @@ public class UsuarioMB implements Serializable {
 		usuario.setEndereco(endereco);
 		fachada = getFachada();
 		Usuario user = fachada.listarPorCPF(usuario);
-		try {
-			if (validarCPF.validarCpf(usuario.getCpf()) != true && ValidarEmail.emailValido(usuario.getEmail()) != true
-					&& user == null)
-			// if (validarCPF.validarCpf(usuario.getCpf()) != true && user ==
-			// null)
-
+		Usuario user2 = fachada.pesquisarPorEmail(usuario);
+		ValidarCpf vl = new ValidarCpf();
+		try 
+		{
+			if(user == null)
 			{
-				fachada.cadastrarUsuario(usuario);
-				// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
-				// url que vc quer*/);
-				FacesContext fc = FacesContext.getCurrentInstance();
-				ExternalContext ec = fc.getExternalContext();
-				/* Manter a mensagem após o redirect */
-				ec.getFlash().setKeepMessages(true);
-				NavigationHandler nh = fc.getApplication().getNavigationHandler();
-				nh.handleNavigation(fc, null, "/pages/public/login.xhtml?faces-redirect=true");
-				/* Manter a mensagem após o ec.redirect */
-				// ec.getFlash().setKeepMessages(true);
-				//
-				// ec.redirect(ec.getRequestContextPath()+"/pages/protected/minhasListas.xhtml?faces-redirect=true");
-				// FacesContext.getCurrentInstance().getExternalContext()
-				// .redirect("/pages/public/login.xhtml?faces-redirect=true");
-			} else if (user != null) {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage("Esse cpf já consta em nossos registros!"));
-				return;
-			} else if (validarCPF.validarCpf(usuario.getCpf()) == false) {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf é inválido!"));
-				return;
-			} else if (ValidarEmail.emailValido(usuario.getEmail()) == false) {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse e-mail é inválido!"));
-				return;
+				if(user2 == null)
+				{
+					if(ValidarEmail.emailValido(usuario.getEmail()) != false)
+					{
+						if(vl.validarCpf(usuario.getCpf()) == true)
+						{
+							fachada.cadastrarUsuario(usuario);
+							// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
+							// url que vc quer*/);
+							FacesContext fc = FacesContext.getCurrentInstance();
+							ExternalContext ec = fc.getExternalContext();
+							/* Manter a mensagem após o redirect */
+							ec.getFlash().setKeepMessages(true);
+							NavigationHandler nh = fc.getApplication().getNavigationHandler();
+							nh.handleNavigation(fc, null, "/pages/public/login.xhtml?faces-redirect=true");
+							/* Manter a mensagem após o ec.redirect */
+							// ec.getFlash().setKeepMessages(true);
+							//
+							// ec.redirect(ec.getRequestContextPath()+"/pages/protected/minhasListas.xhtml?faces-redirect=true");
+							// FacesContext.getCurrentInstance().getExternalContext()
+							// .redirect("/pages/public/login.xhtml?faces-redirect=true");
+						}else
+						{
+							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf é inválido!"));
+							return;
+						}
+					}
+					else 
+					{
+						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse e-mail é inválido!"));
+						return;
+					}
+				}
+				else
+				{
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse e-mail já está cadastrado!"));
+					return;
+				}
 			}
+			else
+			{
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Usuário já Cadastrado"));
+				return;
+			}  
 			usuario = new Usuario();
 			endereco = new Endereco();
 		} catch (Exception e) {

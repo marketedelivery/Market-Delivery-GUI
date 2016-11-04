@@ -44,8 +44,6 @@ public class Endereco implements Serializable
 	private Estado estado;
 	
 	
-	
-
 	public Endereco()
 	{
 		this.cep = "";
@@ -54,7 +52,6 @@ public class Endereco implements Serializable
 		this.bairro = "";
 		this.cidade = "";
 		
-	
 	}
 
 	public Endereco(String cep, String logradouro, int numero, String complemento, String bairro, String cidade,

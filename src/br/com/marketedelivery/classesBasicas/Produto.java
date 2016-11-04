@@ -38,6 +38,8 @@ public class Produto implements Serializable
 	
 	@Column(name = "tipo", length = 12)
 	private String tipo;
+	
+	private String imagem;
 
 	public Produto(int codigo, String nome, String marca, int qtdEstoque, Double valorUnitario,
 			Supermercado supermercado, String tipo)

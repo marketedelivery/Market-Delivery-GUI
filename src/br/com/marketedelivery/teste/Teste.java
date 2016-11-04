@@ -1,5 +1,6 @@
 package br.com.marketedelivery.teste;
 
+import br.com.marketedelivery.util.ValidarCpf;
 /*import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -21,13 +22,19 @@ public class Teste
 //        et.commit();
 //		em.close();
 //		emf.close();
-//		String cpf= "12345678974";
-//		ValidarCpf validar = new ValidarCpf();
-//		System.out.println(cpf);
-//		System.out.println(validar.validarCpf(cpf));
+		String cpf= "123.456.789-74";
+		ValidarCpf validar = new ValidarCpf();
+		System.out.println(cpf);
+		if(validar.validarCpf(cpf) == true)
+		{
+			System.out.println("valido");
+		}else
+		{
+			System.out.println("invalido");
+		}
 		
-		String email = "melquizedek@.com.br";
-		System.out.println(ValidarEmail.emailValido(email));
-		System.out.println(ValidarEmail.isEmailValid(email));
+//		String email = "melquizedek@.com.br";
+//		System.out.println(ValidarEmail.emailValido(email));
+//		System.out.println(ValidarEmail.isEmailValid(email));
         }	
 }
