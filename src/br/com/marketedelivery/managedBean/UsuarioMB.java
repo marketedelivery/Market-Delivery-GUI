@@ -121,6 +121,8 @@ public class UsuarioMB implements Serializable {
 							// url que vc quer*/);
 							FacesContext fc = FacesContext.getCurrentInstance();
 							ExternalContext ec = fc.getExternalContext();
+							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cliente cadastrado com sucesso"));
+							
 							/* Manter a mensagem após o redirect */
 							ec.getFlash().setKeepMessages(true);
 							NavigationHandler nh = fc.getApplication().getNavigationHandler();
