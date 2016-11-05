@@ -106,56 +106,39 @@ public class UsuarioMB implements Serializable {
 		Usuario user = fachada.listarPorCPF(usuario);
 		Usuario user2 = fachada.pesquisarPorEmail(usuario);
 		ValidarCpf vl = new ValidarCpf();
-		try 
-		{
-			if(user == null)
-			{
-				if(user2 == null)
-				{
-					if(ValidarEmail.emailValido(usuario.getEmail()) != false)
-					{
-						if(vl.validarCpf(usuario.getCpf()) == true)
-						{
+		try {
+			if (user == null) {
+				if (user2 == null) {
+					if (ValidarEmail.emailValido(usuario.getEmail()) != false) {
+						if (vl.validarCpf(usuario.getCpf()) == true) {
 							fachada.cadastrarUsuario(usuario);
-							// FacesContext.getCurrentInstance().getExternalContext().redirect(/*
-							// url que vc quer*/);
+							FacesContext.getCurrentInstance().addMessage(null,
+									new FacesMessage("Cliente cadastrado com sucesso"));
 							FacesContext fc = FacesContext.getCurrentInstance();
 							ExternalContext ec = fc.getExternalContext();
-							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cliente cadastrado com sucesso"));
-							
+
 							/* Manter a mensagem após o redirect */
 							ec.getFlash().setKeepMessages(true);
 							NavigationHandler nh = fc.getApplication().getNavigationHandler();
 							nh.handleNavigation(fc, null, "/pages/public/login.xhtml?faces-redirect=true");
-							/* Manter a mensagem após o ec.redirect */
-							// ec.getFlash().setKeepMessages(true);
-							//
-							// ec.redirect(ec.getRequestContextPath()+"/pages/protected/minhasListas.xhtml?faces-redirect=true");
-							// FacesContext.getCurrentInstance().getExternalContext()
-							// .redirect("/pages/public/login.xhtml?faces-redirect=true");
-						}else
-						{
-							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse cpf é inválido!"));
+						} else {
+							FacesContext.getCurrentInstance().addMessage(null,
+									new FacesMessage("Esse cpf é inválido!"));
 							return;
 						}
-					}
-					else 
-					{
+					} else {
 						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse e-mail é inválido!"));
 						return;
 					}
-				}
-				else
-				{
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Esse e-mail já está cadastrado!"));
+				} else {
+					FacesContext.getCurrentInstance().addMessage(null,
+							new FacesMessage("Esse e-mail já está cadastrado!"));
 					return;
 				}
-			}
-			else
-			{
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("Usuário já Cadastrado"));
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário já Cadastrado"));
 				return;
-			}  
+			}
 			usuario = new Usuario();
 			endereco = new Endereco();
 		} catch (Exception e) {

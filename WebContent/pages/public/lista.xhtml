@@ -1,161 +1,166 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:body>
-	<ui:composition template="/pages/templates/modeloGeral.xhtml">
-		<ui:define name="conteudo">
-			<h:form id="form">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/pages/templates/modeloGeral.xhtml">
 
-				<script type="text/javascript">
-					function handleDrop(event, ui) {
- 						var droppedProduto = ui.draggable;
+	<ui:define name="menu">
+		<ui:include src="/pages/includes/menuPrincipal.xhtml" />
+	</ui:define>
 
- 						droppedProduto.fadeOut('fast');
- 					}
- 			    </script> 
-				<h:panelGrid columns="2">
-				</h:panelGrid>
-				<p:growl id="msgGlobal" sticky="true" />
-				<h:form id="listaForm">
-					<f:param name="usuario" value="#{loginMB.usuarioLogado.codigo}"/>
-					<p:fieldset id="pdtSupermercado" legend="Produto dos Supermercados">
-						<h:panelGrid columns="3">
-							<p:outputLabel value ="Nome da lista"/>
-							<p:inputText id="nome" value="#{itemMB.listaCompras.nome}"
-							required="true" requiredMessage="Olá usuário, atribua um nome para sua lista" />
-							
-							<p:selectOneMenu id="tipo" value="#{itemMB.listaCompras.tipo}">
-								<f:selectItem noSelectionOption= "true" itemLabel="Tipo da Lista" itemValue="-1"/>
-								<f:selectItem itemLabel= "mensal"  itemValue="mensal" />
-								<f:selectItem itemLabel= "semanal"  itemValue="semanal" />
-								<f:selectItem itemLabel= "quinzenal" itemValue="quinzenal" />
-							</p:selectOneMenu>
-						</h:panelGrid>
-		
-						<h:panelGrid columns="2">
-							<p:selectOneMenu value="#{itemMB.produto.supermercado}"
-								converter="supermercadoConverter">
-								<f:selectItem noSelectionOption="true"
-									itemLabel="Selecione um supermercado" itemValue="-1" />
-								<f:selectItems value="#{itemMB.listaTodoSupermercado}"
-									var="supermercado" itemValue="#{supermercado}"
-									itemLabel="#{supermercdo.nome}" />
-							</p:selectOneMenu>
-									
-							<p:commandButton update="tabela" value="Buscar" ajax="false"
-								actionListener="#{itemMB.listar}" />
-						</h:panelGrid>
+	<ui:define name="conteudo">
+		<h:form id="form">
 
-						<p:dataTable id="listaProdutoSupermercado"
-							emptyMessage="Nenhum registro encontrado...."
-							value="#{itemMB.todosProdutos}"
-							filteredValue="#{itemMB.produtosFiltrados}" var="produto"
-							rows="6" paginator="true">
+			<script type="text/javascript">
+				function handleDrop(event, ui) {
+					var droppedProduto = ui.draggable;
+
+					droppedProduto.fadeOut('fast');
+				}
+			</script>
+			<h:panelGrid columns="2">
+			</h:panelGrid>
+			<p:growl id="msgGlobal" sticky="true" />
+			<h:form id="listaForm">
+				<f:param name="usuario" value="#{loginMB.usuarioLogado.codigo}" />
+				<p:fieldset id="pdtSupermercado" legend="Produto dos Supermercados">
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Nome da lista" />
+						<p:inputText id="nome" value="#{itemMB.listaCompras.nome}"
+							required="true"
+							requiredMessage="Olá usuário, atribua um nome para sua lista" />
+
+						<p:selectOneMenu id="tipo" value="#{itemMB.listaCompras.tipo}">
+							<f:selectItem noSelectionOption="true" itemLabel="Tipo da Lista"
+								itemValue="-1" />
+							<f:selectItem itemLabel="mensal" itemValue="mensal" />
+							<f:selectItem itemLabel="semanal" itemValue="semanal" />
+							<f:selectItem itemLabel="quinzenal" itemValue="quinzenal" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+
+					<h:panelGrid columns="2">
+						<p:selectOneMenu value="#{itemMB.produto.supermercado}"
+							converter="supermercadoConverter">
+							<f:selectItem noSelectionOption="true"
+								itemLabel="Selecione um supermercado" itemValue="-1" />
+							<f:selectItems value="#{itemMB.listaTodoSupermercado}"
+								var="supermercado" itemValue="#{supermercado}"
+								itemLabel="#{supermercdo.nome}" />
+						</p:selectOneMenu>
+
+						<p:commandButton update="tabela" value="Buscar" ajax="false"
+							actionListener="#{itemMB.listar}" />
+					</h:panelGrid>
+
+					<p:dataTable id="listaProdutoSupermercado"
+						emptyMessage="Nenhum registro encontrado...."
+						value="#{itemMB.todosProdutos}"
+						filteredValue="#{itemMB.produtosFiltrados}" var="produto" rows="6"
+						paginator="true">
+
+						<p:column headerText="Código">
+							<h:outputText value="#{produto.codigo}" />
+						</p:column>
+
+						<p:column headerText="Nome" filterBy="#{produto.nome}"
+							sortBy="#{produto.nome}">
+							<h:outputText value="#{produto.nome}" />
+						</p:column>
+
+						<p:column headerText="Marca" filterBy="#{produto.marca}"
+							sortBy="#{produto.marca}">
+							<h:outputText value="#{produto.marca}" />
+						</p:column>
+
+						<p:column headerText="Valor Unitario">
+							<h:outputText value="#{produto.valorUnitario}" />
+						</p:column>
+
+						<p:column headerText="Ação">
+							<p:commandButton var="item" value=" Adicionar"
+								actionListener="#{itemMB.adicionar(produto)}"
+								update=":form:listaForm:pdtSelecionado" />
+						</p:column>
+					</p:dataTable>
+				</p:fieldset>
+
+				<p:fieldset id="pdtSelecionado" legend="Produtos Selecionados">
+					<p:outputPanel id="dropArea">
+						<h:outputText value="Clique em adicionar e monte sua lista"
+							rendered="#{empty itemMB.listaProduto}" />
+
+						<p:dataTable id="produtosSelecionados" var="item"
+							value="#{itemMB.listaItens}"
+							rendered="#{not empty itemMB.listaItens}">
 
 							<p:column headerText="Código">
-								<h:outputText value="#{produto.codigo}" />
+								<h:outputText value="#{item.produto.codigo}" />
 							</p:column>
 
-							<p:column headerText="Nome" filterBy="#{produto.nome}"
-								sortBy="#{produto.nome}">
-								<h:outputText value="#{produto.nome}" />
+							<p:column headerText="Nome" filterBy="#{item.produto.nome}"
+								sortBy="#{item.produto.nome}">
+								<h:outputText value="#{item.produto.nome}" />
 							</p:column>
 
-							<p:column headerText="Marca" filterBy="#{produto.marca}"
-								sortBy="#{produto.marca}">
-								<h:outputText value="#{produto.marca}" />
+							<p:column headerText="Marca" filterBy="#{item.produto.marca}"
+								sortBy="#{item.produto.marca}">
+								<h:outputText value="#{item.produto.marca}" />
+							</p:column>
+
+							<p:column headerText="Quantidade">
+								<!-- <h:outputText value="#{item.qtdProduto}" /> -->
+
+								<p:spinner id="minMax" value="#{item.qtdProduto}" min="0"
+									max="100">
+									<p:ajax update="valorTotal" process="@this" />
+								</p:spinner>
 							</p:column>
 
 							<p:column headerText="Valor Unitario">
-								<h:outputText value="#{produto.valorUnitario}" />
+								<h:outputText value="#{item.produto.valorUnitario}" />
 							</p:column>
-						
+
+							<p:column headerText="Valor Parcial">
+								<h:outputText id="valorTotal"
+									value="#{item.produto.valorUnitario*item.qtdProduto}" />
+
+							</p:column>
+
 							<p:column headerText="Ação">
-									<p:commandButton var = "item" value=" Adicionar" 
-									actionListener="#{itemMB.adicionar(produto)}"
-									update=":form:listaForm:pdtSelecionado"/>
-								</p:column>
-						</p:dataTable>
-					</p:fieldset>
-
-					<p:fieldset id="pdtSelecionado" legend="Produtos Selecionados" >
-						<p:outputPanel id="dropArea">
-							<h:outputText value="Clique em adicionar e monte sua lista"
-								rendered="#{empty itemMB.listaProduto}" />
-
-							<p:dataTable id="produtosSelecionados" var="item"
-								value="#{itemMB.listaItens}"
-								rendered="#{not empty itemMB.listaItens}">
-
-								<p:column headerText="Código">
-									<h:outputText value="#{item.produto.codigo}" />
-								</p:column>
-
-								<p:column headerText="Nome" filterBy="#{item.produto.nome}"
-									sortBy="#{item.produto.nome}">
-									<h:outputText value="#{item.produto.nome}" />
-								</p:column>
-
-								<p:column headerText="Marca" filterBy="#{item.produto.marca}"
-									sortBy="#{item.produto.marca}">
-									<h:outputText value="#{item.produto.marca}" />
-								</p:column>
-
-								<p:column headerText="Quantidade">
-								<!-- <h:outputText value="#{item.qtdProduto}" /> -->
-									
-									<p:spinner id="minMax" value="#{item.qtdProduto}" min="0"
-										max="100" >
-										<p:ajax update="valorTotal" process="@this"/>
-									</p:spinner>
-								</p:column>
-
-								<p:column headerText="Valor Unitario">
-									<h:outputText value="#{item.produto.valorUnitario}" />
-								</p:column>
-
-								<p:column headerText="Valor Parcial">
-									<h:outputText id="valorTotal"
-										value="#{item.produto.valorUnitario*item.qtdProduto}" />
-								
-								</p:column>
-								
-								<p:column headerText="Ação">
-									<p:commandButton var = "item" value="remover" 
+								<p:commandButton var="item" value="remover"
 									actionListener="#{itemMB.remover(item)}"
-									update=":form:listaForm:pdtSelecionado"/>
-								</p:column>
-								<f:facet name="footer">
-									<h:panelGrid columns="2">
-										<p:outputLabel value = "Valor Total da Lista:"/>
-										<h:outputText value = ""/>
-									</h:panelGrid>
-									
-								</f:facet>
-								<f:facet name="footer">
-								
-									<p:commandButton value="Cadastrar Lista"
-										action="#{itemMB.criarLista}" />
-								</f:facet>
-							</p:dataTable>
-						</p:outputPanel>
-					</p:fieldset>
+									update=":form:listaForm:pdtSelecionado" />
+							</p:column>
+							<f:facet name="footer">
+								<h:panelGrid columns="2">
+									<p:outputLabel value="Valor Total da Lista:" />
+									<h:outputText value="" />
+								</h:panelGrid>
 
-					<p:droppable for="pdtSelecionado" tolerance="touch"
-						activeStyleClass="ui-state-highlight"
-						datasource="listaProdutoSupermercado" onDrop="handleDrop">
-						<p:ajax listener="#{itemMB.produtoOnDrop}"
-							update="dropArea listaProdutoSupermercado" render="produtosSelecionados"/>
-					</p:droppable>
+							</f:facet>
+							<f:facet name="footer">
 
-				</h:form>
+								<p:commandButton value="Cadastrar Lista"
+									action="#{itemMB.criarLista}" />
+							</f:facet>
+						</p:dataTable>
+					</p:outputPanel>
+				</p:fieldset>
+
+				<p:droppable for="pdtSelecionado" tolerance="touch"
+					activeStyleClass="ui-state-highlight"
+					datasource="listaProdutoSupermercado" onDrop="handleDrop">
+					<p:ajax listener="#{itemMB.produtoOnDrop}"
+						update="dropArea listaProdutoSupermercado"
+						render="produtosSelecionados" />
+				</p:droppable>
 
 			</h:form>
-		</ui:define>
-	</ui:composition>
-</h:body>
-</html>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
