@@ -1,9 +1,12 @@
 package br.com.marketedelivery.DAO;
 
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import br.com.marketedelivery.IDAO.IItemDAO;
 import br.com.marketedelivery.classesBasicas.Item;
+import br.com.marketedelivery.classesBasicas.Produto;
 
 public class ItemDAO extends DAOGenerico<Item>implements IItemDAO
 {
@@ -12,4 +15,21 @@ public class ItemDAO extends DAOGenerico<Item>implements IItemDAO
 		super(em);
 	}
 
+	 public Item buscarItemProduto(Produto produto)
+	    {
+	    	int codigo = produto.getCodigo();
+	    	String consulta = "SELECT i FROM Item i WHERE i.produto.codigo = :N";
+	    	TypedQuery<Item> retorno = getEntityManager().createQuery(consulta, Item.class);
+	        retorno.setParameter("N",codigo);
+	        Item resultado;
+	        try 
+	        {
+	        	resultado = retorno.getSingleResult();
+	            return resultado;
+
+	        } catch (Exception e) 
+	        {
+	            return null;
+	        }
+	    }	
 }

@@ -8,10 +8,10 @@ public class ValidarCpf {
 	
 	public boolean validarCpf(String cpf) 
 	{
-		if (cpf.equals("00000000000") || cpf.equals("11111111111") || cpf.equals("22222222222")
-				|| cpf.equals("33333333333") || cpf.equals("44444444444") || cpf.equals("55555555555")
-				|| cpf.equals("666.666.666-66") || cpf.equals("77777777777") || cpf.equals("88888888888")
-				|| cpf.equals("99999999999") || (cpf.length() < 11) || (cpf.length() < 14)|| cpf == null)
+		if (cpf.equals("000.000.000-00") || cpf.equals("111.111.111-11") || cpf.equals("222.222.222-22")
+				|| cpf.equals("333.333.333-33") || cpf.equals("444.444.444-44") || cpf.equals("555.555.555-55")
+				|| cpf.equals("666.666.666-66") || cpf.equals("777.777.777-77") || cpf.equals("888.888.888-88")
+				|| cpf.equals("999.999.999-99") || (cpf.length() < 11) || (cpf.length() < 14)|| cpf == null)
 		{
 			return false;
 		}

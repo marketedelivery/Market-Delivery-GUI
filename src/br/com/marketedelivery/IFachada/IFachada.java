@@ -98,6 +98,8 @@ public interface IFachada
 	public Produto pesquisarProdutoPorTipo(Produto produto);
 
 	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado);
+	
+	public void removerProduto(Produto produto);
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
@@ -116,11 +118,15 @@ public interface IFachada
 	public void atualizarItem(Item item);
 
 	public List<Item> listarTodosItens();
+	
+	public void removerProdutoItem(Item item);
+	
+	public Item buscarItemProduto(Produto produto);
+
 
 	// Login facebook -----//
 	Usuario authFacebookLogin() throws Exception;
 
 	void codificar(String codigo, String methodType) throws Exception;
 
-	
 }

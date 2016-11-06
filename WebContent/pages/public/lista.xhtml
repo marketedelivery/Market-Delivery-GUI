@@ -10,17 +10,9 @@
 	<ui:define name="menu">
 		<ui:include src="/pages/includes/menuPrincipal.xhtml" />
 	</ui:define>
-
 	<ui:define name="conteudo">
+	<f:event listener="#{itemMB.listar}" type="preRenderView"></f:event>
 		<h:form id="form">
-
-			<script type="text/javascript">
-				function handleDrop(event, ui) {
-					var droppedProduto = ui.draggable;
-
-					droppedProduto.fadeOut('fast');
-				}
-			</script>
 			<h:panelGrid columns="2">
 			</h:panelGrid>
 			<p:growl id="msgGlobal" sticky="true" />
@@ -42,28 +34,18 @@
 						</p:selectOneMenu>
 					</h:panelGrid>
 
-					<h:panelGrid columns="2">
-						<p:selectOneMenu value="#{itemMB.produto.supermercado}"
-							converter="supermercadoConverter">
-							<f:selectItem noSelectionOption="true"
-								itemLabel="Selecione um supermercado" itemValue="-1" />
-							<f:selectItems value="#{itemMB.listaTodoSupermercado}"
-								var="supermercado" itemValue="#{supermercado}"
-								itemLabel="#{supermercdo.nome}" />
-						</p:selectOneMenu>
-
-						<p:commandButton update="tabela" value="Buscar" ajax="false"
-							actionListener="#{itemMB.listar}" />
-					</h:panelGrid>
-
 					<p:dataTable id="listaProdutoSupermercado"
-						emptyMessage="Nenhum registro encontrado...."
-						value="#{itemMB.todosProdutos}"
-						filteredValue="#{itemMB.produtosFiltrados}" var="produto" rows="6"
-						paginator="true">
+							emptyMessage="Nenhum registro encontrado...."
+							value="#{itemMB.carregarProduto}"
+							filteredValue="#{itemMB.produtosFiltrados}" var="produto"
+							rows="6" paginator="true">
 
-						<p:column headerText="Código">
-							<h:outputText value="#{produto.codigo}" />
+	
+
+						<p:column>
+							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}" height="20%">
+								<f:param name="caminho" value="#{produto.imagem}"/>
+							</p:graphicImage>
 						</p:column>
 
 						<p:column headerText="Nome" filterBy="#{produto.nome}"
@@ -75,6 +57,11 @@
 							sortBy="#{produto.marca}">
 							<h:outputText value="#{produto.marca}" />
 						</p:column>
+						
+						<p:column headerText="Tipo" filterBy="#{item.produto.tipo}"
+								sortBy="#{item.produto.tipo}">
+								<h:outputText value="#{item.produto.tipo}" />
+							</p:column>
 
 						<p:column headerText="Valor Unitario">
 							<h:outputText value="#{produto.valorUnitario}" />
@@ -97,8 +84,10 @@
 							value="#{itemMB.listaItens}"
 							rendered="#{not empty itemMB.listaItens}">
 
-							<p:column headerText="Código">
-								<h:outputText value="#{item.produto.codigo}" />
+							<p:column>
+								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}" height="20%">
+									<f:param name="caminho" value="#{item.produto.imagem}"/>
+								</p:graphicImage>
 							</p:column>
 
 							<p:column headerText="Nome" filterBy="#{item.produto.nome}"
@@ -110,10 +99,11 @@
 								sortBy="#{item.produto.marca}">
 								<h:outputText value="#{item.produto.marca}" />
 							</p:column>
-
+							<p:column headerText="Tipo" filterBy="#{item.produto.tipo}"
+								sortBy="#{item.produto.tipo}">
+								<h:outputText value="#{item.produto.tipo}" />
+							</p:column>
 							<p:column headerText="Quantidade">
-								<!-- <h:outputText value="#{item.qtdProduto}" /> -->
-
 								<p:spinner id="minMax" value="#{item.qtdProduto}" min="0"
 									max="100">
 									<p:ajax update="valorTotal" process="@this" />
@@ -150,17 +140,7 @@
 						</p:dataTable>
 					</p:outputPanel>
 				</p:fieldset>
-
-				<p:droppable for="pdtSelecionado" tolerance="touch"
-					activeStyleClass="ui-state-highlight"
-					datasource="listaProdutoSupermercado" onDrop="handleDrop">
-					<p:ajax listener="#{itemMB.produtoOnDrop}"
-						update="dropArea listaProdutoSupermercado"
-						render="produtosSelecionados" />
-				</p:droppable>
-
 			</h:form>
-
 		</h:form>
 	</ui:define>
 </ui:composition>

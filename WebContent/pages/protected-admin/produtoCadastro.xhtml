@@ -8,65 +8,95 @@
 
 <ui:composition template="/pages/templates/modeloGeral.xhtml">
 	<ui:define name="conteudo">
-
-		<h:form>
-
+	<f:event listener="#{produtoMB.listar}" type="preRenderView"></f:event>
+		<h:form id ="formCadastroProdutoAdministrativo" enctype="multipart/form-data">
+		<p:growl autoUpdate="true"/>
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Produtos" />
 				</f:facet>
 			</p:toolbar>
 
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Código:" />
-				<p:inputText readonly="true" size="10" />
-			</h:panelGrid>
-			<h:panelGrid columns="2">
-				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="80" />
-
-				<p:outputLabel value="Descrição:" />
-				<p:inputText maxlength="50" size="80" />
-			</h:panelGrid>
-			<h:panelGrid columns="4">
+			<h:panelGrid columns="1">
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{produtoMB.produto.nome}"  maxlength="50" size="60" />
 
 				<p:outputLabel value="Marca:" />
-				<p:inputText maxlength="30" size="30" />
+				<p:inputText value="#{produtoMB.produto.marca}" maxlength="50" size="60" />
 
-				<p:outputLabel value="Embalagem:" />
-				<p:inputText maxlength="10" size="10" />
-
-				<p:outputLabel value="Gramatura:" />
-				<p:selectOneMenu>
-					<f:selectItem itemValue="" itemLabel="Selecione um item" />
-					<f:selectItem itemValue="" itemLabel="Kg" />
-					<f:selectItem itemValue="" itemLabel="Caixa" />
-					<f:selectItem itemValue="" itemLabel="Lts" />
-					<f:selectItem itemValue="" itemLabel="Mts" />
+				<p:outputLabel value="Quantidade em Estoque:" />
+				<p:inputText value="#{produtoMB.produto.qtdEstoque}" maxlength="9" size="12" />
+				
+				<p:outputLabel value="Tipo:" />
+				<p:inputText value="#{produtoMB.produto.tipo}" maxlength="12" size="12" />
+				
+				<p:outputLabel value="Valor Unitário:" />
+				<p:inputText value="#{produtoMB.produto.valorUnitario}" maxlength="9" size="12" />
+				
+				<p:outputLabel value= "Supermercado"/>
+				<p:selectOneMenu value="#{produtoMB.produto.supermercado}" converter="supermercadoConverter">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione um supermercado" itemValue="-1" />
+					<f:selectItems value="#{produtoMB.listarTodosSupermercado}"
+						var="supermercado" itemValue="#{supermercado}" itemLabel="#{supermercdo.nome}" />
 				</p:selectOneMenu>
-
-
-				<p:outputLabel value="Quantidade:" />
-				<p:inputText maxlength="10" size="10" />
-
-				<p:outputLabel value="Preço:" />
-				<p:inputText maxlength="30" size="30" />
-
-				<p:outputLabel value="Data de Validade:" />
-				<p:inputText maxlength="10" size="20" />
-
-
+				</h:panelGrid>
+				
+				<h:panelGrid columns="2">
+				<p:outputLabel for="upload" value = "Imagem do Produto"/>
+				<p:fileUpload id="upload" mode="advanced" auto="true" fileUploadListener="#{produtoMB.uploadFoto}" 
+				update=":formCadastroProdutoAdministrativo:foto"/>
+				
+				<p:outputLabel for="foto" value = "Foto Carregada" />
+				<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}" height="30%">
+					<f:param name="caminho" value="#{produtoMB.produto.caminhoImagem}"/>
+				</p:graphicImage>
 			</h:panelGrid>
-
 
 			<h:panelGrid columns="3">
-				<p:commandButton value="Novo" />
-				<p:commandButton value="Salvar" />
-				<p:commandButton value="Voltar"
+				<p:commandButton value="Cadastrar" actionListener="#{produtoMB.cadastrarProduto}"
+				update="formCadastroProdutoAdministrativo"/>
+				<p:commandButton value="Cancelar"
 					action="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
-			</h:panelGrid>
-		</h:form>
+			</h:panelGrid>	
+			
+			<br />
+			<p:dataTable id ="tabela" emptyMessage="Nenhum registro encontrado...."
+				value="#{produtoMB.carregarProduto}"
+				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
+				rows="12" paginator="true">
+				
+				<p:column>
+				<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}" height="20%">
+								<f:param name="caminho" value="#{produto.imagem}"/>
+							</p:graphicImage>
+				</p:column>
+				<p:column headerText="Codigo" filterBy="#{produto.codigo}"
+					sortBy="#{produto.codigo}">
+					<h:outputText value="#{produto.codigo}" />
+				</p:column>
+				<p:column headerText="Nome" filterBy="#{produto.nome}"
+					sortBy="#{produto.nome}">
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+				<p:column headerText="Marca" filterBy="#{produto.marca}"
+					sortBy="#{produto.marca}">
+					<h:outputText value="#{produto.marca}"  />
+				</p:column>
+				<p:column headerText="Tipo" filterBy="#{produto.tipo}"
+					sortBy="#{produto.tipo}">
+					<h:outputText value="#{produto.tipo}" />
+				</p:column>
+				<p:column headerText="Supermercado" >
+					<h:outputText value="#{produto.supermercado.nome}" />
+				</p:column>
+				<p:column headerText="Ações">
+					<p:commandButton var = "produto" icon="ui-icon-trash" action="#{produtoMB.remover(produto)}"
+					update="formCadastroProdutoAdministrativo"/>
+				</p:column>
+			</p:dataTable>
 
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

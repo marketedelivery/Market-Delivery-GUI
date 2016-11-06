@@ -282,6 +282,11 @@ public class Fachada implements IFachada
 	{
 		return conProduto.pesquisarProdutoPorTipo(produto);
 	}
+	
+	public void removerProduto(Produto produto)
+	{
+		conProduto.removerProduto(produto);
+	}
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
@@ -321,7 +326,16 @@ public class Fachada implements IFachada
 	{
 		return conItem.listarTodosItens();
 	}
-
+	
+	public void removerProdutoItem(Item item)
+	{
+		conItem.removerProdutoItem(item);
+	}
+	
+	public Item buscarItemProduto(Produto produto)
+	{
+		return conItem.buscarItemProduto(produto);
+	}
 	// --------------------------------------------- Pedido
 	// -------------------------------------------------------------------
 	public void cadastrarPedido(Pedido pedido)

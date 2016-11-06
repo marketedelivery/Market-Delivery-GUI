@@ -1,5 +1,6 @@
 package br.com.marketedelivery.managedBean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.convert.Converter;
+
 /*import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 */
@@ -128,20 +131,21 @@ public class ItemMB
 		return produtosFiltrados;
 	}
 
-//	public void produtoOnDrop(DragDropEvent ddEvent) {
-//		Produto pdt = ((Produto) ddEvent.getData());
-//		Item it = new Item();
-//		it.setProduto(pdt);
-//		listaItens.add(it);
-//	}
 
 	public List<Supermercado> getListaTodoSupermercado() {
 		listaTodoSupermercado = getFachada().listarTodosSupermercados();
 		return listaTodoSupermercado;
 	}
-
-	public void listar() {
-		todosProdutos = getFachada().buscarProdutoPorSupermercado(getProduto().getSupermercado());
+	
+	public List<Produto> getCarregarProduto()
+	{
+		List<Produto>listaProdutos = getFachada().listarTodosProdutos();
+		return listaProdutos;
+	}
+	
+	public void listar()
+	{
+		getCarregarProduto();
 	}
 
 	public void adicionarProduto(Produto produto)
@@ -171,7 +175,7 @@ public class ItemMB
 		if(podutoPosicao < 0)
 		{
 			it.setQtdProduto(1);
-			it.setPrecoTotal(it.getQtdProduto()*it.getProduto().getValorUnitario());
+			it.setPrecoTotal( it.getQtdProduto()* it.getProduto().getValorUnitario());
 			listaItens.add(it);
 		}else 
 		{

@@ -27,8 +27,8 @@ public class SupermercadoConverter implements Converter
 			Supermercado su = new Supermercado();
 			su.setCodigo(codigo);
 			Supermercado supermercado = fachada.consultarPorID(su);
-			List<Produto>pdt = fachada.buscarProdutoPorSupermercado(su);
-			supermercado.setProdutos(pdt);
+			//List<Produto>pdt = fachada.buscarProdutoPorSupermercado(su);
+			//supermercado.setProdutos(pdt);
 			return supermercado;
 			
 		} catch (RuntimeException ex) 

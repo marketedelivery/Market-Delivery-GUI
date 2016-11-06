@@ -49,5 +49,10 @@ public class ControladorProduto
 		return produtoDAO.buscarPorNome(tipo);
 	}
 	
+	public void removerProduto(Produto produto)
+	{
+		produtoDAO = DAOFactoryProduto.getProdutoDAO();
+		produtoDAO.remover(produto);
+	}
 	
 }
