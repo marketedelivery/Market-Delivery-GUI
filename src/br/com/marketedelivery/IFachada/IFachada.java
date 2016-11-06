@@ -2,6 +2,8 @@ package br.com.marketedelivery.IFachada;
 
 import java.util.List;
 
+import org.primefaces.model.map.MapModel;
+
 import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
@@ -44,7 +46,9 @@ public interface IFachada
 	public Supermercado listarPorNome(Supermercado supermercado);
 
 	public List<Produto> listarProdutosDoSupermercado(String nomeProduto, String supermercado);
-
+	
+	public MapModel getSupermencadoProximo();
+	
 	public Supermercado consultarPorID(Supermercado supermercado);
 	// --------------------------------------------- Endereco
 	// -------------------------------------------------------------------
@@ -112,4 +116,11 @@ public interface IFachada
 	public void atualizarItem(Item item);
 
 	public List<Item> listarTodosItens();
+
+	// Login facebook -----//
+	Usuario authFacebookLogin() throws Exception;
+
+	void codificar(String codigo, String methodType) throws Exception;
+
+	
 }

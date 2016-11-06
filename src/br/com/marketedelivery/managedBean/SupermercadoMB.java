@@ -3,11 +3,14 @@ package br.com.marketedelivery.managedBean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
+import org.primefaces.event.map.PointSelectEvent;
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -42,12 +45,17 @@ public class SupermercadoMB implements Serializable
 	private List<Supermercado> listaSupermercadosFiltrados;
 
 	private List<Supermercado> converterListaSuper;
-
+	private String  latitude;
+	private String longitude;
 	MapModel mapModel;
-
+	private  String longPesquisa;
+	private  String latPesquisa;
 	@PostConstruct
 	public void init()
-	{}
+	{
+		setLatPesquisa("-8.062845");
+		setLongPesquisa("-34.871181");
+	}
 
 	public IFachada getFachada()
 	{
@@ -189,6 +197,67 @@ public class SupermercadoMB implements Serializable
 		this.listaSupermercados = listaSupermercados;
 	}
 
+	public MapModel getSupermencadoProximo(){
+		
+		fachada = getFachada();
+		
+		return fachada.getSupermencadoProximo();
+	}
 	
+public void onPointSelect() { //PointSelectEvent event
+    Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+   String x = params.get("latitude");
+   String xx = params.get("longitude");
+    setLatitude(x);
+   setLongitude(xx);
+   
+}
+
+public String getLatitude() {
+	return latitude;
+}
+
+public void setLatitude(String latitude) {
+	this.latitude = latitude;
+}
+
+public String getLongitude() {
+	return longitude;
+}
+
+public void setLongitude(String longitude) {
+	this.longitude = longitude;
+}
+
+public String getLongPesquisa() {
+	mapModel = new DefaultMapModel();
+		if (getSupermercadoSelecionado() != null)
+	{		
+		Double longitude = Double.parseDouble(getSupermercadoSelecionado().getLongitude());
+		return longPesquisa = longitude.toString();
+	}	
+	return longPesquisa;
+}
+
+public void setLongPesquisa(String longPesquisa) {
+	this.longPesquisa = longPesquisa;
+}
+
+public String getLatPesquisa() {
+	mapModel = new DefaultMapModel();
+	if (getSupermercadoSelecionado() != null)
+	{		
+	Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
+	return longPesquisa = latitude.toString();
+	}
+	return latPesquisa;
+}
+
+public void setLatPesquisa(String latPesquisa) {
+	this.latPesquisa = latPesquisa;
+}
+
+
+
 
 }

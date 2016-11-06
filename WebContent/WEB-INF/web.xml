@@ -70,4 +70,9 @@
 		com.sun.faces.application.WebappLifecycleListener
 	</listener-class>
 </listener>
+	<!-- configuração de erros -->
+		<error-page>
+		    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		    <location>/pages/public/tlLogin.xhtml</location>
+		</error-page>
 </web-app>

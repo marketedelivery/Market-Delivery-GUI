@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90% !important;
+}
 
 .ui-layout-north {
 	z-index: 20 !important;
@@ -9,7 +12,17 @@
 .ui-layout-north .ui-layout-unit-content {
 	overflow: visible !important;
 }
-
-.ui-widget, .ui-widget .ui-widget {
-	font-size: 90% !important;
+.login-facebook-link {
+	margin-left: 20px;
+	background-color: #8000ff;
+	width: 200px;
+	border-radius: 10px;
+	text-align: right;
+	padding: 5px;
+}
+.link-text {
+	position: absolute;
+	left: 30px;
+	font-size: 15px;
+	text-align: left;
 }

@@ -2,6 +2,10 @@ package br.com.marketedelivery.controlador;
 
 import java.util.List;
 
+import org.primefaces.model.map.DefaultMapModel;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Marker;
 import br.com.marketedelivery.DAOFactory.DAOFactorySupermercado;
 import br.com.marketedelivery.IDAO.ISupermercadoDAO;
 import br.com.marketedelivery.classesBasicas.Produto;
@@ -54,5 +58,34 @@ public class ControladorSupermercado
 	{
 		supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		return supermercadoDAO.consultarPorId(supermercado.getCodigo());
+	}
+	
+	/**
+	 * 
+	 * @return retorna MapModel
+	 */
+	public MapModel supermencadoProximo(){
+		supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
+		 try{
+			 MapModel mapModel = new DefaultMapModel();
+		List<Supermercado> lista = supermercadoDAO.consultarTodos();
+		
+		if(lista != null){
+			for(int i = 0; i < lista.size();i++){
+				Double latitude = Double.parseDouble(lista.get(i).getLatitude());
+				 Double logitude = Double.parseDouble(lista.get(i).getLongitude());
+
+				 LatLng	latLng = new LatLng(latitude, logitude);
+					mapModel.addOverlay(new Marker(latLng, "Supermercado " + lista.get(i).getNome()));
+					latLng = null;
+			}
+		}
+		return mapModel;
+		 }
+		 catch(Exception e){
+			 e.getMessage();
+			 return null;
+		 }
+		
 	}
 }

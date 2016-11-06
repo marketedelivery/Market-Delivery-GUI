@@ -2,6 +2,8 @@ package br.com.marketedelivery.Fachada;
 
 import java.util.List;
 
+import org.primefaces.model.map.MapModel;
+
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Item;
@@ -16,6 +18,7 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 import br.com.marketedelivery.controlador.ControladorEndereco;
 import br.com.marketedelivery.controlador.ControladorItem;
 import br.com.marketedelivery.controlador.ControladorListadeCompra;
+import br.com.marketedelivery.controlador.ControladorLoginFacebook;
 import br.com.marketedelivery.controlador.ControladorPagamento;
 import br.com.marketedelivery.controlador.ControladorPedido;
 // import br.com.marketedelivery.controlador.ControladorPerfil;
@@ -43,7 +46,7 @@ public class Fachada implements IFachada
 	private ControladorItem conItem;
 
 	private ControladorPedido conPedido;
-
+	private ControladorLoginFacebook loginFacebook;
 	public IFachada getInstancia()
 	{
 		if (instancia == null)
@@ -64,6 +67,7 @@ public class Fachada implements IFachada
 		conProduto = new ControladorProduto();
 		conItem = new ControladorItem();
 		conPedido = new ControladorPedido();
+		loginFacebook = new ControladorLoginFacebook();
 	}
 
 	public void cadastrarUsuario(Usuario usuario)
@@ -339,6 +343,23 @@ public class Fachada implements IFachada
 	{
 		return conPedido.listarPedidoPorCodigo(pedido);
 	}
-
+	// TRAZER SUPERMERCADO PRÓXIMO
+	@Override
+	public MapModel getSupermencadoProximo() {
 		
+		return conSupermercado.supermencadoProximo();
+	}
+
+	// Login facebook -----//
+		@Override
+		public Usuario authFacebookLogin() throws Exception {
+			
+			return loginFacebook.authFacebookLogin();
+		}
+
+		@Override
+		public void codificar(String codigo, String methodType) throws Exception {
+			loginFacebook.codificar(codigo, methodType);
+			
+		}	
 }

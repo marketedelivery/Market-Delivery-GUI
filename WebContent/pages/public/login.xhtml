@@ -51,7 +51,20 @@
 					</f:facet>
 				</h:panelGrid>
 			</h:form>
-
+		<h:form id="formFacebook">
+				<!-- Botão de Login com Facebook -->
+			<div id="socialButtons">
+				<h:commandLink id="facebook" action="#{loginFacebookMB.conectarFacebook}">
+				<div class="login-facebook-link">
+					<p class="link-text">Login com Facebook</p>
+					<h:graphicImage value="/images/facebook_icon.png"/>
+				</div>
+					<f:setPropertyActionListener target="#{loginFacebookMB.providerID}" value="facebook" />
+					
+				</h:commandLink>
+			</div>
+		
+			</h:form>
 			<f:facet name="footer">
 			</f:facet>
 			<f:facet name="footer">
