@@ -38,6 +38,8 @@ public class UsuarioMB implements Serializable {
 	private List<Usuario> listaUsuarios;
 
 	private List<Usuario> listaUsuariosFiltrados;
+	
+	private List<Usuario>todosUsuarios;
 
 	public Endereco getEndereco() {
 		if (endereco == null) {
@@ -45,6 +47,19 @@ public class UsuarioMB implements Serializable {
 		}
 		return endereco;
 	}
+	
+
+	public List<Usuario> getTodosUsuarios() {
+		return todosUsuarios;
+	}
+
+
+
+	public void setTodosUsuarios(List<Usuario> todosUsuarios) {
+		this.todosUsuarios = todosUsuarios;
+	}
+
+
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
@@ -189,5 +204,17 @@ public class UsuarioMB implements Serializable {
 				System.out.println(e.getMessage());
 			}
 		}
+	}
+	
+	public List<Usuario>getListarUsuarios()
+	{
+		List<Usuario> tmp = getFachada().listarTodosUsuarios();
+		return tmp;
+		
+	}
+	
+	public void carregarLista()
+	{
+		getListarUsuarios();
 	}
 }

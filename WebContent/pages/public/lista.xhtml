@@ -11,7 +11,7 @@
 		<ui:include src="/pages/includes/menuPrincipal.xhtml" />
 	</ui:define>
 	<ui:define name="conteudo">
-	<f:event listener="#{itemMB.listar}" type="preRenderView"></f:event>
+		<f:event listener="#{itemMB.listar}" type="preRenderView"></f:event>
 		<h:form id="form">
 			<h:panelGrid columns="2">
 			</h:panelGrid>
@@ -34,45 +34,30 @@
 						</p:selectOneMenu>
 					</h:panelGrid>
 
-					<p:dataTable id="listaProdutoSupermercado"
-							emptyMessage="Nenhum registro encontrado...."
-							value="#{itemMB.carregarProduto}"
-							filteredValue="#{itemMB.produtosFiltrados}" var="produto"
-							rows="6" paginator="true">
+					<p:dataGrid columns="5" value="#{produtoMB.carregarProduto}"
+						layout="tabular" rows="12" paginator="true" var="produto"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="6,12,16">
 
-	
+						<p:panel header="#{produto.nome}">
+							<p:panelGrid columns="1">
+								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
+									height="20%">
+									<f:param name="caminho" value="#{produto.imagem}" />
+								</p:graphicImage>
+							</p:panelGrid>
 
-						<p:column>
-							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}" height="20%">
-								<f:param name="caminho" value="#{produto.imagem}"/>
-							</p:graphicImage>
-						</p:column>
-
-						<p:column headerText="Nome" filterBy="#{produto.nome}"
-							sortBy="#{produto.nome}">
-							<h:outputText value="#{produto.nome}" />
-						</p:column>
-
-						<p:column headerText="Marca" filterBy="#{produto.marca}"
-							sortBy="#{produto.marca}">
-							<h:outputText value="#{produto.marca}" />
-						</p:column>
-						
-						<p:column headerText="Tipo" filterBy="#{item.produto.tipo}"
-								sortBy="#{item.produto.tipo}">
-								<h:outputText value="#{item.produto.tipo}" />
-							</p:column>
-
-						<p:column headerText="Valor Unitario">
-							<h:outputText value="#{produto.valorUnitario}" />
-						</p:column>
-
-						<p:column headerText="Ação">
-							<p:commandButton var="item" value=" Adicionar"
-								actionListener="#{itemMB.adicionar(produto)}"
-								update=":form:listaForm:pdtSelecionado" />
-						</p:column>
-					</p:dataTable>
+							<p:panelGrid columns="2">
+								<h:outputText value="Tipo:" />
+								<p:outputLabel value="#{produto.tipo}" />
+								<h:outputText value="Marca:" />
+								<p:outputLabel value="#{produto.marca}" />
+								<p:commandButton var="item" value=" Adicionar"
+									actionListener="#{itemMB.adicionar(produto)}"
+									update=":form:listaForm:pdtSelecionado" />
+							</p:panelGrid>
+						</p:panel>
+					</p:dataGrid>
 				</p:fieldset>
 
 				<p:fieldset id="pdtSelecionado" legend="Produtos Selecionados">
@@ -85,8 +70,9 @@
 							rendered="#{not empty itemMB.listaItens}">
 
 							<p:column>
-								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}" height="20%">
-									<f:param name="caminho" value="#{item.produto.imagem}"/>
+								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
+									height="20%">
+									<f:param name="caminho" value="#{item.produto.imagem}" />
 								</p:graphicImage>
 							</p:column>
 

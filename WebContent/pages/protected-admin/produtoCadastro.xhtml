@@ -31,7 +31,7 @@
 				<p:inputText value="#{produtoMB.produto.tipo}" maxlength="12" size="12" />
 				
 				<p:outputLabel value="Valor Unitário:" />
-				<p:inputText value="#{produtoMB.produto.valorUnitario}" maxlength="9" size="12" />
+				<p:inputText value="#{produtoMB.produto.valorUnitario}" maxlength="9" size="12"  />
 				
 				<p:outputLabel value= "Supermercado"/>
 				<p:selectOneMenu value="#{produtoMB.produto.supermercado}" converter="supermercadoConverter">
@@ -61,6 +61,26 @@
 			</h:panelGrid>	
 			
 			<br />
+			
+			<p:dataGrid columns="5" value="#{produtoMB.carregarProduto}" layout="tabular"
+       					rows="12" paginator="true" var="produto"
+       					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        				rowsPerPageTemplate="6,12,16">
+				<p:panel header="#{produto.nome}">
+					<p:panelGrid columns="1" >
+					<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}" height="20%">
+						<f:param name="caminho" value="#{produto.imagem}"/> </p:graphicImage>
+				</p:panelGrid>
+				
+				<p:panelGrid columns="2">	
+					<h:outputText value="Tipo:"/>
+					<p:outputLabel value="#{produto.tipo}"/>
+					<h:outputText value="Marca:" />
+					<p:outputLabel value="#{produto.marca}"/>
+					</p:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+			
 			<p:dataTable id ="tabela" emptyMessage="Nenhum registro encontrado...."
 				value="#{produtoMB.carregarProduto}"
 				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
