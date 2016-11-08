@@ -32,34 +32,34 @@
 							<f:selectItem itemLabel="semanal" itemValue="semanal" />
 							<f:selectItem itemLabel="quinzenal" itemValue="quinzenal" />
 						</p:selectOneMenu>
-					</h:panelGrid>
+					</h:panelGrid> <br />
 
-					<p:dataGrid columns="5" value="#{produtoMB.carregarProduto}"
+					<p:dataGrid columns="4" value="#{produtoMB.carregarProduto}"
 						layout="tabular" rows="12" paginator="true" var="produto"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="6,12,16">
+						rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
 
-						<p:panel header="#{produto.nome}">
+						<p:panel style="text-align:center">
 							<p:panelGrid columns="1">
 								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-									height="20%">
+									height="30%">
 									<f:param name="caminho" value="#{produto.imagem}" />
 								</p:graphicImage>
 							</p:panelGrid>
-
-							<p:panelGrid columns="2">
-								<h:outputText value="Tipo:" />
-								<p:outputLabel value="#{produto.tipo}" />
-								<h:outputText value="Marca:" />
-								<p:outputLabel value="#{produto.marca}" />
+							<p:outputLabel value="#{produto.nome}  #{produto.tipo}"
+								style="margin:0 auto;" />
+							<br />
+							<p:outputLabel value="#{produto.marca}" style="margin:0 auto;" />
+							<br />
+							<p:spinner id="minMax" value="#{item.qtdProduto}" min="0"
+								max="100" />
 								<p:commandButton var="item" value=" Adicionar"
-									actionListener="#{itemMB.adicionar(produto)}"
-									update=":form:listaForm:pdtSelecionado" />
-							</p:panelGrid>
+								actionListener="#{itemMB.adicionar(produto)}"
+								update=":form:listaForm:pdtSelecionado" />
 						</p:panel>
 					</p:dataGrid>
 				</p:fieldset>
-
+				<br />
 				<p:fieldset id="pdtSelecionado" legend="Produtos Selecionados">
 					<p:outputPanel id="dropArea">
 						<h:outputText value="Clique em adicionar e monte sua lista"
