@@ -49,18 +49,22 @@ public class ControladorLoginFacebook implements Serializable{
 		}catch(Exception ex){
 			throw new SocialAuthException("Error enquanto recebe o perfil " + PROFILE_FIELDS,ex);
 		}
+			Usuario usuario = new Usuario();
 		try{
 			// Basta extrair da response um JSONObject e intepreta-lo como quiser
 			JSONObject resp = new JSONObject(presp);
+			
 			System.out.println(resp);
-			Usuario usuario = new Usuario();
+			
 			usuario.setCodigo((int) resp.getLong("id"));
 			usuario.setNome(resp.getString("name"));
-			if(resp.getString("email") != null){
-				usuario.setEmail(resp.getString("email"));
-			}
+			
+			usuario.setEmail(resp.getString("email"));
+			
 			//usuario.setImagemPerfilFacebook(resp.getJSONObject("picture").getJSONObject("data").getString("url"));
 			System.out.println(usuario.getCodigo() +" "+ usuario.getNome() +"  "+ usuario.getEmail()); // +" "+ usuario.getImagemPerfilFacebook()
+			return usuario;
+		}catch(JSONException je){
 			return usuario;
 		}catch(Exception ex){
 			throw new ServerDataException("Falhou ao analizar o perfil do usuario no json : " + presp, ex);
