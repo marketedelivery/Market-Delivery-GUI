@@ -220,6 +220,11 @@ public class Fachada implements IFachada
 	{
 		return conLista.buscaListaPorUsuario(usuario);
 	}
+	
+	public void removerLista(ListaDeCompras lista)
+	{
+		conLista.removerLista(lista);
+	}
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 

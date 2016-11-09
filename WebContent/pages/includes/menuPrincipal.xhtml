@@ -13,13 +13,10 @@
 			<p:menubar>
 				<p:submenu label="Home" icon="ui-icon-home">
 					<p:menuitem value="Principal"
-						outcome="/pages/public/principal.xhtml?faces-redirect=true" />
-					<p:menuitem value="Minha Conta" />
+						outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
 					<p:menuitem target="#{usuarioMB.usuario}"
 						value="Atualizar Meus Dados" update=":update"
 						oncomplete="PF('usuarioDialog').show()" />
-					<p:menuitem value="Minha Lista" />
-					<p:menuitem value="Sair" />
 				</p:submenu>
 
 				<p:submenu label="Cadastro" icon="ui-icon-disk">
@@ -30,24 +27,20 @@
 					<p:menuitem value="Produto" />
 					<p:menuitem value="Supermercado" />
 				</p:submenu>
-				<p:submenu label="Localizar Supermercados">
-					<p:menuitem value="Supermercados" />
-				</p:submenu>
+				<p:menuitem value="Localizar Supermercado"  action="#{loginMB.logOut}"
+					outcome="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" 
+					icon="ui-icon-search"/>
 
 				<p:submenu label="Pesquisar" icon="ui-icon-search">
 					<p:menuitem value="Produto"
 						outcome="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
-					<p:menuitem value="Supermercado"
-						outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true" />
 					<p:menuitem value="Listas"
 						outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
-					<p:menuitem value="Clientes"
-						outcome="/pages/protected/clientePesquisa.xhtml?faces-redirect=true" />
 				</p:submenu>
-
-				<p:menuitem value="Sair"
-					url="/pages/public/principal.xhtml?faces-redirect=true"
-					icon="ui-icon-close" />
+				
+				<p:menuitem value="Sair" action="#{loginMB.logOut}"
+					outcome="/pages/public/login.xhtml?faces-redirect=true"
+					icon="ui-icon-close"/>
 			</p:menubar>
 		</h:form>
 		<h:form id="update">

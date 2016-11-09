@@ -33,17 +33,14 @@
 					<p:inputText id="email" value="#{loginMB.usuario.email}"
 						required="false" label="username"
 						requiredMessage="Preencha o campo Email" />
-					<!-- 
-						<f:validator validatorId="custom.emailValidator" />
-						 -->
 					
 				   Senha
 					<p:password id="senha" value="#{loginMB.usuario.senha}"
-						required="true" requiredMessage="Preencha o campo Senha"
+						required="false" requiredMessage="Preencha o campo Senha"
 						label="password" />
 						
 					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}"
-						ajax="false" validateClient="true" />
+						ajax="false" validateClient="true" process="@this"/>
 
 					<p:commandButton value="Esqueceu a senha?" type="button"
 						onclick="PF('recuperaSenha').show();" />

@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /*import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -145,16 +147,6 @@ public class ItemMB
 	{
 		getCarregarProduto();
 	}
-
-	public void adicionarProduto(Produto produto)
-	{
-		Item it = new Item();
-		it.setProduto(produto);
-		it.setQtdProduto(1);
-		it.setPrecoTotal(produto.getValorUnitario() * it.getQtdProduto());
-		System.out.println(it);
-		listaItens.add(it);
-	}
 	
 	public void adicionar(Produto produto)
 	{
@@ -225,9 +217,15 @@ public class ItemMB
 			Item itTemp = new  Item();
 			itTemp.setLista(lista);
 			itTemp.setProduto(it.getProduto());
-			it.setQtdProduto(listaItens.size());
+			itTemp.setQtdProduto(it.getQtdProduto());
 			itTemp.setPrecoTotal(1000.00);
 			getFachada().cadastrarItem(itTemp);
 		}
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Lista cadastrada com sucesso"));
+		listaCompras = new ListaDeCompras();
+		listaItens = new ArrayList<Item>();
+		
 	}
 }

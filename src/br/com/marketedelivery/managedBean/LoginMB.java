@@ -99,7 +99,7 @@ public class LoginMB extends AbstractMB implements Serializable
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
 		session.invalidate();
-		return "/pages/public/principal.xhtml?faces-redirect=true";
+		return null;
 	}
 
 	public String efetuarLogin()
@@ -121,7 +121,6 @@ public class LoginMB extends AbstractMB implements Serializable
 				return "/pages/protected/minhasListas.xhtml?faces-redirect=true";
 			} else if (usuario.getEmail().equals(email) && usuario.getSenha() != senha)
 			{
-				menssagem = "Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente";
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
 						"Email ou Senha incorretos, Por Favor verifique seus dados e tente navamente"));
 				return null;
@@ -129,7 +128,7 @@ public class LoginMB extends AbstractMB implements Serializable
 		}
 		catch (Exception e)
 		{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email nï¿½o cadastrado"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Email não cadastrado"));
 			e.printStackTrace();
 			return null;
 		}

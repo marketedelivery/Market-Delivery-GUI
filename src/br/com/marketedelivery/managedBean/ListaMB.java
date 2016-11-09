@@ -3,8 +3,10 @@ package br.com.marketedelivery.managedBean;
 /*import java.util.ArrayList;*/
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
@@ -63,5 +65,26 @@ public class ListaMB
 		listarTodos = getFachada().buscarListaPorUsuario(user);
 		return listarTodos;
 		
+	}
+	public void listarListas()
+	{
+		getTodasAsListas();
+	}
+	public List<ListaDeCompras> getTodasAsListas()
+	{
+		List<ListaDeCompras> lista = getFachada().listarTodasListas();
+		return lista;
+		
+	}
+	
+	public void remover (ListaDeCompras lista)
+	{
+		try {
+			getFachada().removerLista(lista);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista removidad com sucesso"));
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao remover sua lista, tente novamente mais tarde"));
+			e.printStackTrace();
+		}
 	}
 }

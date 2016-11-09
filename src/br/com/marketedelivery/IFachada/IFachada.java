@@ -73,7 +73,9 @@ public interface IFachada
 
 	public ListaDeCompras buscarPorCodigo(ListaDeCompras lista);
 	
-	public List<ListaDeCompras> buscarListaPorUsuario(Usuario usuario) ;
+	public List<ListaDeCompras> buscarListaPorUsuario(Usuario usuario);
+	
+	public void removerLista(ListaDeCompras lista);
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
 

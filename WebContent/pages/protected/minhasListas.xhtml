@@ -51,6 +51,12 @@
 				<p:column headerText="Lista Criada">
 					<h:outputText value="#{lista.dataCriacao}" />
 				</p:column>
+				
+				<p:column headerText="Ação">
+					<p:commandButton value="Editar"/>
+					<p:commandButton value="Excluir" action="#{listaMB.remover(lista)}" process="@this"
+					update="form"/>
+				</p:column>
 			</p:dataTable>
 		</h:form>
 	</ui:define>

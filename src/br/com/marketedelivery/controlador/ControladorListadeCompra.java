@@ -44,4 +44,10 @@ public class ControladorListadeCompra
 		return retorno;
 	}
 	
+	public void removerLista(ListaDeCompras lista)
+	{
+		listaDAO = DAOFactoryListadeCompras.getListaDAO();
+		listaDAO.remover(lista);
+	}
+	
 }
