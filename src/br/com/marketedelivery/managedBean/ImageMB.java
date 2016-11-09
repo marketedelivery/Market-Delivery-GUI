@@ -13,30 +13,33 @@ import javax.faces.bean.ReferencedBean;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-@ManagedBean
+@ManagedBean(name = "imageBean")
 @ReferencedBean
-public class ImageBean
+public class ImageMB
 {
-	@ManagedProperty("#{param.caminho}")// receber o caminho da imagem
+	@ManagedProperty("#{param.caminho}") // receber o caminho da imagem
 	private String caminho;
+
 	private StreamedContent fotoCarregada;
-	
-	public String getCaminho() {
+
+	public String getCaminho()
+	{
 		return caminho;
 	}
-	
-	public void setCaminho(String caminho) {
+
+	public void setCaminho(String caminho)
+	{
 		this.caminho = caminho;
 	}
-	
-	public StreamedContent getFotoCarregada() throws IOException 
+
+	public StreamedContent getFotoCarregada() throws IOException
 	{
-		if(caminho == null || caminho.isEmpty())
+		if (caminho == null || caminho.isEmpty())
 		{
 			Path foto = Paths.get("C:/ImagemMarketeDelivery/semproduto.png");
 			InputStream fluxo = Files.newInputStream(foto);
 			fotoCarregada = new DefaultStreamedContent(fluxo);
-		}else
+		} else
 		{
 			Path foto = Paths.get(caminho);
 			InputStream fluxo = Files.newInputStream(foto);
@@ -44,8 +47,9 @@ public class ImageBean
 		}
 		return fotoCarregada;
 	}
-	
-	public void setFotoCarregada(StreamedContent fotoCarregada) {
+
+	public void setFotoCarregada(StreamedContent fotoCarregada)
+	{
 		this.fotoCarregada = fotoCarregada;
 	}
 }
