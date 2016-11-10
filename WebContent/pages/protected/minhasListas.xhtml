@@ -29,7 +29,7 @@
 			<h3 style="margin-top: 0"></h3>
 			<p:separator />
 
-			<p:dataTable emptyMessage="Nenhum registro encontrado...."
+			<p:dataTable id="table" emptyMessage="Nenhum registro encontrado...."
 				value="#{listaMB.listarTodos}"
 				filteredValue="#{listaMB.listaFiltrados}" var="lista"
 				rows="6" paginator="true">
@@ -54,8 +54,8 @@
 				
 				<p:column headerText="Ação">
 					<p:commandButton value="Editar"/>
-					<p:commandButton value="Excluir" action="#{listaMB.remover(lista)}" process="@this"
-					update="form"/>
+					<p:commandButton value="Excluir" action="#{listaMB.remover(lista)}"
+					update="table"/>
 				</p:column>
 			</p:dataTable>
 		</h:form>

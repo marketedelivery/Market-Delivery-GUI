@@ -81,7 +81,7 @@ public class ListaMB
 	{
 		try {
 			getFachada().removerLista(lista);
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista removidad com sucesso"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista removida com sucesso"));
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Erro ao remover sua lista, tente novamente mais tarde"));
 			e.printStackTrace();

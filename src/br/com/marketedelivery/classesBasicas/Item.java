@@ -30,7 +30,7 @@ public class Item implements Serializable
 	private Double precoTotal;
 	@Column(name = "qtdProduto",length=12)
 	private int qtdProduto;
-	@ManyToOne(cascade=CascadeType.REFRESH)
+	@ManyToOne(cascade=CascadeType.ALL)
 	private ListaDeCompras lista;
 	
 	public Item() 
