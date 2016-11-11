@@ -21,7 +21,6 @@ import org.hibernate.annotations.FetchMode;
 @Table(name = "tb_usuario")
 public class Usuario implements Serializable
 {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -166,13 +165,11 @@ public class Usuario implements Serializable
 		this.senha = senha;
 	}
 
-	
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "Usuario [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco
 				+ ", telefoneWhatsapp=" + telefoneWhatsapp + ", perfil=" + perfil + ", telefone=" + telefone
 				+ ", email=" + email + ", senha=" + senha + "]";
 	}
-	
-	
 }

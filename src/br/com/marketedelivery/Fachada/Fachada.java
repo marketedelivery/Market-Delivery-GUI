@@ -46,7 +46,9 @@ public class Fachada implements IFachada
 	private ControladorItem conItem;
 
 	private ControladorPedido conPedido;
+
 	private ControladorLoginFacebook loginFacebook;
+
 	public IFachada getInstancia()
 	{
 		if (instancia == null)
@@ -215,12 +217,12 @@ public class Fachada implements IFachada
 	{
 		return conLista.buscarPorCodigo(lista);
 	}
-	
-	public List<ListaDeCompras> buscarListaPorUsuario(Usuario usuario) 
+
+	public List<ListaDeCompras> buscarListaPorUsuario(Usuario usuario)
 	{
 		return conLista.buscaListaPorUsuario(usuario);
 	}
-	
+
 	public void removerLista(ListaDeCompras lista)
 	{
 		conLista.removerLista(lista);
@@ -282,12 +284,12 @@ public class Fachada implements IFachada
 	{
 		return conProduto.buscarProdutoPorSupermercado(supermercado);
 	}
-	
+
 	public Produto pesquisarProdutoPorTipo(Produto produto)
 	{
 		return conProduto.pesquisarProdutoPorTipo(produto);
 	}
-	
+
 	public void removerProduto(Produto produto)
 	{
 		conProduto.removerProduto(produto);
@@ -331,16 +333,22 @@ public class Fachada implements IFachada
 	{
 		return conItem.listarTodosItens();
 	}
-	
+
 	public void removerProdutoItem(Item item)
 	{
 		conItem.removerProdutoItem(item);
 	}
-	
+
 	public Item buscarItemProduto(Produto produto)
 	{
 		return conItem.buscarItemProduto(produto);
 	}
+
+	public List<Item> consultarItensPorLista(ListaDeCompras lista)
+	{
+		return conItem.consultarItensPorLista(lista);
+	}
+
 	// --------------------------------------------- Pedido
 	// -------------------------------------------------------------------
 	public void cadastrarPedido(Pedido pedido)
@@ -362,23 +370,24 @@ public class Fachada implements IFachada
 	{
 		return conPedido.listarPedidoPorCodigo(pedido);
 	}
+
 	// TRAZER SUPERMERCADO PRÓXIMO
 	@Override
-	public MapModel getSupermencadoProximo() {
-		
+	public MapModel getSupermencadoProximo()
+	{
 		return conSupermercado.supermencadoProximo();
 	}
 
 	// Login facebook -----//
-		@Override
-		public Usuario authFacebookLogin() throws Exception {
-			
-			return loginFacebook.authFacebookLogin();
-		}
+	@Override
+	public Usuario authFacebookLogin() throws Exception
+	{
+		return loginFacebook.authFacebookLogin();
+	}
 
-		@Override
-		public void codificar(String codigo, String methodType) throws Exception {
-			loginFacebook.codificar(codigo, methodType);
-			
-		}	
+	@Override
+	public void codificar(String codigo, String methodType) throws Exception
+	{
+		loginFacebook.codificar(codigo, methodType);
+	}
 }

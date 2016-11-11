@@ -1,7 +1,6 @@
 package br.com.marketedelivery.classesBasicas;
 
-public enum Tipo {
-	
-	semanal, quinzenal, mensal
-
+public enum Tipo
+{
+	Semanal, Quinzenal, Mensal
 }

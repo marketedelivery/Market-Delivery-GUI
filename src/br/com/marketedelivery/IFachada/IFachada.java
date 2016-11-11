@@ -46,9 +46,9 @@ public interface IFachada
 	public Supermercado listarPorNome(Supermercado supermercado);
 
 	public List<Produto> listarProdutosDoSupermercado(String nomeProduto, String supermercado);
-	
+
 	public MapModel getSupermencadoProximo();
-	
+
 	public Supermercado consultarPorID(Supermercado supermercado);
 	// --------------------------------------------- Endereco
 	// -------------------------------------------------------------------
@@ -72,9 +72,9 @@ public interface IFachada
 	public List<ListaDeCompras> listarTodasListas();
 
 	public ListaDeCompras buscarPorCodigo(ListaDeCompras lista);
-	
+
 	public List<ListaDeCompras> buscarListaPorUsuario(Usuario usuario);
-	
+
 	public void removerLista(ListaDeCompras lista);
 	// --------------------------------------------- Perfil
 	// -------------------------------------------------------------------
@@ -100,7 +100,7 @@ public interface IFachada
 	public Produto pesquisarProdutoPorTipo(Produto produto);
 
 	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado);
-	
+
 	public void removerProduto(Produto produto);
 
 	// --------------------------------------------- Pagamento
@@ -110,7 +110,7 @@ public interface IFachada
 	public void atualizarPagamento(Pagamento pagamento);
 
 	public List<Pagamento> listarTodosPagamentos();
-	
+
 	public Pagamento listarPorCodigo(Pagamento pagamento);
 
 	// --------------------------------------------- Item
@@ -120,15 +120,15 @@ public interface IFachada
 	public void atualizarItem(Item item);
 
 	public List<Item> listarTodosItens();
-	
+
 	public void removerProdutoItem(Item item);
-	
+
 	public Item buscarItemProduto(Produto produto);
 
+	public List<Item> consultarItensPorLista(ListaDeCompras lista);
 
 	// Login facebook -----//
 	Usuario authFacebookLogin() throws Exception;
 
 	void codificar(String codigo, String methodType) throws Exception;
-
 }

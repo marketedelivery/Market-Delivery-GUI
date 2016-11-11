@@ -6,11 +6,11 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	template="/pages/templates/modeloGeral.xhtml">
-	
+
 	<ui:define name="menu">
 		<ui:include src="/pages/includes/menuPrincipal.xhtml" />
 	</ui:define>
-	
+
 	<ui:define name="conteudo">
 		<h:form id="form">
 			<p:toolbar>
@@ -30,9 +30,9 @@
 			<p:separator />
 
 			<p:dataTable emptyMessage="Nenhum registro encontrado...."
-				value="#{listaMB.listarTodos}"
-				filteredValue="#{listaMB.listaFiltrados}" var="lista"
-				rows="6" paginator="true">
+				value="#{listaMB.listarTodos}" id="tbLista"
+				filteredValue="#{listaMB.listaFiltrados}" var="lista" rows="6"
+				paginator="true">
 
 				<f:facet name="footer">
 					<p:commandButton value="Novo"
@@ -43,7 +43,7 @@
 					sortBy="#{lista.nome}">
 					<h:outputText value="#{lista.nome}" />
 				</p:column>
-				
+
 				<p:column headerText="Tipo">
 					<h:outputText value="#{lista.tipo}" />
 				</p:column>
@@ -51,13 +51,148 @@
 				<p:column headerText="Lista Criada">
 					<h:outputText value="#{lista.dataCriacao}" />
 				</p:column>
-				
-				<p:column headerText="Ação">
-					<p:commandButton value="Editar"/>
-					<p:commandButton value="Excluir" action="#{listaMB.remover(lista)}" process="@this"
-					update="form"/>
+
+				<p:column headerText="Itens" id="qtd">
+					<h:outputText value="#{lista.qtd}" />
+				</p:column>
+
+				<p:column headerText="Ações">
+					<p:commandButton id="editar" update="tbLista, :updateLista"
+						oncomplete="PF('listaDialog').show()" icon="ui-icon-pencil">
+						<f:setPropertyActionListener value="#{lista}"
+							target="#{itemMB.lista}" />
+						<p:tooltip for="editar">Alterar Lista</p:tooltip>
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-trash" id="excluir"
+						oncomplete="PF('listaExcluirDialog').show()" update=":form, tbLista">
+						<f:setPropertyActionListener value="#{lista}"
+							target="#{listaMB.lista}" />
+					</p:commandButton>
+					<p:tooltip for="excluir">Excluir Lista</p:tooltip>
 				</p:column>
 			</p:dataTable>
 		</h:form>
+
+
+
+		<h:form id="updateLista">
+			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
+				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
+				height="430px" width="520px">
+				<p:outputPanel id="listaDetail">
+
+					<p:panelGrid columns="2" border="2" columnClasses="label,value">
+						<p:outputLabel value="Código " />
+						<p:inputText readonly="true" disabled="true"
+							value="#{itemMB.lista.codigo}" />
+					</p:panelGrid>
+
+					<br />
+
+					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgLista"
+						columnClasses="label,value">
+
+						<p:outputLabel value="Nome* " />
+						<p:inputText id="Nome" maxlength="30" required="true"
+							requiredMessage="O campo Nome não foi preenchido"
+							converterMessage="Preencha apenas com letras" autocomplete="true"
+							value="#{itemMB.lista.nome}" placeholder="Nome da Lista" />
+
+						<p:outputLabel value="Tipo* " />
+						<p:inputText id="Tipo" maxlength="30" required="true"
+							requiredMessage="O campo Tipo não foi preenchido"
+							converterMessage="Preencha apenas com letras" autocomplete="true"
+							value="#{itemMB.lista.tipo}" placeholder="Tipo da Lista" />
+
+						<p:outputLabel value="Data de Criação* " />
+						<p:calendar id="maskCalendar" size="10" maxlength="10"
+							required="true"
+							requiredMessage="O campo data de Criação não foi preenchido"
+							converterMessage="Preencha com apenas números"
+							value="#{itemMB.lista.dataCriacao}" pattern="dd/MM/yyyy"
+							mask="true" mindate="01/01/1920" maxdate="Calendar.Today()"
+							effect="slide" placeholder="dd/MM/aaaa">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:calendar>
+					</p:panelGrid>
+
+					<br />
+
+					<p:dataTable editingRow="true" id="tbItem"
+						style="margin-bottom:20px" value="#{itemMB.itensDialog}"
+						editable="true" emptyMessage="Não há produtos salvos" var="item">
+						<p:column headerText="Código" style="width: 25px">
+							<h:outputText value="#{item.codigo}" />
+						</p:column>
+
+						<br />
+
+						<p:column headerText="Imagem" style="width: 45px">
+							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
+								height="20%">
+								<f:param name="caminho" value="#{item.produto.imagem}" />
+							</p:graphicImage>
+						</p:column>
+
+						<p:column headerText="Nome" style="width: 40px">
+							<h:outputText value="#{item.produto.nome}" />
+						</p:column>
+
+						<p:column headerText="Quantidade">
+							<p:spinner id="minMax" value="#{item.qtdProduto}" min="1"
+								max="100">
+							</p:spinner>
+						</p:column>
+
+						<p:column headerText="Preço Unitário" style="width: 40px">
+							<h:outputText value="#{item.produto.valorUnitario}" />
+						</p:column>
+
+						<p:column headerText="Preço Total" style="width: 35px">
+							<h:outputText
+								value="#{item.qtdProduto*item.produto.valorUnitario}" />
+						</p:column>
+
+						<p:column headerText="Ação" style="width: 20px">
+							<p:commandButton var="item" id="excluirItem" icon="ui-icon-trash"
+								actionListener="#{itemMB.removerItem(item)}"
+								update=":form:tbLista, :form:tbLista:qtd, :updateLista" />
+							<p:tooltip for="excluirItem">Excluir Item</p:tooltip>
+						</p:column>
+					</p:dataTable>
+
+					<br />
+
+					<p:panelGrid columns="2">
+						<f:facet name="footer">
+							<p:commandButton value="Salvar"
+								oncomplete="PF('listaDialog').hide()" icon="ui-icon-pencil"
+								actionListener="#{itemMB.alterarItens(item)}"
+								validateClient="true" update="form:tbLista" /> &nbsp;&nbsp;
+
+						<p:commandButton value="Cancelar" immediate="true"
+								oncomplete="PF('listaDialog').hide()" icon="ui-icon-close" />
+						</f:facet>
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
+		<h:form id="remover">
+			<p:dialog id="listaExcluirDialog" showEffect="fade" modal="false"
+				resizable="false" hideEffect="fade" header="Remover Lista"
+				severity="alert" widgetVar="listaExcluirDialog">
+				<p:outputLabel value="Tem certeza que quer remover essa lista?" />
+				<br />
+				<br />
+				<p:commandButton ajax="true" id="excluirLista" value="Sim"
+					oncomplete="PF('listaExcluirDialog').hide()"
+					action="#{listaMB.remover(lista)}" update=":form, :form:tbLista" />
+
+				<p:commandButton id="declineExcluir" value="Cancelar"
+					onclick="PF('listaExcluirDialog').hide()" type="button" />
+			</p:dialog>
+		</h:form>
+		<p:growl autoUpdate="true" />
 	</ui:define>
 </ui:composition>
