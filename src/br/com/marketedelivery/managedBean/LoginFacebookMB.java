@@ -68,7 +68,7 @@ public class LoginFacebookMB extends AbstractMB implements Serializable{
 	       // request.getSession().setAttribute("usuario", user);
 	       // FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/produtoPesquisa.xhtml?faces-redirect=true");
 	       //}else{
-	    	   request.getSession().setAttribute("usuario", getFachada().pesquisarPorEmail(user));
+	    	   request.getSession().setAttribute("usuario", user);
 		        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/produtoPesquisa.xhtml?faces-redirect=true");
 		  // }
 	       }
