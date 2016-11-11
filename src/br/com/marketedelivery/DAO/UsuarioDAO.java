@@ -66,6 +66,21 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 	public Usuario pesquisarPorCodigo(int codigo) {
 		return null;
 	}
-	    
+	@Override
+	public Usuario buscarUsuarioCodigoFacebook(long idFacebook)
+    {
+        String consulta = "SELECT c FROM Usuario c WHERE c.codigoFacebook = :N";
+        TypedQuery<Usuario> retorno = getEntityManager().createQuery(consulta, Usuario.class);
+        retorno.setParameter("N", idFacebook);
+        Usuario resultado;
+        try {
+            resultado = retorno.getSingleResult();
+            return resultado;
+
+        } catch (Exception e) {
+            return null;
+
+        }
+    } 
 }
 

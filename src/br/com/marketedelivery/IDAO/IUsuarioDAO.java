@@ -11,4 +11,6 @@ public interface IUsuarioDAO extends IDAOGenerico<Usuario> {
 	public Usuario buscarUsuarioPorNome(String nome);
 
 	public Usuario pesquisarPorCodigo (int codigo);
+	
+	public Usuario buscarUsuarioCodigoFacebook(long idFacebook);
 }
