@@ -30,14 +30,16 @@
 				  position.coords.longitude);
 			var latitude = position.coords.latitude;
 			var longitude =  position.coords.longitude;
-		addMarker(googleLatLng,"EU ESTOU AQUI");
+			var image = 'http://www.nikon-asia.com/resources/styles/24_WhereToBuy/images/google_streetview_icon.png';				
+		addMarker(googleLatLng,"EU ESTOU AQUI",image);
 			
 		}
-			function addMarker(googleLatLng,title){
+			function addMarker(googleLatLng,title,image){
 				
 				var markerOptn={
 					position 	:googleLatLng,
-					title		:"",
+					title		:title,
+					icon        :image,
 					animation:google.maps.Animation.DROP
 				};
 			 	var marker = new google.maps.Marker(markerOptn);

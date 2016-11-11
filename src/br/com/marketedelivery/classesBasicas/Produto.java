@@ -170,7 +170,7 @@ public class Produto implements Serializable
 		return result;
 	}
 
-	@Override
+	/*@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -209,5 +209,40 @@ public class Produto implements Serializable
 		} else if (!valorUnitario.equals(other.valorUnitario))
 			return false;
 		return true;
+	}*/
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (marca == null) {
+			if (other.marca != null)
+				return false;
+		} else if (!marca.equals(other.marca))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (tipo == null) {
+			if (other.tipo != null)
+				return false;
+		} else if (!tipo.equals(other.tipo))
+			return false;
+		
+		return true;
+	}
+
+	public Produto(String nome, String marca, String tipo) {
+		super();
+		this.nome = nome;
+		this.marca = marca;
+		this.tipo = tipo;
 	}
 }

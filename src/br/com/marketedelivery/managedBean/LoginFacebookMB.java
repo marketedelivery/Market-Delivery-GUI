@@ -64,18 +64,18 @@ public class LoginFacebookMB extends AbstractMB implements Serializable{
 	      // usuario.setImagemPerfilFacebook(user.getImagemPerfilFacebook());
 	       // verifica se o usuario que veio do facebook esta castrado no banco de dados da aplicação
 	       // se estiver cadastrado no banco add a sessão com os dados ddo banco de dados da app
-	       if(getFachada().pesquisarPorEmail(user) == null){
-	        request.getSession().setAttribute("usuario", user);
-	        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/produtoPesquisa.xhtml?faces-redirect=true");
-	       }else{
+	        //if(getFachada().pesquisarPorEmail(user) == null){
+	       // request.getSession().setAttribute("usuario", user);
+	       // FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/produtoPesquisa.xhtml?faces-redirect=true");
+	       //}else{
 	    	   request.getSession().setAttribute("usuario", getFachada().pesquisarPorEmail(user));
 		        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/produtoPesquisa.xhtml?faces-redirect=true");
-		   }
+		  // }
 	       }
 	}catch(Exception ex){
 		System.out.println("UserSession - Exception: " + ex.getMessage());
 		ex.getCause().printStackTrace();
-		
+		displayErrorMessageToUser("Erro ao tentar logar. Tente novamente mais tarde! " + ex.getMessage());
 	}
 	}
 	

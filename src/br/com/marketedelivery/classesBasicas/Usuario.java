@@ -50,6 +50,8 @@ public class Usuario implements Serializable
 	@Column(name = "Senha", length = 10)
 	private String senha;
 
+	private long codigoFacebook;
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(FetchMode.JOIN)
 	private Endereco endereco;
@@ -171,5 +173,15 @@ public class Usuario implements Serializable
 		return "Usuario [codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco
 				+ ", telefoneWhatsapp=" + telefoneWhatsapp + ", perfil=" + perfil + ", telefone=" + telefone
 				+ ", email=" + email + ", senha=" + senha + "]";
+	}
+
+	public long getCodigoFacebook()
+	{
+		return codigoFacebook;
+	}
+
+	public void setCodigoFacebook(long codigoFacebook)
+	{
+		this.codigoFacebook = codigoFacebook;
 	}
 }

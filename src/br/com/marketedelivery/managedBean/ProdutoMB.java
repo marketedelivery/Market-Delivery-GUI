@@ -237,6 +237,21 @@ public class ProdutoMB implements Serializable
 			atualizarProdutoBompreco(produto);
 		}
 	}
+	
+	public List<Produto> pesquisarProdutoPorNome(Produto produto)
+	{
+		Produto temp1 = pesquisarProdutoPorNomeBompreco(produto.getNome());
+		Produto temp2 = pesquisarProdutoPorNomeExtra(produto.getNome());
+		Produto temp3 = pesquisarProdutoPorNomeCarrefour(produto.getNome());
+		
+		List<Produto> listatemp = new ArrayList<Produto>();
+		listatemp.add(temp1);
+		listatemp.add(temp2);
+		listatemp.add(temp3);
+		return listatemp;
+		
+	}
+	
 	// ----Web Service----
 
 	// Métodos do Supermercado Extra

@@ -100,7 +100,6 @@ public class ListaMB
 		{
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Erro ao remover sua lista, tente novamente mais tarde"));
-			e.printStackTrace();
 		}
 	}
 

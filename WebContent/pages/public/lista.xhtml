@@ -32,20 +32,23 @@
 							<f:selectItems value="#{listaMB.tipos}" />
 						</p:selectOneMenu>
 					</h:panelGrid>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/marketedelivery/Market-Delivery-GUI.git
 					<br />
 
 					<p:dataGrid columns="4" value="#{produtoMB.carregarProduto}"
 						layout="tabular" rows="12" paginator="true" var="produto"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
-
-						<p:panel style="text-align:center">
-							<p:panelGrid columns="1">
+						<p:panel style="text-align: center">
+							<p:outputPanel>
 								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-									height="30%">
+									height="50%" width="50%">
 									<f:param name="caminho" value="#{produto.imagem}" />
 								</p:graphicImage>
+<<<<<<< HEAD
 							</p:panelGrid>
 							<p:outputLabel value="#{produto.nome}  #{produto.tipo}"
 								style="margin:0 auto;" />
@@ -55,6 +58,19 @@
 							<p:commandButton var="item" value=" Adicionar"
 								actionListener="#{itemMB.adicionar(produto)}" process="@this"
 								update=":form:listaForm:pdtSelecionado" />
+=======
+							</p:outputPanel>
+							<p:outputPanel style="margin:0 auto;">
+								<p:outputLabel value="#{produto.nome}  #{produto.tipo}"
+									style="margin:0 auto;" />
+								<br />
+								<p:outputLabel value="#{produto.marca}" style="margin:0 auto;" />
+								<br />
+								<p:commandButton var="item" value=" Adicionar"
+									actionListener="#{itemMB.adicionar(produto)}" process="@this"
+									update=":form:listaForm:pdtSelecionado" />
+							</p:outputPanel>
+>>>>>>> branch 'master' of https://github.com/marketedelivery/Market-Delivery-GUI.git
 						</p:panel>
 					</p:dataGrid>
 				</p:fieldset>
@@ -101,8 +117,9 @@
 
 							<p:column headerText="Valor Parcial">
 								<h:outputText id="valorTotal"
-									value="#{item.produto.valorUnitario*item.qtdProduto}" />
-
+									value="#{item.produto.valorUnitario*item.qtdProduto}">
+									<f:convertNumber maxFractionDigits="2" />
+								</h:outputText>
 							</p:column>
 
 							<p:column headerText="Ação">

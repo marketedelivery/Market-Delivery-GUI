@@ -2,6 +2,7 @@ package br.com.marketedelivery.controlador;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.ConnectException;
 import java.net.URLEncoder;
 
 import java.util.HashMap;
@@ -17,6 +18,8 @@ import org.brickred.socialauth.util.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import br.com.marketedelivery.DAOFactory.DAOFactoryUsuario;
+import br.com.marketedelivery.IDAO.IUsuarioDAO;
 import br.com.marketedelivery.classesBasicas.Usuario;
 import br.com.marketedelivery.managedBean.LoginFacebookMB;
 
@@ -28,7 +31,7 @@ public class ControladorLoginFacebook implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private static Map<String, String> endpoints;
 	private AccessGrant accessGrant;
-	
+	private IUsuarioDAO usuarioDAO;
 	static {
 		endpoints = new HashMap<String, String>();
 		endpoints.put(Constants.OAUTH_AUTHORIZATION_URL, "https://graph.facebook.com/oauth/authorize");
@@ -41,36 +44,32 @@ public class ControladorLoginFacebook implements Serializable{
 
 		public Usuario authFacebookLogin() throws Exception {
 			String presp;
-			
 			try{
 				Response response = executeFeed(PROFILE_URL);
 				presp = response.getResponseBodyAsString(Constants.ENCODING);
-				
-		}catch(Exception ex){
+	    	}catch(Exception ex){
 			throw new SocialAuthException("Error enquanto recebe o perfil " + PROFILE_FIELDS,ex);
-		}
+		    }
 			Usuario usuario = new Usuario();
 		try{
 			// Basta extrair da response um JSONObject e intepreta-lo como quiser
 			JSONObject resp = new JSONObject(presp);
-			
 			System.out.println(resp);
-			
-			usuario.setCodigo((int) resp.getLong("id"));
+			usuario.setCodigoFacebook(resp.getLong("id"));
+			long id = usuario.getCodigoFacebook();
 			usuario.setNome(resp.getString("name"));
-			
-			usuario.setEmail(resp.getString("email"));
-			
+			if(resp.isNull("email") ==false){
+				usuario.setEmail(resp.getString("email"));
+				System.out.println("email nulo " + resp.isNull("email"));
+			}
+			usuario = cadastraUsuarioFacebook(id, usuario);
 			//usuario.setImagemPerfilFacebook(resp.getJSONObject("picture").getJSONObject("data").getString("url"));
-			System.out.println(usuario.getCodigo() +" "+ usuario.getNome() +"  "+ usuario.getEmail()); // +" "+ usuario.getImagemPerfilFacebook()
-			return usuario;
-		}catch(JSONException je){
+			System.out.println(usuario.getCodigo() +" "+ usuario.getNome() +"  "+ usuario.getEmail()); 
 			return usuario;
 		}catch(Exception ex){
 			throw new ServerDataException("Falhou ao analizar o perfil do usuario no json : " + presp, ex);
 		}
-	}
-	
+	}	
 		public void codificar(String codigo,String methodType) throws Exception{
 		String acode;
 		String accessToken = null;
@@ -179,5 +178,17 @@ public class ControladorLoginFacebook implements Serializable{
 		String urlStr = url + separator + Constants.ACCESS_TOKEN_PARAMETER_NAME + "=" + accessGrant.getKey();
 		return HttpUtil.doHttpRequest(urlStr, MethodType.GET.toString(), null, null);
 	}
-
+		public Usuario cadastraUsuarioFacebook(long id,Usuario usuario) throws Exception{
+			usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
+			Usuario us = new Usuario();
+			us = usuarioDAO.buscarUsuarioCodigoFacebook(id);
+			if(us == null){
+				usuarioDAO.inserir(usuario);
+				usuario = usuarioDAO.buscarUsuarioCodigoFacebook(id);
+				return usuario;
+			}
+			else{
+		return us;
+			}
+		}
 	}

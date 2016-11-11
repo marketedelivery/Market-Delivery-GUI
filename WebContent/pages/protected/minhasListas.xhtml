@@ -29,8 +29,8 @@
 			<h3 style="margin-top: 0"></h3>
 			<p:separator />
 
-			<p:dataTable emptyMessage="Nenhum registro encontrado...."
-				value="#{listaMB.listarTodos}" id="tbLista"
+			<p:dataTable id="table" emptyMessage="Nenhum registro encontrado...."
+				value="#{listaMB.listarTodos}"
 				filteredValue="#{listaMB.listaFiltrados}" var="lista" rows="6"
 				paginator="true">
 
@@ -57,14 +57,14 @@
 				</p:column>
 
 				<p:column headerText="Ações">
-					<p:commandButton id="editar" update="tbLista, :updateLista"
+					<p:commandButton id="editar" update=":updateLista"
 						oncomplete="PF('listaDialog').show()" icon="ui-icon-pencil">
 						<f:setPropertyActionListener value="#{lista}"
 							target="#{itemMB.lista}" />
 						<p:tooltip for="editar">Alterar Lista</p:tooltip>
 					</p:commandButton>
 					<p:commandButton icon="ui-icon-trash" id="excluir"
-						oncomplete="PF('listaExcluirDialog').show()" update=":form, tbLista">
+						oncomplete="PF('listaExcluirDialog').show()">
 						<f:setPropertyActionListener value="#{lista}"
 							target="#{listaMB.lista}" />
 					</p:commandButton>
@@ -78,7 +78,7 @@
 		<h:form id="updateLista">
 			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
 				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
-				height="430px" width="520px">
+				height="430px" width="630px">
 				<p:outputPanel id="listaDetail">
 
 					<p:panelGrid columns="2" border="2" columnClasses="label,value">
@@ -118,10 +118,11 @@
 
 					<br />
 
-					<p:dataTable editingRow="true" id="tbItem"
-						style="margin-bottom:20px" value="#{itemMB.itensDialog}"
-						editable="true" emptyMessage="Não há produtos salvos" var="item">
-						<p:column headerText="Código" style="width: 25px">
+					<p:dataTable editingRow="true" id="tbItem" scrollable="true"
+						frozenRows="0" style="margin-bottom:20px"
+						value="#{itemMB.itensDialog}" editable="true"
+						emptyMessage="Não há produtos salvos" var="item">
+						<p:column headerText="Código" style="width: 30px">
 							<h:outputText value="#{item.codigo}" />
 						</p:column>
 
@@ -134,8 +135,12 @@
 							</p:graphicImage>
 						</p:column>
 
-						<p:column headerText="Nome" style="width: 40px">
+						<p:column headerText="Nome" style="width: 50px">
 							<h:outputText value="#{item.produto.nome}" />
+						</p:column>
+
+						<p:column headerText="Tipo" style="width: 60px">
+							<h:outputText value="#{item.produto.tipo}" />
 						</p:column>
 
 						<p:column headerText="Quantidade">
@@ -156,7 +161,7 @@
 						<p:column headerText="Ação" style="width: 20px">
 							<p:commandButton var="item" id="excluirItem" icon="ui-icon-trash"
 								actionListener="#{itemMB.removerItem(item)}"
-								update=":form:tbLista, :form:tbLista:qtd, :updateLista" />
+								update=":form:table, :form:table:qtd, :updateLista" />
 							<p:tooltip for="excluirItem">Excluir Item</p:tooltip>
 						</p:column>
 					</p:dataTable>
@@ -168,7 +173,7 @@
 							<p:commandButton value="Salvar"
 								oncomplete="PF('listaDialog').hide()" icon="ui-icon-pencil"
 								actionListener="#{itemMB.alterarItens(item)}"
-								validateClient="true" update="form:tbLista" /> &nbsp;&nbsp;
+								validateClient="true" update="form:table" /> &nbsp;&nbsp;
 
 						<p:commandButton value="Cancelar" immediate="true"
 								oncomplete="PF('listaDialog').hide()" icon="ui-icon-close" />
@@ -187,7 +192,7 @@
 				<br />
 				<p:commandButton ajax="true" id="excluirLista" value="Sim"
 					oncomplete="PF('listaExcluirDialog').hide()"
-					action="#{listaMB.remover(lista)}" update=":form, :form:tbLista" />
+					action="#{listaMB.remover(lista)}" update=":form, :form:table" />
 
 				<p:commandButton id="declineExcluir" value="Cancelar"
 					onclick="PF('listaExcluirDialog').hide()" type="button" />
