@@ -11,7 +11,7 @@
 	<h:outputStylesheet library="css" name="estilos.css" />
 </h:head>
 <h:body>
-	<p:growl id="msgGlobal" sticky="true" />
+	<p:growl id="msgGlobal" sticky="false" />
 	<p:layout fullPage="true">
 
 		<p:layoutUnit header="Sistema para Gerenciamento de Compras"
@@ -27,7 +27,7 @@
 		<p:layoutUnit position="west" size="280" resizable="false"
 			closable="false" collapsible="false">
 			<h:form>
-				<p:growl id="msg" showDetail="true" />
+				<p:growl id="msg" showDetail="false" />
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
 				   Email
 					<p:inputText id="email" value="#{loginMB.usuario.email}"
@@ -83,7 +83,7 @@
 	<p:dialog header="Recupera Senha" widgetVar="recuperaSenha"
 		showEffect="explode" hideEffect="bounce" height="100">
 		<h:form id="formDialog">
-			<p:growl id="msg2" sticky="true" />
+			<p:growl id="msg2" sticky="false" />
 			<h:panelGrid captionClass="2" cellpadding="5">
 				<h:outputText value="Digite seu CPF: " />
 				<p:inputMask maxlength="11" size="14"
