@@ -5,10 +5,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
 	<h:body>
-		
-
 		<h:form>
 			<p:menubar>
 				<p:submenu label="Home" icon="ui-icon-home">
@@ -27,9 +24,10 @@
 					<p:menuitem value="Produto" />
 					<p:menuitem value="Supermercado" />
 				</p:submenu>
-				<p:menuitem value="Localizar Supermercado"  action="#{loginMB.logOut}"
-					outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true" 
-					icon="ui-icon-search"/>
+				<p:menuitem value="Localizar Supermercado"
+					action="#{loginMB.logOut}"
+					outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true"
+					icon="ui-icon-search" />
 
 				<p:submenu label="Pesquisar" icon="ui-icon-search">
 					<p:menuitem value="Produto"
@@ -37,16 +35,16 @@
 					<p:menuitem value="Listas"
 						outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
 				</p:submenu>
-				
+
 				<p:menuitem value="Sair" action="#{loginMB.logOut}"
 					outcome="/pages/public/login.xhtml?faces-redirect=true"
-					icon="ui-icon-close"/>
+					icon="ui-icon-close" />
 			</p:menubar>
 		</h:form>
 		<h:form id="update">
 			<p:dialog header="Alterar Meus Dados Cadastrais"
-				widgetVar="usuarioDialog" modal="true" showEffect="fade"
-				hideEffect="fade" resizable="false" height="500px">
+				widgetVar="usuarioDialog" modal="false" showEffect="fade"
+				hideEffect="fade" resizable="false" height="530px">
 				<p:outputPanel id="usuarioDetail" style="width:0 auto">
 
 					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgUsuario"
