@@ -258,7 +258,7 @@ public class ItemMB
 		}
 	}
 
-	public void criarLista()
+	public String criarLista()
 	{
 		Usuario temp = new Usuario();
 		temp.setCodigo(LoginMB.codigoUsuario);
@@ -277,14 +277,16 @@ public class ItemMB
 			itTemp.setLista(lista);
 			itTemp.setProduto(it.getProduto());
 			itTemp.setQtdProduto(it.getQtdProduto());
-			itTemp.setPrecoTotal(1000.00);
+			double valorTotal = it.getQtdProduto() * it.getProduto().getValorUnitario();
+			itTemp.setPrecoTotal(valorTotal);
 			getFachada().cadastrarItem(itTemp);
 		}
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista cadastrada com sucesso"));
 		listaCompras = new ListaDeCompras();
 		listaItens = new ArrayList<Item>();
+		return "/pages/protected/minhasListas.xhtml?faces-redirect=true";
 	}
-	
+
 	/**
 	 * @return the itensDialog
 	 */
@@ -326,7 +328,7 @@ public class ItemMB
 	{
 		this.lista = lista;
 	}
-	
+
 	public void removerItem(Item item)
 	{
 		for (int i = 0; i < itensDialog.size(); i++)

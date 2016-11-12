@@ -1,12 +1,11 @@
 package br.com.marketedelivery.classesBasicas;
 
-
-
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,32 +13,41 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
-@Table(name="tb_item")
-public class Item implements Serializable 
+@Table(name = "tb_item")
+public class Item implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "codigo")
 	private int codigo;
+
 	@OneToOne
 	private Produto produto;
-	@Column(name = "precoTotal",length=12)
+
+	@Column(name = "precoTotal", length = 12)
 	private Double precoTotal;
-	@Column(name = "qtdProduto",length=12)
+
+	@Column(name = "qtdProduto", length = 12)
 	private int qtdProduto;
-	@ManyToOne(cascade=CascadeType.ALL)
+
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@Fetch(FetchMode.JOIN)
 	private ListaDeCompras lista;
-	
-	public Item() 
+
+	public Item()
 	{
 		super();
 		lista = new ListaDeCompras();
 	}
 
-	public Item(int codigo,Produto produto, Double precoTotal, int qtdProduto, ListaDeCompras lista) {
+	public Item(int codigo, Produto produto, Double precoTotal, int qtdProduto, ListaDeCompras lista)
+	{
 		super();
 		this.codigo = codigo;
 		this.produto = produto;
@@ -48,43 +56,53 @@ public class Item implements Serializable
 		this.lista = lista;
 	}
 
-	public int getCodigo() {
+	public int getCodigo()
+	{
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(int codigo)
+	{
 		this.codigo = codigo;
 	}
 
-	public Produto getProduto() {
+	public Produto getProduto()
+	{
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
+	public void setProduto(Produto produto)
+	{
 		this.produto = produto;
 	}
 
-	public Double getPrecoTotal() {
+	public Double getPrecoTotal()
+	{
 		return precoTotal;
 	}
 
-	public void setPrecoTotal(Double precoTotal) {
+	public void setPrecoTotal(Double precoTotal)
+	{
 		this.precoTotal = precoTotal;
 	}
 
-	public int getQtdProduto() {
+	public int getQtdProduto()
+	{
 		return qtdProduto;
 	}
 
-	public void setQtdProduto(int qtdProduto) {
+	public void setQtdProduto(int qtdProduto)
+	{
 		this.qtdProduto = qtdProduto;
 	}
 
-	public ListaDeCompras getLista() {
+	public ListaDeCompras getLista()
+	{
 		return lista;
 	}
 
-	public void setLista(ListaDeCompras lista) {
+	public void setLista(ListaDeCompras lista)
+	{
 		this.lista = lista;
 	}
 }

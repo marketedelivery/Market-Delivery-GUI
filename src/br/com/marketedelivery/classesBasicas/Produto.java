@@ -33,21 +33,21 @@ public class Produto implements Serializable
 
 	@Column(name = "valorUnitario", length = 12)
 	private Double valorUnitario;
-	
-	@Column(name = "tipo", length = 12)
+
+	@Column(name = "tipo", length = 50)
 	private String tipo;
-	
+
 	@ManyToOne
 	private Supermercado supermercado;
-	
-	@Column(name="image")
+
+	@Column(name = "image")
 	private String imagem;
-	
-	@Transient //não gera coluna, guarda informações temporaria
+
+	@Transient // não gera coluna, guarda informações temporaria
 	private String caminhoImagem;
 
 	public Produto(int codigo, String nome, String marca, int qtdEstoque, Double valorUnitario,
-			Supermercado supermercado, String tipo,String imagem)
+			Supermercado supermercado, String tipo, String imagem)
 	{
 		super();
 		this.codigo = codigo;
@@ -124,40 +124,47 @@ public class Produto implements Serializable
 	{
 		this.supermercado = supermercado;
 	}
-	
-	
-	public String getTipo() {
+
+	public String getTipo()
+	{
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(String tipo)
+	{
 		this.tipo = tipo;
 	}
-	
-	public String getCaminhoImagem() {
+
+	public String getCaminhoImagem()
+	{
 		return caminhoImagem;
 	}
-	
-	public void setCaminhoImagem(String caminhoImagem) {
+
+	public void setCaminhoImagem(String caminhoImagem)
+	{
 		this.caminhoImagem = caminhoImagem;
 	}
-	
-	public String getImagem() {
+
+	public String getImagem()
+	{
 		return imagem;
 	}
-	
-	public void setImagem(String imagem) {
+
+	public void setImagem(String imagem)
+	{
 		this.imagem = imagem;
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "Produto [codigo=" + codigo + ", nome=" + nome + ", marca=" + marca + ", qtdEstoque=" + qtdEstoque
 				+ ", valorUnitario=" + valorUnitario + ", supermercado=" + supermercado + ", tipo=" + tipo + "]";
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + codigo;
@@ -170,76 +177,46 @@ public class Produto implements Serializable
 		return result;
 	}
 
-	/*@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Produto other = (Produto) obj;
-		if (codigo != other.codigo)
-			return false;
-		if (marca == null) {
-			if (other.marca != null)
-				return false;
-		} else if (!marca.equals(other.marca))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (qtdEstoque != other.qtdEstoque)
-			return false;
-		if (supermercado == null) {
-			if (other.supermercado != null)
-				return false;
-		} else if (!supermercado.equals(other.supermercado))
-			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
-				return false;
-		} else if (!tipo.equals(other.tipo))
-			return false;
-		if (valorUnitario == null) {
-			if (other.valorUnitario != null)
-				return false;
-		} else if (!valorUnitario.equals(other.valorUnitario))
-			return false;
-		return true;
-	}*/
-	
+	/*
+	 * @Override public boolean equals(Object obj) { if (this == obj) return
+	 * true; if (obj == null) return false; if (getClass() != obj.getClass())
+	 * return false; Produto other = (Produto) obj; if (codigo != other.codigo)
+	 * return false; if (marca == null) { if (other.marca != null) return false;
+	 * } else if (!marca.equals(other.marca)) return false; if (nome == null) {
+	 * if (other.nome != null) return false; } else if
+	 * (!nome.equals(other.nome)) return false; if (qtdEstoque !=
+	 * other.qtdEstoque) return false; if (supermercado == null) { if
+	 * (other.supermercado != null) return false; } else if
+	 * (!supermercado.equals(other.supermercado)) return false; if (tipo ==
+	 * null) { if (other.tipo != null) return false; } else if
+	 * (!tipo.equals(other.tipo)) return false; if (valorUnitario == null) { if
+	 * (other.valorUnitario != null) return false; } else if
+	 * (!valorUnitario.equals(other.valorUnitario)) return false; return true; }
+	 */
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
 		Produto other = (Produto) obj;
-		if (marca == null) {
-			if (other.marca != null)
-				return false;
-		} else if (!marca.equals(other.marca))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
-				return false;
-		} else if (!tipo.equals(other.tipo))
-			return false;
-		
+		if (marca == null)
+		{
+			if (other.marca != null) return false;
+		} else if (!marca.equals(other.marca)) return false;
+		if (nome == null)
+		{
+			if (other.nome != null) return false;
+		} else if (!nome.equals(other.nome)) return false;
+		if (tipo == null)
+		{
+			if (other.tipo != null) return false;
+		} else if (!tipo.equals(other.tipo)) return false;
 		return true;
 	}
 
-	public Produto(String nome, String marca, String tipo) {
+	public Produto(String nome, String marca, String tipo)
+	{
 		super();
 		this.nome = nome;
 		this.marca = marca;

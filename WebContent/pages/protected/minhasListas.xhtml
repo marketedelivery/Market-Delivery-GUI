@@ -31,7 +31,7 @@
 
 			<p:dataTable id="table" emptyMessage="Nenhum registro encontrado...."
 				value="#{listaMB.listarTodos}"
-				filteredValue="#{listaMB.listaFiltrados}" var="lista" rows="6"
+				filteredValue="#{listaMB.listaFiltrados}" var="lista" rows="10"
 				paginator="true">
 
 				<f:facet name="footer">
@@ -78,7 +78,7 @@
 		<h:form id="updateLista">
 			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
 				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
-				height="430px" width="630px">
+				height="475px" width="630px">
 				<p:outputPanel id="listaDetail">
 
 					<p:panelGrid columns="2" border="2" columnClasses="label,value">
@@ -118,10 +118,12 @@
 
 					<br />
 
-					<p:dataTable editingRow="true" id="tbItem" scrollable="true"
-						frozenRows="0" style="margin-bottom:20px"
-						value="#{itemMB.itensDialog}" editable="true"
-						emptyMessage="Não há produtos salvos" var="item">
+					<p:dataTable id="tbItem" scrollable="true" frozenRows="0"
+						style="margin-bottom:20px" rows="5" value="#{itemMB.itensDialog}"
+						paginator="true"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5" emptyMessage="Não há produtos salvos"
+						var="item">
 						<p:column headerText="Código" style="width: 30px">
 							<h:outputText value="#{item.codigo}" />
 						</p:column>
@@ -146,6 +148,7 @@
 						<p:column headerText="Quantidade">
 							<p:spinner id="minMax" value="#{item.qtdProduto}" min="1"
 								max="100">
+								<p:ajax update="valorTotal" process="@this" />
 							</p:spinner>
 						</p:column>
 
@@ -154,26 +157,24 @@
 						</p:column>
 
 						<p:column headerText="Preço Total" style="width: 35px">
-							<h:outputText
+							<h:outputText id="valorTotal"
 								value="#{item.qtdProduto*item.produto.valorUnitario}" />
 						</p:column>
 
 						<p:column headerText="Ação" style="width: 20px">
 							<p:commandButton var="item" id="excluirItem" icon="ui-icon-trash"
 								actionListener="#{itemMB.removerItem(item)}"
-								update=":form:table, :form:table:qtd, :updateLista" />
+								update=":form:table, :form:table:qtd, :updateLista, tbItem" />
 							<p:tooltip for="excluirItem">Excluir Item</p:tooltip>
 						</p:column>
 					</p:dataTable>
-
-					<br />
 
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
 							<p:commandButton value="Salvar"
 								oncomplete="PF('listaDialog').hide()" icon="ui-icon-pencil"
 								actionListener="#{itemMB.alterarItens(item)}"
-								validateClient="true" update="form:table" /> &nbsp;&nbsp;
+								validateClient="true" update="form:table, tbItem" /> &nbsp;&nbsp;
 
 						<p:commandButton value="Cancelar" immediate="true"
 								oncomplete="PF('listaDialog').hide()" icon="ui-icon-close" />
