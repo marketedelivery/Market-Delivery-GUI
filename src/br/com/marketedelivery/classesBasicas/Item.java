@@ -36,7 +36,7 @@ public class Item implements Serializable
 	@Column(name = "qtdProduto", length = 12)
 	private int qtdProduto;
 
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@Fetch(FetchMode.JOIN)
 	private ListaDeCompras lista;
 

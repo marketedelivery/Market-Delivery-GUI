@@ -38,7 +38,7 @@ public class ListaDeCompras implements Serializable
 	private int qtd;
 	@ManyToOne
 	private Usuario usuario;
-	@OneToMany(cascade=CascadeType.ALL) @Transient
+	@OneToMany(cascade =CascadeType.ALL) @Transient
 	private Item item;
 	
 	

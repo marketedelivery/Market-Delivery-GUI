@@ -49,7 +49,9 @@
 				</p:column>
 
 				<p:column headerText="Lista Criada">
-					<h:outputText value="#{lista.dataCriacao}" />
+					<h:outputText value="#{lista.dataCriacao}" > 
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Itens" id="qtd">
@@ -103,7 +105,7 @@
 							requiredMessage="O campo Tipo não foi preenchido"
 							converterMessage="Preencha apenas com letras" autocomplete="true"
 							value="#{itemMB.lista.tipo}" placeholder="Tipo da Lista" />
-
+							
 						<p:outputLabel value="Data de Criação* " />
 						<p:calendar id="maskCalendar" size="10" maxlength="10"
 							required="true"
