@@ -21,35 +21,39 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "tb_lista")
 public class ListaDeCompras implements Serializable
-{	
+{
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "codigo")
 	private int codigo;
-	@Column(name ="nome")
+
+	@Column(name = "nome")
 	private String nome;
+
 	@Temporal(TemporalType.DATE)
 	private Date dataCriacao;
+
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo;
-	@Column(name = "qtdItens",length=12)
+
+	@Column(name = "qtdItens", length = 12)
 	private int qtd;
+
 	@ManyToOne
 	private Usuario usuario;
-	@OneToMany(cascade=CascadeType.ALL) @Transient
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@Transient
 	private Item item;
-	
-	
-	public ListaDeCompras() 
+
+	public ListaDeCompras()
 	{
 		super();
-		
 	}
 
-
-	public ListaDeCompras(int codigo, String nome, Date dataCriacao, Tipo tipo, int qtd, Usuario usuario) 
+	public ListaDeCompras(int codigo, String nome, Date dataCriacao, Tipo tipo, int qtd, Usuario usuario)
 	{
 		super();
 		this.codigo = codigo;
@@ -60,72 +64,70 @@ public class ListaDeCompras implements Serializable
 		this.usuario = usuario;
 	}
 
-
-	public int getCodigo() {
+	public int getCodigo()
+	{
 		return codigo;
 	}
 
-
-	public void setCodigo(int codigo) {
+	public void setCodigo(int codigo)
+	{
 		this.codigo = codigo;
 	}
 
-
-	public String getNome() {
+	public String getNome()
+	{
 		return nome;
 	}
 
-
-	public void setNome(String nome) {
+	public void setNome(String nome)
+	{
 		this.nome = nome;
 	}
 
-
-	public Date getDataCriacao() {
+	public Date getDataCriacao()
+	{
 		return dataCriacao;
 	}
 
-
-	public void setDataCriacao(Date dataCriacao) {
+	public void setDataCriacao(Date dataCriacao)
+	{
 		this.dataCriacao = dataCriacao;
 	}
 
-
-	public Tipo getTipo() {
+	public Tipo getTipo()
+	{
 		return tipo;
 	}
 
-
-	public void setTipo(Tipo tipo) {
+	public void setTipo(Tipo tipo)
+	{
 		this.tipo = tipo;
 	}
 
-
-	public int getQtd() {
+	public int getQtd()
+	{
 		return qtd;
 	}
 
-
-	public void setQtd(int qtd) {
+	public void setQtd(int qtd)
+	{
 		this.qtd = qtd;
 	}
 
-
-	public Usuario getUsuario() {
+	public Usuario getUsuario()
+	{
 		return usuario;
 	}
 
-
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(Usuario usuario)
+	{
 		this.usuario = usuario;
 	}
 
-
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "ListaDeCompras [codigo=" + codigo + ", nome=" + nome + ", dataCriacao=" + dataCriacao + ", tipo=" + tipo
 				+ ", qtd=" + qtd + ", usuario=" + usuario + "]";
 	}
-
-	
 }
