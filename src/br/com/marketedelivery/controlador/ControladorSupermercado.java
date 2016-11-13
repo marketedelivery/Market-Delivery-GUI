@@ -18,38 +18,49 @@ public class ControladorSupermercado
 
 	public void cadastrarSupermercado(Supermercado supermercado)
 	{
+		DAOFactory.abrir();
 		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		supermercadoDAO.inserir(supermercado);
+		DAOFactory.close();
 	}
 
 	public void atualizarSupermercado(Supermercado supermercado)
 	{
+		DAOFactory.abrir();
 		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
+		DAOFactory.close();
 	}
 
 	public List<Supermercado> listarTodosSupermercados()
 	{
+		DAOFactory.abrir();
 		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
-		return supermercadoDAO.consultarTodos();
+		List<Supermercado> lista = supermercadoDAO.consultarTodos();
+		DAOFactory.close();
+		return lista;
 	}
 
 	public Supermercado pesquisarPorNome(Supermercado supermercado)
 	{
+		DAOFactory.abrir();
 		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		String nome = supermercado.getNome();
 		Supermercado retorno = supermercadoDAO.buscarPorNome(nome);
+		DAOFactory.close();
 		return retorno;
 	}
 
 	public Supermercado pesquisarPorCodigo(Supermercado supermercado)
 	{
+		DAOFactory.abrir();
 		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		Supermercado sup = supermercadoDAO.consultarPorId(supermercado.getCodigo());
+		DAOFactory.close();
 		return sup;
 	}
 
@@ -62,9 +73,12 @@ public class ControladorSupermercado
 
 	public Supermercado consultarPorID(Supermercado supermercado)
 	{
+		DAOFactory.abrir();
 		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
-		return supermercadoDAO.consultarPorId(supermercado.getCodigo());
+		Supermercado s = supermercadoDAO.consultarPorId(supermercado.getCodigo());
+		DAOFactory.close();
+		return s;
 	}
 
 	/**
@@ -73,6 +87,7 @@ public class ControladorSupermercado
 	 */
 	public MapModel supermencadoProximo()
 	{
+		DAOFactory.abrir();
 		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		try
@@ -90,11 +105,13 @@ public class ControladorSupermercado
 					latLng = null;
 				}
 			}
+			DAOFactory.close();
 			return mapModel;
 		}
 		catch (Exception e)
 		{
 			e.getMessage();
+			DAOFactory.close();
 			return null;
 		}
 	}

@@ -227,6 +227,7 @@ public class ControladorLoginFacebook implements Serializable
 
 	public Usuario cadastraUsuarioFacebook(long id, Usuario usuario) throws Exception
 	{
+		DAOFactory.abrir();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
 		Usuario us = new Usuario();
 		us = usuarioDAO.buscarUsuarioCodigoFacebook(id);
@@ -234,9 +235,11 @@ public class ControladorLoginFacebook implements Serializable
 		{
 			usuarioDAO.inserir(usuario);
 			usuario = usuarioDAO.buscarUsuarioCodigoFacebook(id);
+			DAOFactory.close();
 			return usuario;
 		} else
 		{
+			DAOFactory.close();
 			return us;
 		}
 	}

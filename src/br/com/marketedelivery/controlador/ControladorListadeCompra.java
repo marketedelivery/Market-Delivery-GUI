@@ -13,46 +13,59 @@ public class ControladorListadeCompra
 
 	public void cadastrarLista(ListaDeCompras lista)
 	{
+		DAOFactory.abrir();
 		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		listaDAO.inserir(lista);
+		DAOFactory.close();
 	}
 
 	public void atualizarLista(ListaDeCompras lista)
 	{
+		DAOFactory.abrir();
 		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		listaDAO.alterar(lista);
+		DAOFactory.close();
 	}
 
 	public List<ListaDeCompras> listarTodasListas()
 	{
+		DAOFactory.abrir();
 		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
-		return listaDAO.consultarTodos();
+		List<ListaDeCompras> lista = listaDAO.consultarTodos();
+		DAOFactory.close();
+		return lista;
 	}
 
 	public ListaDeCompras buscarPorCodigo(ListaDeCompras lista)
 	{
+		DAOFactory.abrir();
 		int codigo = lista.getCodigo();
 		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		ListaDeCompras retorno = listaDAO.consultarPorId(codigo);
+		DAOFactory.close();
 		return retorno;
 	}
 
 	public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario)
 	{
+		DAOFactory.abrir();
 		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		List<ListaDeCompras> retorno = listaDAO.buscaListaPorUsuario(usuario);
+		DAOFactory.close();
 		return retorno;
 	}
 
 	public void removerLista(ListaDeCompras lista)
 	{
+		DAOFactory.abrir();
 		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		listaDAO.remover(lista);
+		DAOFactory.close();
 	}
 }

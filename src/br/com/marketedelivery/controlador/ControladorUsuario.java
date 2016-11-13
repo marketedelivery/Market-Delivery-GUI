@@ -13,57 +13,72 @@ public class ControladorUsuario
 
 	public void cadastrarUsuario(Usuario usuario)
 	{
+		DAOFactory.abrir();
 		// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
 		usuarioDAO.inserir(usuario);
+		DAOFactory.close();
 	}
 
 	public void atualizarUsuario(Usuario usuario)
 	{
+		DAOFactory.abrir();
 		// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
 		usuarioDAO.alterar(usuario);
+		DAOFactory.close();
 	}
 
 	public List<Usuario> listarTodosUsuarios()
 	{
+		DAOFactory.abrir();
 		// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
-		return usuarioDAO.consultarTodos();
+		List<Usuario> lista = usuarioDAO.consultarTodos();
+		DAOFactory.close();
+		return lista;
 	}
 
 	public Usuario listarPorCPF(Usuario usuario)
 	{
+		DAOFactory.abrir();
 		String cpf = usuario.getCpf();
 		// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
 		Usuario retorno = usuarioDAO.buscarUsuarioPorCPF(cpf);
+		DAOFactory.close();
 		return retorno;
 	}
 
 	public Usuario listarPorNome(Usuario usuario)
 	{
+		DAOFactory.abrir();
 		String nome = usuario.getNome();
 		// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
 		Usuario retorno = usuarioDAO.buscarUsuarioPorNome(nome);
+		DAOFactory.close();
 		return retorno;
 	}
 
 	public Usuario pesquisarUsuarioPorCodigo(Usuario usuario)
 	{
+		DAOFactory.abrir();
 		// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
 		Usuario cp = usuarioDAO.consultarPorId(usuario.getCodigo());
+		DAOFactory.close();
 		return cp;
 	}
 
 	public Usuario pesquisarPorEmail(Usuario usuario)
 	{
+		DAOFactory.abrir();
 		String email = usuario.getEmail();
 		// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 		usuarioDAO = DAOFactory.getUsuarioDAO();
 		Usuario retorno = usuarioDAO.buscarPorEmail(email);
+		DAOFactory.close();
 		return retorno;
 	}
 
@@ -93,6 +108,8 @@ public class ControladorUsuario
 	 */
 	public boolean alteraSenha(Usuario u)
 	{
+		DAOFactory.abrir();
+		boolean resultado = false;
 		// Usuario usuario = new Usuario();
 		// usuario = pesquisarPorEmail(u);
 		if (u != null)
@@ -102,8 +119,10 @@ public class ControladorUsuario
 			// usuarioDAO = DAOFactoryUsuario.getUsuarioDAO();
 			usuarioDAO = DAOFactory.getUsuarioDAO();
 			usuarioDAO.alterar(u);
-			return true;
+			resultado = true;
 		}
-		return false;
+		resultado = false;
+		DAOFactory.close();
+		return resultado;
 	}
 }
