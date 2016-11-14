@@ -1,8 +1,6 @@
 package br.com.marketedelivery.DAO;
 
 import java.util.List;
-
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -12,17 +10,12 @@ import br.com.marketedelivery.classesBasicas.Supermercado;
 
 public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
 	
-	@Inject 
-	private EntityManager bd01Manager;
-	@Inject @bd02
-	private EntityManager bd02Manager;
+	private EntityManager manager;
     
-	
     public ProdutoDAO( EntityManager em)
     {
         super(em);
-        this.setBd01Manager(em);
-        this.bd02Manager = em;
+        this.manager = em;
     }
     public Produto buscarPorNome(String nome)
     {
@@ -33,11 +26,13 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
         try {
             resultado = retorno.getSingleResult();
             return resultado;
-
+            
         } catch (Exception e) {
             return null;
 
-        }
+        }finally {
+			manager.close();
+		}
     }
     
     public Produto buscarPorMarca(String marca)
@@ -54,6 +49,9 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
             return null;
 
         }
+        finally {
+			manager.close();
+		}
     }
     
     public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado)
@@ -73,6 +71,9 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
             return null;
 
         }
+        finally {
+			manager.close();
+		}
     }
     
     public Produto buscarPorTipo(String tipo)
@@ -89,12 +90,8 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
             return null;
 
         }
+        finally {
+			manager.close();
+		}
     }
-
-	public EntityManager getBd01Manager() {
-		return bd01Manager;
-	}
-	public void setBd01Manager(EntityManager bd01Manager) {
-		this.bd01Manager = bd01Manager;
-	}
 }

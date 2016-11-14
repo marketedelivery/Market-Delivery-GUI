@@ -9,9 +9,9 @@ import br.com.marketedelivery.classesBasicas.Pagamento;
 
 
 
-public class PagamentoDAO extends DAOGenerico<Pagamento> implements IPagamentoDAO {
+public class PagamentoDAO extends DAOGenerico<Pagamento> implements IPagamentoDAO 
+{
 	
-	@SuppressWarnings("unused")
 	private EntityManager manager;
     
     public PagamentoDAO(EntityManager em)
@@ -33,7 +33,9 @@ public class PagamentoDAO extends DAOGenerico<Pagamento> implements IPagamentoDA
         } catch (Exception e) {
             return null;
 
-        }
+        }finally {
+			manager.close();
+		}
     }
 
 

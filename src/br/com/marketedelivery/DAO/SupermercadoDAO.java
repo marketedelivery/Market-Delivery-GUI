@@ -8,7 +8,6 @@ import br.com.marketedelivery.classesBasicas.Supermercado;
 
 public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISupermercadoDAO
 {
-	@SuppressWarnings("unused")
 	private EntityManager manager;
 
 	public SupermercadoDAO(EntityManager em)
@@ -32,6 +31,8 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
+		}finally {
+			manager.close();
 		}
 	}
 
@@ -49,6 +50,8 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
+		}finally {
+			manager.close();
 		}
 	}
 
@@ -66,6 +69,8 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
+		}finally {
+			manager.close();
 		}
 	}
 
@@ -83,6 +88,8 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
+		}finally {
+			manager.close();
 		}
 	}
 }

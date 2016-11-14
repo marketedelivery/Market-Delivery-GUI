@@ -13,7 +13,6 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 
 public class ListaDeComprasDAO extends DAOGenerico<ListaDeCompras> implements IListaDeComprasDAO
 {
-	@SuppressWarnings("unused")
 	private EntityManager manager;
     
     public ListaDeComprasDAO(EntityManager em)
@@ -34,7 +33,9 @@ public class ListaDeComprasDAO extends DAOGenerico<ListaDeCompras> implements IL
         } catch (Exception e) {
             return null;
 
-        }
+        }finally {
+			manager.close();
+		}
     }
     
     public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario)
@@ -50,6 +51,8 @@ public class ListaDeComprasDAO extends DAOGenerico<ListaDeCompras> implements IL
         } catch (Exception e) {
             return null;
 
-        }
+        }finally {
+			manager.close();
+		}
     }
 }

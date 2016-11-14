@@ -31,12 +31,12 @@
 				<h:panelGrid columns="2" cellpadding="5" style="text-align:left">
 				   Email
 					<p:inputText id="email" value="#{loginMB.usuario.email}"
-						required="false" label="username"
+						required="true" label="username"
 						requiredMessage="Preencha o campo Email" />
 					
 				   Senha
 					<p:password id="senha" value="#{loginMB.usuario.senha}"
-						required="false" requiredMessage="Preencha o campo Senha"
+						required="true" requiredMessage="Preencha o campo Senha"
 						label="password" />
 						
 					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}"
