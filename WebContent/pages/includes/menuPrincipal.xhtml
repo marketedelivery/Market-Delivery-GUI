@@ -34,6 +34,7 @@
 						outcome="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
 					<p:menuitem value="Listas"
 						outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
+					
 				</p:submenu>
 
 				<p:menuitem value="Sair" action="#{loginMB.logOut}"
@@ -44,8 +45,8 @@
 		<h:form id="update">
 			<p:dialog header="Alterar Meus Dados Cadastrais"
 				widgetVar="usuarioDialog" modal="false" showEffect="fade"
-				hideEffect="fade" resizable="false" height="530px">
-				<p:outputPanel id="usuarioDetail" style="width:0 auto">
+				hideEffect="fade" resizable="false" height="540px">
+				<p:outputPanel id="usuarioDetail" style="width:0auto">
 
 					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgUsuario"
 						columnClasses="label,value">
@@ -131,7 +132,7 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel value="CEP* " />
-						<p:inputMask maxlength="10" required="true" mask="99.999-999"
+						<p:inputMask maxlength="10" required="true" mask="99999-999"
 							requiredMessage="O campo CEP não foi preenchido"
 							converterMessage="preencha apenas com números"
 							value="#{loginMB.usuarioLogado.endereco.cep}" placeholder="CEP" />

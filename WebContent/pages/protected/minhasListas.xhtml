@@ -49,8 +49,8 @@
 				</p:column>
 
 				<p:column headerText="Lista Criada">
-					<h:outputText value="#{lista.dataCriacao}" > 
-						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					<h:outputText value="#{lista.dataCriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 
@@ -65,6 +65,7 @@
 							target="#{itemMB.lista}" />
 						<p:tooltip for="editar">Alterar Lista</p:tooltip>
 					</p:commandButton>
+
 					<p:commandButton icon="ui-icon-trash" id="excluir"
 						oncomplete="PF('listaExcluirDialog').show()">
 						<f:setPropertyActionListener value="#{lista}"
@@ -103,9 +104,9 @@
 							requiredMessage="O campo Tipo não foi preenchido"
 							converterMessage="Preencha apenas com letras" autocomplete="true"
 							value="#{itemMB.lista.tipo}" placeholder="Tipo da Lista" />
-							
+
 						<p:outputLabel value="Data de Criação* " />
-						<p:calendar id="maskCalendar" size="10" maxlength="10"
+						<p:calendar id="maskCalendar" size="15" maxlength="10"
 							required="true"
 							requiredMessage="O campo data de Criação não foi preenchido"
 							converterMessage="Preencha com apenas números"
@@ -183,6 +184,13 @@
 				</p:outputPanel>
 			</p:dialog>
 		</h:form>
+
+		<!-- =============================                  ========================= -->
+
+
+
+
+		<!-- =============================                  ========================= -->
 
 		<h:form id="remover">
 			<p:dialog id="listaExcluirDialog" showEffect="fade" modal="false"
