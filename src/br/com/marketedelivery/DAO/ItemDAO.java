@@ -12,9 +12,12 @@ import br.com.marketedelivery.classesBasicas.Produto;
 
 public class ItemDAO extends DAOGenerico<Item> implements IItemDAO
 {
+	private EntityManager manager;
+	
 	public ItemDAO(EntityManager em)
 	{
 		super(em);
+		this.manager = em;
 	}
 
 	public Item buscarItemProduto(Produto produto)
@@ -32,6 +35,8 @@ public class ItemDAO extends DAOGenerico<Item> implements IItemDAO
 		catch (Exception e)
 		{
 			return null;
+		}finally {
+			manager.close();
 		}
 	}
 
@@ -49,6 +54,8 @@ public class ItemDAO extends DAOGenerico<Item> implements IItemDAO
 		catch (Exception e)
 		{
 			return null;
+		}finally {
+			manager.close();
 		}
 	}
 }

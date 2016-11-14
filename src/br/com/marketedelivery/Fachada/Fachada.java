@@ -40,7 +40,6 @@ public class Fachada implements IFachada
 
 	private ControladorPagamento conPagamento;
 
-	// private ControladorPerfil conPerfil;
 	private ControladorProduto conProduto;
 
 	private ControladorItem conItem;

@@ -8,7 +8,6 @@ import br.com.marketedelivery.classesBasicas.Usuario;
 
 public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 
-	@SuppressWarnings("unused")
 	private EntityManager manager;
 
 
@@ -28,7 +27,9 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 
         } catch (Exception e) {
             return null;
-        }
+        }finally {
+			manager.close();
+		}
     }
 	
 	public Usuario buscarUsuarioPorCPF(String cpf)
@@ -44,7 +45,9 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
         } catch (Exception e) {
             return null;
 
-        }
+        }finally {
+			manager.close();
+		}
     }
 	
 	public Usuario buscarUsuarioPorNome(String nome)
@@ -59,8 +62,9 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 
         } catch (Exception e) {
             return null;
-
-        }
+        }finally {
+			manager.close();
+		}
     }
 	@Override
 	public Usuario pesquisarPorCodigo(int codigo) {
@@ -80,7 +84,9 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
         } catch (Exception e) {
             return null;
 
-        }
+        }finally {
+			manager.close();
+		}
     } 
 }
 

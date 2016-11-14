@@ -1,6 +1,5 @@
 package br.com.marketedelivery.managedBean;
 
-import java.util.List;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -9,7 +8,6 @@ import javax.faces.convert.FacesConverter;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
-import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
 @FacesConverter(value="supermercadoConverter")

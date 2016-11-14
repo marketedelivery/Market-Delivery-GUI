@@ -8,7 +8,6 @@ import br.com.marketedelivery.classesBasicas.Pedido;
 
 public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
 	
-	@SuppressWarnings("unused")
 	private EntityManager manager;
     
     public PedidoDAO(EntityManager em)
@@ -29,10 +28,8 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
         } catch (Exception e) {
             return null;
 
-        }
+        }finally {
+			manager.close();
+		}
     }
-
-	
-	
-
 }

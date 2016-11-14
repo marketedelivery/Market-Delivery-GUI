@@ -42,12 +42,8 @@ public abstract class DAOFactory
 	public static IProdutoDAO produtoDAO;
 
 	// Construtores
-	public static void abrir()
-	{
-		if (factory == null || !factory.isOpen())
-		{
-			factory = Persistence.createEntityManagerFactory("bd_market");
-		}
+	static {
+		factory = Persistence.createEntityManagerFactory("bd_market");
 	}
 
 	// Métodos
