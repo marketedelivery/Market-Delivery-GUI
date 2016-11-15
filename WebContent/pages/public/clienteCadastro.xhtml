@@ -71,7 +71,7 @@
                 Número<br />
 					<p:inputMask value="#{usuarioMB.endereco.numero}" required="true"
 						requiredMessage="Preencha o campo número" maxlength="5" size="8"
-						mask="99999" />
+						mask="?99999" />
 					
                  
                 Complemento<br />
@@ -92,7 +92,7 @@
                  
                 Estado<br />
 
-					<p:selectOneMenu id="estado" value="#{usuarioMB.endereco.estado}" required="true" requiredMessage="Selecione o estado"
+					<p:selectOneMenu id="estado" value="#{usuarioMB.endereco.estado}"
 						style="width:125px">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItem itemLabel="AC" itemValue="AC" />

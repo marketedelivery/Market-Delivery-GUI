@@ -281,10 +281,9 @@ public class ItemMB
 			itTemp.setPrecoTotal(valorTotal);
 			getFachada().cadastrarItem(itTemp);
 		}
-		
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista cadastrada com sucesso"));
 		listaCompras = new ListaDeCompras();
 		listaItens = new ArrayList<Item>();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista cadastrada com sucesso"));
 		return "/pages/protected/minhasListas.xhtml?faces-redirect=true";
 	}
 

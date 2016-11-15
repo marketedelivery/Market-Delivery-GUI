@@ -6,9 +6,6 @@ import javax.persistence.TypedQuery;
 import br.com.marketedelivery.IDAO.IPagamentoDAO;
 import br.com.marketedelivery.classesBasicas.Pagamento;
 
-
-
-
 public class PagamentoDAO extends DAOGenerico<Pagamento> implements IPagamentoDAO 
 {
 	
@@ -33,10 +30,10 @@ public class PagamentoDAO extends DAOGenerico<Pagamento> implements IPagamentoDA
         } catch (Exception e) {
             return null;
 
-        }finally {
-			manager.close();
+        }
+        finally 
+        {
+        	manager.close();
 		}
     }
-
-
 }

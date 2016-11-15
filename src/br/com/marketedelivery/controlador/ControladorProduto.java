@@ -13,21 +13,18 @@ public class ControladorProduto
 
 	public void cadastrarProduto(Produto produto)
 	{
-		// produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		produtoDAO.inserir(produto);
 	}
 
 	public void atualizarProduto(Produto produto)
 	{
-		// produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		produtoDAO.alterar(produto);
 	}
 
 	public List<Produto> listarTodosProdutos()
 	{
-		// produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		List<Produto> lista = produtoDAO.consultarTodos();
 		return lista;
@@ -44,7 +41,6 @@ public class ControladorProduto
 
 	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado)
 	{
-		// produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		List<Produto> lista = produtoDAO.buscarProdutoPorSupermercado(supermercado);
 		return lista;
@@ -53,7 +49,6 @@ public class ControladorProduto
 	public Produto pesquisarProdutoPorTipo(Produto produto)
 	{
 		String tipo = produto.getNome();
-		// produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		Produto p = produtoDAO.buscarPorNome(tipo);
 		return p;
@@ -61,7 +56,6 @@ public class ControladorProduto
 
 	public void removerProduto(Produto produto)
 	{
-		// produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		produtoDAO.remover(produto);
 	}

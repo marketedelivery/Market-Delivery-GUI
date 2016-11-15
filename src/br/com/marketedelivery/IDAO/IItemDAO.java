@@ -9,6 +9,5 @@ import br.com.marketedelivery.classesBasicas.Produto;
 public interface IItemDAO extends IDAOGenerico<Item>
 {
 	public Item buscarItemProduto(Produto produto);
-
 	public List<Item> consultarItensPorLista(ListaDeCompras lista);
 }

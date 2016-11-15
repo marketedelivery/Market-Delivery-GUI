@@ -6,7 +6,8 @@ import javax.persistence.TypedQuery;
 import br.com.marketedelivery.IDAO.IUsuarioDAO;
 import br.com.marketedelivery.classesBasicas.Usuario;
 
-public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
+public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO
+{
 
 	private EntityManager manager;
 
@@ -27,8 +28,10 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 
         } catch (Exception e) {
             return null;
-        }finally {
-			manager.close();
+        }
+        finally
+        {
+        	manager.close();
 		}
     }
 	
@@ -45,8 +48,10 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
         } catch (Exception e) {
             return null;
 
-        }finally {
-			manager.close();
+        }
+        finally 
+        {
+        	manager.close();
 		}
     }
 	
@@ -62,8 +67,10 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
 
         } catch (Exception e) {
             return null;
-        }finally {
-			manager.close();
+        }
+        finally
+        {
+        	manager.close();
 		}
     }
 	@Override
@@ -84,8 +91,9 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO {
         } catch (Exception e) {
             return null;
 
-        }finally {
-			manager.close();
+        }finally 
+        {
+        	manager.close();
 		}
     } 
 }

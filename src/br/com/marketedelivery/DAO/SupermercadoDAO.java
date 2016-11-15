@@ -31,7 +31,9 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
-		}finally {
+		}
+		finally 
+		{
 			manager.close();
 		}
 	}
@@ -50,7 +52,9 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
-		}finally {
+		}
+		finally 
+		{
 			manager.close();
 		}
 	}
@@ -69,11 +73,13 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
-		}finally {
+		}
+		finally 
+		{
 			manager.close();
 		}
 	}
-
+	
 	public Supermercado buscarPorNome(String nome)
 	{
 		String comandoSelect = "SELECT c FROM Supermercado c WHERE c.nome = :N ";
@@ -88,7 +94,9 @@ public class SupermercadoDAO extends DAOGenerico<Supermercado> implements ISuper
 		catch (Exception e)
 		{
 			return null;
-		}finally {
+		}
+		finally 
+		{
 			manager.close();
 		}
 	}

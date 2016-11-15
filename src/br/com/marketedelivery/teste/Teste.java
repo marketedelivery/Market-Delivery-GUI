@@ -1,15 +1,14 @@
 package br.com.marketedelivery.teste;
 
-import java.math.BigDecimal;
 
-import br.com.marketedelivery.util.ValidarCpf;
 /*import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import br.com.marketedelivery.util.ValidarCpf;
-*/import br.com.marketedelivery.util.ValidarEmail;
+*/
+//import br.com.marketedelivery.util.ValidarEmail;
 
 public class Teste 
 {

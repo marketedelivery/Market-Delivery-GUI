@@ -13,21 +13,18 @@ public class ControladorListadeCompra
 
 	public void cadastrarLista(ListaDeCompras lista)
 	{
-		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		listaDAO.inserir(lista);
 	}
 
 	public void atualizarLista(ListaDeCompras lista)
 	{
-		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		listaDAO.alterar(lista);
 	}
 
 	public List<ListaDeCompras> listarTodasListas()
 	{
-		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		List<ListaDeCompras> lista = listaDAO.consultarTodos();
 		return lista;
@@ -36,7 +33,6 @@ public class ControladorListadeCompra
 	public ListaDeCompras buscarPorCodigo(ListaDeCompras lista)
 	{
 		int codigo = lista.getCodigo();
-		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		ListaDeCompras retorno = listaDAO.consultarPorId(codigo);
 		return retorno;
@@ -44,7 +40,6 @@ public class ControladorListadeCompra
 
 	public List<ListaDeCompras> buscaListaPorUsuario(Usuario usuario)
 	{
-		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		List<ListaDeCompras> retorno = listaDAO.buscaListaPorUsuario(usuario);
 		return retorno;
@@ -52,7 +47,6 @@ public class ControladorListadeCompra
 
 	public void removerLista(ListaDeCompras lista)
 	{
-		// listaDAO = DAOFactoryListadeCompras.getListaDAO();
 		listaDAO = DAOFactory.getListaDAO();
 		listaDAO.remover(lista);
 	}

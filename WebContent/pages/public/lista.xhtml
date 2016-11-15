@@ -38,7 +38,7 @@
 					<p:dataGrid columns="4" value="#{produtoMB.carregarProduto}"
 						layout="tabular" rows="12" paginator="true" var="produto"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="5,15,25,35,45,50">
+						rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
 						<p:panel style="text-align: center">
 							<p:outputPanel style="margin:0 auto;">
 								<p:panelGrid>
@@ -52,7 +52,7 @@
 								<p:outputLabel value="#{produto.marca}" style="margin:0 auto;" />
 								<br />
 								<p:commandButton var="item" value=" Adicionar"
-									actionListener="#{itemMB.adicionar(produto)}"
+									actionListener="#{itemMB.adicionar(produto)}" process="@this"
 									update=":form:listaForm:pdtSelecionado" />
 							</p:outputPanel>
 						</p:panel>
@@ -66,9 +66,7 @@
 
 						<p:dataTable id="produtosSelecionados" var="item"
 							value="#{itemMB.listaItens}"
-							rendered="#{not empty itemMB.listaItens}"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="5,15,25,35,45,50">
+							rendered="#{not empty itemMB.listaItens}">
 
 							<p:column>
 								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"

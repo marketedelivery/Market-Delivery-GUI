@@ -1,6 +1,7 @@
 package br.com.marketedelivery.DAO;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -11,12 +12,13 @@ import br.com.marketedelivery.classesBasicas.Supermercado;
 public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
 	
 	private EntityManager manager;
-    
+	
     public ProdutoDAO( EntityManager em)
     {
         super(em);
         this.manager = em;
     }
+    
     public Produto buscarPorNome(String nome)
     {
         String consulta = "SELECT p FROM Produto p WHERE p.nome = :N";
@@ -26,12 +28,13 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
         try {
             resultado = retorno.getSingleResult();
             return resultado;
-            
+
         } catch (Exception e) {
             return null;
-
-        }finally {
-			manager.close();
+        }
+        finally 
+        {
+        	manager.close();
 		}
     }
     
@@ -49,8 +52,9 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
             return null;
 
         }
-        finally {
-			manager.close();
+        finally 
+        {
+        	manager.close();
 		}
     }
     
@@ -71,8 +75,9 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
             return null;
 
         }
-        finally {
-			manager.close();
+        finally 
+        {
+        	manager.close();
 		}
     }
     
@@ -90,8 +95,9 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
             return null;
 
         }
-        finally {
-			manager.close();
+        finally 
+        {
+        	manager.close();
 		}
     }
 }

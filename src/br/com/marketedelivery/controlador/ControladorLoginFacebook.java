@@ -234,10 +234,10 @@ public class ControladorLoginFacebook implements Serializable
 		{
 			usuarioDAO.inserir(usuario);
 			usuario = usuarioDAO.buscarUsuarioCodigoFacebook(id);
+			DAOFactory.close();
 			return usuario;
 		} else
 		{
-			DAOFactory.close();
 			return us;
 		}
 	}

@@ -15,6 +15,7 @@ public class ControladorEndereco
 		// enderecoDAO = DAOFactoryEndereco.getEnderecoDAO();
 		enderecoDAO = DAOFactory.getEnderecoDAO();
 		enderecoDAO.inserir(endereco);
+		DAOFactory.close();
 	}
 
 	public void atualizarEndereco(Endereco endereco)

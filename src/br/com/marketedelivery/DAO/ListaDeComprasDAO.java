@@ -33,7 +33,9 @@ public class ListaDeComprasDAO extends DAOGenerico<ListaDeCompras> implements IL
         } catch (Exception e) {
             return null;
 
-        }finally {
+        }
+        finally 
+		{
 			manager.close();
 		}
     }
@@ -51,7 +53,8 @@ public class ListaDeComprasDAO extends DAOGenerico<ListaDeCompras> implements IL
         } catch (Exception e) {
             return null;
 
-        }finally {
+        }finally 
+		{
 			manager.close();
 		}
     }

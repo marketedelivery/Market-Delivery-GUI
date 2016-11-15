@@ -14,20 +14,18 @@ public class ControladorItem
 
 	public void cadastrarItem(Item item)
 	{
-		// itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO = DAOFactory.getItemDAO();
+		itemDAO.inserir(item);
 	}
 
 	public void atualizarItem(Item item)
 	{
-		// itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO = DAOFactory.getItemDAO();
 		itemDAO.alterar(item);
 	}
 
 	public List<Item> listarTodosItens()
 	{
-		// itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO = DAOFactory.getItemDAO();
 		List<Item> lista = itemDAO.consultarTodos();
 		return lista;
@@ -35,13 +33,12 @@ public class ControladorItem
 
 	public void removerProdutoItem(Item item)
 	{
-		// itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO = DAOFactory.getItemDAO();
+		itemDAO.remover(item);
 	}
 
 	public Item buscarItemProduto(Produto produto)
 	{
-		// itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO = DAOFactory.getItemDAO();
 		Item i = itemDAO.buscarItemProduto(produto);
 		return i;
@@ -49,7 +46,6 @@ public class ControladorItem
 
 	public List<Item> consultarItensPorLista(ListaDeCompras lista)
 	{
-		// itemDAO = DAOFactoryItem.getItemDAO();
 		itemDAO = DAOFactory.getItemDAO();
 		List<Item> list = itemDAO.consultarItensPorLista(lista);
 		return list;

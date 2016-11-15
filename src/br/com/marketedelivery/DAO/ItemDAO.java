@@ -35,7 +35,9 @@ public class ItemDAO extends DAOGenerico<Item> implements IItemDAO
 		catch (Exception e)
 		{
 			return null;
-		}finally {
+		}
+		finally 
+		{
 			manager.close();
 		}
 	}
@@ -54,7 +56,9 @@ public class ItemDAO extends DAOGenerico<Item> implements IItemDAO
 		catch (Exception e)
 		{
 			return null;
-		}finally {
+		}
+		finally
+		{
 			manager.close();
 		}
 	}

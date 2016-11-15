@@ -18,20 +18,18 @@ public class ControladorSupermercado
 
 	public void cadastrarSupermercado(Supermercado supermercado)
 	{
-		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		supermercadoDAO.inserir(supermercado);
 	}
 
 	public void atualizarSupermercado(Supermercado supermercado)
 	{
-		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
+		
 	}
 
 	public List<Supermercado> listarTodosSupermercados()
 	{
-		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		List<Supermercado> lista = supermercadoDAO.consultarTodos();
 		return lista;
@@ -48,7 +46,6 @@ public class ControladorSupermercado
 
 	public Supermercado pesquisarPorCodigo(Supermercado supermercado)
 	{
-		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		Supermercado sup = supermercadoDAO.consultarPorId(supermercado.getCodigo());
 		return sup;
@@ -56,14 +53,12 @@ public class ControladorSupermercado
 
 	public List<Produto> listarProdutosDoSupermercado(String nomeProduto, String supermercado)
 	{
-		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		return null;
 	}
 
 	public Supermercado consultarPorID(Supermercado supermercado)
 	{
-		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		Supermercado s = supermercadoDAO.consultarPorId(supermercado.getCodigo());
 		return s;
@@ -75,7 +70,6 @@ public class ControladorSupermercado
 	 */
 	public MapModel supermencadoProximo()
 	{
-		// supermercadoDAO = DAOFactorySupermercado.getSupermercadoDAO();
 		supermercadoDAO = DAOFactory.getSupermercadoDAO();
 		try
 		{

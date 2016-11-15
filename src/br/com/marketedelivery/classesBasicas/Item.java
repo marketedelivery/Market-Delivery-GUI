@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -23,7 +22,7 @@ public class Item implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue
 	@Column(name = "codigo")
 	private int codigo;
 
@@ -36,7 +35,7 @@ public class Item implements Serializable
 	@Column(name = "qtdProduto", length = 12)
 	private int qtdProduto;
 
-	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.REFRESH, fetch = FetchType.EAGER)
 	@Fetch(FetchMode.JOIN)
 	private ListaDeCompras lista;
 

@@ -6,7 +6,8 @@ import javax.persistence.TypedQuery;
 import br.com.marketedelivery.IDAO.IPedidoDAO;
 import br.com.marketedelivery.classesBasicas.Pedido;
 
-public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
+public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO
+{
 	
 	private EntityManager manager;
     
@@ -28,8 +29,10 @@ public class PedidoDAO extends DAOGenerico<Pedido> implements IPedidoDAO {
         } catch (Exception e) {
             return null;
 
-        }finally {
-			manager.close();
+        }
+        finally
+        {
+        	manager.close();
 		}
     }
 }

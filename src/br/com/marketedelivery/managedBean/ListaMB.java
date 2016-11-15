@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
+import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Tipo;
 import br.com.marketedelivery.classesBasicas.Usuario;
@@ -92,6 +93,13 @@ public class ListaMB
 			if (lista == null)
 			{
 				lista = this.lista;
+				List<Item> listaTemp = getFachada().consultarItensPorLista(lista);
+				for (int i = 0; i < listaTemp.size(); i++) 
+				{
+					Item temp = listaTemp.get(i);
+					getFachada().removerProdutoItem(temp);
+					System.out.println(temp + " removido com sucesso");
+				}
 				getFachada().removerLista(lista);
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista removida com sucesso"));
 			}

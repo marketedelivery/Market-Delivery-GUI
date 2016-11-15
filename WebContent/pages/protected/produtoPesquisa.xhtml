@@ -31,11 +31,10 @@
 				<p:selectOneMenu value="#{produtoMB.produto.supermercado}"
 					converter="supermercadoConverter">
 					<f:selectItem noSelectionOption="true"
-						itemLabel="Selecione um supermercado" itemValue="null" required="True"
-						requiredMessage="Selecione o Supermercado"/>
+						itemLabel="Selecione um supermercado" itemValue="-1" />
 					<f:selectItems value="#{produtoMB.listarTodosSupermercado}"
 						var="supermercado" itemValue="#{supermercado}"
-						itemLabel="#{supermercado.nome}" />
+						itemLabel="#{supermercdo.nome}" />
 
 				</p:selectOneMenu>
 

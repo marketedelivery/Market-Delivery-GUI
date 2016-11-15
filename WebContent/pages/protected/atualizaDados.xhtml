@@ -51,7 +51,7 @@
 					<p:inputMask maxlength="16" required="true" mask="(99) 9 9999-9999"
 						requiredMessage="O campo numero do WhatsApp não foi preenchido"
 						converterMessage="Preencha apenas com números"
-						value="#{loginMB.usuarioLogado.telefoneWhatsapp}"
+						value="#{loginMB.usuarioLogado.telefonewhatsapp}"
 						placeholder="WhatsApp" />
 				</p:panelGrid>
 
@@ -102,7 +102,7 @@
 					</p:selectOneMenu>
 
 					<p:outputLabel value="CEP* " />
-					<p:inputMask maxlength="10" required="true" mask="99999-999"
+					<p:inputMask maxlength="10" required="true" mask="99.999-999"
 						requiredMessage="O campo CEP não foi preenchido"
 						converterMessage="preencha apenas com números"
 						value="#{loginMB.usuarioLogado.endereco.cep}" placeholder="CEP" />

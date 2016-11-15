@@ -347,7 +347,7 @@ public class Fachada implements IFachada
 	{
 		return conItem.consultarItensPorLista(lista);
 	}
-
+	
 	// --------------------------------------------- Pedido
 	// -------------------------------------------------------------------
 	public void cadastrarPedido(Pedido pedido)

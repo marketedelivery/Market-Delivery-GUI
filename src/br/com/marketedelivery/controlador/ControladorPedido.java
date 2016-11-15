@@ -12,21 +12,18 @@ public class ControladorPedido
 
 	public void cadastrarPedido(Pedido pedido)
 	{
-		// pedidoDAO = DAOFactoryPedido.getPedidoDAO();
 		pedidoDAO = DAOFactory.getPedidoDAO();
 		pedidoDAO.inserir(pedido);
 	}
 
 	public void atualizarPedido(Pedido pedido)
 	{
-		// pedidoDAO = DAOFactoryPedido.getPedidoDAO();
 		pedidoDAO = DAOFactory.getPedidoDAO();
 		pedidoDAO.alterar(pedido);
 	}
 
 	public List<Pedido> listarTodosPedidos()
 	{
-		// pedidoDAO = DAOFactoryPedido.getPedidoDAO();
 		pedidoDAO = DAOFactory.getPedidoDAO();
 		List<Pedido> lista = pedidoDAO.consultarTodos();
 		return lista;
@@ -35,7 +32,6 @@ public class ControladorPedido
 	public Pedido listarPedidoPorCodigo(Pedido pedido)
 	{
 		int codigo = pedido.getCodigo();
-		// pedidoDAO = DAOFactoryPedido.getPedidoDAO();
 		pedidoDAO = DAOFactory.getPedidoDAO();
 		Pedido p = pedidoDAO.consultarPorId(codigo);
 		return p;
