@@ -24,6 +24,7 @@
 
 				<p:outputLabel value="Olá,Seja Bem Vindo " />
 				<p:outputLabel value="#{loginMB.usuarioLogado.nome}" />
+				<p:outputLabel value="#{listaMB.lista.nome}" />
 
 			</h:panelGrid>
 			<h3 style="margin-top: 0"></h3>
@@ -72,7 +73,10 @@
 							target="#{itemMB.lista}" />
 						<p:tooltip for="excluir">Excluir Lista</p:tooltip>
 					</p:commandButton>
-					<p:commandButton icon="ui-icon-cart" id="compararPreco">
+					<p:commandButton id="compararPreco" update=":updateCompara"
+						oncomplete="PF('listaDialog2').show()" icon="ui-icon-cart">
+						<f:setPropertyActionListener value="#{lista}"
+							target="#{itemMB.lista}" />
 						<p:tooltip for="compararPreco">Comparar Preços</p:tooltip>
 					</p:commandButton>
 				</p:column>
@@ -183,6 +187,97 @@
 					onclick="PF('listaExcluirDialog').hide()" type="button" />
 			</p:dialog>
 		</h:form>
+
+		<!-- ============================== Tela de Comparar Preços ====================================== -->
+
+		<h:form id="updateCompara">
+			<p:dialog header="Comparar Preços" widgetVar="listaDialog2" 
+				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
+				width="800px" height="400">
+				<p:outputPanel id="listaDetail" style="width:0 auto">
+					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgLista"
+						columnClasses="label,value">
+
+						<p:outputLabel value="Nome* " />
+						<p:inputText id="Nome" maxlength="30" required="true"
+							requiredMessage="O campo Nome não foi preenchido"
+							converterMessage="Preencha apenas com letras" autocomplete="true"
+							value="#{itemMB.lista.nome}" placeholder="Nome da Lista" />
+
+						<p:outputLabel value="Tipo* " />
+						<p:inputText id="Tipo" maxlength="30" required="true"
+							requiredMessage="O campo Tipo não foi preenchido"
+							converterMessage="Preencha apenas com letras" autocomplete="true"
+							value="#{itemMB.lista.tipo}" placeholder="Tipo da Lista" />
+					</p:panelGrid>
+
+					<h:form>
+
+						<p:toolbar>
+							<f:facet name="left">
+								<h:outputText value="Supermercados" />
+							</f:facet>
+						</p:toolbar>
+
+						<p:dataTable emptyMessage="Nenhum registro encontrado...."
+							value="#{supermercadoMB.listarTodosSupermercados}"
+							filteredValue="#{supermercadoMB.listaSupermercadosFiltrados}"
+							var="supermercado" rows="6" paginator="true">
+
+							<f:facet name="footer">
+								<p:commandButton value="Comprar"
+									action="/pages/public/lista.xhtml?faces-redirect=true" />
+							</f:facet>
+
+							<p:column headerText="Nome" filterBy="#{supermercado.nome}"
+								sortBy="#{supermercado.nome}"
+								style="width:90px;text-align: center;">
+								<h:outputText value="#{supermercado.nome}" />
+							</p:column>
+							<p:column headerText="Itens Disponiveis"
+								style="width:90px; text-align: center;">
+								<h:outputText value="30%" />
+							</p:column>
+							<p:column headerText="Itens Indisponiveis"
+								style="width:90px; text-align: center; ">
+								<h:outputText value="70%" />
+							</p:column>
+							<p:column headerText="Distância"
+								style="width:90px; text-align: center;">
+								<h:outputText value="60 Km" />
+							</p:column>
+							<p:column headerText="Valor Total"
+								style="width:90px; text-align: center;">
+								<h:outputText value="300.00" />
+							</p:column>
+							<p:column headerText="Selecione o Supermercado"
+								style="width:40px;text-align: center">
+								<p:selectOneRadio>
+									<f:selectItem />
+								</p:selectOneRadio>
+
+							</p:column>
+						</p:dataTable>
+					</h:form>
+
+
+					<br />
+
+					<br />
+
+					<p:panelGrid columns="2">
+						<f:facet name="footer">
+							
+
+						<p:commandButton value="Cancelar" immediate="true"
+								oncomplete="PF('listaDialog2').hide()" icon="ui-icon-close" />
+						</f:facet>
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+
+		<!-- =============================================================================================== -->
 		<p:growl autoUpdate="true" />
 	</ui:define>
 </ui:composition>
