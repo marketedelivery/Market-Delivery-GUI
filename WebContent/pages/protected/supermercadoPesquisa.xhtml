@@ -21,28 +21,40 @@
 	<ui:define name="conteudo">
 	<script type="text/javascript">
 	$(document).ready(function(){
-		 
 		if( navigator.geolocation ){
-		
 			navigator.geolocation.getCurrentPosition(success);
-			
-	}
+		}
 		else
 		 $("p").html("HTML5 Not Supported");
 	});
-	 
+	
 	function success(position)
 	{	var googleLatLng = new google.maps.LatLng(position.coords.latitude, 
 			  position.coords.longitude);
 		var latitude = position.coords.latitude;
 		var longitude =  position.coords.longitude;
-		
-		onPoint([{name:'latitude',value:latitude},{name:'longitude',value:longitude}]);
-			
-		//addMarker(googleLatLng,"EU ESTOU AQUI");
-		
-		
-		
+		origem = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	}
+
+	function calcRota(){
+		var directionsDisplay = new google.maps.DirectionsRenderer();
+		var service = new google.maps.DirectionsService();
+		var recuperaJson = $('input[id$="json"]').val();
+		recuperaJson =  jQuery.parseJSON(recuperaJson);
+		destino = new google.maps.LatLng(recuperaJson[0].latitude, recuperaJson[0].longitude);
+		var request = {destination: destino,
+						origin: origem, 
+						travelMode:google.maps.TravelMode.DRIVING };
+		var gmap = PF('map').getMap();
+		directionsDisplay.setMap(gmap); 
+		directionsDisplay.setPanel(document.getElementById("directionsPanel")); 
+		service.route(request,function(response,status){
+			if (status === google.maps.DirectionsStatus.OK){
+				directionsDisplay.setDirections(response);
+			}else{
+				window.alert('localização do Usuario não disponivel no momento ' + status);
+			}
+		});
 	}
 	</script>
 	
@@ -50,26 +62,18 @@
             <p:layoutUnit position="top" style="min-width:400px;min-height:500px;" gutter="0">
                 <p:layout >
                     <p:layoutUnit position="west" width="600" size="500" gutter="0">
-	<h:form id="form">
-	<p:toolbar>
+          <p:toolbar>
+			<f:facet name="left">
+				<h:outputText value="Localizaçâo dos Supermercados" />
+			</f:facet>
+		</p:toolbar>
+     <h:form id="form">
+		<h:inputHidden id="json" value="#{supermercadoMB.retornaJsonComPosicaoUsuario}"/>
+   		<p:commandButton value="Criar Rota para o Supermercado mais Próximo" onclick="calcRota();" />
+    </h:form>
 	
-				<f:facet name="left">
-					<h:outputText value="Supermercados" />
-				</f:facet>
-			</p:toolbar>
-               <p:remoteCommand  name="onPoint" process="@this" 
-                      actionListener="#{supermercadoMB.onPointSelect}" />
-                      
-   				 <p:commandButton value="Supermercado proximo" onclick="chamaElemento();"
-   				 action="/pages/protected/SupermercadoProximo.xhtml"/>
-         </h:form>
-		<h:form>
+	<h:form>
 			
-			<p:toolbar>
-				<f:facet name="left">
-					<h:outputText value="Supermercados" />
-				</f:facet>
-			</p:toolbar>
 
 			<p:dataTable emptyMessage="Nenhum registro encontrado...."
 				value="#{supermercadoMB.listarTodosSupermercados}"
@@ -90,10 +94,15 @@
 			</p:dataTable>
 		</h:form>
 	 </p:layoutUnit>
+	 
 	  <p:layoutUnit position="center" width="300" gutter="0">
-		<h:form id="formGmap">
-			<p:gmap id="gmap" center="#{supermercadoMB.latPesquisa}, #{supermercadoMB.longPesquisa}" zoom="16"
-				type="ROADMAP" style="width:100%;height:280px"
+	  <div id="panel" style="overflow: auto;width: 240px;height: 280px;border:null;float:right;">
+			<p:outputPanel id="directionsPanel" styleClass="directionsPanel" style="width:200px;" layout="block"/>	
+	  </div>
+		
+	<h:form id="formGmap">
+		<p:gmap id="gmap" center="#{supermercadoMB.latPesquisa}, #{supermercadoMB.longPesquisa}" zoom="16"
+				type="ROADMAP" style="width:65%;height:280px" widgetVar="map" fitBounds="true"
 				model="#{supermercadoMB.localizacaoSurpermercado}" />
 
 		

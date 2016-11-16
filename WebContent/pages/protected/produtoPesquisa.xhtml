@@ -19,7 +19,24 @@
 	</ui:define>
 
 	<ui:define name="conteudo">
+	<script type="text/javascript">
+	$(document).ready(function(){
+		if( navigator.geolocation ){
+				navigator.geolocation.getCurrentPosition(success);
+		  }else
+		 $("p").html("Localização do usuario não encontrada");
+		});
+	
+	function success(position){
+		var googleLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		var latitude = position.coords.latitude;
+		var longitude =  position.coords.longitude;
+		onPoint([{name:'latitude',value:latitude},{name:'longitude',value:longitude}]);
+	}
+	</script>
 		<h:form id="frmPesqProd">
+		<!-- este atributo passa a localição do usuario para o bean supermecado -->
+		<p:remoteCommand  name="onPoint" actionListener="#{supermercadoMB.onPointSelect}" autoRun="true"/>
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Produtos" />

@@ -17,6 +17,8 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.primefaces.model.map.Polyline;
 
+import com.google.gson.Gson;
+
 import br.com.marketedelivery.DAO.FacesUtil;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
@@ -25,13 +27,13 @@ import br.com.marketedelivery.classesBasicas.Supermercado;
 
 @ManagedBean(name = "supermercadoMB", eager = true)
 @ApplicationScoped
-public class SupermercadoMB implements Serializable
+public class SupermercadoMB extends AbstractMB implements Serializable
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private static int EARTH_RADIUS_KM = 6371;
 	IFachada fachada;
 
 	Supermercado supermercado;
@@ -43,7 +45,7 @@ public class SupermercadoMB implements Serializable
 	private List<Supermercado> listaSupermercados;
 
 	private List<Supermercado> listaSupermercadosFiltrados;
-
+	private String retornaJsonComPosicaoUsuario;
 	private List<Supermercado> converterListaSuper;
 	private String  latitude;
 	private String longitude;
@@ -113,7 +115,7 @@ public class SupermercadoMB implements Serializable
 		this.listaSupermercadosFiltrados = listaSupermercadosFiltrados;
 	}
 
-	// Respons�vel em carregar uma lista de dados na tela do cadastro de
+	// Responsï¿½vel em carregar uma lista de dados na tela do cadastro de
 	// supermercados
 	public void carregarPesquisa()
 	{
@@ -150,7 +152,7 @@ public class SupermercadoMB implements Serializable
 	}
 
 	/**
-	 * Metodo que faz a localiza��o por supermecado
+	 * Metodo que faz a localizaï¿½ï¿½o por supermecado
 	 * 
 	 * @return mapModel
 	 */
@@ -257,7 +259,53 @@ public void setLatPesquisa(String latPesquisa) {
 	this.latPesquisa = latPesquisa;
 }
 
+public void setRetornaJsonComPosicaoUsuario(String retornaJsonComPosicaoUsuario) {
+	this.retornaJsonComPosicaoUsuario = retornaJsonComPosicaoUsuario;
+}
 
+public String getRetornaJsonComPosicaoUsuario() {
+	Gson json = new Gson();
+	List<Supermercado> lista = new ArrayList<Supermercado>();
+	
+	lista = retornaSuperProxUser();
+	return json.toJson(lista);
+}
+
+private List<Supermercado> retornaSuperProxUser() {
+	
+	List<Supermercado> lista = new ArrayList<Supermercado>();
+	List<Supermercado> listaRetorno = new ArrayList<Supermercado>();
+	lista = getListaSupermercados();
+	double calculo = 0 ;
+	double aux = 99999999;
+	try{
+		if(getLatitude() == null || getLongitude() ==  null){
+		displayErrorMessageToUser("não foi possivel localizar o usuario");
+			return null;
+		}
+	for(int i = 0; i < lista.size();i++){
+	// Converter de graus pra radianos das latitudes
+	double firstLatToRad = Math.toRadians(Double.parseDouble(getLatitude()));
+	double secondLatToRad = Math.toRadians((Double.parseDouble(lista.get(i).getLatitude())));
+	// Diferença das longitudes
+	double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(lista.get(i).getLongitude())
+	- (Double.parseDouble(getLongitude())));
+	// C⭣ula da distançia entre os pontos
+	 calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
+	* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
+	* Math.sin(secondLatToRad))
+	* EARTH_RADIUS_KM;
+	 if(calculo < aux){
+		 listaRetorno.clear();
+		 aux = calculo;
+		 listaRetorno.add(lista.get(i));
+	} 
+	}
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
+	return listaRetorno;
+}
 
 
 }
