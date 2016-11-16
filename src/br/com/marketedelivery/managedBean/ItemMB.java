@@ -10,10 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-/*
- * import javax.faces.context.FacesContext; import
- * javax.servlet.http.HttpSession;
- */
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Item;
@@ -290,17 +286,23 @@ public class ItemMB
 	/**
 	 * @return the itensDialog
 	 */
+	// Add
 	public List<Item> getItensDialog()
 	{
 		if (lista != null)
 		{
-			itensDialog = getFachada().consultarItensPorLista(lista);
-			return itensDialog;
-		} else
-		{
-			itensDialog = new ArrayList<Item>();
+			if (itensDialog == null || itensDialog.isEmpty())
+			{
+				itensDialog = getFachada().consultarItensPorLista(lista);
+			} else
+			{
+				if (itensDialog.get(0).getLista().getCodigo() != lista.getCodigo())
+				{
+					itensDialog = getFachada().consultarItensPorLista(lista);
+				}
+			}
 		}
-		return null;
+		return itensDialog;
 	}
 
 	/**
@@ -338,11 +340,69 @@ public class ItemMB
 			{
 				getFachada().removerProdutoItem(it);
 				itensDialog.remove(i);
-				System.out.println(itensDialog.size());
-			} else
-			{
-				return;
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage(String.valueOf(item.getQtdProduto()) + " " + item.getProduto().getNome()
+								+ " \n" + item.getProduto().getTipo() + " " + item.getProduto().getMarca() + "\n"
+								+ "no valor de " + item.getPrecoTotal() + " foi excluido com sucesso."));
+				it.getLista().setQtd(itensDialog.size());
+				getFachada().atualizarLista(item.getLista());
+				break;
 			}
+		}
+	}
+
+	public void alterarLista(ListaDeCompras lista)
+	{
+		if (lista == null)
+		{
+			lista = this.lista;
+		}
+		try
+		{
+			for (int i = 0; i < itensDialog.size(); i++)
+			{
+				Item it = itensDialog.get(i);
+				getFachada().atualizarItem(it);
+			}
+			lista.setQtd(itensDialog.size());
+			getFachada().atualizarLista(lista);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista alterada com sucesso"));
+		}
+		catch (Exception e)
+		{
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Erro ao alterar sua lista, tente novamente mais tarde"));
+		}
+	}
+
+	public void removerLista(ListaDeCompras lista)
+	{
+		try
+		{
+			if (lista == null) lista = this.lista;
+			if (itensDialog == null || itensDialog.isEmpty()) itensDialog = getFachada().consultarItensPorLista(lista);
+			if (itensDialog.size() != 0)
+			{
+				if (itensDialog.get(0).getLista().getCodigo() != lista.getCodigo())
+				{
+					itensDialog = getFachada().consultarItensPorLista(lista);
+				}
+				if (!itensDialog.isEmpty())
+				{
+					for (int i = 0; i < itensDialog.size(); i++)
+					{
+						Item it = itensDialog.get(i);
+						getFachada().removerProdutoItem(it);
+					}
+				}
+			}
+			getFachada().removerLista(lista);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Lista removida com sucesso"));
+		}
+		catch (Exception e)
+		{
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("Erro ao remover sua lista, tente novamente mais tarde"));
 		}
 	}
 }

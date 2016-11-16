@@ -49,8 +49,8 @@
 				</p:column>
 
 				<p:column headerText="Lista Criada">
-					<h:outputText value="#{lista.dataCriacao}" > 
-						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					<h:outputText value="#{lista.dataCriacao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 
@@ -66,11 +66,15 @@
 						<p:tooltip for="editar">Alterar Lista</p:tooltip>
 					</p:commandButton>
 					<p:commandButton icon="ui-icon-trash" id="excluir"
-						oncomplete="PF('listaExcluirDialog').show()">
+						oncomplete="PF('listaExcluirDialog').show()"
+						style="margin-left: 5px; margin-right: 5px;">
 						<f:setPropertyActionListener value="#{lista}"
-							target="#{listaMB.lista}" />
+							target="#{itemMB.lista}" />
+						<p:tooltip for="excluir">Excluir Lista</p:tooltip>
 					</p:commandButton>
-					<p:tooltip for="excluir">Excluir Lista</p:tooltip>
+					<p:commandButton icon="ui-icon-cart" id="compararPreco">
+						<p:tooltip for="compararPreco">Comparar Preços</p:tooltip>
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>
@@ -78,17 +82,8 @@
 		<h:form id="updateLista">
 			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
 				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
-				height="475px" width="630px">
-				<p:outputPanel id="listaDetail">
-
-					<p:panelGrid columns="2" border="2" columnClasses="label,value">
-						<p:outputLabel value="Código " />
-						<p:inputText readonly="true" disabled="true"
-							value="#{itemMB.lista.codigo}" />
-					</p:panelGrid>
-
-					<br />
-
+				width="420px">
+				<p:outputPanel id="listaDetail" style="width:0 auto">
 					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgLista"
 						columnClasses="label,value">
 
@@ -103,7 +98,7 @@
 							requiredMessage="O campo Tipo não foi preenchido"
 							converterMessage="Preencha apenas com letras" autocomplete="true"
 							value="#{itemMB.lista.tipo}" placeholder="Tipo da Lista" />
-							
+
 						<p:outputLabel value="Data de Criação* " />
 						<p:calendar id="maskCalendar" size="10" maxlength="10"
 							required="true"
@@ -118,18 +113,11 @@
 
 					<br />
 
-					<p:dataTable id="tbItem" scrollable="true" frozenRows="0"
-						style="margin-bottom:20px" rows="5" value="#{itemMB.itensDialog}"
-						paginator="true"
+					<p:dataTable id="tbItem" scrollable="true" frozenRows="0" rows="5"
+						value="#{itemMB.itensDialog}" paginator="true"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5" emptyMessage="Não há produtos salvos"
-						var="item">
-						<p:column headerText="Código" style="width: 30px">
-							<h:outputText value="#{item.codigo}" />
-						</p:column>
-
-						<br />
-
+						var="item" style="width:0 auto">
 						<p:column headerText="Imagem" style="width: 45px">
 							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
 								height="20%">
@@ -141,39 +129,35 @@
 							<h:outputText value="#{item.produto.nome}" />
 						</p:column>
 
-						<p:column headerText="Tipo" style="width: 60px">
+						<p:column headerText="Tipo" style="width: 50px">
 							<h:outputText value="#{item.produto.tipo}" />
 						</p:column>
 
-						<p:column headerText="Quantidade">
-							<p:spinner id="minMax" value="#{item.qtdProduto}" min="1"
-								max="100">
-								<p:ajax update="valorTotal" process="@this" />
+						<p:column headerText="Marca" style="width: 50px">
+							<h:outputText value="#{item.produto.marca}" />
+						</p:column>
+
+						<p:column headerText="Quantidade" width="40px">
+							<p:spinner size="5" id="minMax" value="#{item.qtdProduto}"
+								min="0" max="100">
 							</p:spinner>
 						</p:column>
-
-						<p:column headerText="Preço Unitário" style="width: 40px">
-							<h:outputText value="#{item.produto.valorUnitario}" />
-						</p:column>
-
-						<p:column headerText="Preço Total" style="width: 35px">
-							<h:outputText id="valorTotal"
-								value="#{item.qtdProduto*item.produto.valorUnitario}" />
-						</p:column>
-
 						<p:column headerText="Ação" style="width: 20px">
-							<p:commandButton var="item" id="excluirItem" icon="ui-icon-trash"
+							<p:commandButton id="excluirItem" icon="ui-icon-trash"
 								actionListener="#{itemMB.removerItem(item)}"
+								oncomplete="PF('listaDialog').show()"
 								update=":form:table, :form:table:qtd, :updateLista, tbItem" />
 							<p:tooltip for="excluirItem">Excluir Item</p:tooltip>
 						</p:column>
 					</p:dataTable>
 
+					<br />
+
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
 							<p:commandButton value="Salvar"
 								oncomplete="PF('listaDialog').hide()" icon="ui-icon-pencil"
-								actionListener="#{itemMB.alterarItens(item)}"
+								actionListener="#{itemMB.alterarLista(item)}"
 								validateClient="true" update="form:table, tbItem" /> &nbsp;&nbsp;
 
 						<p:commandButton value="Cancelar" immediate="true"
@@ -193,7 +177,7 @@
 				<br />
 				<p:commandButton ajax="true" id="excluirLista" value="Sim"
 					oncomplete="PF('listaExcluirDialog').hide()"
-					action="#{listaMB.remover(lista)}" update=":form, :form:table" />
+					action="#{itemMB.removerLista(item)}" update=":form, :form:table" />
 
 				<p:commandButton id="declineExcluir" value="Cancelar"
 					onclick="PF('listaExcluirDialog').hide()" type="button" />
