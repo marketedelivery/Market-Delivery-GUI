@@ -166,7 +166,7 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 			Double longitude = Double.parseDouble(getSupermercadoSelecionado().getLongitude());
 			LatLng coord1 = new LatLng(latitude, longitude);
 			polyline.getPaths().add(coord1);
-			polyline.setStrokeColor("green");
+			polyline.setStrokeColor("blue");
 			polyline.setStrokeWeight(5);
 			polyline.setStrokeOpacity(0.7);
 			mapModel.addOverlay(new Marker(coord1, "Supermercado " + getSupermercadoSelecionado().getNome()));
@@ -206,7 +206,7 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 		return fachada.getSupermencadoProximo();
 	}
 	
-public void onPointSelect() { //PointSelectEvent event
+public void onPointSelect() { 
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
    String x = params.get("latitude");
    String xx = params.get("longitude");

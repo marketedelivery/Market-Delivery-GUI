@@ -6,7 +6,7 @@ $(document).ready(function(){
 		
 }
 	else
-	 $("p").html("HTML5 Not Supported");
+		 $("p").html("Localização do usuario não encontrada");
 });
  
 function success(position)
@@ -17,22 +17,12 @@ function success(position)
 	
 	onPoint([{name:'latitude',value:latitude},{name:'longitude',value:longitude}]);
 		
-	//addMarker(googleLatLng,"EU ESTOU AQUI");
+	
 	
 	
 	
 }
-	function addMarker(){
-		var googleLatLng = new google.maps.LatLng(latitude, 
-				position.coords.longitude);
-		var markerOptn={
-			position 	:googleLatLng,
-			title		:"",
-			animation:google.maps.Animation.DROP
-		};
-	 	var marker = new google.maps.Marker(markerOptn);
-		PF('map').addOverlay(marker);
-	}
+	
 	
 function fail(error)
 {

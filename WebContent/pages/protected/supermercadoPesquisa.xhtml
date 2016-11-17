@@ -26,10 +26,12 @@
 		}
 		else
 		 $("p").html("HTML5 Not Supported");
+		
 	});
 	
-	function success(position)
-	{	var googleLatLng = new google.maps.LatLng(position.coords.latitude, 
+	function success(position){
+		var image = 'http://www.nikon-asia.com/resources/styles/24_WhereToBuy/images/google_streetview_icon.png';
+		var googleLatLng = new google.maps.LatLng(position.coords.latitude, 
 			  position.coords.longitude);
 		var latitude = position.coords.latitude;
 		var longitude =  position.coords.longitude;
@@ -45,11 +47,12 @@
 		var request = {destination: destino,
 						origin: origem, 
 						travelMode:google.maps.TravelMode.DRIVING };
+		
 		var gmap = PF('map').getMap();
 		directionsDisplay.setMap(gmap); 
 		directionsDisplay.setPanel(document.getElementById("directionsPanel")); 
 		service.route(request,function(response,status){
-			if (status === google.maps.DirectionsStatus.OK){
+			if (status == google.maps.DirectionsStatus.OK){
 				directionsDisplay.setDirections(response);
 			}else{
 				window.alert('localização do Usuario não disponivel no momento ' + status);
