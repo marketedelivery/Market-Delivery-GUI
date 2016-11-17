@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import br.com.marketedelivery.DAOFactory.DAOFactory;
+
 // import com.sun.jersey.api.client.Client;
 // import com.sun.jersey.api.client.WebResource;
 
@@ -158,5 +160,10 @@ public class LoginMB extends AbstractMB implements Serializable
 	public void setUsuarioLogado(Usuario usuarioLogado)
 	{
 		this.usuarioLogado = usuarioLogado;
+	}
+	
+	public void iniciarServidor()
+	{
+		DAOFactory.conectar();
 	}
 }

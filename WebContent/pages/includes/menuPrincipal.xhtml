@@ -17,24 +17,17 @@
 				</p:submenu>
 
 				<p:submenu label="Cadastro" icon="ui-icon-disk">
-					<p:menuitem value="Cliente"
-						outcome="/pages/public/clienteCadastro.xhtml?faces-redirect=true" />
 					<p:menuitem value="Lista"
 						outcome="/pages/public/lista.xhtml?faces-redirect=true" />
-					<p:menuitem value="Produto" />
-					<p:menuitem value="Supermercado" />
 				</p:submenu>
 				<p:menuitem value="Localizar Supermercado"
 					action="#{loginMB.logOut}"
 					outcome="/pages/protected/supermercadoPesquisa.xhtml?faces-redirect=true"
 					icon="ui-icon-search" />
 
-				<p:submenu label="Pesquisar" icon="ui-icon-search">
-					<p:menuitem value="Produto"
+					<p:menuitem value="Pesquisar Produto" icon="ui-icon-search"
 						outcome="/pages/protected/produtoPesquisa.xhtml?faces-redirect=true" />
-					<p:menuitem value="Listas"
-						outcome="/pages/protected/minhasListas.xhtml?faces-redirect=true" />
-				</p:submenu>
+				
 
 				<p:menuitem value="Sair" action="#{loginMB.logOut}"
 					outcome="/pages/public/login.xhtml?faces-redirect=true"
@@ -131,7 +124,7 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel value="CEP* " />
-						<p:inputMask maxlength="10" required="true" mask="99.999-999"
+						<p:inputMask maxlength="10" required="true" mask="99999-999"
 							requiredMessage="O campo CEP não foi preenchido"
 							converterMessage="preencha apenas com números"
 							value="#{loginMB.usuarioLogado.endereco.cep}" placeholder="CEP" />

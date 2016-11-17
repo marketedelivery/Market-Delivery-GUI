@@ -96,6 +96,11 @@ public abstract class DAOFactory
 		return produtoDAO;
 	}
 
+	public static void conectar()
+	{
+		factory = Persistence.createEntityManagerFactory("bd_market");
+	}
+	
 	public static void close()
 	{
 		if (factory != null && factory.isOpen())

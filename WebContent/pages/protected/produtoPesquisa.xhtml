@@ -50,11 +50,6 @@
 				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
 				rows="6" paginator="true">
 
-				<f:facet name="footer">
-					<p:commandButton value="Novo"
-						action="/pages/protected/produtoCadastro.xhtml?faces-redirect=true" />
-				</f:facet>
-
 				<p:column headerText="Nome" filterBy="#{produto.nome}"
 					sortBy="#{produto.nome}">
 					<h:outputText value="#{produto.nome}" />
