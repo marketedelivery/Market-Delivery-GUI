@@ -19,7 +19,9 @@ import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Item;
 import br.com.marketedelivery.classesBasicas.ListaDeCompras;
+import br.com.marketedelivery.classesBasicas.Pedido;
 import br.com.marketedelivery.classesBasicas.Produto;
+import br.com.marketedelivery.classesBasicas.Supermercado;
 
 /**
  * @author Audry Martins
@@ -30,6 +32,16 @@ import br.com.marketedelivery.classesBasicas.Produto;
 public class CompararPrecosMB
 {
 	// Atributos
+	private Pedido pedido;
+
+	private List<Pedido> pedidos;
+
+	private Pedido pedidoExtra;
+
+	private Pedido pedidoCarrefour;
+
+	private Pedido pedidoBompreco;
+
 	private IFachada fachada;
 
 	private ListaDeCompras lista;
@@ -76,6 +88,10 @@ public class CompararPrecosMB
 		itensIndisponiveisCarrefour = new ArrayList<Item>();
 		itensDisponiveisBompreco = new ArrayList<Item>();
 		itensIndisponiveisBompreco = new ArrayList<Item>();
+		pedidos = new ArrayList<Pedido>();
+		pedidoExtra = new Pedido();
+		pedidoCarrefour = new Pedido();
+		pedidoBompreco = new Pedido();
 	}
 
 	// Métodos
@@ -441,5 +457,92 @@ public class CompararPrecosMB
 		}
 		percentualItensIndisponiveisBompreco = String.valueOf(resultado);
 		return percentualItensIndisponiveisBompreco;
+	}
+
+	/**
+	 * @return the pedidoExtra
+	 */
+	public Pedido getPedidoExtra()
+	{
+		pedidoExtra.setItens(itens);
+		pedidoExtra.setItensDisponiveis(itensDisponiveisExtra);
+		pedidoExtra.setItensIndisponiveis(itensIndisponiveisExtra);
+		pedidoExtra.setLista(lista);
+		pedidoExtra.setValorTotalPedido(valorTotalListaExtra);
+		pedidoExtra.setQtdDisponiveis(getPercentualItensDisponiveisExtra());
+		pedidoExtra.setQtdIndisponiveis(getPercentualItensIndisponiveisExtra());
+		return pedidoExtra;
+	}
+
+	public void setPedidoExtra(Pedido pedidoExtra)
+	{
+		this.pedidoExtra = pedidoExtra;
+	}
+
+	public Pedido getPedidoCarrefour()
+	{
+		pedidoCarrefour.setItens(itens);
+		pedidoCarrefour.setItensDisponiveis(itensDisponiveisCarrefour);
+		pedidoCarrefour.setItensIndisponiveis(itensIndisponiveisCarrefour);
+		pedidoCarrefour.setLista(lista);
+		pedidoCarrefour.setValorTotalPedido(valorTotalListaCarrefour);
+		pedidoCarrefour.setQtdDisponiveis(getPercentualItensDisponiveisCarrefour());
+		pedidoCarrefour.setQtdIndisponiveis(getPercentualItensIndisponiveisCarrefour());
+		return pedidoCarrefour;
+	}
+
+	public void setPedidoCarrefour(Pedido pedidoCarrefour)
+	{
+		this.pedidoCarrefour = pedidoCarrefour;
+	}
+
+	public Pedido getPedidoBompreco()
+	{
+		pedidoBompreco.setItens(itens);
+		pedidoBompreco.setItensDisponiveis(itensDisponiveisBompreco);
+		pedidoBompreco.setItensIndisponiveis(itensIndisponiveisBompreco);
+		pedidoBompreco.setLista(lista);
+		pedidoBompreco.setValorTotalPedido(valorTotalListaBompreco);
+		pedidoBompreco.setQtdDisponiveis(getPercentualItensDisponiveisBompreco());
+		pedidoBompreco.setQtdIndisponiveis(getPercentualItensIndisponiveisBompreco());
+		return pedidoBompreco;
+	}
+
+	public void setPedidoBompreco(Pedido pedidoBompreco)
+	{
+		this.pedidoBompreco = pedidoBompreco;
+	}
+
+	public void setPercentualItensIndisponiveisBompreco(String percentualItensIndisponiveisBompreco)
+	{
+		this.percentualItensIndisponiveisBompreco = percentualItensIndisponiveisBompreco;
+	}
+
+	public List<Pedido> getPedidos()
+	{
+		compararPrecosProdutos();
+		if (!itens.isEmpty())
+		{
+			compararPrecosProdutos();
+			this.pedidos.add(getPedidoExtra());
+			this.pedidos.add(getPedidoCarrefour());
+			this.pedidos.add(getPedidoBompreco());
+			List<Supermercado> supermercados = getFachada().listarTodosSupermercados();
+			for (int i = 0; i < pedidos.size(); i++)
+			{
+				Pedido p = pedidos.get(i);
+				Supermercado s = supermercados.get(i);
+				p.setSupermercado(s);
+			}
+		}
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos)
+	{
+		pedidos.add(pedidoExtra);
+		pedidos.add(pedidoCarrefour);
+		pedidos.add(pedidoBompreco);
+		this.pedidos = pedidos;
 	}
 }
