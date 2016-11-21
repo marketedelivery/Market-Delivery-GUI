@@ -22,7 +22,7 @@
 			<p:panel id="panel">
 				<h:panelGrid id="pnlCadCliDados" columns="2">
 				Nome Completo<br />
-					<p:inputText maxlength="30" size="32"
+					<p:inputMask maxlength="30" size="32"
 						value="#{usuarioMB.usuario.nome}" required="true"
 						requiredMessage="Preencha o campo Nome" />
 
@@ -69,9 +69,12 @@
 					
 				 
                 Número<br />
-					<p:inputMask value="#{usuarioMB.endereco.numero}" required="true"
+                	 <h:inputText id="numero" value="#{usuarioMB.endereco.numero}" requiredMessage="Preencha o campo número"
+                     size="5"/>
+                    
+					<!-- <p:inputMask value="#{usuarioMB.endereco.numero}" required="true"
 						requiredMessage="Preencha o campo número" maxlength="5" size="8"
-						mask="?99999" />
+						mask="?99999" /> -->
 					
                  
                 Complemento<br />
