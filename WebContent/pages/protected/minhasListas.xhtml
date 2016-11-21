@@ -85,7 +85,7 @@
 		<h:form id="updateLista">
 			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
 				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
-				width="470px">
+				width="480px">
 				<p:outputPanel id="listaDetail" style="width:0 auto">
 					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgLista"
 						columnClasses="label,value">
@@ -191,8 +191,8 @@
 
 		<h:form id="updateCompara">
 			<p:dialog header="Comparar Preços" widgetVar="listaDialog2"
-				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
-				width="800px" height="0 auto">
+				closable="false" modal="false" showEffect="fade" hideEffect="fade"
+				resizable="false" width="800px" height="0 auto">
 				<p:outputPanel id="listaDetail" style="width:0 auto">
 					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgLista"
 						columnClasses="label,value">
@@ -210,9 +210,20 @@
 							converterMessage="Preencha apenas com letras" autocomplete="true"
 							value="#{compararPrecosMB.lista.tipo}"
 							placeholder="Tipo da Lista" />
+
+						<p:outputLabel value="Data de Criação* " />
+						<p:calendar id="maskCalendar" size="10" maxlength="10"
+							required="true"
+							requiredMessage="O campo data de Criação não foi preenchido"
+							converterMessage="Preencha com apenas números"
+							value="#{compararPrecosMB.lista.dataCriacao}"
+							pattern="dd/MM/yyyy" mask="true" mindate="01/01/1920"
+							maxdate="Calendar.Today()" effect="slide"
+							placeholder="dd/MM/aaaa">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:calendar>
 					</p:panelGrid>
 					<br />
-
 					<h:form>
 						<p:toolbar>
 							<f:facet name="left">
@@ -221,7 +232,9 @@
 						</p:toolbar>
 
 						<p:dataTable emptyMessage="Nenhum registro encontrado...."
-							value="#{compararPrecosMB.pedidos}" var="pedido">
+							ariaRowLabel="Supers" value="#{compararPrecosMB.pedidos}"
+							filteredValue="#{compararPrecosMB.pedidosFiltrados}"
+							id="tbPedidos" var="pedido">
 							<p:column headerText="Supermercado"
 								style="width:90px;text-align: center;">
 								<h:outputText value="#{pedido.supermercado.nome}" />
@@ -229,14 +242,20 @@
 							<p:column headerText="Itens Disponiveis"
 								style="width:90px; text-align: center;">
 								<p:commandLink id="ItensDisponiveisLink"
-									value="#{pedido.qtdDisponiveis}"
-									onclick="PF('itensDisponiveisDialog').show()">
+									value="#{pedido.qtdDisponiveis}%"
+									update=":itensDisponiveisDialog"
+									oncomplete="PF('itensDisponiveisDialog').show()">
+									<f:setPropertyActionListener value="#{pedido}"
+										target="#{compararPrecosMB.pedidoSelecionado}" />
 								</p:commandLink>
 							</p:column>
 							<p:column headerText="Itens Indisponiveis"
 								style="width:90px; text-align: center; ">
-								<p:commandLink value="#{pedido.qtdIndisponiveis}"
-									onclick="PF('itensIndisponiveisDialog').show()">
+								<p:commandLink value="#{pedido.qtdIndisponiveis}%"
+									update=":itensIndisponiveisDialog"
+									oncomplete="PF('itensIndisponiveisDialog').show()">
+									<f:setPropertyActionListener value="#{pedido}"
+										target="#{compararPrecosMB.pedidoSelecionado}" />
 								</p:commandLink>
 							</p:column>
 							<p:column headerText="Distância"
@@ -257,7 +276,8 @@
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
 							<p:commandButton value="Cancelar" immediate="true"
-								oncomplete="PF('listaDialog2').hide()" icon="ui-icon-close" />
+								update=":form:table" oncomplete="PF('listaDialog2').hide()"
+								icon="ui-icon-close" />
 						</f:facet>
 					</p:panelGrid>
 				</p:outputPanel>
@@ -267,38 +287,39 @@
 		<!-- ===============================Itens Disponíveis=============================================== -->
 
 		<h:form id="itensDisponiveisDialog">
-			<p:dialog header="Itens Disponiveis"
+			<p:dialog header="Itens Disponiveis" closable="false"
 				widgetVar="itensDisponiveisDialog" modal="false" showEffect="fade"
-				hideEffect="fade" resizable="false" width="420px">
+				hideEffect="fade" resizable="false" width="430px">
 				<p:outputPanel id="disponiveisDetail" style="width:0 auto">
 					<p:dataTable id="tbItensDisponiveis" scrollable="true"
 						frozenRows="0" rows="5"
-						value="#{compararPrecosMB.itensDisponiveisExtra}" paginator="true"
+						value="#{compararPrecosMB.pedidoSelecionado.itensDisponiveis}"
+						paginator="true"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5"
-						emptyMessage="Não há itens disponíveis salvos" var="item"
+						emptyMessage="Não há itens disponíveis salvos" var="idisponivel"
 						style="width:0 auto">
 						<p:column headerText="Imagem" style="width: 45px">
 							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
 								height="20%">
-								<f:param name="caminho" value="#{item.produto.imagem}" />
+								<f:param name="caminho" value="#{idisponivel.produto.imagem}" />
 							</p:graphicImage>
 						</p:column>
 
-						<p:column headerText="Nome" style="width: 50px">
-							<h:outputText value="#{item.produto.nome}" />
+						<p:column headerText="Nome" style="width: 80px">
+							<h:outputText value="#{idisponivel.produto.nome}" />
 						</p:column>
 
-						<p:column headerText="Tipo" style="width: 50px">
-							<h:outputText value="#{item.produto.tipo}" />
+						<p:column headerText="Tipo" style="width: 60px">
+							<h:outputText value="#{idisponivel.produto.tipo}" />
 						</p:column>
 
-						<p:column headerText="Marca" style="width: 50px">
-							<h:outputText value="#{item.produto.marca}" />
+						<p:column headerText="Marca" style="width: 60px">
+							<h:outputText value="#{idisponivel.produto.marca}" />
 						</p:column>
 
-						<p:column headerText="Quantidade" width="40px">
-							<p:spinner size="5" id="minMax" value="#{item.qtdProduto}"
+						<p:column headerText="Quantidade" width="50px">
+							<p:spinner size="5" id="minMax" value="#{idisponivel.qtdProduto}"
 								min="0" max="100">
 							</p:spinner>
 						</p:column>
@@ -307,6 +328,7 @@
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
 							<p:commandButton value="Cancelar" immediate="true"
+								update=":form:table"
 								oncomplete="PF('itensDisponiveisDialog').hide()"
 								icon="ui-icon-close" />
 						</f:facet>
@@ -316,42 +338,42 @@
 		</h:form>
 		<!-- =============================Fim Itens Disponíveis============================================= -->
 
-		<!-- ===============================Itens Disponíveis=============================================== -->
+		<!-- ===============================Itens Indisponíveis=============================================== -->
 		<h:form id="itensIndisponiveisDialog">
-			<p:dialog header="Itens Indisponiveis"
+			<p:dialog header="Itens Indisponiveis" closable="false"
 				widgetVar="itensIndisponiveisDialog" modal="false" showEffect="fade"
-				hideEffect="fade" resizable="false" width="420px">
+				hideEffect="fade" resizable="false" width="430px">
 				<p:outputPanel id="indisponiveisDetail" style="width:0 auto">
 					<p:dataTable id="tbItensIndisponiveis" scrollable="true"
-						frozenRows="0" rows="5"
-						value="#{compararPrecosMB.itensIndisponiveisCarrefour}"
+						ariaRowLabel="Itens" frozenRows="0" rows="5"
+						value="#{compararPrecosMB.pedidoSelecionado.itensIndisponiveis}"
 						paginator="true"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5"
-						emptyMessage="Não há itens indisponíveis salvos" var="item"
-						style="width:0 auto">
+						emptyMessage="Não há itens indisponíveis salvos"
+						var="iindisponivel" style="width:0 auto">
 						<p:column headerText="Imagem" style="width: 45px">
 							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
 								height="20%">
-								<f:param name="caminho" value="#{item.produto.imagem}" />
+								<f:param name="caminho" value="#{iindisponivel.produto.imagem}" />
 							</p:graphicImage>
 						</p:column>
 
-						<p:column headerText="Nome" style="width: 50px">
-							<h:outputText value="#{item.produto.nome}" />
+						<p:column headerText="Nome" style="width: 80px">
+							<h:outputText value="#{iindisponivel.produto.nome}" />
 						</p:column>
 
-						<p:column headerText="Tipo" style="width: 50px">
-							<h:outputText value="#{item.produto.tipo}" />
+						<p:column headerText="Tipo" style="width: 60px">
+							<h:outputText value="#{iindisponivel.produto.tipo}" />
 						</p:column>
 
-						<p:column headerText="Marca" style="width: 50px">
-							<h:outputText value="#{item.produto.marca}" />
+						<p:column headerText="Marca" style="width: 60px">
+							<h:outputText value="#{iindisponivel.produto.marca}" />
 						</p:column>
 
-						<p:column headerText="Quantidade" width="40px">
-							<p:spinner size="5" id="minMax" value="#{item.qtdProduto}"
-								min="0" max="100">
+						<p:column headerText="Quantidade" width="50px">
+							<p:spinner size="5" id="minMax"
+								value="#{iindisponivel.qtdProduto}" min="0" max="100">
 							</p:spinner>
 						</p:column>
 					</p:dataTable>
@@ -359,6 +381,7 @@
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
 							<p:commandButton value="Cancelar" immediate="true"
+								update=":form:table"
 								oncomplete="PF('itensIndisponiveisDialog').hide()"
 								icon="ui-icon-close" />
 						</f:facet>

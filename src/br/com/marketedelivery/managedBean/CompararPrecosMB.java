@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.com.marketedelivery.managedBean;
 
 import java.util.ArrayList;
@@ -32,9 +29,11 @@ import br.com.marketedelivery.classesBasicas.Supermercado;
 public class CompararPrecosMB
 {
 	// Atributos
-	private Pedido pedido;
+	private Pedido pedidoSelecionado;
 
 	private List<Pedido> pedidos;
+
+	private List<Pedido> pedidosFiltrados;
 
 	private Pedido pedidoExtra;
 
@@ -139,6 +138,7 @@ public class CompararPrecosMB
 
 	public void compararPrecosProdutos()
 	{
+		if (itens.isEmpty()) itens.addAll(getItens());
 		if (!itens.isEmpty())
 		{
 			List<Produto> produtosExtra = new ArrayList<Produto>();
@@ -178,9 +178,6 @@ public class CompararPrecosMB
 					itensIndisponiveisBompreco.add(it);
 				}
 			}
-		} else
-		{
-			itens.addAll(getItens());
 		}
 	}
 	// Gets e Sets
@@ -320,19 +317,6 @@ public class CompararPrecosMB
 			if (todo != 0 && parte != 0)
 			{
 				resultado = (parte / todo) * 100;
-			} else
-			{
-				resultado = 0;
-			}
-		} else
-		{
-			compararPrecosProdutos();
-			if (!itensDisponiveisExtra.isEmpty())
-			{
-				getPercentualItensDisponiveisExtra();
-			} else
-			{
-				resultado = 0;
 			}
 		}
 		percentualItensDisponiveisExtra = String.valueOf(resultado);
@@ -354,9 +338,6 @@ public class CompararPrecosMB
 			if (todo != 0 && parte != 0)
 			{
 				resultado = (parte / todo) * 100;
-			} else
-			{
-				resultado = 0;
 			}
 		}
 		percentualItensIndisponiveisExtra = String.valueOf(resultado);
@@ -378,9 +359,6 @@ public class CompararPrecosMB
 			if (todo != 0 && parte != 0)
 			{
 				resultado = (parte / todo) * 100;
-			} else
-			{
-				resultado = 0;
 			}
 		}
 		percentualItensDisponiveisCarrefour = String.valueOf(resultado);
@@ -402,9 +380,6 @@ public class CompararPrecosMB
 			if (todo != 0 && parte != 0)
 			{
 				resultado = (parte / todo) * 100;
-			} else
-			{
-				resultado = 0;
 			}
 		}
 		percentualItensIndisponiveisCarrefour = String.valueOf(resultado);
@@ -426,9 +401,6 @@ public class CompararPrecosMB
 			if (todo != 0 && parte != 0)
 			{
 				resultado = (parte / todo) * 100;
-			} else
-			{
-				resultado = 0;
 			}
 		}
 		percentualItensDisponiveisBompreco = String.valueOf(resultado);
@@ -450,9 +422,6 @@ public class CompararPrecosMB
 			if (todo != 0 && parte != 0)
 			{
 				resultado = (parte / todo) * 100;
-			} else
-			{
-				resultado = 0;
 			}
 		}
 		percentualItensIndisponiveisBompreco = String.valueOf(resultado);
@@ -520,19 +489,21 @@ public class CompararPrecosMB
 
 	public List<Pedido> getPedidos()
 	{
-		compararPrecosProdutos();
-		if (!itens.isEmpty())
+		if (pedidos.isEmpty())
 		{
-			compararPrecosProdutos();
-			this.pedidos.add(getPedidoExtra());
-			this.pedidos.add(getPedidoCarrefour());
-			this.pedidos.add(getPedidoBompreco());
-			List<Supermercado> supermercados = getFachada().listarTodosSupermercados();
-			for (int i = 0; i < pedidos.size(); i++)
+			if (!itens.isEmpty())
 			{
-				Pedido p = pedidos.get(i);
-				Supermercado s = supermercados.get(i);
-				p.setSupermercado(s);
+				compararPrecosProdutos();
+				this.pedidos.add(getPedidoExtra());
+				this.pedidos.add(getPedidoCarrefour());
+				this.pedidos.add(getPedidoBompreco());
+				List<Supermercado> supermercados = getFachada().listarTodosSupermercados();
+				for (int i = 0; i < pedidos.size(); i++)
+				{
+					Pedido p = pedidos.get(i);
+					Supermercado s = supermercados.get(i);
+					p.setSupermercado(s);
+				}
 			}
 		}
 		return pedidos;
@@ -540,9 +511,30 @@ public class CompararPrecosMB
 
 	public void setPedidos(List<Pedido> pedidos)
 	{
-		pedidos.add(pedidoExtra);
-		pedidos.add(pedidoCarrefour);
-		pedidos.add(pedidoBompreco);
 		this.pedidos = pedidos;
+	}
+
+	public Pedido getPedidoSelecionado()
+	{
+		if (pedidoSelecionado == null)
+		{
+			pedidoSelecionado = new Pedido();
+		}
+		return pedidoSelecionado;
+	}
+
+	public List<Pedido> getPedidosFiltrados()
+	{
+		return pedidosFiltrados;
+	}
+
+	public void setPedidosFiltrados(List<Pedido> pedidosFiltrados)
+	{
+		this.pedidosFiltrados = pedidosFiltrados;
+	}
+
+	public void setPedidoSelecionado(Pedido pedidoSelecionado)
+	{
+		this.pedidoSelecionado = pedidoSelecionado;
 	}
 }
