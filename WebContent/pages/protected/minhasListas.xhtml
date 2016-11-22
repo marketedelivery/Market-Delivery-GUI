@@ -264,7 +264,7 @@
 							</p:column>
 							<p:column headerText="Valor Total"
 								style="width:90px; text-align: center;">
-								<h:outputText value="#{pedido.valorTotalPedido}" />
+								<h:outputText value="#{pedido.valorTotalPedido}"/>
 							</p:column>
 							<p:column headerText="Ação" style="width:40px;text-align: center">
 								<p:commandButton ajax="true" id="comprarLista" value="Comprar" />
@@ -318,10 +318,10 @@
 							<h:outputText value="#{idisponivel.produto.marca}" />
 						</p:column>
 
-						<p:column headerText="Quantidade" width="50px">
-							<p:spinner size="5" id="minMax" value="#{idisponivel.qtdProduto}"
-								min="0" max="100">
-							</p:spinner>
+						<p:column headerText="Quantidade" width="50px"
+							style="text-align: center">
+							<p:outputLabel style="text-align: center"
+								value="#{idisponivel.qtdProduto}" />
 						</p:column>
 					</p:dataTable>
 					<br />
@@ -371,10 +371,9 @@
 							<h:outputText value="#{iindisponivel.produto.marca}" />
 						</p:column>
 
-						<p:column headerText="Quantidade" width="50px">
-							<p:spinner size="5" id="minMax"
-								value="#{iindisponivel.qtdProduto}" min="0" max="100">
-							</p:spinner>
+						<p:column headerText="Quantidade" width="50px"
+							style="text-align: center">
+							<p:outputLabel value="#{iindisponivel.qtdProduto}" />
 						</p:column>
 					</p:dataTable>
 					<br />

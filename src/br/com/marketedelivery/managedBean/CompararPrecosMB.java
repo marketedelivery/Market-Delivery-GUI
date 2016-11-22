@@ -138,6 +138,7 @@ public class CompararPrecosMB
 
 	public void compararPrecosProdutos()
 	{
+		limparValores();
 		if (itens.isEmpty()) itens.addAll(getItens());
 		if (!itens.isEmpty())
 		{
@@ -179,6 +180,33 @@ public class CompararPrecosMB
 				}
 			}
 		}
+	}
+
+	public void limparValores()
+	{
+		// Itens
+		if(!itens.isEmpty())
+		itens.clear();
+		// Itens Disponiveis
+		this.itensDisponiveisExtra.clear();
+		this.itensDisponiveisCarrefour.clear();
+		this.itensDisponiveisBompreco.clear();
+		// Itens Indisponiveis
+		this.itensIndisponiveisExtra.clear();
+		this.itensIndisponiveisCarrefour.clear();
+		this.itensIndisponiveisBompreco.clear();
+		// Pedidos
+		this.pedidoExtra = new Pedido();
+		this.pedidoCarrefour = new Pedido();
+		this.pedidoBompreco = new Pedido();
+		// Percentuais Disponiveis
+		this.percentualItensDisponiveisExtra = "";
+		this.percentualItensDisponiveisCarrefour = "";
+		this.percentualItensDisponiveisBompreco = "";
+		// Percentuais Indisponiveis
+		this.percentualItensIndisponiveisExtra = "";
+		this.percentualItensIndisponiveisCarrefour = "";
+		this.percentualItensIndisponiveisBompreco = "";
 	}
 	// Gets e Sets
 
@@ -491,22 +519,32 @@ public class CompararPrecosMB
 	{
 		if (pedidos.isEmpty())
 		{
+			if (itens.isEmpty()) itens.addAll(getItens());
 			if (!itens.isEmpty())
 			{
-				compararPrecosProdutos();
-				this.pedidos.add(getPedidoExtra());
-				this.pedidos.add(getPedidoCarrefour());
-				this.pedidos.add(getPedidoBompreco());
-				List<Supermercado> supermercados = getFachada().listarTodosSupermercados();
-				for (int i = 0; i < pedidos.size(); i++)
-				{
-					Pedido p = pedidos.get(i);
-					Supermercado s = supermercados.get(i);
-					p.setSupermercado(s);
-				}
+				exibirComparacaoPrecos();
 			}
+		} else if (pedidos.get(0).getLista().getCodigo() != lista.getCodigo())
+		{
+			exibirComparacaoPrecos();
 		}
 		return pedidos;
+	}
+
+	public void exibirComparacaoPrecos()
+	{
+		pedidos.clear();
+		compararPrecosProdutos();
+		this.pedidos.add(getPedidoExtra());
+		this.pedidos.add(getPedidoCarrefour());
+		this.pedidos.add(getPedidoBompreco());
+		List<Supermercado> supermercados = getFachada().listarTodosSupermercados();
+		for (int i = 0; i < pedidos.size(); i++)
+		{
+			Pedido p = pedidos.get(i);
+			Supermercado s = supermercados.get(i);
+			p.setSupermercado(s);
+		}
 	}
 
 	public void setPedidos(List<Pedido> pedidos)

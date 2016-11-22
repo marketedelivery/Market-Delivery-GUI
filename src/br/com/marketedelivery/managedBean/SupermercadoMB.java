@@ -10,7 +10,6 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
-
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
 import org.primefaces.model.map.MapModel;
@@ -33,7 +32,9 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	private static int EARTH_RADIUS_KM = 6371;
+
 	IFachada fachada;
 
 	Supermercado supermercado;
@@ -45,13 +46,21 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 	private List<Supermercado> listaSupermercados;
 
 	private List<Supermercado> listaSupermercadosFiltrados;
+
 	private String retornaJsonComPosicaoUsuario;
+
 	private List<Supermercado> converterListaSuper;
-	private String  latitude;
+
+	private String latitude;
+
 	private String longitude;
+
 	MapModel mapModel;
-	private  String longPesquisa;
-	private  String latPesquisa;
+
+	private String longPesquisa;
+
+	private String latPesquisa;
+
 	@PostConstruct
 	public void init()
 	{
@@ -76,8 +85,7 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 	public List<Produto> listaProtudoDoSupermercado;
 
 	public SupermercadoMB()
-	{
-	}
+	{}
 
 	public Supermercado getSupermecado()
 	{
@@ -175,137 +183,153 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 		return null;
 	}
 
-	public Supermercado getSupermercado() {
+	public Supermercado getSupermercado()
+	{
 		return supermercado;
 	}
 
-	public void setSupermercado(Supermercado supermercado) {
+	public void setSupermercado(Supermercado supermercado)
+	{
 		this.supermercado = supermercado;
 	}
 
-	public String getNomeProduto() {
+	public String getNomeProduto()
+	{
 		return nomeProduto;
 	}
 
-	public void setNomeProduto(String nomeProduto) {
+	public void setNomeProduto(String nomeProduto)
+	{
 		this.nomeProduto = nomeProduto;
 	}
 
-	public List<Supermercado> getListaSupermercados() {
+	public List<Supermercado> getListaSupermercados()
+	{
 		return listaSupermercados;
 	}
 
-	public void setListaSupermercados(List<Supermercado> listaSupermercados) {
+	public void setListaSupermercados(List<Supermercado> listaSupermercados)
+	{
 		this.listaSupermercados = listaSupermercados;
 	}
 
-	public MapModel getSupermencadoProximo(){
-		
+	public MapModel getSupermencadoProximo()
+	{
 		fachada = getFachada();
-		
 		return fachada.getSupermencadoProximo();
 	}
-	
-public void onPointSelect() { 
-    Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-   String x = params.get("latitude");
-   String xx = params.get("longitude");
-    setLatitude(x);
-   setLongitude(xx);
-   
-}
 
-public String getLatitude() {
-	return latitude;
-}
+	public void onPointSelect()
+	{
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String x = params.get("latitude");
+		String xx = params.get("longitude");
+		setLatitude(x);
+		setLongitude(xx);
+	}
 
-public void setLatitude(String latitude) {
-	this.latitude = latitude;
-}
+	public String getLatitude()
+	{
+		return latitude;
+	}
 
-public String getLongitude() {
-	return longitude;
-}
+	public void setLatitude(String latitude)
+	{
+		this.latitude = latitude;
+	}
 
-public void setLongitude(String longitude) {
-	this.longitude = longitude;
-}
+	public String getLongitude()
+	{
+		return longitude;
+	}
 
-public String getLongPesquisa() {
-	mapModel = new DefaultMapModel();
+	public void setLongitude(String longitude)
+	{
+		this.longitude = longitude;
+	}
+
+	public String getLongPesquisa()
+	{
+		mapModel = new DefaultMapModel();
 		if (getSupermercadoSelecionado() != null)
-	{		
-		Double longitude = Double.parseDouble(getSupermercadoSelecionado().getLongitude());
-		return longPesquisa = longitude.toString();
-	}	
-	return longPesquisa;
-}
-
-public void setLongPesquisa(String longPesquisa) {
-	this.longPesquisa = longPesquisa;
-}
-
-public String getLatPesquisa() {
-	mapModel = new DefaultMapModel();
-	if (getSupermercadoSelecionado() != null)
-	{		
-	Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
-	return longPesquisa = latitude.toString();
-	}
-	return latPesquisa;
-}
-
-public void setLatPesquisa(String latPesquisa) {
-	this.latPesquisa = latPesquisa;
-}
-
-public void setRetornaJsonComPosicaoUsuario(String retornaJsonComPosicaoUsuario) {
-	this.retornaJsonComPosicaoUsuario = retornaJsonComPosicaoUsuario;
-}
-
-public String getRetornaJsonComPosicaoUsuario() {
-	Gson json = new Gson();
-	List<Supermercado> lista = new ArrayList<Supermercado>();
-	
-	lista = retornaSuperProxUser();
-	return json.toJson(lista);
-}
-
-private List<Supermercado> retornaSuperProxUser() {
-	
-	List<Supermercado> lista = new ArrayList<Supermercado>();
-	List<Supermercado> listaRetorno = new ArrayList<Supermercado>();
-	lista = getListaSupermercados();
-	double calculo = 0 ;
-	double aux = 99999999;
-	try{
-		if(getLatitude() == null || getLongitude() ==  null){
-		displayErrorMessageToUser("não foi possivel localizar o usuario");
-			return null;
+		{
+			Double longitude = Double.parseDouble(getSupermercadoSelecionado().getLongitude());
+			return longPesquisa = longitude.toString();
 		}
-	for(int i = 0; i < lista.size();i++){
-	// Converter de graus pra radianos das latitudes
-	double firstLatToRad = Math.toRadians(Double.parseDouble(getLatitude()));
-	double secondLatToRad = Math.toRadians((Double.parseDouble(lista.get(i).getLatitude())));
-	// Diferença das longitudes
-	double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(lista.get(i).getLongitude())
-	- (Double.parseDouble(getLongitude())));
-	// C⭣ula da distançia entre os pontos
-	 calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
-	* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
-	* Math.sin(secondLatToRad))
-	* EARTH_RADIUS_KM;
-	 if(calculo < aux){
-		 listaRetorno.clear();
-		 aux = calculo;
-		 listaRetorno.add(lista.get(i));
-	} 
+		return longPesquisa;
 	}
-	}catch(Exception ex){
-		ex.printStackTrace();
+
+	public void setLongPesquisa(String longPesquisa)
+	{
+		this.longPesquisa = longPesquisa;
 	}
-	return listaRetorno;
-}
 
+	public String getLatPesquisa()
+	{
+		mapModel = new DefaultMapModel();
+		if (getSupermercadoSelecionado() != null)
+		{
+			Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
+			return longPesquisa = latitude.toString();
+		}
+		return latPesquisa;
+	}
 
+	public void setLatPesquisa(String latPesquisa)
+	{
+		this.latPesquisa = latPesquisa;
+	}
+
+	public void setRetornaJsonComPosicaoUsuario(String retornaJsonComPosicaoUsuario)
+	{
+		this.retornaJsonComPosicaoUsuario = retornaJsonComPosicaoUsuario;
+	}
+
+	public String getRetornaJsonComPosicaoUsuario()
+	{
+		Gson json = new Gson();
+		List<Supermercado> lista = new ArrayList<Supermercado>();
+		lista = retornaSuperProxUser();
+		return json.toJson(lista);
+	}
+
+	private List<Supermercado> retornaSuperProxUser()
+	{
+		List<Supermercado> lista = new ArrayList<Supermercado>();
+		List<Supermercado> listaRetorno = new ArrayList<Supermercado>();
+		lista = getListaSupermercados();
+		double calculo = 0;
+		double aux = 99999999;
+		try
+		{
+			if (getLatitude() == null || getLongitude() == null)
+			{
+				displayErrorMessageToUser("não foi possivel localizar o usuario");
+				return null;
+			}
+			for (int i = 0; i < lista.size(); i++)
+			{
+				// Converter de graus pra radianos das latitudes
+				double firstLatToRad = Math.toRadians(Double.parseDouble(getLatitude()));
+				double secondLatToRad = Math.toRadians((Double.parseDouble(lista.get(i).getLatitude())));
+				// Diferença das longitudes
+				double deltaLongitudeInRad = Math.toRadians(
+						Double.parseDouble(lista.get(i).getLongitude()) - (Double.parseDouble(getLongitude())));
+				// C⭣ula da distançia entre os pontos
+				calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad) * Math.cos(deltaLongitudeInRad)
+						+ Math.sin(firstLatToRad) * Math.sin(secondLatToRad)) * EARTH_RADIUS_KM;
+				if (calculo < aux)
+				{
+					listaRetorno.clear();
+					aux = calculo;
+					listaRetorno.add(lista.get(i));
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return listaRetorno;
+	}
 }
