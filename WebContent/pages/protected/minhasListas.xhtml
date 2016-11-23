@@ -12,6 +12,8 @@
 	</ui:define>
 	<ui:define name="conteudo">
 		<h:form id="form">
+		<!-- este atributo passa a localição do usuario para o bean supermecado -->
+		<p:remoteCommand  name="onPoint" actionListener="#{supermercadoMB.onPointSelect}" autoRun="true"/>
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Minhas Listas" />

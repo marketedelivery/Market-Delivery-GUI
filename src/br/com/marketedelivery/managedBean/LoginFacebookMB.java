@@ -25,7 +25,7 @@ public class LoginFacebookMB extends AbstractMB implements Serializable{
 	private String originalURL;
 	private String providerID;// = "facebook"
 	private Profile profile;
-	private Usuario usuario;
+	static Usuario usuario;
 	private IFachada fachada;
 	private String imagemFacebok;
 	public void conectarFacebook() throws Exception{
@@ -69,7 +69,8 @@ public class LoginFacebookMB extends AbstractMB implements Serializable{
 	       // FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/produtoPesquisa.xhtml?faces-redirect=true");
 	       //}else{
 	    	   request.getSession().setAttribute("usuario", user);
-		        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/produtoPesquisa.xhtml?faces-redirect=true");
+	    	   usuario = user;
+		        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/minhasListas.xhtml?faces-redirect=true");
 		  // }
 	       }
 	}catch(Exception ex){

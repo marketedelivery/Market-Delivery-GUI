@@ -150,6 +150,10 @@ public class LoginMB extends AbstractMB implements Serializable
 	 */
 	public Usuario getUsuarioLogado()
 	{
+		if(LoginFacebookMB.usuario != null){	
+			codigoUsuario = LoginFacebookMB.usuario.getCodigo();
+			usuarioLogado =  LoginFacebookMB.usuario;
+		}
 		return usuarioLogado;
 	}
 

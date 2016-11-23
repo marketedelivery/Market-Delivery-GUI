@@ -16,13 +16,32 @@ function success(position)
 	var longitude =  position.coords.longitude;
 	
 	onPoint([{name:'latitude',value:latitude},{name:'longitude',value:longitude}]);
-		
-	
-	
-	
-	
 }
+function calcRota(){
+	var directionsDisplay = new google.maps.DirectionsRenderer();
+	var service = new google.maps.DirectionsService();
+	var recuperaJson = $('input[id$="json"]').val();
 	
+	recuperaJson =  jQuery.parseJSON(recuperaJson);
+	
+	var destino = new google.maps.LatLng(recuperaJson[0].latitude, recuperaJson[0].longitude);
+	var request = {destination: destino,
+					origin: origem, 
+					travelMode:google.maps.TravelMode.DRIVING };
+	var gmap = PF('map').getMap();
+	for(var i in gmap.markers){
+		gmap.markers[i].setMap(null);
+	}
+	directionsDisplay.setMap(gmap); 
+	directionsDisplay.setPanel(document.getElementById("directionsPanel")); 
+	service.route(request,function(response,status){
+		if (status == google.maps.DirectionsStatus.OK){
+			directionsDisplay.setDirections(response);
+		}else{
+			window.alert('localização do Usuario não disponivel no momento ' + status);
+		}
+	});
+}	
 	
 function fail(error)
 {

@@ -332,4 +332,112 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 		}
 		return listaRetorno;
 	}
+	
+	public MapModel getRetornaTresSuperProximoUser(){
+		 MapModel simpleModel = new DefaultMapModel();
+		 if (getSupermercadoSelecionado() != null)
+			{		 
+				Double latitude = Double.parseDouble(getSupermercadoSelecionado().getLatitude());
+				Double longitude = Double.parseDouble(getSupermercadoSelecionado().getLongitude());
+				LatLng coord1 = new LatLng(latitude, longitude);
+				simpleModel.addOverlay(new Marker(coord1, "Supermercado " + getSupermercadoSelecionado().getNome()));
+				supermercadoSelecionado = null;
+				return simpleModel;
+			}
+		List<Supermercado> lista = new ArrayList<Supermercado>();
+		lista = getListaSupermercados();
+		double calculo = 0 ;
+		double aux  = 99999999; 
+		double aux1 = 99999999; 
+		double aux2 = 99999999;
+		int auxPrim  = 0;
+		int auxSegun = 0;
+		int auxTerc  = 0;
+		try{
+			if(getLatitude() == null || getLongitude() ==  null){
+			displayErrorMessageToUser("não foi possivel localizar o usuario");
+				return null;
+			}
+		
+		for(int i = 0; i < lista.size();i++){
+		// Converter de graus pra radianos das latitudes
+		double firstLatToRad = Math.toRadians(Double.parseDouble(getLatitude()));
+		double secondLatToRad = Math.toRadians((Double.parseDouble(lista.get(i).getLatitude())));
+		// Diferença das longitudes
+		double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(lista.get(i).getLongitude())
+		- (Double.parseDouble(getLongitude())));
+		// C⭣ula da distançia entre os pontos
+		 calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
+		* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
+		* Math.sin(secondLatToRad))
+		* EARTH_RADIUS_KM;
+		 if(calculo < aux){
+			 auxPrim = i;
+			 aux = calculo;
+		} 
+		}
+		
+		if(aux > 10.00){
+			displayErrorMessageToUser("O senhor não tem nenhum supermercado proximo a menos de 10Km de onde vc esta!");
+			return null;
+		}
+		LatLng coord1 = new LatLng(Double.parseDouble(lista.get(auxPrim).getLatitude()), Double.parseDouble(lista.get(auxPrim).getLongitude()));
+		simpleModel.addOverlay(new Marker(coord1, "Este Supermercado é o mais próximo do Senhor Supermecado " + lista.get(auxPrim).getNome()));
+		
+		for(int j = 0; j < lista.size();j++){
+			double firstLatToRad = Math.toRadians(Double.parseDouble(getLatitude()));
+			double secondLatToRad = Math.toRadians((Double.parseDouble(lista.get(j).getLatitude())));
+			// Diferença das longitudes
+			double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(lista.get(j).getLongitude())
+			- (Double.parseDouble(getLongitude())));
+			// C⭣ula da distançia entre os pontos
+			 calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
+			* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
+			* Math.sin(secondLatToRad))
+			* EARTH_RADIUS_KM;
+			 if (calculo < aux1 && calculo != aux) {
+				 auxSegun = j;
+				 aux1 = calculo;
+			}
+			 
+		}
+		if(aux1 > 10.00){
+			displayErrorMessageToUser("O senhor possui apenas 1 Supermercado proximo no raio de 10Km de onde esta!");
+			return simpleModel;
+		}
+		LatLng coord2 = new LatLng(Double.parseDouble(lista.get(auxSegun).getLatitude()), Double.parseDouble(lista.get(auxSegun).getLongitude()));
+		simpleModel.addOverlay(new Marker(coord2, "Segundo mais próximo do senhor é o Supermercado " + lista.get(auxSegun).getNome()));
+		
+		
+		for(int j = 0; j < lista.size();j++){
+			double firstLatToRad = Math.toRadians(Double.parseDouble(getLatitude()));
+			double secondLatToRad = Math.toRadians((Double.parseDouble(lista.get(j).getLatitude())));
+			// Diferença das longitudes
+			double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(lista.get(j).getLongitude())
+			- (Double.parseDouble(getLongitude())));
+			// C⭣ula da distançia entre os pontos
+			 calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
+			* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
+			* Math.sin(secondLatToRad))
+			* EARTH_RADIUS_KM;
+			 if (calculo < aux2 && calculo != aux && calculo != aux1) {
+				 auxTerc = j;
+				 aux2 = calculo;
+			}
+		 
+		}
+		if(aux2 > 10.00){
+			displayInfoMessageToUser("O senhor possui apenas 2 Supermercado proximo no raio de 10Km de onde esta!");
+			return simpleModel;
+		}
+		LatLng coord3 = new LatLng(Double.parseDouble(lista.get(auxTerc).getLatitude()), Double.parseDouble(lista.get(auxTerc).getLongitude()));
+		simpleModel.addOverlay(new Marker(coord3, "Terceiro mais próximo do senhor é o Supermercado " + lista.get(auxTerc).getNome()));
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return simpleModel;
+		
+	}
+
+		
 }
