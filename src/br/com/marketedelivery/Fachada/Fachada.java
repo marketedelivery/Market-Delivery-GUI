@@ -167,6 +167,16 @@ public class Fachada implements IFachada
 	{
 		return conSupermercado.pesquisarPorCodigo(supermercado);
 	}
+	
+	public List<Produto> retornarProdutoPorNome(Produto produto)
+	{
+		return conProduto.retornarProdutoPorNome(produto);
+	}
+	
+	public List<Produto> retornarProdutoPorMarca(Produto produto)
+	{
+		return conProduto.retornarProdutoPorMarca(produto);
+	}
 
 	// --------------------------------------------- Endereco
 	// -------------------------------------------------------------------

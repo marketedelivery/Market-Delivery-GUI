@@ -20,7 +20,7 @@ public class LoginFacebookMB extends AbstractMB implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public static final String FACEBOOK_APP_ID = "1774193229490241";
 	public static final String FACEBOOK_APP_SECRET = "18716d507e0917fb26dfd72fa0acb582";
-	public static final String REDIRECT_TO ="http://localhost:8080/MarketeDeliveryGui/pages/public/redirecionaEvent.xhtml";
+	public static final String REDIRECT_TO ="http://localhost:8081/MarketeDeliveryGui/pages/public/redirecionaEvent.xhtml";
 	private SocialAuthManager manager;
 	private String originalURL;
 	private String providerID;// = "facebook"
@@ -44,7 +44,7 @@ public class LoginFacebookMB extends AbstractMB implements Serializable{
         
      // 'SuccessURL' é a página que você será redirecionado para on login bem-sucedido
         ExternalContext externalContext   = FacesContext.getCurrentInstance().getExternalContext();
-        String successURL ="http://localhost:8080/"+ externalContext.getRequestContextPath() + "/pages/public/redirecionaEvent.xhtml"; 
+        String successURL ="http://localhost:8081/"+ externalContext.getRequestContextPath() + "/pages/public/redirecionaEvent.xhtml"; 
         String authenticationURL = manager.getAuthenticationUrl(providerID, successURL);
         FacesContext.getCurrentInstance().getExternalContext().redirect(authenticationURL);
         displayInfoMessageToUser("Cliente logado com facebook no sistema de compras online");
@@ -70,7 +70,7 @@ public class LoginFacebookMB extends AbstractMB implements Serializable{
 	       //}else{
 	    	   request.getSession().setAttribute("usuario", user);
 	    	   usuario = user;
-		        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8080/MarketeDeliveryGui/pages/protected/minhasListas.xhtml?faces-redirect=true");
+		        FacesContext.getCurrentInstance().getExternalContext().redirect("http://localhost:8081/MarketeDeliveryGui/pages/protected/minhasListas.xhtml?faces-redirect=true");
 		  // }
 	       }
 	}catch(Exception ex){

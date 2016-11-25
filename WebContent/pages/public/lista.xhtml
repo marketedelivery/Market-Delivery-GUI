@@ -19,10 +19,9 @@
 			<h:form id="listaForm">
 				<f:param name="usuario" value="#{loginMB.usuarioLogado.codigo}" />
 				<p:fieldset id="pdtSupermercado" legend="Produto dos Supermercados">
-					<h:panelGrid columns="3">
-						<p:outputLabel value="Nome da lista" />
+					<h:panelGrid columns="2">
 						<p:inputText id="nome" value="#{itemMB.listaCompras.nome}"
-							required="true"
+							required="true" placeholder="Nome da Lista"
 							requiredMessage="Olá usuário, atribua um nome para sua lista" />
 
 						<p:selectOneMenu maxlength="9" required="true"
@@ -32,10 +31,21 @@
 							<f:selectItems value="#{listaMB.tipos}" />
 						</p:selectOneMenu>
 					</h:panelGrid>
+					
+					<h:panelGrid columns="3">
+						<p:inputText value="#{produtoMB.produto.nome}"  size="52" maxlength="30"
+ 						placeholder="Digite aqui se desejar um produto ou marca especifico"/>
+ 						
+						<p:commandButton value="Pesquisar"  ajax="true" update="dataGrid"
+						actionListener="#{produtoMB.pesquisarProdutoLista}"/>
+							
+						<p:commandButton update="dataGrid" value="Recarregar lista" ajax="true"
+							actionListener="#{produtoMB.recarregarLista}"/>
+					</h:panelGrid>
 
 					<br />
 
-					<p:dataGrid columns="4" value="#{produtoMB.carregarProduto}"
+					<p:dataGrid id ="dataGrid" columns="4" value="#{produtoMB.todosProdutos}"
 						layout="tabular" rows="12" paginator="true" var="produto"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
@@ -43,7 +53,7 @@
 							<p:outputPanel style="margin:0 auto;">
 								<p:panelGrid>
 									<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-										height="50%" width="50%">
+										height="60%" width="60%" rendered="true">
 										<f:param name="caminho" value="#{produto.imagem}" />
 									</p:graphicImage>
 								</p:panelGrid>
@@ -70,7 +80,7 @@
 
 							<p:column>
 								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-									height="20%">
+									height="80px" width="80px" rendered="true">
 									<f:param name="caminho" value="#{item.produto.imagem}" />
 								</p:graphicImage>
 							</p:column>

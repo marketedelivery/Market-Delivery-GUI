@@ -155,7 +155,7 @@
 
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
-							<p:commandButton value="Salvar"
+							<p:commandButton value="Salvar" ajax="true"
 								oncomplete="PF('usuarioDialog').hide()" icon="ui-icon-pencil"
 								actionListener="#{usuarioMB.alterar(usuario)}"
 								validateClient="true" /> &nbsp;&nbsp;

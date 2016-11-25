@@ -21,34 +21,31 @@
 	<ui:define name="conteudo">
 
 		<h:form id="frmPesqProd">
-		
+
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Produtos" />
 				</f:facet>
 			</p:toolbar>
 
-			<h:panelGrid columns="4">
+			<h:panelGrid columns="2">
 
-				<p:selectOneMenu value="#{produtoMB.produto.supermercado}"
-					converter="supermercadoConverter">
-					<f:selectItem noSelectionOption="true"
-						itemLabel="Selecione um supermercado" itemValue="-1" />
-					<f:selectItems value="#{produtoMB.listarTodosSupermercado}"
-						var="supermercado" itemValue="#{supermercado}"
-						itemLabel="#{supermercdo.nome}" />
-
-				</p:selectOneMenu>
-
+				<p:inputText value="#{produtoMB.produto.nome}" />
 				<p:commandButton update="tabela" value="Buscar" ajax="false"
-					actionListener="#{produtoMB.listar}" />
+					actionListener="#{produtoMB. pesquisarProdutoNome}" />
 			</h:panelGrid>
 
-			<p:dataTable emptyMessage="Nenhum registro encontrado...."
-				value="#{produtoMB.todosProdutos}"
+			<p:dataTable id="tbProduto"
+				emptyMessage="Nenhum registro encontrado...."
+				value="#{produtoMB.produtoTemp}"
 				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
 				rows="6" paginator="true">
-
+				<p:column headerText="Imagem">
+					<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
+						height="100px" width="100px" rendered="true">
+						<f:param name="caminho" value="#{produto.imagem}" />
+					</p:graphicImage>
+				</p:column>
 				<p:column headerText="Nome" filterBy="#{produto.nome}"
 					sortBy="#{produto.nome}">
 					<h:outputText value="#{produto.nome}" />
@@ -58,16 +55,58 @@
 					sortBy="#{produto.marca}">
 					<h:outputText value="#{produto.marca}" />
 				</p:column>
-				<!-- 
-				<p:column headerText="Supermercado">
-					<h:outputText value="#{produto.supermercado}" />
-				</p:column> -->
-				<p:column headerText="Valor Unitario">
-					<h:outputText value="#{produto.valorUnitario}" />
+				<p:column headerText="Visualizar Preço">
+					<p:commandButton id ="visualizar" icon="ui-icon-zoomin" onclick="PF('dlPrecos').show()">
+						<f:setPropertyActionListener value="#{produto}"
+							target="#{produtoMB.produto}" />
+						<p:tooltip for="visualizar">Visualizar Preço</p:tooltip>
+					</p:commandButton>
 				</p:column>
-
 			</p:dataTable>
-
+		</h:form>
+		<!-- =============================Dialog visualizar preço============================================= -->
+		<h:form>
+			<p:dialog header="Visualizar Preço" widgetVar="dlPrecos"
+			 modal="false" showEffect="fade" hideEffect="fade"
+				resizable="false" height="250px" width="250px" >
+				<p:panelGrid>
+					<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
+						height="100px" width="100px" rendered="true">
+						<f:param name="caminho" value="#{produtoMB.produto.caminhoImagem}" />
+					</p:graphicImage>
+					<h:outputText value= "#{produtoMB.produto.nome}" style="text-align: center;" />
+				</p:panelGrid>
+				
+				<p:outputPanel style="width:0 auto">
+				<p:toolbar>
+							<f:facet name="center">
+								<h:outputText value="#{produto.nome}" style="font-size: 10pt" />
+							</f:facet>
+						</p:toolbar>
+				<p:dataTable id="tbPreco"
+				emptyMessage="Nenhum registro encontrado...."
+				value=""
+				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
+				rows="3" paginator="false">
+				
+					<p:column headerText="Supermercado">
+						<h:outputText value=""/>
+					</p:column>
+					
+					<p:column headerText="Preço">
+						<h:outputText value=""/>
+					</p:column>
+				</p:dataTable><br />
+				
+				<p:panelGrid id="grid1"> 
+					<p:commandButton value="Cancelar" immediate="true"
+								update=":frmPesqProd:tbProduto"
+								oncomplete="PF('dlPrecos').hide()"
+								icon="ui-icon-close" />
+					
+				</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
 		</h:form>
 	</ui:define>
 </ui:composition>

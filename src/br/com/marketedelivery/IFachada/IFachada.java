@@ -102,6 +102,10 @@ public interface IFachada
 	public List<Produto> buscarProdutoPorSupermercado(Supermercado supermercado);
 
 	public void removerProduto(Produto produto);
+	
+	public List<Produto> retornarProdutoPorNome(Produto produto);
+	
+	public List<Produto> retornarProdutoPorMarca(Produto produto);
 
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------

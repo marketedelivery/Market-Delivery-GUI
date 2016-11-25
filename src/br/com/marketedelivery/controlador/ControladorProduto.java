@@ -33,7 +33,6 @@ public class ControladorProduto
 	public Produto pesquisarProdutoPorNome(Produto produto)
 	{
 		String nome = produto.getNome();
-		// produtoDAO = DAOFactoryProduto.getProdutoDAO();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		Produto p = produtoDAO.buscarPorNome(nome);
 		return p;
@@ -58,5 +57,21 @@ public class ControladorProduto
 	{
 		produtoDAO = DAOFactory.getProdutoDAO();
 		produtoDAO.remover(produto);
+	}
+	
+	public List<Produto> retornarProdutoPorNome(Produto produto)
+	{
+		String nome = produto.getNome();
+		produtoDAO = DAOFactory.getProdutoDAO();
+		List<Produto> p = produtoDAO.retornarProdutoPorNome(nome);
+		return p;
+	}
+	
+	public List<Produto> retornarProdutoPorMarca(Produto produto)
+	{
+		String marca = produto.getNome();
+		produtoDAO = DAOFactory.getProdutoDAO();
+		List<Produto> p = produtoDAO.retornarProdutoPorMarca(marca);
+		return p;
 	}
 }
