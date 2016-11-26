@@ -22,6 +22,7 @@ import br.com.marketedelivery.DAO.FacesUtil;
 import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Produto;
+import br.com.marketedelivery.classesBasicas.ProdutoPromocao;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
 @ManagedBean(name = "supermercadoMB", eager = true)
@@ -439,5 +440,16 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 		
 	}
 
-		
+		public List<ProdutoPromocao> listaProdutoEmPromocao(){
+			
+			if(getSupermercadoSelecionado() !=null){
+				int codigo = getSupermercadoSelecionado().getCodigo();
+				
+				
+			}
+			
+			
+			
+			return null;
+		}
 }

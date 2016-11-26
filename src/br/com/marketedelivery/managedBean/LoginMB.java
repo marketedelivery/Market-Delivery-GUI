@@ -137,7 +137,7 @@ public class LoginMB extends AbstractMB implements Serializable
 		return null;
 	}
 
-	public String sairDoSistema()
+	public String getSairDoSistema()
 	{
 		FacesContext fc = FacesContext.getCurrentInstance();
 		HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);

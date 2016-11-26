@@ -100,7 +100,8 @@
 	</h:form>
 	
 	<h:form id="formProm">	
-		<p:carousel value="#{supermercadoMB.supermercadoSelecionado}" headerText="Promoções Supermecado: #{supermercadoMB.supermercadoSelecionado.nome}" var="car" itemStyle="text-align:center" responsive="true">
+		<p:carousel value="#{supermercadoMB.supermercadoSelecionado}" headerText="Promoções dox Supermecado: #{supermercadoMB.supermercadoSelecionado.nome}" 
+		var="promocoes" itemStyle="text-align:center" responsive="true">
 		<p:panelGrid columns="2" style="width:100%;margin:10px 0px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
 		
 		<f:facet name="header">
@@ -115,7 +116,7 @@
 		</p:panelGrid><font></font>
 		
 		</p:carousel>
-		</h:form>
+	</h:form>
 	 </p:layoutUnit>
                 </p:layout>
             </p:layoutUnit>
