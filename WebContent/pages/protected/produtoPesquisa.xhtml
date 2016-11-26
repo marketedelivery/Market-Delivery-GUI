@@ -56,36 +56,37 @@
 					<h:outputText value="#{produto.marca}" />
 				</p:column>
 				<p:column headerText="Visualizar Preço">
-					<p:commandButton id ="visualizar" icon="ui-icon-zoomin" onclick="PF('dlPrecos').show()">
-						<f:setPropertyActionListener value="#{produto}"
-							target="#{produtoMB.produto}" />
+					<p:commandButton id ="visualizar" actionListener="#{visualizarPrecoMB.visualizarPreco}" 
+					ajax="true"
+					 icon="ui-icon-zoomin" onclick="PF('dlPrecos').show()" update=":dialodVisualizar:vPreco">
+						<f:attribute name="produto" value="#{produto}"/>
 						<p:tooltip for="visualizar">Visualizar Preço</p:tooltip>
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>
 		<!-- =============================Dialog visualizar preço============================================= -->
-		<h:form>
-			<p:dialog header="Visualizar Preço" widgetVar="dlPrecos"
+		<h:form id="dialodVisualizar">
+			<p:dialog id="vPreco" header="Visualizar Preço" widgetVar="dlPrecos"
 			 modal="false" showEffect="fade" hideEffect="fade"
 				resizable="false" height="250px" width="250px" >
 				<p:panelGrid>
 					<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
 						height="100px" width="100px" rendered="true">
-						<f:param name="caminho" value="#{produtoMB.produto.caminhoImagem}" />
+						<f:param name="caminho" value="#{visualizarPrecoMB.produto.imagem}" />
 					</p:graphicImage>
-					<h:outputText value= "#{produtoMB.produto.nome}" style="text-align: center;" />
+					<h:outputText value= "#{visualizarPrecoMB.produto.nome}" style="text-align: center;" />
 				</p:panelGrid>
 				
 				<p:outputPanel style="width:0 auto">
 				<p:toolbar>
 							<f:facet name="center">
-								<h:outputText value="#{produto.nome}" style="font-size: 10pt" />
+								<h:outputText value="teste" style="font-size: 10pt" />
 							</f:facet>
 						</p:toolbar>
-				<p:dataTable id="tbPreco"
+				<p:dataTable
 				emptyMessage="Nenhum registro encontrado...."
-				value=""
+				value="#{visualizarPrecoMB.listatemp}"
 				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
 				rows="3" paginator="false">
 				
