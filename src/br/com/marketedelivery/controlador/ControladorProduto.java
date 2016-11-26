@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.marketedelivery.DAOFactory.DAOFactory;
 import br.com.marketedelivery.IDAO.IProdutoDAO;
 import br.com.marketedelivery.classesBasicas.Produto;
+import br.com.marketedelivery.classesBasicas.ProdutoPromocao;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 
 public class ControladorProduto
@@ -72,6 +73,12 @@ public class ControladorProduto
 		String marca = produto.getNome();
 		produtoDAO = DAOFactory.getProdutoDAO();
 		List<Produto> p = produtoDAO.retornarProdutoPorMarca(marca);
+		return p;
+	}
+	
+	public List<ProdutoPromocao> listaProdutoPromocaoSupermercado(Supermercado s){
+		produtoDAO = DAOFactory.getProdutoDAO();
+		List<ProdutoPromocao> p = produtoDAO.listaProdutoPromocaoSupermercado(s);
 		return p;
 	}
 }

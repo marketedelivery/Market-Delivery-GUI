@@ -3,10 +3,14 @@ package br.com.marketedelivery.classesBasicas;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
+@Entity
+@Table(name = "tb_produtoPromocao")
 public class ProdutoPromocao implements Serializable{
 
 	private static final long serialVersionUID = -6426816668537022660L;

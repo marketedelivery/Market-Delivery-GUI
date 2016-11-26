@@ -13,6 +13,7 @@ import br.com.marketedelivery.classesBasicas.Pedido;
 import br.com.marketedelivery.classesBasicas.Perfil;
 // import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
+import br.com.marketedelivery.classesBasicas.ProdutoPromocao;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
 import br.com.marketedelivery.controlador.ControladorEndereco;
@@ -398,5 +399,9 @@ public class Fachada implements IFachada
 	public void codificar(String codigo, String methodType) throws Exception
 	{
 		loginFacebook.codificar(codigo, methodType);
+	}
+	
+	public List<ProdutoPromocao> listaProdutoPromocaoSupermercado(Supermercado s){
+		return conProduto.listaProdutoPromocaoSupermercado(s);
 	}
 }
