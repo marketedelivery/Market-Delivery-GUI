@@ -28,32 +28,45 @@ public class VisualizarPrecoMB {
 		this.produto = produto;
 	}
 
-	public List<Produto> getListatemp() {
+	public List<Produto> getListatemp() 
+	{
+		if(listatemp == null)
+		{
+			listatemp = new ArrayList<Produto>();
+		}else
+		if(produto != null)
+		{
+			listatemp.addAll(pesquisarProdutoPorNome(produto));
+			System.out.println(listatemp);
+		}
 		return listatemp;
 	}
 
 	public void visualizarPreco(ActionEvent evento) {
 		produto = (Produto) evento.getComponent().getAttributes().get("produto");
-		pesquisarProdutoPorNome(produto);
+		listatemp = pesquisarProdutoPorNome(produto);
 	}
 
 	public List<Produto> pesquisarProdutoPorNome(Produto produto) {
-		listatemp = new ArrayList<Produto>();
-		Produto temp1 = pesquisarProdutoComParametrosBompreco(produto.getNome(), produto.getTipo(), produto.getMarca());
-		Produto temp2 = pesquisarProdutoComParametrosCarrefour(produto.getNome(), produto.getTipo(),produto.getMarca());
-		Produto temp3 = pesquisarProdutoComParametrosExtra(produto.getNome(), produto.getTipo(), produto.getMarca());
-		listatemp.clear();
-		listatemp.add(temp1);
-		listatemp.add(temp2);
-		listatemp.add(temp3);
-		return null;
+		
+		List<Produto>listaTemporaria = new ArrayList<Produto>();
+		
+		Produto temp1 = pesquisarProdutoComParametrosBompreco(produto.getCodigo());
+		Produto temp2 = pesquisarProdutoComParametrosCarrefour(produto.getCodigo());
+		Produto temp3 = pesquisarProdutoComParametrosExtra(produto.getCodigo());
+		
+		listaTemporaria.add(temp1);
+		listaTemporaria.add(temp2);
+		listaTemporaria.add(temp3);
+		return listaTemporaria;
 
 	}
 
-	public Produto pesquisarProdutoComParametrosExtra(String nome, String tipo, String marca) {
+	public Produto pesquisarProdutoComParametrosExtra(int produtoID) {
 		Client c = Client.create();
-		WebResource wr = c.resource("http://localhost:8080/Extra_WS/rest/produto/extra/pesquisarProdutoComParametros/"
-				+ nome + ", " + tipo + ", " + marca);
+		WebResource wr = 
+				c.resource("http://localhost:8080/Extra_WS/rest/produto/extra/consultarProdutoPorId/"
+				 + produtoID);
 		String json = wr.get(String.class);
 		Gson gson = new Gson();
 		Produto p = gson.fromJson(json, new TypeToken<Produto>() {
@@ -61,11 +74,11 @@ public class VisualizarPrecoMB {
 		return p;
 	}
 
-	public Produto pesquisarProdutoComParametrosCarrefour(String nome, String tipo, String marca) {
+	public Produto pesquisarProdutoComParametrosCarrefour(int produtoID) {
 		Client c = Client.create();
 		WebResource wr = c
-				.resource("http://localhost:8080/Carrefour_WS/rest/produto/carrefour/pesquisarProdutoComParametros/"
-						+ nome + ", " + tipo + ", " + marca);
+				.resource("http://localhost:8080/Carrefour_WS/rest/produto/carrefour/consultarProdutoPorId/"
+						+ produtoID);
 		String json = wr.get(String.class);
 		Gson gson = new Gson();
 		Produto p = gson.fromJson(json, new TypeToken<Produto>() {
@@ -73,11 +86,11 @@ public class VisualizarPrecoMB {
 		return p;
 	}
 
-	public Produto pesquisarProdutoComParametrosBompreco(String nome, String tipo, String marca) {
+	public Produto pesquisarProdutoComParametrosBompreco(int produtoID) {
 		Client c = Client.create();
 		WebResource wr = c
-				.resource("http://localhost:8080/Bompreco_WS/rest/produto/bompreco/pesquisarProdutoComParametros/"
-						+ nome + ", " + tipo + ", " + marca);
+				.resource("http://localhost:8080/Bompreco_WS/rest/produto/bompreco/consultarProdutoPorId/"
+						+ produtoID);
 		String json = wr.get(String.class);
 		Gson gson = new Gson();
 		Produto p = gson.fromJson(json, new TypeToken<Produto>() {

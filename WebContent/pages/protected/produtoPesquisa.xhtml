@@ -56,10 +56,11 @@
 					<h:outputText value="#{produto.marca}" />
 				</p:column>
 				<p:column headerText="Visualizar Preço">
-					<p:commandButton id ="visualizar" actionListener="#{visualizarPrecoMB.visualizarPreco}" 
-					ajax="true"
-					 icon="ui-icon-zoomin" onclick="PF('dlPrecos').show()" update=":dialodVisualizar:vPreco">
-						<f:attribute name="produto" value="#{produto}"/>
+					<p:commandButton id ="visualizar"  update=":dialodVisualizar:vPreco"
+					 icon="ui-icon-zoomin"
+					 oncomplete="PF('dlPrecos').show()">
+					 	<f:setPropertyActionListener value="#{produto}"
+							target="#{visualizarPrecoMB.produto}" />
 						<p:tooltip for="visualizar">Visualizar Preço</p:tooltip>
 					</p:commandButton>
 				</p:column>
@@ -91,11 +92,11 @@
 				rows="3" paginator="false">
 				
 					<p:column headerText="Supermercado">
-						<h:outputText value=""/>
+						<h:outputText value="#{produto.supermercado.nome}"/>
 					</p:column>
 					
 					<p:column headerText="Preço">
-						<h:outputText value=""/>
+						<h:outputText value="#{produto.valorUnitario}"/>
 					</p:column>
 				</p:dataTable><br />
 				
