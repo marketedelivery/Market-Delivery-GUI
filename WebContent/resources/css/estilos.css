@@ -7,6 +7,7 @@
 .ui-layout-north {
 	z-index: 20 !important;
 	overflow: visible !important;;
+	margin: 40px;
 }
 
 .ui-layout-north .ui-layout-unit-content {
