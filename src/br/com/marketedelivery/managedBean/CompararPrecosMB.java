@@ -19,7 +19,7 @@ import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pedido;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
-
+import java.text.DecimalFormat;
 @ManagedBean
 @ViewScoped
 public class CompararPrecosMB {
@@ -165,6 +165,22 @@ public class CompararPrecosMB {
 					itensIndisponiveisBompreco.add(it);
 				}
 			}
+			String recuperaValor = null;
+			
+			DecimalFormat dfExtra = new DecimalFormat("0.##");
+			String dxExtra = dfExtra.format(valorTotalListaExtra);
+			recuperaValor = dxExtra.replace(",",".");
+			valorTotalListaExtra  = Double.parseDouble(recuperaValor);
+			
+			DecimalFormat dfCarrefour = new DecimalFormat("0.##");
+			String dxCarrefour = dfCarrefour.format(valorTotalListaCarrefour);
+			recuperaValor = dxCarrefour.replace(",",".");
+			valorTotalListaCarrefour = Double.parseDouble(recuperaValor);
+			
+			DecimalFormat dfBompreco = new DecimalFormat("0.##");
+			String dxBompreco = dfBompreco.format(valorTotalListaCarrefour);
+			recuperaValor = dxBompreco.replace(",",".");
+			valorTotalListaCarrefour = Double.parseDouble(recuperaValor);
 		}
 	}
 
