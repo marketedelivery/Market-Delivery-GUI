@@ -2,6 +2,7 @@ package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -444,12 +445,18 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 			
 			if(getSupermercadoSelecionado() !=null){
 				int codigo = getSupermercadoSelecionado().getCodigo();
-				
-				
 			}
-			
-			
-			
+				return null;
+		}
+		
+		public List<ProdutoPromocao> getListaPromocao(){
+			fachada = new Fachada();
+			List<ProdutoPromocao> listaProm = new ArrayList<ProdutoPromocao>();
+			if (getSupermercadoSelecionado() != null)
+			{		 
+				listaProm =fachada.listaProdutoPromocaoSupermercado(getSupermercadoSelecionado());
+				return listaProm;
+			}
 			return null;
 		}
 }

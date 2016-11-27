@@ -10,6 +10,7 @@ import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pagamento;
 // import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Produto;
+import br.com.marketedelivery.classesBasicas.ProdutoPromocao;
 import br.com.marketedelivery.classesBasicas.Supermercado;
 import br.com.marketedelivery.classesBasicas.Usuario;
 
@@ -106,7 +107,7 @@ public interface IFachada
 	public List<Produto> retornarProdutoPorNome(Produto produto);
 	
 	public List<Produto> retornarProdutoPorMarca(Produto produto);
-
+	public List<ProdutoPromocao> listaProdutoPromocaoSupermercado(Supermercado s);
 	// --------------------------------------------- Pagamento
 	// -------------------------------------------------------------------
 	public void cadastrarPagamento(Pagamento pagamento);
