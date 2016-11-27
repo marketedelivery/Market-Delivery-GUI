@@ -13,18 +13,14 @@ import javax.servlet.http.HttpSession;
 
 import br.com.marketedelivery.classesBasicas.Usuario;
 
-
- 
 public class FiltroLogin extends AbstractFilter implements Filter{
 	
 	private String LOGIN_ACTION_URI;
-	
-	
+		
 	@Override
 	public void destroy() {
 		
 	}
-
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
@@ -35,12 +31,11 @@ public class FiltroLogin extends AbstractFilter implements Filter{
 		HttpSession session = req.getSession();
         Usuario user = (Usuario)req.getSession(true).getAttribute("usuario");
         if(session.isNew() || user == null) {
-        	System.out.println("inicio");
+        	//System.out.println("inicio");
         	doLogin(request, response, req);
-            System.out.println("passou");
+           // System.out.println("passou");
             return;
         } 
-         
           chain.doFilter(request, response);
     }
 	
@@ -57,7 +52,4 @@ public class FiltroLogin extends AbstractFilter implements Filter{
 	public void setLOGIN_ACTION_URI(String lOGIN_ACTION_URI) {
 		LOGIN_ACTION_URI = lOGIN_ACTION_URI;
 	}
-	
-	
-
 }

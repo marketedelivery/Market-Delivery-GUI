@@ -36,8 +36,8 @@ public class VisualizarPrecoMB {
 		}else
 		if(produto != null)
 		{
+			listatemp.clear();
 			listatemp.addAll(pesquisarProdutoPorNome(produto));
-			System.out.println(listatemp);
 		}
 		return listatemp;
 	}
