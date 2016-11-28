@@ -2,7 +2,6 @@ package br.com.marketedelivery.managedBean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -368,7 +367,7 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 		// Diferença das longitudes
 		double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(lista.get(i).getLongitude())
 		- (Double.parseDouble(getLongitude())));
-		// C⭣ula da distançia entre os pontos
+		// Calcula da distançia entre os pontos
 		 calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
 		* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
 		* Math.sin(secondLatToRad))
@@ -384,7 +383,7 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 			return null;
 		}
 		LatLng coord1 = new LatLng(Double.parseDouble(lista.get(auxPrim).getLatitude()), Double.parseDouble(lista.get(auxPrim).getLongitude()));
-		simpleModel.addOverlay(new Marker(coord1, "Este Supermercado é o mais próximo do Senhor Supermecado " + lista.get(auxPrim).getNome()));
+		simpleModel.addOverlay(new Marker(coord1, "O Supermercado mais próximo do Senhor é o Supermercado " + lista.get(auxPrim).getNome()));
 		
 		for(int j = 0; j < lista.size();j++){
 			double firstLatToRad = Math.toRadians(Double.parseDouble(getLatitude()));

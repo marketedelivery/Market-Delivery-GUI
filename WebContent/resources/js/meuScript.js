@@ -15,7 +15,6 @@ function success(position)
 	var latitude = position.coords.latitude;
 	var longitude =  position.coords.longitude;
 	
-	onPoint([{name:'latitude',value:latitude},{name:'longitude',value:longitude}]);
 }
 function calcRota(){
 	var directionsDisplay = new google.maps.DirectionsRenderer();

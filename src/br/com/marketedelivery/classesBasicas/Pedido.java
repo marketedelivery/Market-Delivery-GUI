@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -46,7 +47,10 @@ public class Pedido implements Serializable
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Supermercado supermercado;
-
+	
+	@Transient
+	private String distancia;
+	
 	public Pedido()
 	{
 		super();
@@ -237,5 +241,21 @@ public class Pedido implements Serializable
 	public void setSupermercado(Supermercado supermercado)
 	{
 		this.supermercado = supermercado;
+	}
+	
+	/**
+	 * 
+	 * @return distancia
+	 */
+	public String getDistancia() {
+		return distancia;
+	}
+
+	/**
+	 * 
+	 * @param distancia 
+	 */
+	public void setDistancia(String distancia) {
+		this.distancia = distancia;
 	}
 }

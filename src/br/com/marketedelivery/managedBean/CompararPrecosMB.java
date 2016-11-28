@@ -1,11 +1,14 @@
 package br.com.marketedelivery.managedBean;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,11 +22,13 @@ import br.com.marketedelivery.classesBasicas.ListaDeCompras;
 import br.com.marketedelivery.classesBasicas.Pedido;
 import br.com.marketedelivery.classesBasicas.Produto;
 import br.com.marketedelivery.classesBasicas.Supermercado;
-import java.text.DecimalFormat;
+
 @ManagedBean
 @ViewScoped
 public class CompararPrecosMB {
 	// Atributos
+	private static int EARTH_RADIUS_KM = 6371;
+	
 	private Pedido pedidoSelecionado;
 
 	private List<Pedido> pedidos;
@@ -72,6 +77,8 @@ public class CompararPrecosMB {
 
 	private double valorTotalListaBompreco;
 
+	private String latitude;
+	private String longitude;
 	@PostConstruct
 	public void init() {
 		itens = new ArrayList<Item>();
@@ -87,7 +94,7 @@ public class CompararPrecosMB {
 		pedidoBompreco = new Pedido();
 	}
 
-	// M�todos
+	// Métodos
 	public Produto pesquisarProdutoComParametrosExtra(String nome, String tipo, String marca) {
 		Client c = Client.create();
 		String resource = "http://localhost:8080/Extra_WS/rest/produto/extra/pesquisarProdutoComParametros/" + nome
@@ -166,21 +173,22 @@ public class CompararPrecosMB {
 				}
 			}
 			String recuperaValor = null;
-			
+
 			DecimalFormat dfExtra = new DecimalFormat("0.##");
 			String dxExtra = dfExtra.format(valorTotalListaExtra);
-			recuperaValor = dxExtra.replace(",",".");
-			valorTotalListaExtra  = Double.parseDouble(recuperaValor);
-			
+			recuperaValor = dxExtra.replace(",", ".");
+			valorTotalListaExtra = Double.parseDouble(recuperaValor);
+
 			DecimalFormat dfCarrefour = new DecimalFormat("0.##");
 			String dxCarrefour = dfCarrefour.format(valorTotalListaCarrefour);
-			recuperaValor = dxCarrefour.replace(",",".");
+			recuperaValor = dxCarrefour.replace(",", ".");
 			valorTotalListaCarrefour = Double.parseDouble(recuperaValor);
-			
+
 			DecimalFormat dfBompreco = new DecimalFormat("0.##");
 			String dxBompreco = dfBompreco.format(valorTotalListaCarrefour);
-			recuperaValor = dxBompreco.replace(",",".");
+			recuperaValor = dxBompreco.replace(",", ".");
 			valorTotalListaCarrefour = Double.parseDouble(recuperaValor);
+		
 		}
 	}
 
@@ -486,8 +494,21 @@ public class CompararPrecosMB {
 			if (supermercados.isEmpty()) {
 				s = new Supermercado();
 			} else {
+				
 				s = supermercados.get(i);
 			}
+			double firstLatToRad = Math.toRadians(Double.parseDouble(s.getLatitude()));
+			double secondLatToRad = Math.toRadians((Double.parseDouble(getLatitude())));
+			// Diferença das longitudes
+			double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(s.getLongitude())
+			- (Double.parseDouble(getLongitude())));
+			// C⭣ula da distançia entre os pontos
+			double calculo = Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
+			* Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
+			* Math.sin(secondLatToRad))
+			* EARTH_RADIUS_KM;
+			DecimalFormat dfCalculo = new DecimalFormat("0.##");
+			p.setDistancia(dfCalculo.format(calculo));
 			p.setSupermercado(s);
 		}
 	}
@@ -513,5 +534,30 @@ public class CompararPrecosMB {
 
 	public void setPedidoSelecionado(Pedido pedidoSelecionado) {
 		this.pedidoSelecionado = pedidoSelecionado;
+	}
+
+	public void pointSelect()
+	{
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String x = params.get("latitude");
+		String xx = params.get("longitude");
+		setLatitude(x);
+		setLongitude(xx);
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
 	}
 }

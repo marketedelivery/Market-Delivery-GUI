@@ -11,10 +11,27 @@
 		<ui:include src="/pages/includes/menuPrincipal.xhtml" />
 	</ui:define>
 	<ui:define name="conteudo">
+	<script type="text/javascript">
+	$(document).ready(function(){
+			if( navigator.geolocation ){
+				navigator.geolocation.getCurrentPosition(success, fail);
+			}
+		else
+			 $("p").html("Localização do usuario não encontrada");
+	});
+	function success(position)
+	{	var googleLatLng = new google.maps.LatLng(position.coords.latitude, 
+			  position.coords.longitude);
+		var latitude = position.coords.latitude;
+		var longitude =  position.coords.longitude;
+		point([{name:'latitude',value:latitude},{name:'longitude',value:longitude}]);
+		onPoint([{name:'latitude',value:latitude},{name:'longitude',value:longitude}]);
+	}
+	</script>
 		<h:form id="form">
 			<!-- este atributo passa a localição do usuario para o bean supermecado -->
-			<p:remoteCommand name="onPoint"
-				actionListener="#{supermercadoMB.onPointSelect}" autoRun="true" />
+			<p:remoteCommand name="onPoint"  actionListener="#{supermercadoMB.onPointSelect}" autoRun="true" />
+			<p:remoteCommand name="point" actionListener="#{compararPrecosMB.pointSelect}" autoRun="true" />
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputText value="Minhas Listas" />
@@ -269,7 +286,7 @@
 							</p:column>
 							<p:column headerText="Distância"
 								style="width:90px; text-align: center;">
-								<h:outputText value="60 Km" />
+								<h:outputText value="#{pedido.distancia} km" />
 							</p:column>
 							<p:column headerText="Valor Total"
 								style="width:90px; text-align: center;">

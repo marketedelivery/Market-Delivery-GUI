@@ -37,6 +37,8 @@
 		var longitude =  position.coords.longitude;
 		origem = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 		addMarker(googleLatLng);
+		
+		
 	}
 	function addMarker(googleLatLng){
 		var image = 'http://www.nikon-asia.com/resources/styles/24_WhereToBuy/images/google_streetview_icon.png';
@@ -61,13 +63,13 @@
 			</f:facet>
 		</p:toolbar>
      <h:form id="form">
-		<h:inputHidden id="json" value="#{supermercadoMB.retornaJsonComPosicaoUsuario}"/>
+    
+		<h:inputHidden id="json" value="#{supermercadoMB.retornaJsonComPosicaoUsuario}" />
    		<p:commandButton value="Criar Rota para o Supermercado mais Próximo" onclick="calcRota();" />
     </h:form>
 	
 	<h:form>
-			
-
+	
 			<p:dataTable emptyMessage="Nenhum registro encontrado...."
 				value="#{supermercadoMB.listarTodosSupermercados}"
 				filteredValue="#{supermercadoMB.listaSupermercadosFiltrados}"
