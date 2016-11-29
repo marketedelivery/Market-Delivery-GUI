@@ -122,11 +122,33 @@ public class ProdutoDAO extends DAOGenerico<Produto> implements IProdutoDAO  {
 			manager.close();
 		}
 	}
+    
     public List<Produto> retornarProdutoPorMarca(String marca)
 	{
 		String consulta = "SELECT p FROM Produto p WHERE p.marca LIKE :N";
 		TypedQuery<Produto> retorno = getEntityManager().createQuery(consulta, Produto.class);
 		retorno.setParameter("N","%" + marca + "%");
+		List<Produto> resultado;
+		try
+		{
+			resultado = retorno.getResultList();
+			return resultado;
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
+		finally
+		{
+			manager.close();
+		}
+	}
+    
+    public List<Produto> retornarProdutoPorTipo(String tipo)
+	{
+		String consulta = "SELECT p FROM Produto p WHERE p.tipo LIKE :N";
+		TypedQuery<Produto> retorno = getEntityManager().createQuery(consulta, Produto.class);
+		retorno.setParameter("N","%" + tipo + "%");
 		List<Produto> resultado;
 		try
 		{

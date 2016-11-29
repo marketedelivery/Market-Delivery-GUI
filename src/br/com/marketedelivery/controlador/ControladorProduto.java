@@ -62,21 +62,27 @@ public class ControladorProduto
 	
 	public List<Produto> retornarProdutoPorNome(Produto produto)
 	{
-		String nome = produto.getNome();
 		produtoDAO = DAOFactory.getProdutoDAO();
-		List<Produto> p = produtoDAO.retornarProdutoPorNome(nome);
+		List<Produto> p = produtoDAO.retornarProdutoPorNome(produto.getNome());
 		return p;
 	}
 	
 	public List<Produto> retornarProdutoPorMarca(Produto produto)
 	{
-		String marca = produto.getNome();
 		produtoDAO = DAOFactory.getProdutoDAO();
-		List<Produto> p = produtoDAO.retornarProdutoPorMarca(marca);
+		List<Produto> p = produtoDAO.retornarProdutoPorMarca(produto.getNome());
 		return p;
 	}
 	
-	public List<ProdutoPromocao> listaProdutoPromocaoSupermercado(Supermercado s){
+	public List<Produto> retornarProdutoPorTipo(Produto produto)
+	{
+		produtoDAO = DAOFactory.getProdutoDAO();
+		List<Produto> p = produtoDAO.retornarProdutoPorTipo(produto.getNome());
+		return p;
+	}
+	
+	public List<ProdutoPromocao> listaProdutoPromocaoSupermercado(Supermercado s)
+	{
 		produtoDAO = DAOFactory.getProdutoDAO();
 		List<ProdutoPromocao> p = produtoDAO.listaProdutoPromocaoSupermercado(s);
 		return p;

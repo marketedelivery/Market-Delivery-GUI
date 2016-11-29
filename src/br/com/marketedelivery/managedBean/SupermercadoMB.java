@@ -48,6 +48,7 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 
 	private List<Supermercado> listaSupermercadosFiltrados;
 
+	@SuppressWarnings("unused")
 	private String retornaJsonComPosicaoUsuario;
 
 	private List<Supermercado> converterListaSuper;
@@ -440,14 +441,6 @@ public class SupermercadoMB extends AbstractMB implements Serializable
 		
 	}
 
-		public List<ProdutoPromocao> listaProdutoEmPromocao(){
-			
-			if(getSupermercadoSelecionado() !=null){
-				int codigo = getSupermercadoSelecionado().getCodigo();
-			}
-				return null;
-		}
-		
 		public List<ProdutoPromocao> getListaPromocao(){
 			fachada = new Fachada();
 			List<ProdutoPromocao> listaProm = new ArrayList<ProdutoPromocao>();

@@ -196,12 +196,16 @@ public class ProdutoMB implements Serializable
 		produtoTemp.clear();
 		List<Produto> produtoFiltrados = getFachada().retornarProdutoPorNome(produto);
 		List<Produto> produtoFiltradosMarca = getFachada().retornarProdutoPorMarca(produto);
+		List<Produto> produtoFiltradosTipo = getFachada().retornarProdutoPorTipo(produto);
 		if (produtoFiltrados.size() != 0)
 		{
 			produtoTemp.addAll(produtoFiltrados);
 		} else if (produtoFiltradosMarca.size() != 0)
 		{
 			produtoTemp.addAll(produtoFiltradosMarca);
+		}else if (produtoFiltradosTipo.size() != 0)
+		{
+			produtoTemp.addAll(produtoFiltradosTipo);
 		}
 		return produtoTemp;
 	}
@@ -219,12 +223,16 @@ public class ProdutoMB implements Serializable
 		produtoPesquisa.clear();
 		List<Produto> produtoFiltrados = getFachada().retornarProdutoPorNome(produto);
 		List<Produto> produtoFiltradosMarca = getFachada().retornarProdutoPorMarca(produto);
+		List<Produto> produtoFiltradosTipo = getFachada().retornarProdutoPorTipo(produto);
 		if (produtoFiltrados.size() != 0)
 		{
 			produtoPesquisa.addAll(produtoFiltrados);
 		} else if (produtoFiltradosMarca.size() != 0)
 		{
 			produtoPesquisa.addAll(produtoFiltradosMarca);
+		}else if (produtoFiltradosTipo.size() != 0)
+		{
+			produtoPesquisa.addAll(produtoFiltradosTipo);
 		}
 		todosProdutos.clear();
 		todosProdutos.addAll(produtoPesquisa);
@@ -389,6 +397,7 @@ public class ProdutoMB implements Serializable
 		return lista;
 	}
 
+	@SuppressWarnings("unused")
 	private Produto pesquisarProdutoComParametrosExtra(String nome, String tipo, String marca)
 	{
 		Client c = Client.create();
@@ -457,6 +466,7 @@ public class ProdutoMB implements Serializable
 		return lista;
 	}
 
+	@SuppressWarnings("unused")
 	private Produto pesquisarProdutoComParametrosCarrefour(String nome, String tipo, String marca)
 	{
 		Client c = Client.create();
@@ -525,6 +535,7 @@ public class ProdutoMB implements Serializable
 		return lista;
 	}
 
+	@SuppressWarnings("unused")
 	private Produto pesquisarProdutoComParametrosBompreco(String nome, String tipo, String marca)
 	{
 		Client c = Client.create();
