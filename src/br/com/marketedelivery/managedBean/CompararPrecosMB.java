@@ -327,7 +327,8 @@ public class CompararPrecosMB {
 				resultado = (parte / todo) * 100;
 			}
 		}
-		percentualItensDisponiveisExtra = String.valueOf(resultado);
+		DecimalFormat dfExtra = new DecimalFormat("0.##");
+		percentualItensDisponiveisExtra = dfExtra.format(resultado);
 		return percentualItensDisponiveisExtra;
 	}
 
@@ -344,7 +345,8 @@ public class CompararPrecosMB {
 				resultado = (parte / todo) * 100;
 			}
 		}
-		percentualItensIndisponiveisExtra = String.valueOf(resultado);
+		DecimalFormat dfExtra = new DecimalFormat("0.##");
+		percentualItensIndisponiveisExtra = dfExtra.format(resultado);
 		return percentualItensIndisponiveisExtra;
 	}
 
@@ -361,7 +363,8 @@ public class CompararPrecosMB {
 				resultado = (parte / todo) * 100;
 			}
 		}
-		percentualItensDisponiveisCarrefour = String.valueOf(resultado);
+		DecimalFormat dfCarrrefour = new DecimalFormat("0.##");
+		percentualItensDisponiveisCarrefour = dfCarrrefour.format(resultado);
 		return percentualItensDisponiveisCarrefour;
 	}
 
@@ -378,7 +381,8 @@ public class CompararPrecosMB {
 				resultado = (parte / todo) * 100;
 			}
 		}
-		percentualItensIndisponiveisCarrefour = String.valueOf(resultado);
+		DecimalFormat dfCarrrefour = new DecimalFormat("0.##");
+		percentualItensIndisponiveisCarrefour = dfCarrrefour.format(resultado);
 		return percentualItensIndisponiveisCarrefour;
 	}
 
@@ -395,7 +399,8 @@ public class CompararPrecosMB {
 				resultado = (parte / todo) * 100;
 			}
 		}
-		percentualItensDisponiveisBompreco = String.valueOf(resultado);
+		DecimalFormat dfBompreco = new DecimalFormat("0.##");
+		percentualItensDisponiveisBompreco = dfBompreco.format(resultado);
 		return percentualItensDisponiveisBompreco;
 	}
 
@@ -412,7 +417,8 @@ public class CompararPrecosMB {
 				resultado = (parte / todo) * 100;
 			}
 		}
-		percentualItensIndisponiveisBompreco = String.valueOf(resultado);
+		DecimalFormat dfBompreco = new DecimalFormat("0.##");
+		percentualItensIndisponiveisBompreco = dfBompreco.format(resultado);
 		return percentualItensIndisponiveisBompreco;
 	}
 
