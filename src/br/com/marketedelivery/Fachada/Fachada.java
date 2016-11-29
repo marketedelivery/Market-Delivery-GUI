@@ -178,6 +178,11 @@ public class Fachada implements IFachada
 	{
 		return conProduto.retornarProdutoPorMarca(produto);
 	}
+	
+	public List<Produto> retornarProdutoPorTipo(Produto produto)
+	{
+		return conProduto.retornarProdutoPorTipo(produto);
+	}
 
 	// --------------------------------------------- Endereco
 	// -------------------------------------------------------------------

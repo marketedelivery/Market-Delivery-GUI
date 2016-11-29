@@ -17,5 +17,7 @@ public interface IProdutoDAO extends IDAOGenerico<Produto>
 	
 	public List<Produto> retornarProdutoPorMarca(String marca);
 	
+	public List<Produto> retornarProdutoPorTipo(String tipo);
+	
 	public List<ProdutoPromocao> listaProdutoPromocaoSupermercado(Supermercado s);
 }
