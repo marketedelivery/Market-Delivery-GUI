@@ -92,7 +92,7 @@
 							target="#{itemMB.lista}" />
 						<p:tooltip for="excluir">Excluir Lista</p:tooltip>
 					</p:commandButton>
-					<p:commandButton id="compararPreco" update=":updateCompara"
+					<p:commandButton id="compararPreco" update=":updateCompara" onstart="PF('carregar').show()" onsuccess="PF('carregar').hide()"
 						oncomplete="PF('listaDialog2').show()" icon="ui-icon-cart">
 						<f:setPropertyActionListener value="#{lista}"
 							target="#{compararPrecosMB.lista}" />
@@ -101,7 +101,9 @@
 				</p:column>
 			</p:dataTable>
 		</h:form>
-
+	<p:dialog widgetVar="carregar" draggable="false" closable="false" resizable="false" showHeader="false"> 
+		<h:graphicImage value="/images/ajax-loader.gif"  rendered="true"/>
+	</p:dialog>
 		<h:form id="updateLista">
 			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
 				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
