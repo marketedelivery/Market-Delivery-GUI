@@ -185,7 +185,7 @@
 								actionListener="#{itemMB.alterarLista(item)}"
 								validateClient="true" update="form:table, tbItem" /> &nbsp;&nbsp;
 
-						<p:commandButton value="Cancelar" immediate="true"
+						<p:commandButton value="Fechar" immediate="true"
 								oncomplete="PF('listaDialog').hide()" icon="ui-icon-close" />
 						</f:facet>
 					</p:panelGrid>
@@ -204,7 +204,7 @@
 					oncomplete="PF('listaExcluirDialog').hide()"
 					action="#{itemMB.removerLista(item)}" update=":form, :form:table" />
 
-				<p:commandButton id="declineExcluir" value="Cancelar"
+				<p:commandButton id="declineExcluir" value="Fechar"
 					onclick="PF('listaExcluirDialog').hide()" type="button" />
 			</p:dialog>
 		</h:form>
@@ -303,7 +303,7 @@
 					<br />
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
-							<p:commandButton value="Cancelar" immediate="true"
+							<p:commandButton value="Fechar" immediate="true"
 								update=":form:table" oncomplete="PF('listaDialog2').hide()"
 								icon="ui-icon-close" />
 						</f:facet>
@@ -355,7 +355,7 @@
 					<br />
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
-							<p:commandButton value="Cancelar" immediate="true"
+							<p:commandButton value="Fechar" immediate="true"
 								update=":form:table"
 								oncomplete="PF('itensDisponiveisDialog').hide()"
 								icon="ui-icon-close" />
@@ -407,7 +407,7 @@
 					<br />
 					<p:panelGrid columns="2">
 						<f:facet name="footer">
-							<p:commandButton value="Cancelar" immediate="true"
+							<p:commandButton value="Fechar" immediate="true"
 								update=":form:table"
 								oncomplete="PF('itensIndisponiveisDialog').hide()"
 								icon="ui-icon-close" />
