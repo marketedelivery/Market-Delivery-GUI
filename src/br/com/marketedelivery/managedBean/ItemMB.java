@@ -213,7 +213,7 @@ public class ItemMB
 		for (int i = 0; i < listaItens.size() && podutoPosicao < 0; i++)
 		{
 			Item itTemp = listaItens.get(i);
-			if (itTemp.getProduto().equals(produto))
+			if (itTemp.getProduto().getCodigo() == produto.getCodigo())
 			{
 				podutoPosicao = i;
 			}
