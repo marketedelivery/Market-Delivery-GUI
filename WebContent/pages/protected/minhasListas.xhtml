@@ -107,38 +107,45 @@
 		<h:form id="updateLista">
 			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
 				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
-				width="480px" height="380px">
+				width="480px" height="0 auto">
 				<p:outputPanel id="listaDetail" style="width:0 auto">
-					<p:panelGrid columns="2" border="2" cellspacing="4" id="pgLista"
-						columnClasses="label,value">
+					<p:panelGrid columns="2" columnClasses="label,value">
+						<p:panelGrid columns="2" id="pgLista" columnClasses="label,value">
+							<p:outputLabel value="Nome* " />
+							<p:inputText id="Nome" maxlength="30" required="true"
+								requiredMessage="O campo Nome não foi preenchido"
+								converterMessage="Preencha apenas com letras"
+								autocomplete="true" value="#{itemMB.lista.nome}"
+								placeholder="Nome da Lista" />
 
-						<p:outputLabel value="Nome* " />
-						<p:inputText id="Nome" maxlength="30" required="true"
-							requiredMessage="O campo Nome não foi preenchido"
-							converterMessage="Preencha apenas com letras" autocomplete="true"
-							value="#{itemMB.lista.nome}" placeholder="Nome da Lista" />
+							<p:outputLabel value="Tipo* " />
+							<p:inputText id="Tipo" maxlength="30" required="true"
+								requiredMessage="O campo Tipo não foi preenchido"
+								converterMessage="Preencha apenas com letras"
+								autocomplete="true" value="#{itemMB.lista.tipo}"
+								placeholder="Tipo da Lista" />
 
-						<p:outputLabel value="Tipo* " />
-						<p:inputText id="Tipo" maxlength="30" required="true"
-							requiredMessage="O campo Tipo não foi preenchido"
-							converterMessage="Preencha apenas com letras" autocomplete="true"
-							value="#{itemMB.lista.tipo}" placeholder="Tipo da Lista" />
-
-						<p:outputLabel value="Data de Criação* " />
-						<p:calendar id="maskCalendar" size="10" maxlength="10"
-							required="true"
-							requiredMessage="O campo data de Criação não foi preenchido"
-							converterMessage="Preencha com apenas números"
-							value="#{itemMB.lista.dataCriacao}" pattern="dd/MM/yyyy"
-							mask="true" mindate="01/01/1920" maxdate="Calendar.Today()"
-							effect="slide" placeholder="dd/MM/aaaa">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</p:calendar>
+							<p:outputLabel value="Data de Criação* " />
+							<p:calendar id="maskCalendar" size="10" maxlength="10"
+								required="true"
+								requiredMessage="O campo data de Criação não foi preenchido"
+								converterMessage="Preencha com apenas números"
+								value="#{itemMB.lista.dataCriacao}" pattern="dd/MM/yyyy"
+								mask="true" mindate="01/01/1920" maxdate="Calendar.Today()"
+								effect="slide" placeholder="dd/MM/aaaa">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:calendar>
+						</p:panelGrid>
+						<iframe
+							src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fmarketedelivery.com.br%2Flayout=button_count%2Fsize=small%2Fmobile_iframe=true%2FappId=1150699848342269%2Fwidth=107%2Fheight=20"
+							width="107" height="20"
+							style="border: none; overflow: hidden; margin-left: 70px;"
+							scrolling="no" frameborder="0" allowTransparency="true" />
 					</p:panelGrid>
 
 					<br />
 
-					<p:dataTable id="tbItem" scrollable="true" frozenRows="0" rows="5"
+					<p:dataTable id="tbItem" scrollable="true" frozenRows="0" rows="3"
 						value="#{itemMB.itensDialog}" paginator="true"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5" emptyMessage="Não há produtos salvos"
