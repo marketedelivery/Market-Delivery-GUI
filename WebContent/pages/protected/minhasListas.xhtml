@@ -268,7 +268,7 @@
 								
 							</p:column>
 							<p:column headerText="Itens Disponiveis"
-								style="width:90px; text-align: center;">
+								style="width:70px; text-align: center;">
 								<p:commandLink id="ItensDisponiveisLink"
 									value="#{pedido.qtdDisponiveis}%"
 									update=":itensDisponiveisDialog"
@@ -278,7 +278,7 @@
 								</p:commandLink>
 							</p:column>
 							<p:column headerText="Itens Indisponiveis"
-								style="width:90px; text-align: center; ">
+								style="width:70px; text-align: center; ">
 								<p:commandLink value="#{pedido.qtdIndisponiveis}%"
 									update=":itensIndisponiveisDialog"
 									oncomplete="PF('itensIndisponiveisDialog').show()">
@@ -287,15 +287,30 @@
 								</p:commandLink>
 							</p:column>
 							<p:column headerText="Distância"
-								style="width:90px; text-align: center;">
+								style="width:70px; text-align: center;">
 								<h:outputText value="#{pedido.distancia} km" />
 							</p:column>
 							<p:column headerText="Valor Total"
-								style="width:90px; text-align: center;">
+								style="width:70px; text-align: center;">
 								<h:outputText value="#{pedido.valorTotalPedido}" />
 							</p:column>
-							<p:column headerText="Ação" style="width:40px;text-align: center">
-								<p:commandButton ajax="true" id="comprarLista" value="Comprar" />
+							<p:column headerText="Ação" style="width:70px;text-align: center">
+							<h:form id="_xclick"  method="post" target="_top">
+								<h:inputHidden  name="cmd" value="_xclick"/>
+								<h:inputHidden name="business" value="fabioemidiosouza@gmail.com"/>
+								<h:inputHidden name="lc" value="BR"/>
+								<h:inputHidden name="item_name" value="fsdfsd"/>
+								<h:inputHidden name="amount" value="23.00"/>
+								<h:inputHidden name="currency_code" value="BRL"/>
+								<h:inputHidden name="button_subtype" value="services"/>
+								<h:inputHidden name="no_note" value="0"/>
+								<h:inputHidden name="tax_rate" value="12.000"/>
+								<h:inputHidden name="shipping" value="23.00"/>
+								<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest"/>
+								<h:graphicImage  value="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" rendered="true" alt="PayPal - pagamentos online!"/>
+								<h:graphicImage alt="" value="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1" rendered="true"/>
+							</h:form>
+													
 							</p:column>
 						</p:dataTable>
 					</h:form>
