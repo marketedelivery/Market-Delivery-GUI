@@ -233,24 +233,23 @@ public class ItemMB
 			listaItens.set(podutoPosicao, it); // substitui o valor q ja esta na
 												// lista
 		}
-		System.out.println(listaItens.size());
-		System.out.println(it);
+
 	}
 
 	public void remover(Item item)
 	{
-		int posicao = -1;
-		for (int i = 0; i < listaItens.size() && posicao < 0; i++)
+		int produtoPosicao = -1;
+		for (int i = 0; i < listaItens.size() && produtoPosicao < 0; i++)
 		{
-			Item it = listaItens.get(i);
-			if (item.getProduto().equals(it.getProduto()))
+			Item itTemp = listaItens.get(i);
+			if (itTemp.getProduto().getCodigo() == item.getProduto().getCodigo())
 			{
-				listaItens.remove(i);
-				System.out.println(listaItens.size());
-			} else
-			{
-				return;
+				produtoPosicao = i;
 			}
+		}
+		if(produtoPosicao > -1)
+		{
+		listaItens.remove(produtoPosicao);
 		}
 	}
 

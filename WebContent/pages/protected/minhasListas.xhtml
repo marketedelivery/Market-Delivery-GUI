@@ -107,9 +107,9 @@
 		<h:form id="updateLista">
 			<p:dialog header="Alterar Lista" widgetVar="listaDialog"
 				modal="false" showEffect="fade" hideEffect="fade" resizable="false"
-				width="480px" height="0 auto">
+				width="480px" height="400px">
 				<p:outputPanel id="listaDetail" style="width:0 auto">
-					<p:panelGrid columns="2" columnClasses="label,value">
+					<p:panelGrid columns="3" columnClasses="label,value">
 						<p:panelGrid columns="2" id="pgLista" columnClasses="label,value">
 							<p:outputLabel value="Nome* " />
 							<p:inputText id="Nome" maxlength="30" required="true"
@@ -142,13 +142,12 @@
 							style="border: none; overflow: hidden; margin-left: 70px;"
 							scrolling="no" frameborder="0" allowTransparency="true" />
 					</p:panelGrid>
-
 					<br />
 
-					<p:dataTable id="tbItem" scrollable="true" frozenRows="0" rows="3"
+					<p:dataTable id="tbItem" scrollable="true" frozenRows="0" rows="5"
 						value="#{itemMB.itensDialog}" paginator="true"
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="5" emptyMessage="Não há produtos salvos"
+						rowsPerPageTemplate="5,10,15,20" emptyMessage="Não há produtos salvos"
 						var="item" style="width:0 auto">
 						<p:column headerText="Imagem" style="width: 100px">
 							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
@@ -300,24 +299,6 @@
 							<p:column headerText="Valor Total"
 								style="width:70px; text-align: center;">
 								<h:outputText value="#{pedido.valorTotalPedido}" />
-							</p:column>
-							<p:column headerText="Ação" style="width:70px;text-align: center">
-							<h:form id="_xclick"  method="post" target="_top">
-								<h:inputHidden  name="cmd" value="_xclick"/>
-								<h:inputHidden name="business" value="fabioemidiosouza@gmail.com"/>
-								<h:inputHidden name="lc" value="BR"/>
-								<h:inputHidden name="item_name" value="fsdfsd"/>
-								<h:inputHidden name="amount" value="23.00"/>
-								<h:inputHidden name="currency_code" value="BRL"/>
-								<h:inputHidden name="button_subtype" value="services"/>
-								<h:inputHidden name="no_note" value="0"/>
-								<h:inputHidden name="tax_rate" value="12.000"/>
-								<h:inputHidden name="shipping" value="23.00"/>
-								<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest"/>
-								<h:graphicImage  value="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" rendered="true" alt="PayPal - pagamentos online!"/>
-								<h:graphicImage alt="" value="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1" rendered="true"/>
-							</h:form>
-													
 							</p:column>
 						</p:dataTable>
 					</h:form>

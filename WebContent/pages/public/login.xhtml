@@ -32,12 +32,12 @@
 				   Email
 					<p:inputText id="email" value="#{loginMB.usuario.email}"
 						required="false" label="username"
-						requiredMessage="Preencha o campo Email" />
+						requiredMessage="Preencha o campo Email" maxlength="30"/>
 					
 				   Senha
 					<p:password id="senha" value="#{loginMB.usuario.senha}"
 						required="false" requiredMessage="Preencha o campo Senha"
-						label="password" />
+						label="password" maxlength="10"/>
 						
 					<p:commandButton value="Acessar" action="#{loginMB.efetuarLogin}"
 						ajax="false" validateClient="true" process="@this"/>
@@ -73,8 +73,8 @@
 		<p:layoutUnit position="center" resizable="false" closable="false"
 			collapsible="false">
 			<h:graphicImage
-				value="http://institucional.netsabe.com.br/uploads/1454591466222-32352-ca48b2e3cfaebe0a"
-				width="100%" height="98%">
+				value="/images/marketedelivery.jpg" rendered="true"
+				width="100%" height="99%">
 			</h:graphicImage>
 			<ui:insert name="conteudo" />
 		</p:layoutUnit>

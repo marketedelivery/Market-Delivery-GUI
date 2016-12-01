@@ -38,19 +38,19 @@
 				  -->
 				  
 				CPF<br />
-					<p:inputMask maxlength="11" size="14"
+					<p:inputMask maxlength="14" size="16"
 						value="#{usuarioMB.usuario.cpf}" mask="999.999.999-99"
 						required="true" requiredMessage="Preencha o campo CPF" />
 					
 				 
 				Telefone<br />
-					<p:inputMask maxlength="11" size="14"
+					<p:inputMask maxlength="14" size="14"
 						value="#{usuarioMB.usuario.telefone}" mask="(99)9999-9999"
-						required="true" requiredMessage="Preencha o campo Telefone" />
+					  requiredMessage="Preencha o campo Telefone" />
 					
 				 
 				Celular/WhatsAPP<br />
-					<p:inputMask maxlength="11" size="14"
+					<p:inputMask maxlength="14" size="14"
 						value="#{usuarioMB.usuario.telefoneWhatsapp}"
 						mask="(99)99999-9999" required="true"
 						requiredMessage="Preencha o campo Celular" />
@@ -59,7 +59,7 @@
 				<h:panelGrid id="pnlCadCliDados2" columns="4"> 
  				Cep<br />
 					<p:inputMask value="#{usuarioMB.endereco.cep}" required="true"
-						requiredMessage="Preencha o campo Cep" maxlength="8" size="10"
+						requiredMessage="Preencha o campo Cep" maxlength="9" size="10"
 						mask="99999-999" />
 				
                  
@@ -70,7 +70,7 @@
 				 
                 Número<br />
                 	 <h:inputText id="numero" value="#{usuarioMB.endereco.numero}" requiredMessage="Preencha o campo número"
-                     size="5"/>
+                     size="5" placeholder="Senha com 10 Digitos"/>
                     
 					<!-- <p:inputMask value="#{usuarioMB.endereco.numero}" required="true"
 						requiredMessage="Preencha o campo número" maxlength="5" size="8"
@@ -83,14 +83,14 @@
 					
                  
                 Bairro<br />
-					<p:inputText id="bairro" value="#{usuarioMB.endereco.bairro}"
+					<p:inputText id="bairro" value="#{usuarioMB.endereco.bairro}" size="25"
 						required="true" label="bairro"
 						requiredMessage="Preencha o campo Bairro" />
 					
                  
 				Cidade<br />
-					<p:inputText value="#{usuarioMB.endereco.cidade}" required="true"
-						requiredMessage="Preencha o campo cidade" />
+					<p:inputText value="#{usuarioMB.endereco.cidade}"  size="50"
+					 required="true" requiredMessage="Preencha o campo cidade" />
 					
                  
                 Estado<br />
@@ -138,15 +138,17 @@
 					<p:inputText id="email" value="#{usuarioMB.usuario.email}"
 						required="true" requiredMessage="Preencha o campo email" />
 
-					<h:outputText value="Digite sua Senha: " />
-					<p:password id="senha" value="#{usuarioMB.usuario.senha}"
+					<h:outputText value="Digite sua Senha: " /> 
+					<p:password id="senha" value="#{usuarioMB.usuario.senha}" maxlength="10"
 						feedback="true" promptLabel="Digite sua Senha" weakLabel="Fraca"
+						placeholder="Senha com 10 Digitos" 
 						goodLabel="Regular" strongLabel="Forte" required="true"
 						requiredMessage="Preencha o campo senha" />
 
 					<h:outputText value="Confirmar Senha: " />
-					<p:password id="ConfirmaSenha" feedback="false"
-						promptLabel="Redigite sua Senha" weakLabel="Fraca"
+					<p:password id="ConfirmaSenha" feedback="false" maxlength="10"
+						promptLabel="Redigite sua Senha" weakLabel="Fraca" 
+						placeholder="Senha com 10 Digitos"
 						goodLabel="Regular" strongLabel="Forte" required="true"
 						requiredMessage="Preencha o campo Confirmar senha" />
 

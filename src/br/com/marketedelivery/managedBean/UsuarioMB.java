@@ -17,6 +17,7 @@ import br.com.marketedelivery.Fachada.Fachada;
 import br.com.marketedelivery.IFachada.IFachada;
 import br.com.marketedelivery.classesBasicas.Endereco;
 import br.com.marketedelivery.classesBasicas.Estado;
+import br.com.marketedelivery.classesBasicas.Perfil;
 import br.com.marketedelivery.classesBasicas.Usuario;
 import br.com.marketedelivery.util.ValidarCpf;
 import br.com.marketedelivery.util.ValidarEmail;
@@ -125,7 +126,9 @@ public class UsuarioMB implements Serializable {
 			if (user == null) {
 				if (user2 == null) {
 					if (ValidarEmail.emailValido(usuario.getEmail()) != false) {
-						if (vl.validarCpf(usuario.getCpf()) == true) {
+						if (vl.validarCpf(usuario.getCpf()) == true) 
+						{
+							usuario.setPerfil(Perfil.Usuario);
 							fachada.cadastrarUsuario(usuario);
 							FacesContext.getCurrentInstance().addMessage(null,
 									new FacesMessage("Cliente cadastrado com sucesso"));

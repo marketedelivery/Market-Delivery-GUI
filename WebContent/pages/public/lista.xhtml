@@ -37,7 +37,7 @@
  						placeholder="Digite aqui se desejar um produto ou marca especifico"/>
  						
 						<p:commandButton value="Pesquisar"  ajax="true" update="dataGrid"
-						actionListener="#{produtoMB.pesquisarProdutoLista}"/>
+						actionListener="#{produtoMB.pesquisarProdutoLista}" />
 							
 						<p:commandButton update="dataGrid" value="Recarregar lista" ajax="true"
 							actionListener="#{produtoMB.recarregarLista}"/>
@@ -46,7 +46,7 @@
 					<br />
 
 					<p:dataGrid id ="dataGrid" columns="4" value="#{produtoMB.todosProdutos}"
-						layout="tabular" rows="12" paginator="true" var="produto"
+						layout="tabular" rows="12" paginator="true" var="produto" emptyMessage="Nenhum registro encontrado...."
 						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 						rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
 						<p:panel style="text-align: center">
@@ -75,8 +75,7 @@
 							rendered="#{empty itemMB.listaProduto}" />
 
 						<p:dataTable id="produtosSelecionados" var="item"
-							value="#{itemMB.listaItens}"
-							rendered="#{not empty itemMB.listaItens}">
+							value="#{itemMB.listaItens}" emptyMessage="Nenhum produto adicionado">
 
 							<p:column>
 								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
@@ -86,7 +85,7 @@
 							</p:column>
 
 							<p:column headerText="Nome" filterBy="#{item.produto.nome}"
-								sortBy="#{item.produto.nome}">
+								 sortBy="#{item.produto.nome}" filterValue="#{item.produto.nome}">
 								<h:outputText value="#{item.produto.nome}" />
 							</p:column>
 
@@ -95,25 +94,13 @@
 								<h:outputText value="#{item.produto.marca}" />
 							</p:column>
 							<p:column headerText="Tipo" filterBy="#{item.produto.tipo}"
-								sortBy="#{item.produto.tipo}">
+								sortBy="#{item.produto.nome.tipo}" filterValue="#{item.produto.tipo}">
 								<h:outputText value="#{item.produto.tipo}" />
 							</p:column>
 							<p:column headerText="Quantidade">
 								<p:spinner id="minMax" value="#{item.qtdProduto}" min="0"
-									max="100">
-									<p:ajax update="valorTotal" process="@this" />
+									max="100">									
 								</p:spinner>
-							</p:column>
-
-							<p:column headerText="Valor Unitario">
-								<h:outputText value="#{item.produto.valorUnitario}" />
-							</p:column>
-
-							<p:column headerText="Valor Parcial">
-								<h:outputText id="valorTotal"
-									value="#{item.produto.valorUnitario*item.qtdProduto}">
-									<f:convertNumber maxFractionDigits="2" />
-								</h:outputText>
 							</p:column>
 
 							<p:column headerText="Ação">
@@ -129,7 +116,6 @@
 
 							</f:facet>
 							<f:facet name="footer">
-
 								<p:commandButton value="Cadastrar Lista"
 									action="#{itemMB.criarLista}" />
 							</f:facet>
