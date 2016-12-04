@@ -300,6 +300,21 @@
 								style="width:70px; text-align: center;">
 								<h:outputText value="#{pedido.valorTotalPedido}" />
 							</p:column>
+							<p:column headerText="Realizar Compra" style="width: 70px">
+							<form id="_xclick" action="https://www.sandbox.paypal.com/cgi-nin/webscr"  method="post">
+								<input type="hidden"  name="cmd" value="_xclick"/>
+								<input type="hidden" name="business" value="${initParam['business']}"/>
+								<input type="hidden" name="lc" value="BR"/>
+								<input type="hidden" name="item_name"  value="#{compararPrecosMB.lista.nome}"/>
+								<input type="hidden" name="amount" value="#{pedido.valorTotalPedido}"/>
+								<input type="hidden" name="currency_code" value="BRL"/>
+								<input type="hidden" name="button_subtype" value="services"/>
+								<input type="hidden" name="no_note" value="0"/>
+								<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest"/>
+								<input type="image" src="https://www.paypalobjects.com/pt_BR/BR/i/btn/btn_buynowCC_LG.gif" alt="PayPal - pagamentos online!" />
+								<input type="hidden" name="return" value="${initParam['returnurl']}"/>
+							</form>
+						</p:column>
 						</p:dataTable>
 					</h:form>
 					<br />
@@ -354,6 +369,7 @@
 							<p:outputLabel style="text-align: center"
 								value="#{idisponivel.qtdProduto}" />
 						</p:column>
+						
 					</p:dataTable>
 					<br />
 					<p:panelGrid columns="2">

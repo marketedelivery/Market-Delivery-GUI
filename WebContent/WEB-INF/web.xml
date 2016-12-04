@@ -84,4 +84,26 @@
 		    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
 		    <location>/pages/public/tlLogin.xhtml</location>
 		</error-page>
+		
+		<!-- configuração do pay pal -->
+		
+		<context-param>
+			<param-name>authtoken</param-name>
+			<param-value>AFcWxV21C7fd0v3bYYYRCpSSRl31APjYuLNnGj4V5zAaWXt0oCGpEhbp</param-value>
+		</context-param>
+		
+		<context-param>
+			<param-name>posturl</param-name>
+			<param-value>https://www.sandbox.paypal.com/cgi-bin/webscr</param-value>
+		</context-param>
+		
+		<context-param>
+			<param-name>business</param-name>
+			<param-value>emi-dioTeste@hotmail.com</param-value>
+		</context-param>
+		
+		<context-param>
+			<param-name>returnurl</param-name>
+			<param-value>http://localhost:8081/MarketeDeliveryGui/pages/protected/minhasListas.xhtml</param-value>
+		</context-param>
 </web-app>
