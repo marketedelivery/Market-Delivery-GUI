@@ -150,10 +150,8 @@
 						rowsPerPageTemplate="5,10,15,20" emptyMessage="Não há produtos salvos"
 						var="item" style="width:0 auto">
 						<p:column headerText="Imagem" style="width: 100px">
-							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-								height="80px" width="80px" rendered="true">
-								<f:param name="caminho" value="#{item.produto.imagem}" />
-							</p:graphicImage>
+							<p:graphicImage id="foto" value="#{item.produto.imagem}"
+								height="80px" width="80px" rendered="true"/>
 						</p:column>
 
 						<p:column headerText="Nome" style="width: 45px">
@@ -265,11 +263,9 @@
 							id="tbPedidos" var="pedido">
 							<p:column headerText="Supermercado"
 								style="width:90px;text-align: center;">
-								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-									height="60px" width="60px" rendered="true">
-									<f:param name="caminho"
-										value="#{pedido.supermercado.logoimage}" />
-								</p:graphicImage><br />
+								<p:graphicImage id="foto" value="#{pedido.supermercado.logoimage}"
+									height="60px" width="60px" rendered="true"/>
+									<br />
 								<h:outputText value="#{pedido.supermercado.nome}" />
 								
 							</p:column>
@@ -346,10 +342,8 @@
 						emptyMessage="Não há itens disponíveis salvos" var="idisponivel"
 						style="width:0 auto">
 						<p:column headerText="Imagem" style="width: 100px">
-							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-								height="80px" width="80px" rendered="true">
-								<f:param name="caminho" value="#{idisponivel.produto.imagem}" />
-							</p:graphicImage>
+							<p:graphicImage id="foto" value="#{idisponivel.produto.imagem}"
+								height="80px" width="80px" rendered="true"/>
 						</p:column>
 
 						<p:column headerText="Nome" style="width: 45px">
@@ -400,10 +394,8 @@
 						emptyMessage="Não há itens indisponíveis salvos"
 						var="iindisponivel" style="width:0 auto">
 						<p:column headerText="Imagem" style="width: 80px">
-							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-								height="80px" width="80px" rendered="true">
-								<f:param name="caminho" value="#{iindisponivel.produto.imagem}" />
-							</p:graphicImage>
+							<p:graphicImage id="foto" value="#{iindisponivel.produto.imagem}"
+								height="80px" width="80px" rendered="true"/>
 						</p:column>
 
 						<p:column headerText="Nome" style="width: 45px">

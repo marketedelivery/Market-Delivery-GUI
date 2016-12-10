@@ -52,10 +52,8 @@
 						<p:panel style="text-align: center">
 							<p:outputPanel style="margin:0 auto;">
 								<p:panelGrid>
-									<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-										height="60%" width="60%" rendered="true">
-										<f:param name="caminho" value="#{produto.imagem}" />
-									</p:graphicImage>
+									<p:graphicImage id="foto" value="#{produto.imagem}"
+										height="60%" width="60%" rendered="true"/>
 								</p:panelGrid>
 								<p:outputLabel value="#{produto.nome}  #{produto.tipo}" />
 								<br />
@@ -78,10 +76,8 @@
 							value="#{itemMB.listaItens}" emptyMessage="Nenhum produto adicionado">
 
 							<p:column>
-								<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-									height="80px" width="80px" rendered="true">
-									<f:param name="caminho" value="#{item.produto.imagem}" />
-								</p:graphicImage>
+								<p:graphicImage id="foto" value="#{item.produto.imagem}"
+									height="80px" width="80px" rendered="true"/>
 							</p:column>
 
 							<p:column headerText="Nome" filterBy="#{item.produto.nome}"
@@ -104,7 +100,7 @@
 							</p:column>
 
 							<p:column headerText="Ação">
-								<p:commandButton var="item" value="remover"
+								<p:commandButton var="item" value="remover" process="@this"
 									actionListener="#{itemMB.remover(item)}"
 									update=":form:listaForm:pdtSelecionado" />
 							</p:column>

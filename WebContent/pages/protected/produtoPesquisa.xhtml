@@ -41,10 +41,8 @@
 				filteredValue="#{produtoMB.produtosFiltrados}" var="produto"
 				rows="6" paginator="true">
 				<p:column headerText="Imagem">
-					<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-						height="100px" width="100px" rendered="true">
-						<f:param name="caminho" value="#{produto.imagem}" />
-					</p:graphicImage>
+					<p:graphicImage id="foto" value="#{produto.imagem}"
+						height="100px" width="100px" rendered="true"/>
 				</p:column>
 				<p:column headerText="Nome" filterBy="#{produto.nome}"
 					sortBy="#{produto.nome}">
@@ -72,11 +70,8 @@
 				height="480px" width="480px">
 				<p:panelGrid columns="1" style="margin-left:35%">
 					<p:panelGrid style="margin-left:50%">
-						<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-							height="100px" width="100px" rendered="true">
-							<f:param name="caminho"
-								value="#{visualizarPrecoMB.produto.imagem}" />
-						</p:graphicImage>
+						<p:graphicImage id="foto" value="#{produto.imagem}"
+							height="100px" width="100px" rendered="true"/>
 					</p:panelGrid>
 					<p:panelGrid style="margin-left:50%">
 						<h:outputText value="#{visualizarPrecoMB.produto.nome} " />
@@ -96,11 +91,8 @@
 						rows="3" paginator="false">
 
 						<p:column>
-							<p:graphicImage id="foto" value="#{imageBean.fotoCarregada}"
-								height="100px" width="100px" rendered="true">
-								<f:param name="caminho"
-									value="#{produto.supermercado.logoimage}" />
-							</p:graphicImage>
+							<p:graphicImage id="foto" value="#{produto.supermercado.logoimage}"
+								height="100px" width="100px" rendered="true"/>
 						</p:column>
 
 						<p:column headerText="Supermercado" style="text-align: center">
