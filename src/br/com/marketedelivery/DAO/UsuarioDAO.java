@@ -37,9 +37,11 @@ public class UsuarioDAO extends DAOGenerico<Usuario> implements IUsuarioDAO
 	
 	public Usuario buscarUsuarioPorCPF(String cpf)
     {
+		 String formataCPF =  cpf.replace(".","");
+		 String formatacpf = formataCPF.replace("-","");
         String consulta = "SELECT c FROM Usuario c WHERE c.cpf = :N";
         TypedQuery<Usuario> retorno = getEntityManager().createQuery(consulta, Usuario.class);
-        retorno.setParameter("N", cpf);
+        retorno.setParameter("N", formatacpf);
         Usuario resultado;
         try {
             resultado = retorno.getSingleResult();

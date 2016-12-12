@@ -105,8 +105,9 @@ public class ControladorUsuario
 			usuarioDAO = DAOFactory.getUsuarioDAO();
 			usuarioDAO.alterar(u);
 			resultado = true;
+			return resultado;
 		}
-		resultado = false;
+		//resultado = false;
 		return resultado;
 	}
 }

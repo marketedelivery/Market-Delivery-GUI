@@ -13,10 +13,10 @@ public class EmailUtil
 
 	public void enviarEmail(Usuario u) throws EmailException
 	{
-		String mensagem = "<H4>Olá sr.(a) " + u.getNome() + "</H4>" + "<BR>"
-				+ "<P> Enviamo a nova senha de acesso ao marketedelivary</P>" + "<BR>" + "<P>A nova senha é: </P>"
+		String mensagem = "<H4>Olá Sr.(a) " + u.getNome() + "</H4>" + "<BR>"
+				+ "<P> Enviamos a nova senha de acesso ao Market & Delivery</P>" + "<BR>" + "<P>A nova senha é: </P>"
 				+ "<UL>" + "<LI><B> - Senha: </B>" + u.getSenha() + "</UL>" + "<BR>" + "<P> Att, </p>" + "<BR>"
-				+ "<P>Por favor não respoder este email." + "<BR>" + " att: " + "Equipe MartekeDelivery </P>" + "<BR>"
+				+ "<P>Por favor não respoder este email." + "<BR>" + " att: " + "Equipe Martek & Delivery </P>" + "<BR>"
 				+ "<BR> \n";
 		HtmlEmail email = new HtmlEmail();
 		try
@@ -28,9 +28,9 @@ public class EmailUtil
 			email.setSSLOnConnect(true);
 			//
 			email.setDebug(true);
-			email.setAuthenticator(new DefaultAuthenticator("fabioemidiosouza@gmail.com", "88351077"));
+			email.setAuthenticator(new DefaultAuthenticator("marketedelivery@gmail.com", "market&delivery"));
 			email.setSubject("Alteração de senha");
-			email.setFrom("fabioemidiosouza@gmail.com", "fabio");
+			email.setFrom("marketedelivery@gmail.com", "Market Delivery");
 			email.setHtmlMsg(mensagem);
 			email.addTo(u.getEmail(), "");
 			email.send();
